@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:task="http://www.springframework.org/schema/task"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+			http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+			http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+			http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd
+			http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd"
+	default-autowire="byName" default-lazy-init="false">
+
+	<!-- 静态文件映射 -->
+	<mvc:resources mapping="/static/**" location="/resources/" />
+	<mvc:resources mapping="/attach/**" location="/attach/" />
+
+	<context:component-scan base-package="com.goodlaike.henghua.*" />
+	<task:annotation-driven />
+	<mvc:annotation-driven conversion-service="conversionService">
+		<mvc:message-converters>
+			<!-- http 请求编码 -->
+			<bean class="org.springframework.http.converter.StringHttpMessageConverter">
+				<property name="supportedMediaTypes">
+					<list>
+						<value>text/plain;charset=UTF-8</value>
+						<value>text/html;charset=UTF-8</value>
+					</list>
+				</property>
+			</bean>
+			<!-- json 请求编码 -->
+			<bean
+				class="com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter">
+				<property name="supportedMediaTypes">
+					<list>
+						<value>application/json; charset=UTF-8</value>
+						<value>application/x-www-form-urlencoded; charset=UTF-8</value>
+					</list>
+				</property>
+			</bean>
+		</mvc:message-converters>
+	</mvc:annotation-driven>
+
+
+	<!-- 视图文件映射 -->
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="viewClass"
+			value="org.springframework.web.servlet.view.JstlView" />
+		<property name="prefix" value="/WEB-INF/jsp/" />
+		<property name="suffix" value=".jsp" />
+		<property name="order" value="1000" />
+	</bean>
+
+	<!-- 引入系统appConfigurer参数 -->
+	<bean id="loadGrobal" class="com.goodlaike.henghua.config.AppConfigurer">
+		<property name="locations">
+			<list>
+				<value>classpath:global.properties</value>
+				<value>classpath:jdbc.properties</value>
+			</list>
+		</property>
+		<property name="ignoreUnresolvablePlaceholders" value="true" />
+	</bean>
+
+	<bean id="goodlaikeDataSource" class="org.apache.tomcat.jdbc.pool.DataSource"
+		destroy-method="close">
+		<property name="poolProperties">
+			<bean class="org.apache.tomcat.jdbc.pool.PoolProperties">
+				<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+				<property name="url"
+					value="jdbc:mysql://${${env}.goodlaike.jdbc.url}?autoReconnect=true&amp;useUnicode=true&amp;characterEncoding=UTF-8" />
+				<property name="username" value="${${env}.goodlaike.jdbc.username}" />
+				<property name="password" value="${${env}.goodlaike.jdbc.password}" />
+				<property name="jmxEnabled" value="true" />
+				<property name="testWhileIdle" value="true" />
+				<property name="testOnBorrow" value="true" />
+				<property name="testOnReturn" value="false" />
+				<property name="validationInterval" value="30000" />
+				<property name="validationQuery" value="SELECT 1" />
+				<property name="timeBetweenEvictionRunsMillis" value="30000" />
+				<property name="maxActive" value="100" />
+				<property name="initialSize" value="10" />
+				<property name="maxWait" value="10000" />
+				<property name="minEvictableIdleTimeMillis" value="30000" />
+				<property name="minIdle" value="10" />
+				<property name="logAbandoned" value="false" />
+				<property name="removeAbandoned" value="true" />
+				<property name="removeAbandonedTimeout" value="60" />
+				<property name="jdbcInterceptors"
+					value="org.apache.tomcat.jdbc.pool.interceptor.ConnectionState;org.apache.tomcat.jdbc.pool.interceptor.StatementFinalizer" />
+			</bean>
+		</property>
+	</bean>
+
+	<!-- 配置sqlSessionFactory -->
+	<bean id="goodlaikeSqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="configLocation" value="classpath:spring/mybatis-config.xml" />
+		<property name="dataSource" ref="goodlaikeDataSource" />
+		<property name="mapperLocations">
+			<list>
+				<value>classpath*:mapper/**/*.xml</value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- 注入数据库dao -->
+	<!-- <bean id="queryDao" class="com.goodlaike.dao.QueryDao" autowire="byName"
+		p:sqlSessionFactory-ref="goodlaikeSqlSessionFactory" /> -->
+		
+	<!-- 配置事务管理器，注意这里的dataSource和SqlSessionFactoryBean的dataSource要一致，不然事务就没有作用了 -->
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="goodlaikeDataSource" />
+	</bean>
+	<tx:annotation-driven transaction-manager="transactionManager" />
+
+	<!-- 自定义日期转换 ，支持 long 与 yyyy-MM-dd HH:mm:ss -->
+	<bean id="conversionService"
+		class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+		<property name="converters">
+			<list>
+				<bean class="com.goodlaike.converters.DateConverter" />
+			</list>
+		</property>
+	</bean>
+</beans>
