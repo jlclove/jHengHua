@@ -8,5 +8,9 @@
 </head>
 <body>
 	hello world
+	
+	<script type="text/javascript" src="/static/js/marked.js"></script>
+	
+	#hello
 </body>
 </html>
