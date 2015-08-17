@@ -7,10 +7,22 @@
 <title>Insert title here</title>
 </head>
 <body>
-	hello world
-	
-	<script type="text/javascript" src="/static/js/marked.js"></script>
-	
-	#hello
+	<script src="//cdn.bootcss.com/markdown.js/0.6.0-beta1/markdown.min.js"></script>
+	<script type="text/javascript" src="/static/js/marked_editor.js"></script>
+    <link href="http://kevinburke.bitbucket.org/markdowncss/markdown.css" rel="stylesheet"></link>
+    <div id="body2">
+    	
+    </div>
+    <script type="text/javascript" src="/static/js/zepto.min.js"></script>
+    <script type="text/javascript">
+    (function($) {
+      $('#body2').load('/static/md/test.md',
+        function(data) {
+          var editor = new Editor();
+          document.getElementById('body2').innerHTML = editor.constructor.markdown(data);
+        }
+      );
+    })(Zepto);
+    </script>
 </body>
 </html>
