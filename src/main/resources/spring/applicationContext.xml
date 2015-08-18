@@ -16,6 +16,7 @@
 	<mvc:resources mapping="/attach/**" location="/attach/" />
 
 	<context:component-scan base-package="com.goodlaike.henghua.*" />
+	
 	<task:annotation-driven />
 	<mvc:annotation-driven conversion-service="conversionService">
 		<mvc:message-converters>
@@ -124,4 +125,7 @@
 			</list>
 		</property>
 	</bean>
+	
+	
+	<import resource="classpath:news-applicationContext.xml"/>
 </beans>

@@ -7,7 +7,7 @@
     </settings>
 
     <typeAliases>
-		<typeAlias type="com.dooioo.se.dao.support.Pagination" alias="pagination"/>
+		<typeAlias type="com.goodlaike.framework.dao.support.Pagination" alias="pagination"/>
 		<package name="com.goodlaike.henghua.entity.model" />
 	</typeAliases>
 

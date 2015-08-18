@@ -13,9 +13,11 @@
 		<spring-version>4.1.6.RELEASE</spring-version>
 		<tomcat-version>8.0.23</tomcat-version>
 		<commons-configuration-version>1.7</commons-configuration-version>
+		<mysql-version>5.1.30</mysql-version>
 		<mybatis-version>3.2.6</mybatis-version>
         <mybatis-spring-version>1.2.2</mybatis-spring-version>
-        <jtools-version>0.0.6</jtools-version>
+        <goodlaike-tools-version>0.0.6</goodlaike-tools-version>
+        <goodlaike-dao-mybatis-version>0.1.0</goodlaike-dao-mybatis-version>
 	</properties>
 	
 	<dependencies>
@@ -115,6 +117,12 @@
             <artifactId>mybatis-spring</artifactId>
             <version>${mybatis-spring-version}</version>
         </dependency>
+        
+         <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>${mysql-version}</version>
+        </dependency>
 
         <!--阿里josn包 -->
         <dependency>
@@ -154,16 +162,22 @@
             <artifactId>joda-time</artifactId>
             <version>2.1</version>
         </dependency>
-		 <dependency>
-            <groupId>com.dooioo.se</groupId>
-            <artifactId>jDao4mybatis</artifactId>
-            <version>0.1.0</version>
+		<dependency>
+            <groupId>com.goodlaikeframework</groupId>
+			<artifactId>goodlaike-dao-mybatis</artifactId>
+            <version>${goodlaike-dao-mybatis-version}</version>
         </dependency>
         
         <dependency>
-            <groupId>com.goodlaike</groupId>
-            <artifactId>jTools</artifactId>
-            <version>${jtools-version}</version>
+            <groupId>com.goodlaikeframework</groupId>
+            <artifactId>goodlaike-tools</artifactId>
+            <version>${goodlaike-tools-version}</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>com.goodlaike.business</groupId>
+			<artifactId>goodlaike-business-news</artifactId>
+            <version>0.0.2</version>
         </dependency>
     </dependencies>
 
