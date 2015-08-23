@@ -16,8 +16,10 @@
 		<mysql-version>5.1.30</mysql-version>
 		<mybatis-version>3.2.6</mybatis-version>
         <mybatis-spring-version>1.2.2</mybatis-spring-version>
-        <goodlaike-tools-version>0.0.6</goodlaike-tools-version>
+        <goodlaike-tools-version>0.0.7</goodlaike-tools-version>
         <goodlaike-dao-mybatis-version>0.1.0</goodlaike-dao-mybatis-version>
+        <goodlaike-business-core-version>0.0.2</goodlaike-business-core-version>
+        <goodlaike-business-news-version>0.0.2</goodlaike-business-news-version>
 	</properties>
 	
 	<dependencies>
@@ -177,8 +179,14 @@
         <dependency>
             <groupId>com.goodlaike.business</groupId>
 			<artifactId>goodlaike-business-news</artifactId>
-            <version>0.0.2</version>
+            <version>${goodlaike-business-news-version}</version>
         </dependency>
+        
+      <!--   <dependency>
+            <groupId>com.goodlaike.business</groupId>
+			<artifactId>goodlaike-business-core</artifactId>
+            <version>${goodlaike-business-core-version}</version>
+        </dependency> -->
     </dependencies>
 
     <!-- 插件配置 -->
