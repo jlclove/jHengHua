@@ -128,4 +128,6 @@
 	
 	
 	<import resource="classpath:news-applicationContext.xml"/>
+	<import resource="classpath:core-applicationContext.xml"/>
+	<import resource="classpath:fileupload-applicationContext.xml"/>
 </beans>
