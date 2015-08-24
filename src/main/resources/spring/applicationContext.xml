@@ -15,7 +15,7 @@
 	<mvc:resources mapping="/static/**" location="/resources/" />
 	<mvc:resources mapping="/attach/**" location="/attach/" />
 
-	<context:component-scan base-package="com.goodlaike.henghua.*" />
+	<context:component-scan base-package="com.goodlaike.henghua"/>
 	
 	<task:annotation-driven />
 	<mvc:annotation-driven conversion-service="conversionService">
