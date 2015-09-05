@@ -1,6 +1,5 @@
 package com.goodlaike.henghua.protocal;
 
-import com.goodlaike.business.core.support.Constants;
 import com.goodlaike.business.core.support.LanguageStore;
 
 /**
@@ -26,7 +25,7 @@ public class Language2Henghua {
      */
     public static int getHenghuaParameter(String lang) {
         switch (LanguageStore.getLanguage(lang)) {
-        case Constants.DEFAULT_LOCALIZATION:
+        case "cn":
             return 0;
         case "en":
             return 1;
