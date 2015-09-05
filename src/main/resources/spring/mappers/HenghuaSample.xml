@@ -1,0 +1,40 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="HenghuaSample">
+
+	<insert id="replaceSource" parameterType="list">
+		replace INTO
+		`henghua_sample`
+		(
+		`cardId`,
+		`nick`,
+		`sample2Img`,
+		`material`,
+		`descCn`,
+		`descEn`,
+		`creator`,
+		`updator`)
+		<foreach collection="list" item="sample" separator=" union all ">
+			(select
+			#{sample.cardId} as cardId,
+			#{sample.nick} as nick,
+			#{sample.sample2Img} as sample2Img,
+			#{sample.material} as material,
+			#{sample.descCn} as descCn,
+			#{sample.descEn} as descEn,
+			#{sample.creator} as creator,
+			#{sample.updator} as updator)
+		</foreach>
+	</insert>
+
+	<!-- 根据id获得用户 -->
+	<select id="findNextList" resultType="vSample" parameterType="long">
+		select *
+		from
+		henghua_sample
+		where id > #{id}
+		order by id
+		limit 30;
+	</select>
+</mapper>

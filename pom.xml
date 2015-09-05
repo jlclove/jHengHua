@@ -18,7 +18,7 @@
 		<mybatis-version>3.2.6</mybatis-version>
 		<mybatis-spring-version>1.2.2</mybatis-spring-version>
 		<goodlaike-framework-tools-version>0.0.7</goodlaike-framework-tools-version>
-		<goodlaike-framework-dao-mybatis-version>0.1.0</goodlaike-framework-dao-mybatis-version>
+		<goodlaike-framework-dao-mybatis-version>0.1.1</goodlaike-framework-dao-mybatis-version>
 		<goodlaike-business-core-version>0.0.2</goodlaike-business-core-version>
 		<goodlaike-business-news-version>0.0.2</goodlaike-business-news-version>
 		<goodlaike-business-fileupload-version>0.0.1</goodlaike-business-fileupload-version>
@@ -86,11 +86,18 @@
 			<artifactId>commons-configuration</artifactId>
 			<version>${commons-configuration-version}</version>
 		</dependency>
+		
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-collections4</artifactId>
+			<version>4.0</version>
+		</dependency>
 
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>4.12</version>
+			<scope>test</scope>
 		</dependency>
 
 		<dependency>
@@ -133,6 +140,23 @@
 			<groupId>com.alibaba</groupId>
 			<artifactId>fastjson</artifactId>
 			<version>1.2.5</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.fasterxml.jackson.dataformat</groupId>
+			<artifactId>jackson-dataformat-xml</artifactId>
+			<version>2.5.3</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+			<version>4.5</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-httpclient</groupId>
+			<artifactId>commons-httpclient</artifactId>
+			<version>3.1</version>
 		</dependency>
 
 		<!--jstl相关 -->
@@ -180,21 +204,26 @@
 
 		<dependency>
 			<groupId>com.goodlaike.business</groupId>
-			<artifactId>goodlaike-business-news</artifactId>
-			<version>${goodlaike-business-news-version}</version>
-		</dependency>
-		
-		<dependency>
-			<groupId>com.goodlaike.business</groupId>
 			<artifactId>goodlaike-business-core</artifactId>
 			<version>${goodlaike-business-core-version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.goodlaike.business</groupId>
+			<artifactId>goodlaike-business-news</artifactId>
+			<version>${goodlaike-business-news-version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.goodlaike.business</groupId>
 			<artifactId>goodlaike-business-fileupload</artifactId>
 			<version>${goodlaike-business-fileupload-version}</version>
 		</dependency>
-
+		<dependency>
+			<groupId>com.dooioo.se.tools</groupId>
+			<artifactId>rest-template</artifactId>
+			<version>0.0.15</version>
+		</dependency>
+		
 	</dependencies>
 
 	<!-- 插件配置 -->
