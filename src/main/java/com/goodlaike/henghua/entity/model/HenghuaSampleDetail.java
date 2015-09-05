@@ -131,7 +131,16 @@ public class HenghuaSampleDetail implements Serializable {
      * @return int
      */
     public int getDetailIndex() {
-        return StringUtils.isNotBlank(cardBak) ? Integer.valueOf(cardBak.split("-")[1]) : 0;
+        if (StringUtils.isNotBlank(cardBak)) {
+            String[] a = cardBak.split("-");
+            if (a.length > 1) {
+                return Integer.valueOf(a[1]);
+            } else {
+                return 0;
+            }
+        } else {
+            return 0;
+        }
     }
 
     /**

@@ -54,11 +54,8 @@ public class HenghuaService {
                 String[] d = detail.split("=");
                 if (d.length == 2) {
                     HenghuaSampleDetail dd = new HenghuaSampleDetail();
-                    dd.setDetailName(d[0]);
+                    dd.setCardBak(d[0]);
                     dd.setPicPath(d[1]);
-                    if(d[0].contains("-")){
-                        dd.set
-                    }
                     ((VHenghuaSample) sample).detailList.add(dd);
                 }
             }
