@@ -37,6 +37,26 @@ public class HenghuaService {
     private RestHenghua restHenghua;
 
     /**
+     * 根据 样卡名获得样卡详情
+     * 
+     * @param cardId
+     *            样卡名
+     * @return HenghuaSample
+     * @since 1.0.0
+     * @author jail
+     * @createTime 2015年9月5日上午11:55:16
+     * @updator jail
+     * @updateTime 2015年9月5日上午11:55:16
+     */
+    public HenghuaSample getSample(String cardId) {
+        HenghuaSample sample = henghuaSampleDao.getSample(cardId);
+        if (sample != null) {
+            this.formatSampleDetail(sample);
+        }
+        return sample;
+    }
+
+    /**
      * 获得下一页样品数据
      * 
      * @param id
@@ -50,17 +70,33 @@ public class HenghuaService {
     public List<HenghuaSample> getNextList(long id) {
         List<HenghuaSample> list = henghuaSampleDao.getNextList(id);
         list.forEach(sample -> {
-            for (String detail : sample.getSample2Img().split(",")) {
-                String[] d = detail.split("=");
-                if (d.length == 2) {
-                    HenghuaSampleDetail dd = new HenghuaSampleDetail();
-                    dd.setCardBak(d[0]);
-                    dd.setPicPath(d[1]);
-                    ((VHenghuaSample) sample).detailList.add(dd);
-                }
-            }
+            this.formatSampleDetail(sample);
         });
         return list;
+    }
+
+    /**
+     * 格式化 图片到 样品
+     * 
+     * @param sample
+     * @since 1.0.0
+     * @author jail
+     * @createTime 2015年9月5日上午11:58:55
+     * @updator jail
+     * @updateTime 2015年9月5日上午11:58:55
+     */
+    private void formatSampleDetail(HenghuaSample sample) {
+        for (String detail : sample.getSample2Img().split(",")) {
+            String[] d = detail.split("=");
+            if (d.length == 2) {
+                HenghuaSampleDetail dd = new HenghuaSampleDetail();
+                dd.setCardBak(d[0]);
+                dd.setPicPath(d[1]);
+                ((VHenghuaSample) sample).detailList.add(dd);
+            }
+        }
+        ((VHenghuaSample) sample).detailList
+                .sort((d1, d2) -> Integer.compare(d1.getDetailIndex(), d2.getDetailIndex()));
     }
 
     /**

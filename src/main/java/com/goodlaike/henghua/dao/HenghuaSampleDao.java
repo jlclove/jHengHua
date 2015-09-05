@@ -51,4 +51,20 @@ public class HenghuaSampleDao extends LocalRWDao<HenghuaSample> {
     public List<HenghuaSample> getNextList(long id) {
         return super.selectList("findNextList", id);
     }
+
+    /**
+     * 根据 样卡名获得样卡详情
+     * 
+     * @param cardId
+     *            样卡名
+     * @return HenghuaSample
+     * @since 1.0.0
+     * @author jail
+     * @createTime 2015年9月5日上午11:55:16
+     * @updator jail
+     * @updateTime 2015年9月5日上午11:55:16
+     */
+    public HenghuaSample getSample(String cardId) {
+        return super.selectOne("findSample", cardId);
+    }
 }

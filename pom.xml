@@ -218,12 +218,6 @@
 			<artifactId>goodlaike-business-fileupload</artifactId>
 			<version>${goodlaike-business-fileupload-version}</version>
 		</dependency>
-		<dependency>
-			<groupId>com.dooioo.se.tools</groupId>
-			<artifactId>rest-template</artifactId>
-			<version>0.0.15</version>
-		</dependency>
-		
 	</dependencies>
 
 	<!-- 插件配置 -->

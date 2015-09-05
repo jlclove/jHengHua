@@ -61,6 +61,12 @@ public class HenghuaController extends BaseRestController {
             @RequestParam(value = "id", defaultValue = "0") long id) {
         return ResponseEntity.ok(henghuaService.getNextList(id));
     }
+    
+    @RequestMapping(value = "sample/{cardId}", method = RequestMethod.GET)
+    protected ResponseEntity<?> getSample(HttpServletRequest request,
+            @PathVariable String cardId) {
+        return ResponseEntity.ok(henghuaService.getSample(cardId));
+    }
 
     /**
      * 获得样品详情

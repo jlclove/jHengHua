@@ -28,7 +28,7 @@
 		</foreach>
 	</insert>
 
-	<!-- 根据id获得用户 -->
+	<!-- 下一分页 -->
 	<select id="findNextList" resultType="vSample" parameterType="long">
 		select *
 		from
@@ -36,5 +36,12 @@
 		where id > #{id}
 		order by id
 		limit 30;
+	</select>
+	
+	<select id="findSample" resultType="vSample" parameterType="string">
+		select *
+		from
+		henghua_sample
+		where cardId = #{cardId}
 	</select>
 </mapper>
