@@ -30,11 +30,10 @@
 		limit 30;
 	</select>
 
-	<select id="findSample" resultType="cloth" parameterType="string">
+	<select id="findCloth" resultType="cloth" parameterType="string">
 		select *
 		from
 		henghua_cloth
 		where serialNo = #{serialNo}
 	</select>
-
 </mapper>

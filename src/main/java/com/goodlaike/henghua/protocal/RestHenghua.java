@@ -35,6 +35,12 @@ public class RestHenghua {
     private String apiClothList;
     @Value("${cloth_detail}")
     private String apiClothDetail;
+    @Value("${washing_list}")
+    private String apiWashingList;
+    @Value("${cloth_type}")
+    private String apiClothType;
+    @Value("${cloth_filter}")
+    private String apiClothFilter;
 
     @Bean
     public static PropertySourcesPlaceholderConfigurer propertyConfigInDev() {
@@ -133,6 +139,49 @@ public class RestHenghua {
      */
     public String restClothDetail(String serialNo) {
         return RestClient.exchange(TextUtil.format(this.apiClothDetail, serialNo), HttpMethod.GET, String.class);
+    }
+
+    /**
+     * 获得所有洗标
+     * 
+     * @return
+     * @since 1.0.0
+     * @author jail
+     * @createTime 2015年9月5日下午5:06:21
+     * @updator jail
+     * @updateTime 2015年9月5日下午5:06:21
+     */
+    public String restWashingList() {
+        return RestClient.exchange(this.apiWashingList, HttpMethod.GET, String.class);
+    }
+
+    /**
+     * 获得服装分类
+     * 
+     * @return
+     * @since 1.0.0
+     * @author jail
+     * @createTime 2015年9月5日下午6:38:05
+     * @updator jail
+     * @updateTime 2015年9月5日下午6:38:05
+     */
+    public String restClothType() {
+        return RestClient.exchange(this.apiClothType, HttpMethod.GET, String.class);
+    }
+
+    /**
+     * 获得服饰筛选
+     * 
+     * @param filter
+     * @return
+     * @since 1.0.0
+     * @author jail
+     * @createTime 2015年9月5日下午7:02:04
+     * @updator jail
+     * @updateTime 2015年9月5日下午7:02:04
+     */
+    public String restClothFilter(String filter) {
+        return RestClient.exchange(TextUtil.format(this.apiClothFilter, filter), HttpMethod.GET, String.class);
     }
 
 }

@@ -53,7 +53,22 @@ public class HenghuaClothDao extends LocalRWDao<HenghuaCloth> {
      * @updator jail
      * @updateTime 2015年9月4日下午6:14:01
      */
-    public List<HenghuaCloth> getNextList(long id) {
+    public List<HenghuaCloth> findNextList(long id) {
         return super.selectList("findNextList", id);
+    }
+
+    /**
+     * 获得服装详情
+     * 
+     * @param serialNo
+     * @return
+     * @since 1.0.0
+     * @author jail
+     * @createTime 2015年9月5日下午4:42:21
+     * @updator jail
+     * @updateTime 2015年9月5日下午4:42:21
+     */
+    public HenghuaCloth findCloth(String serialNo) {
+        return super.selectOne("findCloth", serialNo);
     }
 }

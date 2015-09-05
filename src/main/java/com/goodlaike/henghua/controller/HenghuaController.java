@@ -12,7 +12,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.goodlaike.business.core.controller.BaseRestController;
 import com.goodlaike.business.core.helper.LanguageHelper;
+import com.goodlaike.business.core.support.ExceptionResult;
 import com.goodlaike.henghua.ExceptionResultWeb;
+import com.goodlaike.henghua.entity.model.HenghuaCloth;
+import com.goodlaike.henghua.entity.model.HenghuaClothDetail;
 import com.goodlaike.henghua.entity.model.HenghuaSampleDetail;
 import com.goodlaike.henghua.service.HenghuaService;
 
@@ -130,5 +133,88 @@ public class HenghuaController extends BaseRestController {
     protected ResponseEntity<?> getClothList(HttpServletRequest request,
             @RequestParam(value = "sinceId", defaultValue = "0") long id) {
         return ResponseEntity.ok(henghuaService.getNextClothList(id));
+    }
+
+    /**
+     * 获得服装详情1（父详情，对应列表到详情页）
+     * 
+     * @param request
+     * @param serialNo
+     * @return
+     * @since 1.0.0
+     * @author jail
+     * @createTime 2015年9月5日下午4:45:11
+     * @updator jail
+     * @updateTime 2015年9月5日下午4:45:11
+     */
+    @RequestMapping(value = "cloth/{serialNo}", method = RequestMethod.GET)
+    protected ResponseEntity<?> getCloth(HttpServletRequest request, @PathVariable String serialNo) {
+        HenghuaCloth clothDetail = henghuaService.getCloth(serialNo);
+        return clothDetail == null ? super.notFound(ExceptionResult.NOT_FOUND) : ResponseEntity.ok(clothDetail);
+    }
+
+    /**
+     * 获得服装详情2（子详情）
+     * 
+     * @param request
+     * @param serialNo
+     * @return
+     * @since 1.0.0
+     * @author jail
+     * @createTime 2015年9月5日下午4:35:56
+     * @updator jail
+     * @updateTime 2015年9月5日下午4:35:56
+     */
+    @RequestMapping(value = "cloth/detail/{serialNo}", method = RequestMethod.GET)
+    protected ResponseEntity<?> getClothDetail(HttpServletRequest request, @PathVariable String serialNo) {
+        HenghuaClothDetail clothDetail = henghuaService.getClothDetail(serialNo);
+        return clothDetail == null ? super.notFound(ExceptionResult.NOT_FOUND) : ResponseEntity.ok(clothDetail);
+    }
+
+    /**
+     * 获得所有洗标
+     * 
+     * @param request
+     * @return
+     * @since 1.0.0
+     * @author jail
+     * @createTime 2015年9月5日下午5:20:40
+     * @updator jail
+     * @updateTime 2015年9月5日下午5:20:40
+     */
+    @RequestMapping(value = "washing", method = RequestMethod.GET)
+    protected ResponseEntity<?> getWashingMap(HttpServletRequest request) {
+        return ResponseEntity.ok(henghuaService.getWashingMap());
+    }
+
+    /**
+     * 获得服装分类
+     * 
+     * @return
+     * @since 1.0.0
+     * @author jail
+     * @createTime 2015年9月5日下午6:54:53
+     * @updator jail
+     * @updateTime 2015年9月5日下午6:54:53
+     */
+    @RequestMapping(value = "cloth/type", method = RequestMethod.GET)
+    protected ResponseEntity<?> getClothType() {
+        return ResponseEntity.ok(henghuaService.getClothType());
+    }
+
+    /**
+     * 服装筛选,只支持一个条件搜索，见鬼
+     * 
+     * @param filter
+     * @return
+     * @since 1.0.0
+     * @author jail
+     * @createTime 2015年9月5日下午7:08:46
+     * @updator jail
+     * @updateTime 2015年9月5日下午7:08:46
+     */
+    @RequestMapping(value = "cloth/search", method = RequestMethod.GET)
+    protected ResponseEntity<?> searchCloth(@RequestParam(value = "filter") String filter) {
+        return ResponseEntity.ok(henghuaService.getClothFilter(filter));
     }
 }

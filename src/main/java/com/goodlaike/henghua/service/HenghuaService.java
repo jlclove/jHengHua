@@ -9,6 +9,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
@@ -16,6 +17,7 @@ import com.goodlaike.business.core.support.LanguageStore;
 import com.goodlaike.henghua.dao.HenghuaClothDao;
 import com.goodlaike.henghua.dao.HenghuaSampleDao;
 import com.goodlaike.henghua.entity.model.HenghuaCloth;
+import com.goodlaike.henghua.entity.model.HenghuaClothDetail;
 import com.goodlaike.henghua.entity.model.HenghuaSample;
 import com.goodlaike.henghua.entity.model.HenghuaSampleDetail;
 import com.goodlaike.henghua.entity.model.VHenghuaSample;
@@ -53,7 +55,7 @@ public class HenghuaService {
      * @updateTime 2015年9月5日上午11:55:16
      */
     public HenghuaSample getSample(String cardId) {
-        HenghuaSample sample = henghuaSampleDao.getSample(cardId);
+        HenghuaSample sample = henghuaSampleDao.findSample(cardId);
         if (sample != null) {
             this.formatSampleDetail(sample);
         }
@@ -72,7 +74,7 @@ public class HenghuaService {
      * @updateTime 2015年9月4日下午6:14:47
      */
     public List<HenghuaSample> getNextSampleList(long id) {
-        List<HenghuaSample> list = henghuaSampleDao.getNextList(id);
+        List<HenghuaSample> list = henghuaSampleDao.findNextList(id);
         list.forEach(sample -> {
             this.formatSampleDetail(sample);
         });
@@ -132,7 +134,6 @@ public class HenghuaService {
         r = CoderUtil.decodeUnicode(r);
         JSONObject obj = JSONObject.parseObject(r);
         r = obj.getString("result").replaceAll("\\[\\[", "").replaceAll("\\]\\]", "");
-        System.out.println(r);
         HenghuaSampleDetail detail = JSONObject.parseObject(r, HenghuaSampleDetail.class);
         detail.setDetailName(detailName);
         System.out.println(detail);
@@ -197,6 +198,7 @@ public class HenghuaService {
 
     /**
      * 获得下一页服装数据
+     * 
      * @param id
      * @return
      * @since 1.0.0
@@ -206,8 +208,43 @@ public class HenghuaService {
      * @updateTime 2015年9月5日下午2:04:03
      */
     public List<HenghuaCloth> getNextClothList(long id) {
-        List<HenghuaCloth> list = henghuaClothDao.getNextList(id);
+        List<HenghuaCloth> list = henghuaClothDao.findNextList(id);
         return list;
+    }
+
+    /**
+     * 获得指定服装
+     * 
+     * @param serialNo
+     * @return
+     * @since 1.0.0
+     * @author jail
+     * @createTime 2015年9月5日下午4:43:27
+     * @updator jail
+     * @updateTime 2015年9月5日下午4:43:27
+     */
+    public HenghuaCloth getCloth(String serialNo) {
+        return henghuaClothDao.findCloth(serialNo);
+    }
+
+    /**
+     * 获得服装详情
+     * 
+     * @param serialNo
+     * @return
+     * @since 1.0.0
+     * @author jail
+     * @createTime 2015年9月5日下午4:28:28
+     * @updator jail
+     * @updateTime 2015年9月5日下午4:28:28
+     */
+    public HenghuaClothDetail getClothDetail(String serialNo) {
+        String r = restHenghua.restClothDetail(serialNo);
+        r = CoderUtil.decodeUnicode(r);
+        JSONObject obj = JSONObject.parseObject(r);
+        r = obj.getString("result").replaceAll("\\[\\[", "").replaceAll("\\]\\]", "");
+        HenghuaClothDetail detail = JSONObject.parseObject(r, HenghuaClothDetail.class);
+        return detail;
     }
 
     /**
@@ -227,8 +264,6 @@ public class HenghuaService {
         r = obj.getString("result").replaceAll("\\[\\[", "[").replaceAll("\\]\\]", "]");
         return JSONArray.parseArray(r, HenghuaCloth.class);
     }
-
-    private final HenghuaSampleTypeCacheMap cacheMap = new HenghuaSampleTypeCacheMap();
 
     /**
      * 获得 样品分类
@@ -264,6 +299,8 @@ public class HenghuaService {
         return cache;
     }
 
+    private final HenghuaSampleTypeCacheMap cacheMap = new HenghuaSampleTypeCacheMap();
+
     /**
      * 样品分类缓存
      * 
@@ -292,5 +329,150 @@ public class HenghuaService {
         public HenghuaSampleTypeCache(int mins) {
             this.timeout = System.currentTimeMillis() + mins * 60 * 1000;
         }
+    }
+
+    /**
+     * 获得洗标缓存MAP
+     * 
+     * @return
+     * @since 1.0.0
+     * @author jail
+     * @createTime 2015年9月5日下午6:38:25
+     * @updator jail
+     * @updateTime 2015年9月5日下午6:38:25
+     */
+    public HenghuaWashingCacheMap getWashingMap() {
+        if (this.washingCacheMap == null || this.washingCacheMap.isOutOfTime()) {
+            this.washingCacheMap.clear();
+            this.washingCacheMap.reActive();
+            logger.debug("初始化===洗标");
+            String r = restHenghua.restWashingList();
+            r = CoderUtil.decodeUnicode(r);
+            JSONObject obj = JSONObject.parseObject(r);
+            r = obj.getString("result").replaceAll("\\[\\[", "[").replaceAll("\\]\\]", "]");
+            JSONArray ar = JSONArray.parseArray(r);
+            ar.forEach(a -> {
+                JSONObject o = (JSONObject) a;
+                o.keySet().forEach(key -> this.washingCacheMap.put(key, o.getString(key) + ".png"));
+            });
+        }
+        return this.washingCacheMap;
+    }
+
+    /**
+     * 洗标缓存 相关
+     */
+    private final HenghuaWashingCacheMap washingCacheMap = new HenghuaWashingCacheMap();
+
+    private static class HenghuaWashingCacheMap extends HashMap<String, String> {
+
+        private static final long serialVersionUID = 7155720117282678187L;
+        private long timeout;
+
+        public boolean isOutOfTime() {
+            return System.currentTimeMillis() > this.timeout;
+        }
+
+        public void reActive() {
+            this.timeout = System.currentTimeMillis() + 60 * 60 * 1000;
+        }
+
+        /**
+         * 默认一天过期
+         */
+        public HenghuaWashingCacheMap() {
+        }
+    }
+
+    /**
+     * 获得服装分类缓存MAP
+     * 
+     * @return
+     * @since 1.0.0
+     * @author jail
+     * @createTime 2015年9月5日下午6:38:25
+     * @updator jail
+     * @updateTime 2015年9月5日下午6:38:25
+     */
+    public HenghuaClothTypeCacheMap getClothType() {
+        if (this.clothTypeCacheMap == null || this.clothTypeCacheMap.isOutOfTime()) {
+            this.clothTypeCacheMap.clear();
+            this.clothTypeCacheMap.reActive();
+            logger.debug("初始化===服装分类");
+            String r = restHenghua.restClothType();
+            r = CoderUtil.decodeUnicode(r);
+            JSONObject obj = JSONObject.parseObject(r);
+            r = obj.getString("result").replaceAll("\\[\\[", "[").replaceAll("\\]\\]", "]").replaceAll("%, ", "%，");
+            JSONArray ar = JSONArray.parseArray(r);
+            ar.forEach(a -> {
+                JSONObject o = (JSONObject) a;
+                o.keySet().forEach(key -> this.clothTypeCacheMap.put(key, Arrays.asList(o.getString(key).split(","))));
+            });
+        }
+        return this.clothTypeCacheMap;
+    }
+
+    /**
+     * 服装分类
+     */
+    private final HenghuaClothTypeCacheMap clothTypeCacheMap = new HenghuaClothTypeCacheMap();
+
+    private static class HenghuaClothTypeCacheMap extends HashMap<String, List<String>> {
+
+        private static final long serialVersionUID = -5907218724079254243L;
+        private long timeout;
+
+        public boolean isOutOfTime() {
+            return System.currentTimeMillis() > this.timeout;
+        }
+
+        public void reActive() {
+            this.timeout = System.currentTimeMillis() + 60 * 60 * 1000;
+        }
+
+        /**
+         * 默认一天过期
+         */
+        public HenghuaClothTypeCacheMap() {
+        }
+    }
+
+    /**
+     * 获得服装筛选
+     * 
+     * @param filter
+     * @return
+     * @since 1.0.0
+     * @author jail
+     * @createTime 2015年9月5日下午7:04:33
+     * @updator jail
+     * @updateTime 2015年9月5日下午7:04:33
+     */
+    public List<HenghuaCloth> getClothFilter(String filter) {
+        Assert.hasText(filter, "筛选条件不能为空");
+        String[] t = filter.split(",");
+        switch (t[0]) {
+        case "Category":
+        case "0":
+            filter = "0," + t[1];
+            break;
+        case "Wearing":
+        case "1":
+            filter = "1," + t[1];
+            break;
+        case "Style":
+        case "2":
+            filter = "2," + t[1];
+            break;
+        default:
+            throw new IllegalArgumentException("不支持此类型搜索");
+        }
+        String r = restHenghua.restClothFilter(filter);
+        r = CoderUtil.decodeUnicode(r);
+        JSONObject obj = JSONObject.parseObject(r);
+        r = obj.getString("result").replaceAll("\\[\\[", "[").replaceAll("\\]\\]", "]");
+        List<HenghuaCloth> list = JSONArray.parseArray(r, HenghuaCloth.class);
+        list.forEach(cloth -> cloth.setImage(cloth.getImage() + ".png"));
+        return list;
     }
 }
