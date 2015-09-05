@@ -1,0 +1,87 @@
+body, body a, body a h2 {
+    color: #787878;
+    text-decoration: none;
+    outline: 0;
+}
+.news-page {
+    padding-top: 62px;
+    padding-bottom: 70px;
+}
+.news-list .date {
+    color: #c1c1c1;
+    display: block;
+    font-size: 11px;
+}
+.news-list .title {
+    font-size: 18px;
+}
+.news-list img {
+    margin-bottom: 15px;
+}
+.news-list .title,
+.news-list p,
+.news-list .date
+{
+    margin-bottom: 5px;
+}
+.news-list p,
+.news-list a{
+    font-size: 12px;
+}
+.news-list p:hover,
+.news-list a:hover,
+.news-right .news-list li a:hover{
+    color: #333;
+}
+.news-right .news-list li {
+    border-top: 1px solid #ededed;
+    color: #c1c1c1;
+    padding: 6px 0 4px;
+    max-width: 376px;
+    font-size: 11px;
+    line-height: 20px;
+}
+.news-right .news-list li a {
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 12px;
+    color: #787878;
+    text-transform: uppercase;
+    line-height: 21px;
+}
+.news-box {
+    position: relative;
+
+
+
+
+
+
+
+
+
+}
+.news-info {
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+    background: rgba(0,0,0,.5);
+    padding: 10px;
+    color: #fff;
+    font-size: 12px;
+}
+.news-info p {
+    font-size: 18px;
+}
+.news-info p:hover,
+.news-info a:hover{
+    color: #fff;
+}
+.news-info:hover {
+    background: rgba(0,0,0,1);
+}
+.arrow-right {
+    background-image: url(../images/icons_arrows.png);
+    background-position: right -851px;
+    background-repeat: no-repeat;
+    padding-right: 10px;
+}

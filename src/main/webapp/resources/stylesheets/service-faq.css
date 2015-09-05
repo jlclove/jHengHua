@@ -1,0 +1,17 @@
+.faq-category {
+    border: 1px solid #ccc;
+    padding: 10px 10px 0;
+}
+.faq-category li {
+    line-height: 20px;
+    padding-left: 10px;
+    margin: 3px 0;
+    border-left: 2px solid transparent;
+}
+.faq-category li:hover {
+    cursor: pointer;
+    color: #183051;
+}
+.faq-category li.selected {
+    border-left-color: #183051;
+}

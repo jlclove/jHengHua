@@ -1,0 +1,298 @@
+@font-face {
+  font-family: 'PillGothic300mgLight';
+  src: url("../fonts/pillgothic/pillgothic300mglight-webfont.eot");
+  src: url("../fonts/pillgothic/pillgothic300mglight-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/pillgothic/pillgothic300mglight-webfont.woff") format("woff"), url("../fonts/pillgothic/pillgothic300mglight-webfont.ttf") format("truetype"), url("../fonts/pillgothic/pillgothic300mglight-webfont.svg#pill_gothic_300mglight") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+@font-face {
+  /* Temp style to keep styling until fonts arrive */
+  font-family: 'PillGothic300mgRegular';
+  src: url("../fonts/pillgothic/pillgothic300mgregular-webfont.eot");
+  src: url("../fonts/pillgothic/pillgothic300mgregular-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/pillgothic/pillgothic300mgregular-webfont.woff") format("woff"), url("../fonts/pillgothic/pillgothic300mgregular-webfont.ttf") format("truetype"), url("../fonts/pillgothic/pillgothic300mgregular-webfont.svg#pill_gothic_300mgregular") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+@font-face {
+  font-family: 'PillGothic300mgSemibd';
+  src: url("../fonts/pillgothic/pillgothic300mg-semibd-webfont.eot");
+  src: url("../fonts/pillgothic/pillgothic300mg-semibd-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/pillgothic/pillgothic300mg-semibd-webfont.woff") format("woff"), url("../fonts/pillgothic/pillgothic300mg-semibd-webfont.ttf") format("truetype"), url("../fonts/pillgothic/pillgothic300mg-semibd-webfont.svg#pill_gothic_300mgsemibd") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+@font-face {
+  font-family: "suiticons";
+  src: url("../fonts/icons/streamline.eot");
+  src: url("../fonts/icons/streamline.eot?#iefix") format("embedded-opentype"), url("../fonts/icons/streamline.woff") format("woff"), url("../fonts/icons/streamline.ttf") format("truetype"), url("../fonts/icons/streamline.svg#streamline") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+.icon-suiticon {
+  display: inline-block;
+  vertical-align: middle; }
+
+.icon-suiticon--alpha {
+  font-size: 1.125em; }
+
+[class^="icon-suiticon-"]:before,
+[class*=" icon-suiticon-"]:before {
+  font-family: "suiticons" !important;
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  speak: none;
+  line-height: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; }
+
+.icon-suiticon-facebook-circled:before {
+  content: "c"; }
+
+.icon-suiticon-twitter-circled:before {
+  content: "d"; }
+
+.icon-suiticon-gplus-circled:before {
+  content: "e"; }
+
+.icon-suiticon-pinterest-circled:before {
+  content: "f"; }
+
+.icon-suiticon-check-mark-circle-two:before {
+  content: "h"; }
+
+.icon-suiticon-lock:before {
+  content: "j"; }
+
+.icon-suiticon-unlock:before {
+  content: "k"; }
+
+.icon-suiticon-plus:before {
+  content: "l"; }
+
+.icon-suiticon-arrow-right:before {
+  content: "m"; }
+
+.icon-suiticon-man-people-streamline-user:before {
+  content: "n"; }
+
+.icon-suiticon-search:before {
+  content: "b"; }
+
+.icon-suiticon-shopping-cart:before {
+  content: "a"; }
+
+.icon-suiticon-cross:before {
+  content: "g"; }
+
+.icon-suiticon-cancel-circled:before {
+  content: "i"; }
+
+.icon-suiticon-filter-1:before {
+  content: "o"; }
+
+.icon-suiticon-fabric:before {
+  content: "p"; }
+
+.icon-suiticon-menu-1:before {
+  content: "s"; }
+
+.icon-suiticon-fairwear-foundation:before {
+  content: "t"; }
+
+.icon-suiticon-thuiswinkel-waarborg:before {
+  content: "u"; }
+
+.icon-suiticon-airtel:before {
+  content: "v"; }
+
+.icon-suiticon-alipay:before {
+  content: "w"; }
+
+.icon-suiticon-sofort:before {
+  content: "x"; }
+
+.icon-suiticon-unionpay:before {
+  content: "y"; }
+
+.icon-suiticon-amex:before {
+  content: "z"; }
+
+.icon-suiticon-visa:before {
+  content: "A"; }
+
+.icon-suiticon-yucash:before {
+  content: "B"; }
+
+.icon-suiticon-direct-ebanking:before {
+  content: "C"; }
+
+.icon-suiticon-giropay:before {
+  content: "D"; }
+
+.icon-suiticon-ideal:before {
+  content: "E"; }
+
+.icon-suiticon-inicis:before {
+  content: "F"; }
+
+.icon-suiticon-jcb:before {
+  content: "G"; }
+
+.icon-suiticon-klarna:before {
+  content: "H"; }
+
+.icon-suiticon-mastercard:before {
+  content: "I"; }
+
+.icon-suiticon-mpesa:before {
+  content: "J"; }
+
+.icon-suiticon-paypal:before {
+  content: "K"; }
+
+.icon-suiticon-paytrail:before {
+  content: "L"; }
+
+.icon-suiticon-youtube-alt:before {
+  content: "M"; }
+
+.icon-suiticon-youtube:before {
+  content: "N"; }
+
+.icon-suiticon-youku:before {
+  content: "O"; }
+
+.icon-suiticon-weibo:before {
+  content: "P"; }
+
+.icon-suiticon-wechat:before {
+  content: "Q"; }
+
+.icon-suiticon-twitter:before {
+  content: "R"; }
+
+.icon-suiticon-tumbler:before {
+  content: "S"; }
+
+.icon-suiticon-tudou:before {
+  content: "T"; }
+
+.icon-suiticon-instagram:before {
+  content: "U"; }
+
+.icon-suiticon-facebook:before {
+  content: "V"; }
+
+.icon-suiticon-shipping:before {
+  content: "W"; }
+
+.icon-suiticon-returns:before {
+  content: "X"; }
+
+.icon-suiticon-delivery-time:before {
+  content: "Y"; }
+
+.icon-suiticon-assistence:before {
+  content: "Z"; }
+
+.icon-suiticon-globe-2:before {
+  content: "0"; }
+
+.icon-suiticon-lock-2:before {
+  content: "1"; }
+
+.icon-suiticon-delete-1:before {
+  content: "2"; }
+
+.icon-suiticon-cart-2:before {
+  content: "3"; }
+
+.icon-suiticon-user-2:before {
+  content: "4"; }
+
+.icon-suiticon-arrow-32:before {
+  content: "5"; }
+
+.icon-suiticon-play-1:before {
+  content: "6"; }
+
+.icon-suiticon-sound-book:before {
+  content: "7"; }
+
+.icon-suiticon-arrow-move-1:before {
+  content: "8"; }
+
+.icon-suiticon-pause-1:before {
+  content: "9"; }
+
+.icon-suiticon-magnifier-1:before {
+  content: "!"; }
+
+.icon-suiticon-delete-3:before {
+  content: "\""; }
+
+.icon-suiticon-lock-unlock-2:before {
+  content: "#"; }
+
+.icon-suiticon-locker-streamline-unlock:before {
+  content: "$"; }
+
+.icon-suiticon-add-1:before {
+  content: "%"; }
+
+.icon-suiticon-volume-loud-1:before {
+  content: "&"; }
+
+.icon-suiticon-volume-down-2:before {
+  content: "'"; }
+
+.icon-suiticon-scroll-horizontal-2:before {
+  content: "("; }
+
+.icon-suiticon-check-1:before {
+  content: ")"; }
+
+.icon-suiticon-volume-medium-1:before {
+  content: "*"; }
+
+.icon-suiticon-play-2:before {
+  content: "+"; }
+
+.icon-suiticon-arrow-65:before {
+  content: ","; }
+
+.icon-suiticon-information:before {
+  content: "-"; }
+
+.icon-suiticon-preview-1:before {
+  content: "."; }
+
+.icon-suiticon-transfer-7:before {
+  content: "/"; }
+
+.icon-suiticon-network-1:before {
+  content: ":"; }
+
+.icon-suiticon-profile-3:before {
+  content: ";"; }
+
+.icon-suiticon-dice-1:before {
+  content: "<"; }
+
+.icon-suiticon-bag-shopping-2:before {
+  content: "="; }
+
+.icon-suiticon-arrow-down:before {
+  content: ">"; }
+
+.icon-suiticon-arrow-right-1:before {
+  content: "?"; }
+
+.icon-suiticon-arrow-66:before {
+  content: "@"; }
+
+.icon-suiticon-arrow-67:before {
+  content: "["; }
+
+.icon-suiticon-arrow-68:before {
+  content: "]"; }
+
+.icon-suiticon-filter-1-1:before {
+  content: "q"; }

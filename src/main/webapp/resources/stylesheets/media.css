@@ -1,0 +1,38 @@
+body {
+    color: #787878;
+}
+.media-page {
+    padding-top: 62px;
+    padding-bottom: 70px;
+}
+.segment-line {
+    position: relative;
+}
+.segment-line:before {
+    content: "";
+    display: inline-block;
+    position: absolute;
+    border-bottom: 1px solid #ccc;
+    width: 100%;
+    left: 0;
+    top: 50%;
+    z-index: 1;
+}
+.segment-line span {
+    padding: 0 15px;
+    background: white;
+    position: relative;
+    z-index: 2;
+}
+.media-name {
+    font-size: 18px;
+}
+.media-name:hover {
+    color: #333;
+}
+.media-content {
+    font-style: italic;
+    font-size: 17px;
+    line-height: 30px;
+    font-family: Arial, Helvetica, sans-serif;
+}

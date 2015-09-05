@@ -1,0 +1,37 @@
+.about-shirts-header.unit {
+    width: 42%;
+    left: 23%;
+    top: 30%;
+    text-align: left;
+}
+.about-shirts-header .unit-title {
+    font-size: 34px;
+}
+.unit-box .unit p,
+.wrapper p {
+    line-height: 28px;
+    color: #999;
+    font-size: 16px;
+}
+.unit-title {
+    font-size: 28px;
+}
+.block-alpha {
+    background: #f2f2f2;
+}
+.wrapper {
+    width: 70%;
+    margin: 0 auto;
+    padding: 60px 0 40px;
+}
+.mt150 {
+    margin-top: 150px;
+}
+.title {
+    font-size: 22px;
+    color: #183051;
+    margin-bottom: 30px;
+}
+.unit-link {
+    padding: 18px 35px;
+}

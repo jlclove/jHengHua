@@ -1,0 +1,32 @@
+.fit-header {
+    position: relative;
+}
+.fit-info {
+    position: absolute;
+    right: 0;
+    width: 50%;
+    bottom: 20px;
+    color: #fff;
+    padding: 15px;
+    background: rgba(0,0,0,0.5);
+}
+.fit-box {
+    border: 1px solid #ccc;
+    margin-bottom: 15px;
+}
+.fit-sidebar {
+    padding-top: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+.fit-classic {
+    border-bottom: 1px solid #e6e6e6;
+    margin-bottom: 20px;
+}
+.fit-classic-type li a:hover,.fit-classic-type li a.active {
+    color: #183051;
+    font-weight: bold;
+}
+.modal-header {
+    border-bottom: 0;
+}

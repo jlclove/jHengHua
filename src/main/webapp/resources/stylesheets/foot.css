@@ -1,0 +1,131 @@
+.footer-section {
+    background: #e9e9e9;
+    padding: 15px 0;
+}
+.footer-section.white {
+    background-color: #fff;
+    border-top: 1px solid #d9d9d9;
+    border-bottom: 1px solid #d9d9d9;
+}
+.footer-section .usp {
+    width: 62%;
+}
+.footer-section .usp img {
+    width: 78px;
+}
+.footer-section .media-body {
+    padding-top: 8px;
+}
+.footer-section .col-sm-4 {
+    padding: 20px 0;
+}
+.footer-section .col-sm-4:not(:last-child) {
+    border-right: 1px solid #d9d9d9;
+}
+.email-form {
+    position: relative;
+    max-width: 600px;
+    width: 80%;
+    margin: auto;
+}
+.email-form input[type=email]{
+    border: 0;
+    height: 64px;
+    padding: 15px;
+    width: 100%;
+    font-size: 16px;
+}
+.email-form .btn-submit {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 15%;
+    border: 0;
+    background: #fff url('../images/arrows.png') no-repeat center;
+}
+.email-form .btn-submit:hover {
+    background-color: #183051;
+}
+.footer-section .help-bar>.help-bar-link {
+    padding-right: 15px;
+    padding-left: 0;
+    margin-right: 15px;
+    border-right: 1px solid #aaa;
+    line-height: 1;
+    font-size: 16px;
+}
+.footer-section .help-bar,
+.footer-section .social-bar,
+.footer-section .pay-bar{
+    height: 40px;
+    line-height: 40px;
+}
+.footer-section .help-bar>.help-bar-link:last-child {
+    border: 0;
+}
+@media (max-width: 768px) {
+    .footer-section .help-bar>li {
+        display: block;
+        margin-bottom: 15px;
+    }
+    .footer-section .help-bar>.help-bar-link {
+        border-right: 0;
+    }
+    .footer-section .help-bar {
+        height: auto;
+        padding-bottom: 25px;
+        border-bottom: 1px solid #d9d9d9;
+    }
+    .footer-section .social-bar {
+        margin-top: 35px;
+    }
+}
+.footer-section .social-bar > li {
+    margin-right: 5px;
+    font-size: 16px;
+}
+.footer-section .pay-bar > li {
+    margin-right: 15px;
+}
+.social-icon {
+    background-image: url("../images/footer_social_media.png");
+    width: 40px;
+    height: 40px;
+    display: block;
+}
+.social-icon:hover {
+    background-image: url("../images/footer_social_hover_media.png");
+}
+.social-icon.social-wechat {
+    background-position: 140px 0px;
+}
+.social-icon.social-weibo {
+    background-position: 90px 0px;
+}
+.social-icon.social-youku {
+    background-position: 40px 0px;
+}
+.social-icon.social-tudou {
+    background-position: 190px 0px;
+}
+
+.pay-icon {
+    display: block;
+    height: 40px;
+    width: 64px;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+.pay-icon.pay-union {
+    background-image: url("../images/unionpay.png");
+}
+.pay-icon.pay-ali {
+    background-image: url("../images/alipay.png");
+}
+.pay-icon.pay-visa {
+    background-image: url("../images/visa.png");
+}
+.pay-icon.pay-mastercard {
+    background-image: url("../images/mastercard.png");
+}
