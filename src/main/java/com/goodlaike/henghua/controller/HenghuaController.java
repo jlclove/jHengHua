@@ -58,13 +58,24 @@ public class HenghuaController extends BaseRestController {
      */
     @RequestMapping(value = "sample", method = RequestMethod.GET)
     protected ResponseEntity<?> getSampleList(HttpServletRequest request,
-            @RequestParam(value = "id", defaultValue = "0") long id) {
-        return ResponseEntity.ok(henghuaService.getNextList(id));
+            @RequestParam(value = "sinceId", defaultValue = "0") long id) {
+        return ResponseEntity.ok(henghuaService.getNextSampleList(id));
     }
-    
+
+    /**
+     * 获得样卡详情数据
+     * 
+     * @param request
+     * @param cardId
+     * @return
+     * @since 1.0.0
+     * @author jail
+     * @createTime 2015年9月5日下午2:05:58
+     * @updator jail
+     * @updateTime 2015年9月5日下午2:05:58
+     */
     @RequestMapping(value = "sample/{cardId}", method = RequestMethod.GET)
-    protected ResponseEntity<?> getSample(HttpServletRequest request,
-            @PathVariable String cardId) {
+    protected ResponseEntity<?> getSample(HttpServletRequest request, @PathVariable String cardId) {
         return ResponseEntity.ok(henghuaService.getSample(cardId));
     }
 
@@ -88,6 +99,7 @@ public class HenghuaController extends BaseRestController {
 
     /**
      * 样品搜索
+     * 
      * @param request
      * @param filter
      * @return
@@ -100,5 +112,23 @@ public class HenghuaController extends BaseRestController {
     @RequestMapping(value = "sample/detail/search", method = RequestMethod.GET)
     protected ResponseEntity<?> searchSampleDetail(HttpServletRequest request, @RequestParam String filter) {
         return ResponseEntity.ok(henghuaService.getSampleDetailFilter(LanguageHelper.getLocalization(request), filter));
+    }
+
+    /**
+     * 获得下一页服装
+     * 
+     * @param request
+     * @param id
+     * @return
+     * @since 1.0.0
+     * @author jail
+     * @createTime 2015年9月4日下午6:16:46
+     * @updator jail
+     * @updateTime 2015年9月4日下午6:16:46
+     */
+    @RequestMapping(value = "cloth", method = RequestMethod.GET)
+    protected ResponseEntity<?> getClothList(HttpServletRequest request,
+            @RequestParam(value = "sinceId", defaultValue = "0") long id) {
+        return ResponseEntity.ok(henghuaService.getNextClothList(id));
     }
 }

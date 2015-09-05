@@ -36,5 +36,10 @@ public class TestHenghuaService extends BaseTest {
     public void getSampleDetailFilter() {
         System.out.println(henghuaService.getSampleDetailFilter("cn", "正装,四季"));
     }
+    
+    @Test
+    public void syncHenghuaClothList(){
+        henghuaService.syncHenghuaClothList();
+    }
 
 }

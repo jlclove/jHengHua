@@ -1,0 +1,40 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="HenghuaCloth">
+	<insert id="replaceSource" parameterType="list">
+		replace INTO `henghua_cloth`
+		(
+		`serialNo`,
+		`name`,
+		`image`,
+		`creator`,
+		`updator`)
+		<foreach collection="list" item="cloth" separator=" union all ">
+			(select
+			#{cloth.serialNo} as serialNo,
+			#{cloth.name} as name,
+			#{cloth.image} as image,
+			#{cloth.creator} as creator,
+			#{cloth.updator} as updator)
+		</foreach>
+	</insert>
+
+	<!-- 下一分页 -->
+	<select id="findNextList" resultType="cloth" parameterType="long">
+		select *
+		from
+		henghua_cloth
+		where id > #{id}
+		order by id
+		limit 30;
+	</select>
+
+	<select id="findSample" resultType="cloth" parameterType="string">
+		select *
+		from
+		henghua_cloth
+		where serialNo = #{serialNo}
+	</select>
+
+</mapper>

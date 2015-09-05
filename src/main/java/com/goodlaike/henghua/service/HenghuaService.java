@@ -13,7 +13,9 @@ import org.springframework.stereotype.Service;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.goodlaike.business.core.support.LanguageStore;
+import com.goodlaike.henghua.dao.HenghuaClothDao;
 import com.goodlaike.henghua.dao.HenghuaSampleDao;
+import com.goodlaike.henghua.entity.model.HenghuaCloth;
 import com.goodlaike.henghua.entity.model.HenghuaSample;
 import com.goodlaike.henghua.entity.model.HenghuaSampleDetail;
 import com.goodlaike.henghua.entity.model.VHenghuaSample;
@@ -33,6 +35,8 @@ public class HenghuaService {
 
     @Autowired
     private HenghuaSampleDao henghuaSampleDao;
+    @Autowired
+    private HenghuaClothDao henghuaClothDao;
     @Autowired
     private RestHenghua restHenghua;
 
@@ -67,7 +71,7 @@ public class HenghuaService {
      * @updator jail
      * @updateTime 2015年9月4日下午6:14:47
      */
-    public List<HenghuaSample> getNextList(long id) {
+    public List<HenghuaSample> getNextSampleList(long id) {
         List<HenghuaSample> list = henghuaSampleDao.getNextList(id);
         list.forEach(sample -> {
             this.formatSampleDetail(sample);
@@ -100,7 +104,7 @@ public class HenghuaService {
     }
 
     /**
-     * 同步样品数据
+     * 同步样卡数据
      * 
      * @since 1.0.0
      * @author jail
@@ -176,6 +180,52 @@ public class HenghuaService {
         JSONObject obj = JSONObject.parseObject(r);
         r = obj.getString("result").replaceAll("\\[\\[", "[").replaceAll("\\]\\]", "]");
         return JSONArray.parseArray(r, HenghuaSampleDetail.class);
+    }
+
+    /**
+     * 同步服装数据
+     * 
+     * @since 1.0.0
+     * @author jail
+     * @createTime 2015年9月4日下午6:14:18
+     * @updator jail
+     * @updateTime 2015年9月4日下午6:14:18
+     */
+    public void syncHenghuaClothList() {
+        henghuaClothDao.batchReplaceInto(this.getClothAll());
+    }
+
+    /**
+     * 获得下一页服装数据
+     * @param id
+     * @return
+     * @since 1.0.0
+     * @author jail
+     * @createTime 2015年9月5日下午2:04:03
+     * @updator jail
+     * @updateTime 2015年9月5日下午2:04:03
+     */
+    public List<HenghuaCloth> getNextClothList(long id) {
+        List<HenghuaCloth> list = henghuaClothDao.getNextList(id);
+        return list;
+    }
+
+    /**
+     * 获得所有服装数据
+     * 
+     * @return
+     * @since 1.0.0
+     * @author jail
+     * @createTime 2015年9月5日下午1:56:49
+     * @updator jail
+     * @updateTime 2015年9月5日下午1:56:49
+     */
+    private List<HenghuaCloth> getClothAll() {
+        String r = restHenghua.restClothAll();
+        r = CoderUtil.decodeUnicode(r);
+        JSONObject obj = JSONObject.parseObject(r);
+        r = obj.getString("result").replaceAll("\\[\\[", "[").replaceAll("\\]\\]", "]");
+        return JSONArray.parseArray(r, HenghuaCloth.class);
     }
 
     private final HenghuaSampleTypeCacheMap cacheMap = new HenghuaSampleTypeCacheMap();
