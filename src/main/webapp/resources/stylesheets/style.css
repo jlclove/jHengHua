@@ -293,3 +293,9 @@ a:hover {
 .color_blue {
     color: #183051;
 }
+.pos-rel {
+    position: relative;
+}
+.pos-abs {
+    position: absolute;
+}

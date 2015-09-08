@@ -83,6 +83,8 @@
 </footer>
 </body>
 <script type="text/javascript" src="/static/bower_components/jquery/dist/jquery.min.js"></script>
+<script type="text/javascript" src="/static/javascripts/underscore-min.js"></script>
+
 <script type="text/javascript">
     $('a[data-nav]').click(function(e){
         var current = $(this).parent().find('.nav-menu-wrap');
@@ -142,17 +144,11 @@
         $('header').css('transform', 'translate3d(80%,0,0)');
         $('.mobile-menu').css('transform', 'translate3d(0,0,0)');
         $('.float-bg').addClass('visible');
-//        setTimeout(function(){
-//            $('.float-bg').addClass('visible');
-//        }, 300);
     });
     $('.float-bg').click(function(){
         $('header').css('transform', 'translate3d(0,0,0)');
         $('.mobile-menu').css('transform', 'translate3d(-100%,0,0)');
         $('.float-bg').removeClass('visible');
-//        setTimeout(function(){
-//            $('.float-bg').css('zIndex', -1);
-//        }, 300);
     });
 </script>
 

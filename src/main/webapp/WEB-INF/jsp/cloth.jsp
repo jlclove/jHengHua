@@ -36,8 +36,12 @@
             <%--<a class="filter-item animated" href="#"><span class="hidden-xs">显示</span><i class="icon-suiticon icon-suiticon-preview-1"></i></a>--%>
         <%--</div>--%>
     </div>
-    <div class="filter-category container-fluid animated clearfix">
-        <div class="row">
+    <div class="filter-category container-fluid clearfix">
+        <div class="row filter-selected-content clearfix">
+            <div class="filter-clear btn btn-default">Clear All <i class="close-section close-section--alpha icon-suiticon icon-suiticon-delete-1"></i></div>
+            <div class="filter-property"></div>
+        </div>
+        <div class="row pos-rel">
         <c:forEach items="${clothType}" var="type">
         <div class="filter-category-item">
             <a href="#" class="">${type.key}</a>
@@ -46,7 +50,7 @@
                 <li>
                     <div class="checkbox">
                         <label>
-                            <input type="checkbox" value="${type.key}--${v}">${v}
+                            <input name="singleCheck" type="checkbox" value="${type.key},${v}">${v}
                         </label>
                     </div>
                 </li>
@@ -83,5 +87,5 @@
     </div>
 </div>
 <jsp:include page="common/foot.jsp">
-    <jsp:param name="js" value="javascripts/underscore-min,javascripts/filter,javascripts/cloth"/>
+    <jsp:param name="js" value="javascripts/filter,javascripts/cloth"/>
 </jsp:include>

@@ -37,7 +37,11 @@
         <%--</div>--%>
     </div>
     <div class="filter-category container-fluid animated clearfix">
-        <div class="row">
+        <div class="row filter-selected-content clearfix">
+            <div class="filter-clear btn btn-default">Clear All <i class="close-section close-section--alpha icon-suiticon icon-suiticon-delete-1"></i></div>
+            <div class="filter-property"></div>
+        </div>
+        <div class="row pos-rel">
         <c:forEach items="${sampleType}" var="type">
         <div class="filter-category-item">
             <a href="#" class="">${type.key}</a>
@@ -46,7 +50,7 @@
                 <li>
                     <div class="checkbox">
                         <label>
-                            <input type="checkbox" value="${type.key}--${v}">${v}
+                            <input name="singleCheck" type="checkbox" value="${type.key},${v}">${v}
                         </label>
                     </div>
                 </li>
