@@ -1,0 +1,200 @@
+/* suits */
+.suits.banner {
+    margin-top: 5.2rem;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+    background: #183051;
+    font-size: 2.5rem;
+}
+.suits.banner .title {
+    color: #fff;
+}
+.suits.banner .sub {
+    font-size: 1.6rem;
+}
+
+.suits.banner .unit-box {
+    font-size: 0;
+}
+.suits.banner .unit-box .unit {
+    position: static;
+    display: inline-block;
+}
+@media (max-width: 768px) {
+    .suits.banner div {
+        margin-bottom: 1.5rem;
+    }
+    .suits.banner div:last-child {
+        margin-bottom: .5rem;
+    }
+}
+.suits.banner .unit-link {
+    display: block;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.filter-bar {
+    position: relative;
+}
+.filter-bar.affix {
+    position: fixed;
+    right: 0;
+    z-index: 100;
+    left: 0;
+    top: 62px;
+}
+.filter-bar a.filter-item {
+    display: block;
+    padding: 19px 15px 16px;
+    font-size: 16px;
+}
+.filter-bar a.filter-item.opened {
+    background-color: #fff;
+}
+.filter-bar a.filter-item:hover,.filter-bar a.filter-item:visited,.filter-bar a.filter-item:focus {
+    text-decoration: none;
+    color: inherit;
+}
+.filter-bar a.filter-item span {
+    color: #183051;
+}
+.filter-bar a.filter-item i {
+    margin-bottom: -4px;
+    margin-left: 10px;
+    font-size: 18px;
+}
+.filter-bar a.filter-item.active {
+    background-color: #fff;
+}
+.product-wrap {
+    position: relative;
+    padding: 58px 20px;
+}
+.product-wrap .loading {
+    display: none;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.7);
+    z-index: 10;
+}
+.product-wrap .loading.opened {
+    display: block;
+}
+.product-item {
+    padding-top: 40px;
+    padding-bottom: 20px;
+    position: relative;
+    text-align: center;
+}
+div[class*=col-].product-item>img {
+    /*width: 72%;*/
+    /*margin-right: 40px;*/
+}
+@media (max-width: 768px) {
+    .product-item img {
+        max-width: 200px;
+        margin-right: 50px;
+    }
+}
+.product-item .product-desc {
+    /*position: absolute;*/
+    /*right: 30px;*/
+    /*bottom: 25px;*/
+    /*width: 32%;*/
+    text-align: left;
+}
+.product-item .product-desc .head {
+    color: #183051;
+    font-size: 16px;
+}
+.filter-btn {
+    position: absolute;
+    width: 100%;
+    z-index: 12;
+    background: #fff;
+    background: #e9e9e9;
+    border-bottom: 1px solid #d9d9d9;
+}
+.filter-category {
+    background-color: #fff;
+    position: absolute;
+    width: 100%;
+    z-index: 11;
+    top: 0;
+    border-bottom: 1px solid #d9d9d9;
+    margin-top: -100%;
+}
+.filter-category.opened {
+    margin-top: 58px;
+}
+.filter-category-item {
+    float: left;
+}
+.filter-category-item a {
+    position: relative;
+    height: 48px;
+    line-height: 48px;
+    font-size: 15px;
+    padding: 0 35px 0 15px;
+    display: block;
+    border-left: 1px solid transparent;
+    border-right: 1px solid transparent;
+}
+.filter-category-item a:after {
+    content: "+";
+    position: absolute;
+    right: 15px;
+    top: 16px;
+    font-size: 1.375em;
+    color: #999;
+    line-height: 1;
+}
+.filter-category-item a.opened {
+    border-left-color: #d9d9d9;
+    border-right-color: #d9d9d9;
+}
+.filter-category-item a.opened:after {
+    content: "-";
+}
+.filter-category-item a+ul {
+    display: none;
+    overflow: hidden;
+    height: 0;
+}
+.filter-category-item a.opened+ul {
+    margin: 0;
+    display: block;
+    height: auto;
+}
+.filter-category-item a+ul {
+    position: absolute;
+    left: 0;
+    top: 49px;
+    width: 100%;
+    background-color: #fff;
+    border-bottom: 1px solid #d9d9d9;
+}
+.filter-category-item a.opened+ul>li {
+    padding: 0 20px;
+    font-size: 15px;
+}
+
+@media (max-width: 768px) {
+    .filter-category-item {
+        float: none;
+        position: relative;
+    }
+    .filter-category-item a.opened+ul>li,
+    .filter-category-item a.opened+ul>li input{
+        width: 100%;
+    }
+    .filter-category-item a.opened+ul>li {
+        padding: 0 20px 0 40px;
+    }
+    .filter-category-item a.opened+ul {
+        position: static;
+    }
+}

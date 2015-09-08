@@ -38,7 +38,7 @@
     </div>
     <div class="filter-category container-fluid animated clearfix">
         <div class="row">
-        <c:forEach items="${sampleType}" var="type">
+        <c:forEach items="${clothType}" var="type">
         <div class="filter-category-item">
             <a href="#" class="">${type.key}</a>
             <ul class="list-inline animated">
@@ -60,30 +60,28 @@
 <!-- /.filter -->
 
 <div class="product-wrap container">
-    <div class="row" id="list">
-        <c:forEach items="${sampleList}" var="sample" varStatus="s">
-            <div class="col-sm-4 product-item">
-                <div class="clearfix">
-                <c:forEach items="${sample.detailList}" var="detail" begin="0" end="2">
-                    <div class="w1of3 pull-left pl5 pr5">
-                        <img src="http://www.jshenghua.com:82/Thumb/${detail.picPath}" class="img-responsive" width="100%"/>
+    <div id="list" class="row">
+        <c:forEach items="${clothList}" var="cloth" varStatus="s">
+        <%--<c:if test="${s.index % 4 == 0}">--%>
+            <%--<div class="row">--%>
+        <%--</c:if>--%>
+                <div class="col-sm-3 product-item">
+                    <img src="http://www.jshenghua.com:82/Thumb/${cloth.image}" class="img-responsive" width="100%"/>
+                    <div class="product-desc mt10 pl5">
+                        <div><span class="head">${cloth.name}</span>  -  <span class="f16">${cloth.serialNo}</span></div>
                     </div>
-                </c:forEach>
                 </div>
-                <div class="product-desc mt10 pl5">
-                    <div><span class="head">${sample.cardId}</span>  -  <span class="f16">${sample.nick}</span>  -  <span class="f16">${sample.material}</span></div>
-                    <%--<div class="pb10">${sample.}</div>--%>
-                    <%--<div class="head">¥7,180 CNY</div>--%>
-                </div>
-            </div>
-            <c:if test="${s.last}">
-                <script type="text/javascript">
-                    var sinceId = '${cloth.id}';
-                </script>
-            </c:if>
+        <c:if test="${s.last}">
+        <script type="text/javascript">
+            var sinceId = '${cloth.id}';
+        </script>
+        </c:if>
+        <%--<c:if test="${s.index % 4 == 3 || s.last}">--%>
+            <%--</div>--%>
+        <%--</c:if>--%>
         </c:forEach>
     </div>
 </div>
 <jsp:include page="common/foot.jsp">
-    <jsp:param name="js" value="javascripts/filter,javascripts/sample"/>
+    <jsp:param name="js" value="javascripts/underscore-min,javascripts/filter,javascripts/cloth"/>
 </jsp:include>

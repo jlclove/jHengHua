@@ -250,12 +250,13 @@
                                 <div class="input-group">
                                     <span class="f16">Choose your shipping destination and language</span>
                                     <div class="custom-select ml10">
-                                        <select class="custom-select">
-                                            <option>中文</option>
-                                            <option>English</option>
+                                        <select id="selectLang" class="custom-select">
+                                            <c:forEach items="${languages}" var="language">
+                                                <option value="${language.key}">${language.value}</option>
+                                            </c:forEach>
                                         </select>
                                     </div>
-                                    <a class="unit-link ml10" href="#">CONTINUE</a>
+                                    <a class="unit-link ml10" href="javascript:selectLang()">CONTINUE</a>
                                 </div>
                             </div>
                         </div>
@@ -278,15 +279,15 @@
         </div>
         <!-- /.container-fluid -->
     </nav>
-    <div class="nav-menu visible-xs">
-        <ul class="list-unstyled">
-            <li><a href="#">在线购买</a></li>
-            <li><a href="#">风尚专栏</a></li>
-            <li><a href="#">专业服务</a></li>
-            <li><a href="#">全球门店</a></li>
-            <li><a href="#">企业信息</a></li>
-        </ul>
-    </div>
+    <%--<div class="nav-menu visible-xs">--%>
+        <%--<ul class="list-unstyled">--%>
+            <%--<li><a href="#">在线购买</a></li>--%>
+            <%--<li><a href="#">风尚专栏</a></li>--%>
+            <%--<li><a href="#">专业服务</a></li>--%>
+            <%--<li><a href="#">全球门店</a></li>--%>
+            <%--<li><a href="#">企业信息</a></li>--%>
+        <%--</ul>--%>
+    <%--</div>--%>
 </header>
 <div class="float-bg animated"></div>
 <div class="mobile-menu animated">

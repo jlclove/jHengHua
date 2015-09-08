@@ -103,6 +103,36 @@
             }
         });
     }
+    function selectLang(){
+        $.ajax({
+            url: '/business/core/localization?lang=' + document.getElementById('selectLang').value,
+            method: 'put',
+            success: function(){
+                window.location.reload();
+            }
+        });
+    }
+    function getClientHeight(){
+        var clientHeight=0;
+        if(document.body.clientHeight&&document.documentElement.clientHeight){
+            var clientHeight=(document.body.clientHeight<document.documentElement.clientHeight)?document.body.clientHeight:document.documentElement.clientHeight;
+        }else{
+            var clientHeight=(document.body.clientHeight>document.documentElement.clientHeight)?document.body.clientHeight:document.documentElement.clientHeight;
+        }
+        return clientHeight;
+    }
+    function getScrollTop(){
+        var scrollTop=0;
+        if(document.documentElement&&document.documentElement.scrollTop){
+            scrollTop=document.documentElement.scrollTop;
+        }else if(document.body){
+            scrollTop=document.body.scrollTop;
+        }
+        return scrollTop;
+    }
+    function getScrollHeight(){
+        return Math.max(document.body.scrollHeight,document.documentElement.scrollHeight);
+    }
     $(document).click(function(e){
         if($(e.target).closest('.navbar').length == 0) {
             closeMenu();

@@ -15,4 +15,12 @@ public class VHenghuaSample extends HenghuaSample {
     private static final long serialVersionUID = 5227356351542906864L;
 
     public List<HenghuaSampleDetail> detailList = new ArrayList<>();
+
+    public List<HenghuaSampleDetail> getDetailList() {
+        return detailList;
+    }
+
+    public void setDetailList(List<HenghuaSampleDetail> detailList) {
+        this.detailList = detailList;
+    }
 }
