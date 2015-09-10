@@ -5,8 +5,8 @@
   Time: 下午12:59
   To change this template use File | Settings | File Templates.
 --%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ include file="include.jsp"%>
 <footer class="footer">
     <section class="footer-section pt50 pb50 text-center">
         <h2>

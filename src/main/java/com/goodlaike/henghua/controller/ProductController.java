@@ -51,8 +51,14 @@ public class ProductController {
 
     @RequestMapping("/sample/{cardId}")
     protected String sampleDetail(@PathVariable String cardId, Model model) {
-        model.addAttribute("sampleDetail", henghuaService.getSampleDetail(cardId));
+        model.addAttribute("sampleDetail", henghuaService.getSample(cardId));
         return "sampleDetail";
+    }
+
+    @RequestMapping("/sample/detail/{sampleName}")
+    protected String sampleChildDetail(@PathVariable String sampleName, Model model) {
+        model.addAttribute("sampleDetail", henghuaService.getSampleDetail(sampleName));
+        return "sampleChildDetail";
     }
 
     @RequestMapping("/cloth")
@@ -62,8 +68,11 @@ public class ProductController {
         return "cloth";
     }
 
-    @RequestMapping("/cloth/{clothId}")
-    protected String clothDetail(@PathVariable String clothId) {
+    @RequestMapping("/cloth/{serialNo}")
+    protected String clothDetail(@PathVariable String serialNo, Model model) {
+        model.addAttribute("cloth", henghuaService.getCloth(serialNo));
+        model.addAttribute("clothDetail", henghuaService.getClothDetail(serialNo));
+        model.addAttribute("washingMap", henghuaService.getWashingMap());
         return "clothDetail";
     }
 }

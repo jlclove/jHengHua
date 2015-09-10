@@ -5,8 +5,11 @@
   Time: 下午12:42
   To change this template use File | Settings | File Templates.
 --%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ include file="include.jsp"%>
+<c:if test="${empty sessionScope.lan}">
+    <c:set var="lan" value="en_US"/>
+</c:if>
 <!DOCTYPE html>
 <html>
 <head lang="en">

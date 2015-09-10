@@ -1,4 +1,3 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: charles
@@ -7,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ include file="common/include.jsp"%>
 <jsp:include page="common/head.jsp">
     <jsp:param name="css" value="sample"/>
 </jsp:include>
@@ -67,18 +67,20 @@
     <div class="row" id="list">
         <c:forEach items="${sampleList}" var="sample" varStatus="s">
             <div class="col-sm-4 product-item">
-                <div class="clearfix">
-                <c:forEach items="${sample.detailList}" var="detail" begin="0" end="2">
-                    <div class="w1of3 pull-left pl5 pr5">
-                        <img src="http://www.jshenghua.com:82/Thumb/${detail.picPath}" class="img-responsive" width="100%"/>
+                <a href="/product/sample/${sample.cardId}">
+                    <div class="clearfix">
+                    <c:forEach items="${sample.detailList}" var="detail" begin="0" end="2">
+                        <div class="w1of3 pull-left pl5 pr5">
+                            <img src="http://www.jshenghua.com:82/Thumb/${detail.picPath}" class="img-responsive" width="100%"/>
+                        </div>
+                    </c:forEach>
                     </div>
-                </c:forEach>
-                </div>
-                <div class="product-desc mt10 pl5">
-                    <div><span class="head">${sample.cardId}</span>  -  <span class="f16">${sample.nick}</span>  -  <span class="f16">${sample.material}</span></div>
-                    <%--<div class="pb10">${sample.}</div>--%>
-                    <%--<div class="head">¥7,180 CNY</div>--%>
-                </div>
+                    <div class="product-desc mt10 pl5">
+                        <div><span class="head">${sample.cardId}</span>  -  <span class="f16">${sample.nick}</span>  -  <span class="f16">${sample.material}</span></div>
+                        <%--<div class="pb10">${sample.}</div>--%>
+                        <%--<div class="head">¥7,180 CNY</div>--%>
+                    </div>
+                </a>
             </div>
             <c:if test="${s.last}">
                 <script type="text/javascript">

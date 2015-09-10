@@ -204,3 +204,26 @@ div[class*=col-].product-item>img {
         position: static;
     }
 }
+
+.sample-detail-page {
+    max-width: 768px;
+}
+.washing-container img {
+    width: 25px;
+    margin-left: 10px;
+}
+.product-property-item {
+    margin-right: 5px;
+    padding: 4px 5px 2px;
+    display: block;
+    border: 1px solid #e9e9e9;
+    line-height: 1;
+    float: left;
+}
+.product-property-item:hover,
+.product-property-item.selected{
+    background-color: #183051;
+    color: #fff;
+    cursor: pointer;
+    border-color: #183051;
+}

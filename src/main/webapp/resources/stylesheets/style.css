@@ -264,11 +264,17 @@ a:hover {
 .pr20 {padding-right: 20px!important;}
 .pr50 {padding-right: 50px!important;}
 .pr60 {padding-right: 60px!important;}
-.f20 {font-size: 20px;}
-.f18 {font-size: 18px;}
-.f16 {font-size: 16px;}
-.f15 {font-size: 15px;}
-.f14 {font-size: 14px;}
+.f0  {font-size: 0px!important;}
+.f20 {font-size: 20px!important;}
+.f18 {font-size: 18px!important;}
+.f16 {font-size: 16px!important;}
+.f15 {font-size: 15px!important;}
+.f14 {font-size: 14px!important;}
+.f_small {font-size: 14px!important;}
+.f_large {font-size: 24px!important;}
+.fb {font-weight: bold!important;}
+.c_black {color: #333!important;}
+.c_white {color: #fff!important;}
 .w1of2 {
     width: 50%;
 }

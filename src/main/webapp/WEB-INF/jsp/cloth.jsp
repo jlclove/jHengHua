@@ -69,12 +69,14 @@
         <%--<c:if test="${s.index % 4 == 0}">--%>
             <%--<div class="row">--%>
         <%--</c:if>--%>
-                <div class="col-sm-3 product-item">
+            <div class="col-sm-3 product-item">
+                <a href="/product/cloth/${cloth.serialNo}">
                     <img src="http://www.jshenghua.com:82/Thumb/${cloth.image}" class="img-responsive" width="100%"/>
                     <div class="product-desc mt10 pl5">
                         <div><span class="head">${cloth.name}</span>  -  <span class="f16">${cloth.serialNo}</span></div>
                     </div>
-                </div>
+                </a>
+            </div>
         <c:if test="${s.last}">
         <script type="text/javascript">
             var sinceId = '${cloth.id}';
