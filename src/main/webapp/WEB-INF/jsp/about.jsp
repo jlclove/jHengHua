@@ -8,6 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <jsp:include page="common/head.jsp">
     <jsp:param name="css" value="about"/>
+    <jsp:param name="title" value="企业信息"/>
 </jsp:include>
 <div class="about-page container-fluid">
     <h2 class="titlebar">关于我们</h2>
@@ -19,7 +20,7 @@
         <div class="col-sm-8">
             <h4>品牌理念</h4>
 
-            <p>Suitsupply 是一个引领市场潮流、全球迅速发展的品牌。</p>
+            <p>HENGHUA 是一个引领市场潮流、全球迅速发展的品牌。</p>
 
             <p>我们是行业先锋，突破陈规，并矢志坚持这一理念。创新精神为我们源源不断地带来新能量，让我们将全新的创意付诸实践。</p>
 
@@ -29,7 +30,7 @@
             <br/>
             <h4>企业社会责任</h4>
 
-            <p>Suitsupply 致力于可持续的经营方式；因此，我们仅与达到国际劳工组织认可标准的工厂合作：</p>
+            <p>HENGHUA 致力于可持续的经营方式；因此，我们仅与达到国际劳工组织认可标准的工厂合作：</p>
             <ul>
                 <li>无强制劳动</li>
                 <li>无歧视</li>
@@ -40,9 +41,9 @@
                 <li>健康与安全的工作环境</li>
                 <li>合法雇佣合同</li>
             </ul>
-            <p>Suitsupply 是公平服装基金会（FWF）成员，该组织提倡在服装工厂建立良好工作环境。作为独立的机构，FWF 检查供应商遵守 "服装行业行为准则" 的程度。</p>
+            <p>HENGHUA 是公平服装基金会（FWF）成员，该组织提倡在服装工厂建立良好工作环境。作为独立的机构，FWF 检查供应商遵守 "服装行业行为准则" 的程度。</p>
 
-            <p>此外，Suitsupply 经常审查自己的供应商，并在必要时实施改进。你可以在2014年里找到更多我们关于这方面的努力。 品牌经营绩效考察 及 媒体报道.</p>
+            <p>此外，HENGHUA 经常审查自己的供应商，并在必要时实施改进。你可以在2014年里找到更多我们关于这方面的努力。 品牌经营绩效考察 及 媒体报道.</p>
 
             <p>我们相信，质量不仅局限于服装，还包含制作的方式。更多关于公平服装基金会请查看: <a href="www.fairwear.nl">www.fairwear.nl.</a></p>
         </div>

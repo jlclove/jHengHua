@@ -65,4 +65,14 @@ public class IndexController {
         model.addAttribute(pageName, "franchise");
         return "franchise";
     }
+
+    @RequestMapping("/privacy")
+    protected String privacy(Model model) {
+        return "privacy";
+    }
+
+    @RequestMapping("/term")
+    protected String term(Model model) {
+        return "term";
+    }
 }

@@ -44,7 +44,7 @@ public class ProductController {
 
     @RequestMapping("/sample")
     protected String sampleList(Model model, HttpServletRequest request) {
-        model.addAttribute("sampleType", henghuaService.getSampleType(LanguageHelper.getLocalization(request)));
+        model.addAttribute("filters", henghuaService.getSampleType(LanguageHelper.getLocalization(request)));
         model.addAttribute("sampleList", henghuaService.getNextSampleList(0));
         return "sample";
     }
@@ -63,7 +63,7 @@ public class ProductController {
 
     @RequestMapping("/cloth")
     protected String clothList(Model model) {
-        model.addAttribute("clothType", henghuaService.getClothType());
+        model.addAttribute("filters", henghuaService.getClothType());
         model.addAttribute("clothList", henghuaService.getNextClothList(0));
         return "cloth";
     }

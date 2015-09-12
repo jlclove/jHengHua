@@ -9,6 +9,7 @@
 <%@ include file="common/include.jsp"%>
 <jsp:include page="common/head.jsp">
     <jsp:param name="css" value="sample"/>
+    <jsp:param name="title" value="在线购买"/>
 </jsp:include>
 <div class="content container mt50 sample-detail-page">
         <div class="row">
@@ -45,29 +46,6 @@
         <div id="washing-container" class="washing-container mt50 text-right">
             <a class="f14 mr30" href="www.jshenghua.com" target="_blank">www.jshenghua.com</a>
         </div>
-        <%--<div class="col-md-6 f16">--%>
-            <%--<form class="form-horizontal">--%>
-                <%--<div class="form-group">--%>
-                    <%--<label class="col-sm-2 control-label">CardId</label>--%>
-                    <%--<div class="col-sm-10">--%>
-                        <%--<p class="form-control-static">${sampleDetail.cardId}</p>--%>
-                    <%--</div>--%>
-                <%--</div>--%>
-                <%--<div class="form-group">--%>
-                    <%--<label class="col-sm-2 control-label">Material</label>--%>
-                    <%--<div class="col-sm-10">--%>
-                        <%--<p class="form-control-static">${sampleDetail.material}</p>--%>
-                    <%--</div>--%>
-                <%--</div>--%>
-                <%--<div class="form-group">--%>
-                    <%--<label class="col-sm-2 control-label">Nick</label>--%>
-                    <%--<div class="col-sm-10">--%>
-                        <%--<p class="form-control-static">${sampleDetail.nick}</p>--%>
-                    <%--</div>--%>
-                <%--</div>--%>
-            <%--</form>--%>
-        <%--</div>--%>
-
 </div>
 <jsp:include page="common/foot.jsp">
     <jsp:param name="js" value="bower_components/jquery/dist/jquery.min,javascripts/jquery-barcode.min,javascripts/sampleDetail"/>

@@ -12,7 +12,7 @@
         <h2>
             <span class="color_blue">掌握最新资讯</span>
         </h2>
-        <h4>订阅邮件，立即尊享 Suitsupply 最新产品信息</h4>
+        <h4>订阅邮件，立即尊享 HENGHUA 最新产品信息</h4>
 
         <form class="email-form mt30">
             <input type="email" placeholder="输入邮件地址"/>
@@ -58,22 +58,22 @@
     </section>
 
     <section class="footer-section container-fluid pt50 pb120">
-        <ul class="help-bar col-sm-7 pl100 list-inline clearfix">
-            <li class="help-bar-link"><a href="#">隐私声明</a></li>
-            <li class="help-bar-link"><a href="#">购买条款</a></li>
-            <li class="help-bar-link"><a href="#">购买指南</a></li>
+        <ul class="help-bar pl100 list-inline clearfix">
+            <li class="help-bar-link"><a href="/privacy">隐私声明</a></li>
+            <li class="help-bar-link"><a href="/term">购买条款</a></li>
+            <%--<li class="help-bar-link"><a href="#">购买指南</a></li>--%>
             <li class="help-bar-link"><a href="#">沪ICP备13019284</a></li>
         </ul>
 
-        <ul class="social-bar col-sm-5 pl100 list-inline clearfix">
-            <li class="pull-left">关注我们</li>
-            <li><a href="#" class="social-icon social-wechat"></a></li>
-            <li><a href="#" class="social-icon social-weibo"></a></li>
-            <li><a href="#" class="social-icon social-youku"></a></li>
-            <li><a href="#" class="social-icon social-tudou"></a></li>
-        </ul>
+        <%--<ul class="social-bar col-sm-5 pl100 list-inline clearfix">--%>
+            <%--<li class="pull-left">关注我们</li>--%>
+            <%--<li><a href="#" class="social-icon social-wechat"></a></li>--%>
+            <%--<li><a href="#" class="social-icon social-weibo"></a></li>--%>
+            <%--<li><a href="#" class="social-icon social-youku"></a></li>--%>
+            <%--<li><a href="#" class="social-icon social-tudou"></a></li>--%>
+        <%--</ul>--%>
 
-        <ul class="pay-bar col-sm-5 pl100 mt30 list-inline clearfix">
+        <ul class="pay-bar pl100 mt30 list-inline clearfix">
             <li><a href="#" class="pay-icon pay-mastercard"></a></li>
             <li><a href="#" class="pay-icon pay-visa"></a></li>
             <li><a href="#" class="pay-icon pay-ali"></a></li>
@@ -84,7 +84,7 @@
 </body>
 <script type="text/javascript" src="/static/bower_components/jquery/dist/jquery.min.js"></script>
 <script type="text/javascript" src="/static/javascripts/underscore-min.js"></script>
-
+<script type="text/javascript" src="/static/javascripts/main.js"></script>
 <script type="text/javascript">
     $('a[data-nav]').click(function(e){
         var current = $(this).parent().find('.nav-menu-wrap');
@@ -149,6 +149,16 @@
         $('header').css('transform', 'translate3d(0,0,0)');
         $('.mobile-menu').css('transform', 'translate3d(-100%,0,0)');
         $('.float-bg').removeClass('visible');
+    });
+
+    $('img').on('error', function(){
+        console.log('error');
+        var errorCount = $(this).data('errorCount') || 0;
+        $(this).data('errorCount', errorCount++);
+        if(errorCount <= 2) {
+            $(this).attr('src', '/static/images/navigation/shop/pre-order.jpg');
+        }
+
     });
 </script>
 

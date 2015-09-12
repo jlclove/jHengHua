@@ -6,7 +6,9 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<jsp:include page="common/head.jsp"/>
+<jsp:include page="common/head.jsp">
+    <jsp:param name="title" value="企业信息"/>
+</jsp:include>
 <div class="content container-fluid">
     <h2 class="titlebar">合作伙伴</h2>
     <div class="row">

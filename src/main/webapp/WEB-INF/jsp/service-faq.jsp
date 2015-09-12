@@ -8,6 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <jsp:include page="common/head.jsp">
     <jsp:param name="css" value="service-faq"/>
+    <jsp:param name="title" value="企业信息"/>
 </jsp:include>
 <div class="about-page container-fluid">
     <h2 class="titlebar">购买指南</h2>
@@ -63,19 +64,19 @@
 
             <ul class="list-unstyled" id="accordion">
                 <li>
-                    <a href="#cols1" data-toggle="collapse" data-target="#cols1" data-parent="#accordion">Suitsupply 销售礼品卡吗？ +</a>
-                    <p id="cols1" class="panel-collapse collapse in">Suitsupply 销售礼品卡吗？ +Suitsupply 销售礼品卡吗？ +Suitsupply 销售礼品卡吗？ +</p>
+                    <a href="#cols1" data-toggle="collapse" data-target="#cols1" data-parent="#accordion">Henghua 销售礼品卡吗？ +</a>
+                    <p id="cols1" class="panel-collapse collapse in">Henghua 销售礼品卡吗？ +Henghua 销售礼品卡吗？ +Henghua 销售礼品卡吗？ +</p>
                 </li>
                 <li>
-                    <a href="#cols2" data-toggle="collapse" data-target="#cols2" data-parent="#accordion">Suitsupply 礼品卡何时过期？ +</a>
-                    <p id="cols2" class="panel-collapse collapse">Suitsupply 销售礼品卡吗？ +Suitsupply 销售礼品卡吗？ +Suitsupply 销售礼品卡吗？ +</p>
+                    <a href="#cols2" data-toggle="collapse" data-target="#cols2" data-parent="#accordion">Henghua 礼品卡何时过期？ +</a>
+                    <p id="cols2" class="panel-collapse collapse">Henghua 销售礼品卡吗？ +Henghua 销售礼品卡吗？ +Henghua 销售礼品卡吗？ +</p>
                 </li>
             </ul>
 
             <!---->
-            <!--Suitsupply 礼品卡能在网店使用吗？ +-->
+            <!--Henghua 礼品卡能在网店使用吗？ +-->
             <!--为何我的支付失败？ +-->
-            <!--Suitsupply 网购的付款方式包括哪些？-->
+            <!--Henghua 网购的付款方式包括哪些？-->
         </div>
     </div>
 </div>

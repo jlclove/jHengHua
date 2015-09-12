@@ -46,9 +46,25 @@
     top: 62px;
 }
 .filter-bar a.filter-item {
+    position: relative;
     display: block;
     padding: 19px 15px 16px;
     font-size: 16px;
+}
+.filter-bar a.filter-item .tip {
+    position: absolute;
+    display: none;
+    right: 7px;
+    top: 10px;
+    width: 16px;
+    height: 16px;
+    text-align: center;
+    line-height: 18px;
+    border-radius: 10px;
+    background: #183051;
+    color: #fff;
+    font-size: 13px;
+    -webkit-font-smoothing: initial;
 }
 .filter-bar a.filter-item.opened {
     background-color: #fff;

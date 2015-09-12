@@ -9,6 +9,7 @@
 <%@ include file="common/include.jsp"%>
 <jsp:include page="common/head.jsp">
     <jsp:param name="css" value="sample"/>
+    <jsp:param name="title" value="在线购买"/>
 </jsp:include>
 <div class="content container mt20">
     <h3 class="c_black">${cloth.name}</h3>

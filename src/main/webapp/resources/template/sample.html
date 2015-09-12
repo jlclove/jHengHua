@@ -4,6 +4,9 @@
     <div class="col-sm-4 product-item">
         <div class="clearfix">
             <%for(var j = 0; j < 3; j++){
+                if(!sample.detailList || !sample.detailList[j]){
+                    break;
+                }
                 var detail = sample.detailList[j];
                 if(!detail) break;
             %>

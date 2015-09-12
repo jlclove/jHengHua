@@ -8,6 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <jsp:include page="common/head.jsp">
     <jsp:param name="css" value="about-our-shirts"/>
+    <jsp:param name="风尚专栏" value="网站首页"/>
 </jsp:include>
 <div class="content container-fluid">
     <div class="unit-box row">

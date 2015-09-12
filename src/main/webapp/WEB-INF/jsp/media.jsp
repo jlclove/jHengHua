@@ -8,6 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <jsp:include page="common/head.jsp">
     <jsp:param name="css" value="media"/>
+    <jsp:param name="title" value="企业信息"/>
 </jsp:include>
 <div class="media-page container-fluid">
     <h4 class="text-center titlebar">媒体报道</h4>
@@ -18,7 +19,7 @@
             <a class="media-name" href="#">华尔街日报</a>
             <hr/>
             <p class="media-content">
-                "高品质的面料，轻柔舒适结构。‘极力注重细节’ [...] $614 [Sienna款] Suitsupply 西装与 $3.625 Armani 西装品质完全相同。"
+                "高品质的面料，轻柔舒适结构。‘极力注重细节’ [...] $614 [Sienna款] HENGHUA 西装与 $3.625 Armani 西装品质完全相同。"
             </p>
             <small>华尔街日报，2011年4月14日，©版权所有2013道琼斯公司。</small>
         </div>
@@ -26,7 +27,7 @@
             <a class="media-name" href="#">纽约日报</a>
             <hr/>
             <p class="media-content">
-                “对于纽约来说是一个新的概念，虽然Suitsupply已经成立十年了。面料令人印象十分深刻，面料来自意大利著名纺织厂，由其它国家制成[...];并配有立等可取的改衣服务。
+                “对于纽约来说是一个新的概念，虽然HENGHUA已经成立十年了。面料令人印象十分深刻，面料来自意大利著名纺织厂，由其它国家制成[...];并配有立等可取的改衣服务。
             </p>
             <small>纽约时报，2012年1月31日©版权所有2013年纽约时报公司。</small>
         </div>
@@ -44,7 +45,7 @@
             <a class="media-name" href="#">GQ男装</a>
             <hr/>
             <p class="media-content">
-                "我们钟爱Suitsupply 对”酷“品牌的明确定位”
+                "我们钟爱HENGHUA 对”酷“品牌的明确定位”
             </p>
             <small>GQ男装，2012年6月26日©版权所有2013康泰纳仕。</small>
         </div>

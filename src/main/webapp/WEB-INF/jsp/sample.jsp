@@ -9,6 +9,7 @@
 <%@ include file="common/include.jsp"%>
 <jsp:include page="common/head.jsp">
     <jsp:param name="css" value="sample"/>
+    <jsp:param name="title" value="在线购买"/>
 </jsp:include>
 <!-- .banner -->
 <div class="suits banner container-fluid">
@@ -24,43 +25,7 @@
 <!-- /.banner -->
 
 <!-- .filter -->
-<div class="suits filter-bar" data-spy="affix" data-offset-top="62">
-    <div class="filter-btn clearfix">
-        <div class="pull-left">
-            <a id="filterBtn" class="filter-item animated" href="#"><span>筛选</span><i class="icon-suiticon icon-suiticon-filter-1-1"></i></a>
-        </div>
-        <%--<div class="pull-right">--%>
-            <%--<a class="filter-item animated" href="#"><span class="hidden-xs">排序</span><i class="icon-suiticon icon-suiticon-transfer-7"></i></a>--%>
-        <%--</div>--%>
-        <%--<div class="pull-right">--%>
-            <%--<a class="filter-item animated" href="#"><span class="hidden-xs">显示</span><i class="icon-suiticon icon-suiticon-preview-1"></i></a>--%>
-        <%--</div>--%>
-    </div>
-    <div class="filter-category container-fluid animated clearfix">
-        <div class="row filter-selected-content clearfix">
-            <div class="filter-clear btn btn-default">Clear All <i class="close-section close-section--alpha icon-suiticon icon-suiticon-delete-1"></i></div>
-            <div class="filter-property"></div>
-        </div>
-        <div class="row pos-rel">
-        <c:forEach items="${sampleType}" var="type">
-        <div class="filter-category-item">
-            <a href="#" class="">${type.key}</a>
-            <ul class="list-inline animated">
-            <c:forEach items="${type.value}" var="v" varStatus="status">
-                <li>
-                    <div class="checkbox">
-                        <label>
-                            <input name="singleCheck" type="checkbox" value="${type.key},${v}">${v}
-                        </label>
-                    </div>
-                </li>
-            </c:forEach>
-            </ul>
-        </div>
-        </c:forEach>
-        </div>
-    </div>
-</div>
+<jsp:include page="common/filter.jsp"/>
 <!-- /.filter -->
 
 <div class="product-wrap container">

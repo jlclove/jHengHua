@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<jsp:include page="common/head.jsp"/>
+<jsp:include page="common/head.jsp">
+    <jsp:param name="title" value="网站首页"/>
+</jsp:include>
 <div class="site container-fluid">
     <div class="row">
         <div class="col-sm-12">

@@ -8,6 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <jsp:include page="common/head.jsp">
     <jsp:param name="css" value="about-our-suits"/>
+    <jsp:param name="风尚专栏" value="网站首页"/>
 </jsp:include>
 <div class="content container-fluid">
     <h2>了解我们的西装</h2>
@@ -46,7 +47,7 @@
         <div class="col-sm-4">
             <div class="fit-box fit-sidebar container-fluid">
                 <h2 class="mt0">了解我们的款型</h2>
-                <p>了解 Suitsupply 的所有款型： 不论是尖翻领或方驳领，单排或双排扣， 经典款或现代款Suitsupply都一应俱全。</p>
+                <p>了解 HENGHUA 的所有款型： 不论是尖翻领或方驳领，单排或双排扣， 经典款或现代款HENGHUA都一应俱全。</p>
                 <hr/>
                 <div class="fit-classic container-fluid">
                     <div class="col-xs-6 text-right">

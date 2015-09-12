@@ -52,27 +52,92 @@ function toggleFilter(type) {
 
 //筛选功能
 var filterConfig = {};
+var filters = {};
 $('.filter-category-item').on('click', 'input[type=checkbox]', function(){
-    $(this).closest('li').siblings().find('input[type=checkbox]').attr('checked', false);
-    $(this).closest('.filter-category-item').siblings().find('input[type=checkbox]').attr('checked', false);
+    sinceId = 0;
+    var kv = $(this).val().split(',');
+    if(filterConfig.multi) {
+        $(this).closest('li').siblings().find('input[type=checkbox]').attr('checked', false);
+    } else {
+        $(this).closest('li').siblings().find('input[type=checkbox]').attr('checked', false);
+        $(this).closest('.filter-category-item').siblings().find('input[type=checkbox]').attr('checked', false);
+    }
+    $('.filter-category-item input[type=checkbox]:checked').each(function(i, e){
+        var arr = $(e).val().split(',');
+        if(filterConfig.multi) {
+            filters[arr[0]] = arr[1];
+        } else {
+            filters[arr[0]] = $(this).val();
+        }
+    });
     closeFilter();
     if(isLoading) {
         return;
     }
-    var kv = $(this).val().split(',');
-    if(filterConfig.search_url) {
-        $.get(filterConfig.search_url + '?filter=' + $(this).val(), function(data){
+
+    var url;
+    if(!isEmpty(filters)) {
+        url = filterConfig.search_url + '?filter=' + mapToList(filters).join(',');
+    } else {
+        url = filterConfig.list_url;
+    }
+    // 重置筛选条件数量
+    resetFilterCount(mapToList(filters).length);
+
+    if(url) {
+        Loading.open();
+        $.get(url, function(data){
+            Loading.close();
             reRender(data, true);
             $('.filter-selected-content').show();
-            $('.filter-property').html('<span class="filter-key">' + kv[0] + '</span> : <span class="filter-value">' + kv[1] + '</span>');
+            if(filterConfig.multi) {
+                $('.filter-property').empty();
+                for(var k in filters){
+                    if(filters.hasOwnProperty(k)) {
+                        $('.filter-property').append('<span class="filter-key">' + k + '</span> : <span class="filter-value mr20">' + filters[k] + '</span>');
+                    }
+                }
+            } else {
+                $('.filter-property').html('<span class="filter-key">' + kv[0] + '</span> : <span class="filter-value mr20">' + kv[1] + '</span>');
+            }
+
         });
     }
 });
 
+function mapToList(filterMap){
+    var result = [];
+    for(var k in filterMap){
+        if(filterMap.hasOwnProperty(k)) {
+            result.push(filterMap[k]);
+        }
+    }
+    return result;
+}
+function isEmpty(map){
+    if(!map) return true;
+    for(var k in map){
+        return false;
+    }
+}
+function resetFilterCount(count){
+    var $filterTip = $('a.filter-item .tip');
+    $filterTip.text(count);
+    if(count > 0) {
+        $filterTip.show();
+    } else {
+        $filterTip.hide();
+    }
+}
+
 $('.filter-clear').on('click', function(){
     closeFilter();
+    filters = {};
+    resetFilterCount(0);
     if(filterConfig.list_url) {
+        Loading.open();
         $.get(filterConfig.list_url, function (data) {
+            Loading.close();
             if (!data || data.length == 0) {
                 sinceId = 0;
                 return;
@@ -88,7 +153,12 @@ $('.filter-clear').on('click', function(){
 
 function reRender(data, clear){
     isLoading = false;
-    if(!data) return;
+    if(!data) {
+        return;
+    }
+    if(data.length == 0) {
+        sinceId = 0;
+    }
     if(filterConfig.template_url) {
         $.get(filterConfig.template_url, function(html){
             var outerHTML = _.template(html)({list: data});
@@ -124,3 +194,6 @@ $(document).on('scroll', function(){
         }
     }
 });
+$.ajaxSettings.error = function(){
+    Loading.close();
+};
