@@ -223,6 +223,17 @@ div[class*=col-].product-item>img {
 
 .sample-detail-page {
     max-width: 768px;
+    background-color: #fff;
+    box-shadow: 2px 2px 8px #ccc;
+    -webkit-box-shadow: 2px 2px 8px #ccc;
+    -moz-box-shadow: 2px 2px 8px #ccc;
+    -o-box-shadow: 2px 2px 8px #ccc;
+    padding-left: 45px;
+}
+.sample-detail-bg {
+    padding-top: 80px;
+    padding-bottom: 20px;
+    background-color: #f5f5f5;
 }
 .washing-container img {
     width: 25px;

@@ -11,7 +11,8 @@
     <jsp:param name="css" value="sample"/>
     <jsp:param name="title" value="在线购买"/>
 </jsp:include>
-<div class="content container mt50 sample-detail-page">
+<div class="sample-detail-bg">
+    <div class="content container sample-detail-page">
         <div class="row">
             <div class="col-sm-8">
                 <span class="f14">编号:</span>
@@ -46,6 +47,7 @@
         <div id="washing-container" class="washing-container mt50 text-right">
             <a class="f14 mr30" href="www.jshenghua.com" target="_blank">www.jshenghua.com</a>
         </div>
+    </div>
 </div>
 <jsp:include page="common/foot.jsp">
     <jsp:param name="js" value="bower_components/jquery/dist/jquery.min,javascripts/jquery-barcode.min,javascripts/sampleDetail"/>
