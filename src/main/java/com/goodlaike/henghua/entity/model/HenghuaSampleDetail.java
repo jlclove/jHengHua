@@ -121,7 +121,7 @@ public class HenghuaSampleDetail implements Serializable {
      * @return String
      */
     public String getSampleName() {
-        return StringUtils.isBlank(this.sampleID) ? (StringUtils.isNotBlank(cardBak) ? cardBak.split("-")[0] : "")
+        return StringUtils.isBlank(this.sampleID) ? (StringUtils.isNotBlank(cardBak) ? cardBak : "")
                 : this.sampleID;
     }
 
