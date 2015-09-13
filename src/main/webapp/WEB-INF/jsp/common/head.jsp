@@ -37,7 +37,8 @@
                     <i class="icon-suiticon icon-suiticon-menu-1"></i>
                 </button>
                 <a class="navbar-brand" href="/">
-                    <img alt="Brand" src="/static/images/logo.png">
+                    HENGHUA
+                    <%--<img alt="Brand" src="/static/images/logo.png">--%>
                 </a>
                 <%--<button type="button" class="navbar-toggle collapsed right" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"--%>
                         <%--id="collapse-right">--%>
@@ -301,7 +302,7 @@
                             </div>
                         </div>
                     </li>
-                    <li><a href="#" class="icon-suiticon icon-suiticon-user-2"></a></li>
+                    <li><a href="#" id="btnAccount" class="icon-suiticon icon-suiticon-user-2"></a></li>
                     <%--<li><a href="#" class="icon-suiticon icon-suiticon-cart-2"></a></li>--%>
                 </ul>
             </div>
@@ -348,4 +349,61 @@
 
         <%--<p>hello</p>--%>
     <%--</div>--%>
+</div>
+<!-- Modal login-->
+<div class="login-modal modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="clearfix">
+                    <span class="f20 c_black pull-left">用户登录</span>
+                    <span class="pull-right">还没有账号？<a href="#" class="red loginOrRegist">马上注册</a></span>
+                </div>
+                <form class="mt25" id="loginForm">
+                    <div class="form-group with-icon">
+                        <i class="fa fa-mobile"></i>
+                        <input type="text" class="form-control" name="username" placeholder="请输入手机号">
+                    </div>
+                    <div class="form-group with-icon">
+                        <i class="fa fa-lock"></i>
+                        <input type="text" class="form-control" name="password" placeholder="请输入登录密码">
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox"> 下次自动登录
+                        </label>
+                        <a href="#" class="pull-right">找回密码</a>
+                    </div>
+                    <button class="btn btn-success btn-large btn-block" type="submit">立即登录</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="login-modal modal fade" id="registModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="clearfix">
+                    <span class="f20 c_black pull-left">用户注册</span>
+                    <span class="pull-right">已有账号？<a href="#" class="red loginOrRegist">马上登录</a></span>
+                </div>
+                <form class="mt25" id="registForm">
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="username" placeholder="请输入手机号">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="nickname" placeholder="昵称">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" name="password" placeholder="请输入密码">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" name="password2" placeholder="请确认新密码">
+                    </div>
+                    <button class="btn btn-success btn-large btn-block" type="submit">立即注册</button>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>

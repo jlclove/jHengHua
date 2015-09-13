@@ -83,6 +83,8 @@
 </footer>
 </body>
 <script type="text/javascript" src="/static/bower_components/jquery/dist/jquery.min.js"></script>
+<script type="text/javascript" src="/static/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/static/bower_components/jquery-validation/dist/jquery.validate.min.js"></script>
 <script type="text/javascript" src="/static/javascripts/underscore-min.js"></script>
 <script type="text/javascript" src="/static/javascripts/main.js"></script>
 <script type="text/javascript">

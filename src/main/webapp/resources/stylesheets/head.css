@@ -11,8 +11,11 @@ header a:hover {
     background-color: #fff;
     border-bottom-width: 2px;
 }
-.navbar-brand {
+.navbar-default .navbar-brand {
     height: 5rem;
+    font-size: 24px;
+    line-height: 36px;
+    color: #183051;
 }
 .navbar-brand img {
     width: 10rem;
@@ -199,4 +202,69 @@ header a:hover {
     min-height: 100%;
     background: #fff;
     padding: 20px;
+}
+
+<!--  -->
+.login-modal .modal-dialog {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    /*height: 330px;*/
+    width: 450px;
+    margin: -165px 0 auto -225px;
+}
+.login-modal .modal-content {
+    height: 100%;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+.login-modal.fade .modal-dialog {
+    transform: scale(0.65,0.65);
+}
+.login-modal.fade.in .modal-dialog {
+    transform: scale(1,1);
+}
+.login-modal .modal-body {
+    font-size: 14px;
+    padding: 40px 50px;
+}
+.login-modal input.form-control,
+.login-modal .btn {
+    border-radius: 0;
+    height: 45px;
+    box-shadow: none;
+    font-size: 16px;
+}
+.login-modal .red {
+    color: rgb(232, 72, 72);
+}
+#registModal .modal-dialog {
+    /*height: 420px;*/
+    margin-top: -210px;
+}
+.login-modal input.form-control.error {
+    border-color: rgb(232, 72, 72);
+}
+.login-modal input.form-control.valid {
+    border-color: #449d44;
+}
+.login-modal label.error {
+    margin-bottom: 0;
+    color: rgb(232, 72, 72);
+}
+.login-modal .with-icon {
+    position: relative;
+}
+.login-modal .with-icon .fa {
+    position: absolute;
+    font-size: 24px;
+    color: #999;
+    left: 0;
+    top: 0;
+    height: 45px;
+    line-height: 45px;
+    width: 40px;
+    text-align: center;
+}
+.login-modal .with-icon .fa+input {
+    padding-left: 40px;
 }
