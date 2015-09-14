@@ -351,10 +351,10 @@
     <%--</div>--%>
 </div>
 <!-- Modal login-->
-<div class="login-modal modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="pop-modal login-modal modal fade" id="popModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <div class="modal-body">
+            <div class="modal-body" id="loginBody">
                 <div class="clearfix mb10">
                     <span class="f20 c_black pull-left">用户登录</span>
                     <span class="pull-right">还没有账号？<a href="#" class="red loginOrRegist">马上注册</a></span>
@@ -381,13 +381,8 @@
                     <button id="btn-login" class="btn btn-success btn-large btn-block" type="submit" data-loading-text="登录中...">立即登录</button>
                 </form>
             </div>
-        </div>
-    </div>
-</div>
-<div class="login-modal modal fade" id="registModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-body">
+
+            <div class="modal-body" id="registBody" style="display: none">
                 <div class="clearfix mb10">
                     <span class="f20 c_black pull-left">新用户注册</span>
                     <span class="pull-right">已有账号？<a href="#" class="red loginOrRegist">马上登录</a></span>
@@ -412,3 +407,31 @@
         </div>
     </div>
 </div>
+<%--<div class="login-modal modal fade" id="registModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">--%>
+    <%--<div class="modal-dialog" role="document">--%>
+        <%--<div class="modal-content">--%>
+            <%--<div class="modal-body">--%>
+                <%--<div class="clearfix mb10">--%>
+                    <%--<span class="f20 c_black pull-left">新用户注册</span>--%>
+                    <%--<span class="pull-right">已有账号？<a href="#" class="red loginOrRegist">马上登录</a></span>--%>
+                <%--</div>--%>
+                <%--<div class="error-msg alert alert-danger alert-dismissible fade in" role="alert"></div>--%>
+                <%--<form class="mt20" id="registForm">--%>
+                    <%--<div class="form-group">--%>
+                        <%--<input type="text" class="form-control" name="mobilePhone" placeholder="请输入手机号码">--%>
+                    <%--</div>--%>
+                    <%--<div class="form-group">--%>
+                        <%--<input type="text" class="form-control" name="nickname" placeholder="昵称">--%>
+                    <%--</div>--%>
+                    <%--<div class="form-group">--%>
+                        <%--<input type="password" class="form-control" name="password" placeholder="请输入密码">--%>
+                    <%--</div>--%>
+                    <%--<div class="form-group">--%>
+                        <%--<input type="password" class="form-control" name="password2" placeholder="请确认新密码">--%>
+                    <%--</div>--%>
+                    <%--<button id="btn-regist" class="btn btn-success btn-large btn-block" data-loading-text="注册中..."type="submit">立即注册</button>--%>
+                <%--</form>--%>
+            <%--</div>--%>
+        <%--</div>--%>
+    <%--</div>--%>
+<%--</div>--%>

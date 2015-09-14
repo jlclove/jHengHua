@@ -205,7 +205,7 @@ header a:hover {
 }
 
 <!--  -->
-.login-modal .modal-dialog {
+.pop-modal .modal-dialog {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -213,48 +213,56 @@ header a:hover {
     width: 450px;
     margin: -165px 0 auto -225px;
 }
-.login-modal .modal-content {
+.login-modal .modal-dialog {
+    margin-top: -165px;
+}
+.regist-modal .modal-dialog {
+    margin-top: -210px;
+}
+.pop-modal .modal-content {
     height: 100%;
     font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
 }
-.login-modal.fade .modal-dialog {
+.pop-modal.fade .modal-dialog {
+    -webkit-transform: scale(0.65,0.65);
+    -moz-transform: scale(0.65,0.65);
+    -o-transform: scale(0.65,0.65);
     transform: scale(0.65,0.65);
 }
-.login-modal.fade.in .modal-dialog {
-    transform: scale(1,1);
+.pop-modal.fade.in .modal-dialog {
+    -webkit-transform: scale(1, 1);
+    -moz-transform: scale(1, 1);
+    -o-transform: scale(1, 1);
+    transform: scale(1, 1);
 }
-.login-modal .modal-body {
+.pop-modal .modal-body {
     font-size: 14px;
     padding: 40px 50px;
 }
-.login-modal input.form-control,
-.login-modal .btn {
+.pop-modal input.form-control,
+.pop-modal .btn {
     border-radius: 0;
     height: 45px;
     box-shadow: none;
     font-size: 16px;
 }
-.login-modal .red {
+.pop-modal .red {
     color: rgb(232, 72, 72);
 }
-#registModal .modal-dialog {
-    /*height: 420px;*/
-    margin-top: -210px;
-}
-.login-modal input.form-control.error {
+.pop-modal input.form-control.error {
     border-color: rgb(232, 72, 72);
 }
-.login-modal input.form-control.valid {
+.pop-modal input.form-control.valid {
     border-color: #449d44;
 }
-.login-modal label.error {
+.pop-modal label.error {
     margin-bottom: 0;
     color: rgb(232, 72, 72);
 }
-.login-modal .with-icon {
+.pop-modal .with-icon {
     position: relative;
 }
-.login-modal .with-icon .fa {
+.pop-modal .with-icon .fa {
     position: absolute;
     font-size: 24px;
     color: #999;
@@ -265,7 +273,7 @@ header a:hover {
     width: 40px;
     text-align: center;
 }
-.login-modal .with-icon .fa+input {
+.pop-modal .with-icon .fa+input {
     padding-left: 40px;
 }
 

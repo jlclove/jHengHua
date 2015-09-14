@@ -23,17 +23,19 @@
 //login
 $('#btnAccount').on('click', function(e){
     e.preventDefault();
-    $('#loginModal').modal('show');
+    $('#popModal').modal('show');
 });
 $('.loginOrRegist').on('click', function(e){
     e.preventDefault();
-    $('#registModal,#loginModal').modal('toggle');
+    $('#registBody,#loginBody').toggle();
+    $('#popModal').toggleClass('login-modal').toggleClass('regist-modal');
     $('#loginForm').validate().resetForm();
     $('#registForm').validate().resetForm();
     $('#loginForm')[0].reset();
     $('#registForm')[0].reset();
     $('input.valid').removeClass('valid');
     $('input.error').removeClass('error');
+    $('.error-msg').hide();
 });
 
 $.validator.addMethod('mobile', function(value, element){
@@ -75,10 +77,10 @@ $(document).ready(function(){
                     },
                     success: function(res){
                         console.log(res);
-                        $('#loginModal').modal('hide');
+                        $('#popModal').modal('hide');
                     },
                     error: function(){
-                        $('.error-msg').show();
+                        $('#loginBody .error-msg').show();
                     },
                     complete: function(){
                         $('#btn-login').button('reset');
@@ -144,7 +146,7 @@ $(document).ready(function(){
                     },
                     success: function(res){
                         console.log(res);
-                        $('#registModal').modal('hide');
+                        $('#popModal').modal('hide');
                     },
                     error: function(res){
                         var error = {};
@@ -153,7 +155,7 @@ $(document).ready(function(){
                         } catch (e) {
                             error.message = '未知错误';
                         }
-                        $('#registModal .error-msg').text(error.message).show();
+                        $('#registBody .error-msg').text(error.message).show();
                     },
                     complete: function(){
                         $('#btn-regist').button('reset');
