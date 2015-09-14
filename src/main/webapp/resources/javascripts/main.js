@@ -29,6 +29,11 @@ $('.loginOrRegist').on('click', function(e){
     e.preventDefault();
     $('#registBody,#loginBody').toggle();
     $('#popModal').toggleClass('login-modal').toggleClass('regist-modal');
+    resetForm();
+});
+
+// 重置表单
+function resetForm(){
     $('#loginForm').validate().resetForm();
     $('#registForm').validate().resetForm();
     $('#loginForm')[0].reset();
@@ -36,7 +41,7 @@ $('.loginOrRegist').on('click', function(e){
     $('input.valid').removeClass('valid');
     $('input.error').removeClass('error');
     $('.error-msg').hide();
-});
+}
 
 $.validator.addMethod('mobile', function(value, element){
     return this.optional( element ) || /^$/i.test( value );
@@ -78,6 +83,7 @@ $(document).ready(function(){
                     success: function(res){
                         console.log(res);
                         $('#popModal').modal('hide');
+                        resetForm();
                     },
                     error: function(){
                         $('#loginBody .error-msg').show();
@@ -147,6 +153,7 @@ $(document).ready(function(){
                     success: function(res){
                         console.log(res);
                         $('#popModal').modal('hide');
+                        resetForm();
                     },
                     error: function(res){
                         var error = {};
