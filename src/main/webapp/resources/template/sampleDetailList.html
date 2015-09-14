@@ -1,0 +1,17 @@
+<%for(var i = 0; i < list.length; i++){
+    var sample = list[i];
+%>
+    <div class="col-sm-2 product-item">
+        <a href="/product/sample/detail/<%=sample.sampleName%>">
+            <div>
+                <img src="http://www.jshenghua.com:82/Thumb/<%=sample.picPath%>" class="img-responsive" width="100%"/>
+            </div>
+            <div class="product-desc mt10 pl5">
+                <div>
+                    <p class="head"><%=sample.sampleName%></p>
+                    <p class="f16"><%=sample.nameCn%></p>
+                </div>
+            </div>
+        </a>
+    </div>
+<%}%>

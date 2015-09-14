@@ -11,71 +11,71 @@
     <jsp:param name="css" value="sample"/>
     <jsp:param name="title" value="在线购买"/>
 </jsp:include>
-<div class="content container mt50 sample-detail-page">
-
-    <div class="row">
-        <div class="col-md-6">
-            <img src="http://www.jshenghua.com:82/Detail/${sampleDetail.picPath}" class="img-responsive"/>
-        </div>
-        <div class="col-md-6 f16">
-            <form class="form-horizontal">
-                <div class="form-group">
-                    <label class="col-sm-4 control-label">Name</label>
-                    <div class="col-sm-8">
-                        <p class="form-control-static">${sampleDetail.nameCn}</p>
+<div class="sample-detail-bg">
+    <div class="content container sample-detail-page">
+        <div class="row">
+            <div class="col-md-6">
+                <img src="http://www.jshenghua.com:82/Detail/${sampleDetail.picPath}" class="img-responsive"/>
+            </div>
+            <div class="col-md-6 f16">
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">Name</label>
+                        <div class="col-sm-8">
+                            <p class="form-control-static">${sampleDetail.nameCn}</p>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-4 control-label">Currency</label>
-                    <div class="col-sm-8">
-                        <p class="form-control-static">${sampleDetail.currency}</p>
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">Currency</label>
+                        <div class="col-sm-8">
+                            <p class="form-control-static">${sampleDetail.currency}</p>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-4 control-label">DetailName</label>
-                    <div class="col-sm-8">
-                        <p class="form-control-static">${sampleDetail.detailName}</p>
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">DetailName</label>
+                        <div class="col-sm-8">
+                            <p class="form-control-static">${sampleDetail.detailName}</p>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-4 control-label">Material</label>
-                    <div class="col-sm-8">
-                        <p class="form-control-static">${sampleDetail.material}</p>
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">Material</label>
+                        <div class="col-sm-8">
+                            <p class="form-control-static">${sampleDetail.material}</p>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-4 control-label">NameEn</label>
-                    <div class="col-sm-8">
-                        <p class="form-control-static">${sampleDetail.nameEn}</p>
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">NameEn</label>
+                        <div class="col-sm-8">
+                            <p class="form-control-static">${sampleDetail.nameEn}</p>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-4 control-label">Price</label>
-                    <div class="col-sm-8">
-                        <p class="form-control-static">${sampleDetail.price}</p>
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">Price</label>
+                        <div class="col-sm-8">
+                            <p class="form-control-static">${sampleDetail.price}</p>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-4 control-label">Reserve</label>
-                    <div class="col-sm-8">
-                        <p class="form-control-static">${sampleDetail.reserve}</p>
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">Reserve</label>
+                        <div class="col-sm-8">
+                            <p class="form-control-static">${sampleDetail.reserve}</p>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-4 control-label">RetailUnit</label>
-                    <div class="col-sm-8">
-                        <p class="form-control-static">${sampleDetail.retailUnit}</p>
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">RetailUnit</label>
+                        <div class="col-sm-8">
+                            <p class="form-control-static">${sampleDetail.retailUnit}</p>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-4 control-label">SampleName</label>
-                    <div class="col-sm-8">
-                        <p class="form-control-static">${sampleDetail.sampleName}</p>
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">SampleName</label>
+                        <div class="col-sm-8">
+                            <p class="form-control-static">${sampleDetail.sampleName}</p>
+                        </div>
                     </div>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
     </div>
-
 </div>
 <jsp:include page="common/foot.jsp"/>

@@ -49,7 +49,7 @@
             </div>
             <c:if test="${s.last}">
                 <script type="text/javascript">
-                    var sinceId = '${cloth.id}';
+                    var sinceId = '${sample.id}';
                 </script>
             </c:if>
         </c:forEach>

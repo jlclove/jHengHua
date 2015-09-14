@@ -355,18 +355,22 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-body">
-                <div class="clearfix">
+                <div class="clearfix mb10">
                     <span class="f20 c_black pull-left">用户登录</span>
                     <span class="pull-right">还没有账号？<a href="#" class="red loginOrRegist">马上注册</a></span>
                 </div>
-                <form class="mt25" id="loginForm">
+                <div class="error-msg alert alert-danger alert-dismissible fade in" role="alert">
+                    <%--<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>--%>
+                    账号或密码不正确，请重新输入
+                </div>
+                <form class="mt20" id="loginForm">
                     <div class="form-group with-icon">
                         <i class="fa fa-mobile"></i>
-                        <input type="text" class="form-control" name="username" placeholder="请输入手机号">
+                        <input type="text" class="form-control" name="userId" placeholder="请输入用户名">
                     </div>
                     <div class="form-group with-icon">
                         <i class="fa fa-lock"></i>
-                        <input type="text" class="form-control" name="password" placeholder="请输入登录密码">
+                        <input type="password" class="form-control" name="password" placeholder="请输入登录密码">
                     </div>
                     <div class="checkbox">
                         <label>
@@ -374,7 +378,7 @@
                         </label>
                         <a href="#" class="pull-right">找回密码</a>
                     </div>
-                    <button class="btn btn-success btn-large btn-block" type="submit">立即登录</button>
+                    <button id="btn-login" class="btn btn-success btn-large btn-block" type="submit" data-loading-text="登录中...">立即登录</button>
                 </form>
             </div>
         </div>
@@ -384,13 +388,14 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-body">
-                <div class="clearfix">
-                    <span class="f20 c_black pull-left">用户注册</span>
+                <div class="clearfix mb10">
+                    <span class="f20 c_black pull-left">新用户注册</span>
                     <span class="pull-right">已有账号？<a href="#" class="red loginOrRegist">马上登录</a></span>
                 </div>
-                <form class="mt25" id="registForm">
+                <div class="error-msg alert alert-danger alert-dismissible fade in" role="alert"></div>
+                <form class="mt20" id="registForm">
                     <div class="form-group">
-                        <input type="text" class="form-control" name="username" placeholder="请输入手机号">
+                        <input type="text" class="form-control" name="mobilePhone" placeholder="请输入手机号码">
                     </div>
                     <div class="form-group">
                         <input type="text" class="form-control" name="nickname" placeholder="昵称">
@@ -401,7 +406,7 @@
                     <div class="form-group">
                         <input type="password" class="form-control" name="password2" placeholder="请确认新密码">
                     </div>
-                    <button class="btn btn-success btn-large btn-block" type="submit">立即注册</button>
+                    <button id="btn-regist" class="btn btn-success btn-large btn-block" data-loading-text="注册中..."type="submit">立即注册</button>
                 </form>
             </div>
         </div>

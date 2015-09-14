@@ -2,21 +2,23 @@
     var sample = list[i];
 %>
     <div class="col-sm-4 product-item">
-        <div class="clearfix">
-            <%for(var j = 0; j < 3; j++){
-                if(!sample.detailList || !sample.detailList[j]){
-                    break;
-                }
-                var detail = sample.detailList[j];
-                if(!detail) break;
-            %>
-                <div class="w1of3 pull-left pl5 pr5">
-                    <img src="http://www.jshenghua.com:82/Thumb/<%=detail.picPath%>" class="img-responsive" width="100%"/>
-                </div>
-            <%}%>
-        </div>
-        <div class="product-desc mt10 pl5">
-            <div><span class="head"><%=sample.cardId%></span>  -  <span class="f16"><%=sample.nick%></span>  -  <span class="f16"><%=sample.material%></span></div>
-        </div>
+        <a href="/product/sample/<%=sample.cardId%>">
+            <div class="clearfix">
+                <%for(var j = 0; j < 3; j++){
+                    if(!sample.detailList || !sample.detailList[j]){
+                        break;
+                    }
+                    var detail = sample.detailList[j];
+                    if(!detail) break;
+                %>
+                    <div class="w1of3 pull-left pl5 pr5">
+                        <img src="http://www.jshenghua.com:82/Thumb/<%=detail.picPath%>" class="img-responsive" width="100%"/>
+                    </div>
+                <%}%>
+            </div>
+            <div class="product-desc mt10 pl5">
+                <div><span class="head"><%=sample.cardId%></span>  -  <span class="f16"><%=sample.nick%></span>  -  <span class="f16"><%=sample.material%></span></div>
+            </div>
+        </a>
     </div>
 <%}%>

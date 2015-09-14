@@ -88,7 +88,7 @@ $('.filter-category-item').on('click', 'input[type=checkbox]', function(){
         Loading.open();
         $.get(url, function(data){
             Loading.close();
-            reRender(data, true);
+            reRender(data, true, 'search');
             $('.filter-selected-content').show();
             if(filterConfig.multi) {
                 $('.filter-property').empty();
@@ -151,7 +151,7 @@ $('.filter-clear').on('click', function(){
     }
 });
 
-function reRender(data, clear){
+function reRender(data, clear, from){
     isLoading = false;
     if(!data) {
         return;
@@ -159,8 +159,14 @@ function reRender(data, clear){
     if(data.length == 0) {
         sinceId = 0;
     }
-    if(filterConfig.template_url) {
-        $.get(filterConfig.template_url, function(html){
+    var url;
+    if(from == 'search') {
+        url = filterConfig.search_template_url ? filterConfig.search_template_url : filterConfig.template_url;
+    } else {
+        url = filterConfig.template_url;
+    }
+    if(url) {
+        $.get(url, function(html){
             var outerHTML = _.template(html)({list: data});
             if(clear) {
                 $('#list').html(outerHTML);

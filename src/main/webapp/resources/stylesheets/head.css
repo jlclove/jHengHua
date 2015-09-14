@@ -268,3 +268,10 @@ header a:hover {
 .login-modal .with-icon .fa+input {
     padding-left: 40px;
 }
+
+.error-msg {
+    display: none;
+    padding: 10px 35px 10px 15px;
+    border-radius: 0;
+    margin-bottom: -5px;
+}
