@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.goodlaike.business.core.controller.BaseRestController;
 import com.goodlaike.business.core.helper.LanguageHelper;
-import com.goodlaike.business.core.support.ExceptionResult;
-import com.goodlaike.henghua.ExceptionResultWeb;
+import com.goodlaike.business.core.support.RestResult;
+import com.goodlaike.henghua.RestResultWeb;
 import com.goodlaike.henghua.entity.model.HenghuaCloth;
 import com.goodlaike.henghua.entity.model.HenghuaClothDetail;
 import com.goodlaike.henghua.entity.model.HenghuaSampleDetail;
@@ -97,7 +97,7 @@ public class HenghuaController extends BaseRestController {
     @RequestMapping(value = "sample/detail/{detailName}", method = RequestMethod.GET)
     protected ResponseEntity<?> getSampleDetail(HttpServletRequest request, @PathVariable String detailName) {
         HenghuaSampleDetail detail = henghuaService.getSampleDetail(detailName);
-        return detail == null ? super.notFound(ExceptionResultWeb.NOT_FOUND) : ResponseEntity.ok(detail);
+        return detail == null ? super.notFound(RestResultWeb.NOTFOUND) : ResponseEntity.ok(detail);
     }
 
     /**
@@ -150,7 +150,7 @@ public class HenghuaController extends BaseRestController {
     @RequestMapping(value = "cloth/{serialNo}", method = RequestMethod.GET)
     protected ResponseEntity<?> getCloth(HttpServletRequest request, @PathVariable String serialNo) {
         HenghuaCloth clothDetail = henghuaService.getCloth(serialNo);
-        return clothDetail == null ? super.notFound(ExceptionResult.NOT_FOUND) : ResponseEntity.ok(clothDetail);
+        return clothDetail == null ? super.notFound(RestResult.NOTFOUND) : ResponseEntity.ok(clothDetail);
     }
 
     /**
@@ -168,7 +168,7 @@ public class HenghuaController extends BaseRestController {
     @RequestMapping(value = "cloth/detail/{serialNo}", method = RequestMethod.GET)
     protected ResponseEntity<?> getClothDetail(HttpServletRequest request, @PathVariable String serialNo) {
         HenghuaClothDetail clothDetail = henghuaService.getClothDetail(serialNo);
-        return clothDetail == null ? super.notFound(ExceptionResult.NOT_FOUND) : ResponseEntity.ok(clothDetail);
+        return clothDetail == null ? super.notFound(RestResult.NOTFOUND) : ResponseEntity.ok(clothDetail);
     }
 
     /**
