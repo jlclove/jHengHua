@@ -77,7 +77,7 @@ $(document).ready(function(){
                     url: '/business/user/login',
                     method: 'post',
                     data: {
-                        userId: form.userId.value,
+                        mobilePhone: form.userId.value,
                         password: form.password.value
                     },
                     success: function(res){
@@ -85,7 +85,11 @@ $(document).ready(function(){
                         $('#popModal').modal('hide');
                         resetForm();
                     },
-                    error: function(){
+                    error: function(data){
+                        var result = data.responseJSON;
+                        if(result && result.message) {
+                            $('#loginBody .error-msg').text(result.message);
+                        }
                         $('#loginBody .error-msg').show();
                     },
                     complete: function(){
