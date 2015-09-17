@@ -1,0 +1,45 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Order">
+	<insert id="insert" parameterType="order">
+		INSERT INTO `t_order`
+		(
+			`quantity`,
+			`sampleDetailNo`,
+			`totalPrice`,
+			`unitPrice`,
+			`createUserId`,
+			`updateUserId`
+		)
+		VALUES
+		(
+			#{quantity},
+			#{sampleDetailNo},
+			#{totalPrice},
+			#{unitPrice},
+			#{createUserId},
+			#{updateUserId}
+		)
+	</insert>
+
+	<!-- 分页 -->
+	<select id="queryForPaginate" resultType="order" parameterType="pagination">
+		select * from v_order
+		${extensionSql}
+		${limitSql}
+	</select>
+
+	<!-- 分页统计 -->
+	<select id="countForPaginate" resultType="order" parameterType="pagination">
+		select count(1) from v_order
+		${extensionSql}
+	</select>
+
+	<select id="findOrder" resultType="order" parameterType="id">
+		select *
+		from
+		v_order
+		where id = #{id}
+	</select>
+</mapper>
