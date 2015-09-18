@@ -20,36 +20,13 @@
                     <tr>
                         <th>编号</th>
                         <th>标题</th>
-                        <th>状态</th>
+                        <th>外链</th>
                         <th>创建时间</th>
-                        <th>创建人</th><th></th>
+                        <th>创建人</th>
+                        <th></th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                        <td>1001</td><td>标题啊标题啊标题啊</td><td>有效</td><td>2015-05-01 14:34:22</td><td>管理员</td>
-                        <td>
-                            <a href="#" class="mr10">查看</a>
-                            <a href="#" class="mr10">编辑</a>
-                            <a href="#" class="mr10">删除</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>1002</td><td>标题啊标题啊标题啊</td><td>无效</td><td>2015-05-01 14:34:22</td><td>管理员</td>
-                        <td>
-                            <a href="#" class="mr10">查看</a>
-                            <a href="#" class="mr10">编辑</a>
-                            <a href="#" class="mr10">删除</a>
-                        </td>
-                    </tr>
-                    <tr class="danger">
-                        <td>1003</td><td>标题啊标题啊标题啊</td><td>无效</td><td>2015-05-01 14:34:22</td><td>管理员</td>
-                        <td>
-                            <a href="#" class="mr10">查看</a>
-                            <a href="#" class="mr10">编辑</a>
-                            <a href="#" class="mr10">删除</a>
-                        </td>
-                    </tr>
+                <tbody id="listContainer">
                 </tbody>
             </table>
         </div>
@@ -74,4 +51,6 @@
         </ul>
     </nav>
 </div>
-<jsp:include page="common/foot.jsp"/>
+<jsp:include page="common/foot.jsp">
+    <jsp:param name="js" value="javascripts/admin/news"/>
+</jsp:include>

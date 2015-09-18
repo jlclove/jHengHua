@@ -27,17 +27,36 @@
                 <a class="navbar-brand" href="#">后台管理系统</a>
             </div>
             <div class="collapse navbar-collapse">
+                <c:if test="${not empty user}">
                 <ul class="nav navbar-nav">
                     <li class="active"><a href="#">新闻</a></li>
-                    <li class=""><a href="#">媒体</a></li>
-                    <li class=""><a href="#">用户</a></li>
                 </ul>
+                </c:if>
                 <ul class="nav navbar-nav navbar-right">
                     <p class="navbar-text">
-                        <span class="mr10"><c:if test="${not empty user}">欢迎你，${user.mobilePhone}</c:if></span>
-                        <i class="glyphicon glyphicon-share-alt"></i>
-                        <a href="/" class="navbar-link">网站</a>
+                        <%--<i class="glyphicon glyphicon-share-alt"></i>--%>
+                        <%--<a href="/" class="navbar-link mr10">网站</a>--%>
+                        <span>
+                            <c:if test="${not empty user}">
+                                欢迎你，${user.mobilePhone}
+                            </c:if>
+                        </span>
                     </p>
+                    <c:choose>
+                        <c:when test="${not empty user}">
+                            <li>
+                                <a href="/admin/logout">退出</a>
+                            </li>
+                        </c:when>
+                        <c:otherwise>
+                            <li>
+                                <a href="/admin/login">登录</a>
+                            </li>
+                            <li>
+                                <a href="/admin/regist">注册</a>
+                            </li>
+                        </c:otherwise>
+                    </c:choose>
                 </ul>
             </div>
         </div>

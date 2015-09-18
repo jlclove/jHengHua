@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * Created with IntelliJ IDEA.
@@ -28,6 +29,12 @@ public class AdminController {
     @RequestMapping("login")
     protected String login() {
         return "/admin/login";
+    }
+
+    @RequestMapping("logout")
+    protected String logout(HttpServletRequest request, HttpServletResponse response) {
+        LoginHelper.removeLoginUser(request);
+        return "redirect:/admin/login";
     }
 
     @RequestMapping("index")

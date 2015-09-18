@@ -16,12 +16,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0"/>
     <title>${param.title} - 江苏恒华实业纺织面料服饰</title>
-    <link rel="stylesheet" type="text/css" href="/static/fonts/fonts.css">
-    <link rel="stylesheet" type="text/css" href="/static/bower_components/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="/static/bower_components/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="/static/stylesheets/style.css">
-    <link rel="stylesheet" type="text/css" href="/static/stylesheets/head.css">
-    <link rel="stylesheet" type="text/css" href="/static/stylesheets/foot.css">
+    <link rel="stylesheet" type="text/css" href="/static/build/css/all.min.css">
+    <%--<link rel="stylesheet" type="text/css" href="/static/fonts/fonts.css">--%>
+    <%--<link rel="stylesheet" type="text/css" href="/static/bower_components/bootstrap/dist/css/bootstrap.min.css">--%>
+    <%--<link rel="stylesheet" type="text/css" href="/static/bower_components/font-awesome/css/font-awesome.min.css">--%>
+    <%--<link rel="stylesheet" type="text/css" href="/static/stylesheets/style.css">--%>
+    <%--<link rel="stylesheet" type="text/css" href="/static/stylesheets/head.css">--%>
+    <%--<link rel="stylesheet" type="text/css" href="/static/stylesheets/foot.css">--%>
     <c:forTokens items="${param.css}" delims="," var="file">
         <link rel="stylesheet" type="text/css" href="/static/stylesheets/${file}.css">
     </c:forTokens>

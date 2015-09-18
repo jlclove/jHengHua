@@ -15,9 +15,16 @@
         <div class="col-sm-2">
             <jsp:include page="common/sidebar.jsp"/>
         </div>
-        <div class="col-sm-8">
-            <h3 class="mt0">合作伙伴</h3>
+        <div class="col-sm-8" id="template">
         </div>
     </div>
 </div>
 <jsp:include page="common/foot.jsp"/>
+<script type="text/javascript">
+    $.get('/attach/franchise.html', function(res){
+        var match = res.match(/<body>[\n+\s+]+<div class="template container">([\d\D]*)<\/div>[\n+\s+]+<\/body>/);
+        if(match) {
+            $('#template').html(match[1]);
+        }
+    })
+</script>
