@@ -36,7 +36,7 @@
 		${extensionSql}
 	</select>
 
-	<select id="findOrder" resultType="order" parameterType="id">
+	<select id="findOrder" resultType="order" parameterType="int">
 		select *
 		from
 		v_order
