@@ -68,16 +68,16 @@ input.form-control:not(:focus) {
 .pr50 {padding-right: 50px!important;}
 .pr60 {padding-right: 60px!important;}
 
-input.form-control.error {
+.form-control.error {
     border-color: #e4a197;
 }
-input.form-control.error:focus {
+.form-control.error:focus {
     -webkit-box-shadow: 0 0 8px #e4a197;
     -o-box-shadow: 0 0 8px #e4a197;
     -moz-box-shadow: 0 0 8px #e4a197;
     box-shadow: 0 0 8px #e4a197;
 }
-input.form-control.error+.error {
+.form-control.error+.error {
     font-size: 12px;
     margin: 0;
     color: #b92219;

@@ -21,7 +21,7 @@
 </div>
 <jsp:include page="common/foot.jsp"/>
 <script type="text/javascript">
-    $.get('/attach/career.html', function(res){
+    $.get('/attach/career_${lang}.html', function(res){
         var match = res.match(/<body>[\n+\s+]+<div class="template container">([\d\D]*)<\/div>[\n+\s+]+<\/body>/);
         if(match) {
             $('#template').html(match[1]);

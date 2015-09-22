@@ -1,0 +1,13 @@
+<%_.forEach(list, function(news){%>
+<tr>
+    <td><%=news.id%></td>
+    <td><%=news.title%></td>
+    <td><a href="<%=news.link%>" target="_blank"><%=news.link%></td>
+    <td><%=news.createTime%></td>
+    <td><%=news.createUserId%></td>
+    <td>
+        <a href="#" class="mr10 news_edit" data-id="<%=news.id%>" data-toggle="modal" data-target="#addNewsModal">编辑</a>
+        <a href="#" class="mr10 news_delete" data-id="<%=news.id%>">删除</a>
+    </td>
+</tr>
+<%})%>

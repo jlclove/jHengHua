@@ -7,8 +7,9 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ include file="include.jsp"%>
-<c:if test="${empty sessionScope.lan}">
-    <c:set var="lan" value="en_US"/>
+<c:set var="lang" value="${sessionScope.session_localization}"/>
+<c:if test="${empty lang}">
+    <c:set var="lang" value="en"/>
 </c:if>
 <!DOCTYPE html>
 <html>
@@ -38,7 +39,7 @@
                     <i class="icon-suiticon icon-suiticon-menu-1"></i>
                 </button>
                 <a class="navbar-brand" href="/">
-                    HENGHUA
+                    HENGHUA${lang}
                     <%--<img alt="Brand" src="/static/images/logo.png">--%>
                 </a>
                 <%--<button type="button" class="navbar-toggle collapsed right" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"--%>

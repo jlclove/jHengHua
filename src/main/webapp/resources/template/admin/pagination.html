@@ -1,0 +1,17 @@
+<li class="<% if (pageNo <= left) {%>disabled<%}%>">
+    <a href="#" data-page="<%=pageNo-1%>">
+        <span aria-hidden="true">上页</span>
+    </a>
+</li>
+<% for (var i = left; i<= right; i++) {%>
+    <% if (pageNo == i) {%>
+        <li class="active"><a href="#" data-page="<%=i%>"><%=i%></a></li>
+    <% } else {%>
+        <li><a href="#" data-page="<%=i%>"><%=i%></a></li>
+    <% }%>
+<% }%>
+<li class="<% if (pageNo >= right) {%>disabled<%}%>">
+    <a href="#" data-page="<%=pageNo+1%>">
+        <span aria-hidden="true">下页</span>
+    </a>
+</li>
