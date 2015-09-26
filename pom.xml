@@ -19,9 +19,7 @@
 		<mybatis-spring-version>1.2.2</mybatis-spring-version>
 		<goodlaike-framework-tools-version>0.0.7</goodlaike-framework-tools-version>
 		<goodlaike-framework-dao-mybatis-version>0.1.1</goodlaike-framework-dao-mybatis-version>
-		<goodlaike-business-core-version>0.0.2</goodlaike-business-core-version>
-		<goodlaike-business-news-version>0.0.2</goodlaike-business-news-version>
-		<goodlaike-business-fileupload-version>0.0.1</goodlaike-business-fileupload-version>
+		<goodlaike-business-version>0.0.4</goodlaike-business-version>
 	</properties>
 
 	<dependencies>
@@ -205,18 +203,18 @@
 		<dependency>
 			<groupId>com.goodlaike.business</groupId>
 			<artifactId>goodlaike-business-core</artifactId>
-			<version>${goodlaike-business-core-version}</version>
+			<version>${goodlaike-business-version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>com.goodlaike.business</groupId>
 			<artifactId>goodlaike-business-news</artifactId>
-			<version>${goodlaike-business-news-version}</version>
+			<version>${goodlaike-business-version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.goodlaike.business</groupId>
 			<artifactId>goodlaike-business-fileupload</artifactId>
-			<version>${goodlaike-business-fileupload-version}</version>
+			<version>${goodlaike-business-version}</version>
 		</dependency>
 		<dependency>
 			<groupId>commons-fileupload</groupId>

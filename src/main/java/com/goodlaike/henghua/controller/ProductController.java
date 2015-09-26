@@ -1,26 +1,15 @@
 package com.goodlaike.henghua.controller;
 
-import com.goodlaike.business.core.helper.LanguageHelper;
-import com.goodlaike.business.core.support.LanguageStore;
-import com.goodlaike.henghua.entity.model.HenghuaSample;
-import com.goodlaike.henghua.entity.model.VHenghuaSample;
-import com.goodlaike.henghua.service.HenghuaService;
+import javax.servlet.http.HttpServletRequest;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import org.apache.http.HttpRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.servlet.http.HttpServletRequest;
+import com.goodlaike.business.core.helper.LanguageHelper;
+import com.goodlaike.henghua.service.HenghuaService;
 
 /**
  * Created with IntelliJ IDEA.
@@ -32,15 +21,10 @@ import javax.servlet.http.HttpServletRequest;
  */
 @Controller
 @RequestMapping("/product")
-public class ProductController {
+public class ProductController extends BaseController{
 
     @Autowired
     private HenghuaService henghuaService;
-
-    @ModelAttribute("languages")
-    protected HashMap<String, String> getLanguages(){
-        return LanguageStore.getLanguages();
-    }
 
     @RequestMapping("/sample")
     protected String sampleList(Model model, HttpServletRequest request) {
