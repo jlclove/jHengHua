@@ -6,6 +6,8 @@ import java.util.Properties;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.config.PropertyPlaceholderConfigurer;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 
 /**
  * @author Jail Hu
@@ -14,14 +16,18 @@ import org.springframework.beans.factory.config.PropertyPlaceholderConfigurer;
  */
 public class AppConfigurer extends PropertyPlaceholderConfigurer {
 
-    
     Log log = LogFactory.getLog(AppConfigurer.class);
 
-	@Override
-	protected Properties mergeProperties() throws IOException {
-		Properties superProps = super.mergeProperties();
-		log.info(">>>>>>>>>>>>> env:" + superProps.getProperty("env"));
-		return superProps;
-	}
+    @Override
+    protected Properties mergeProperties() throws IOException {
+        Properties superProps = super.mergeProperties();
+        log.info(">>>>>>>>>>>>> env:" + superProps.getProperty("env"));
+        return superProps;
+    }
 
+    //用于 其余地方 @propertySource + @value 取值
+    @Bean
+    public static PropertySourcesPlaceholderConfigurer propertyConfigInDev() {
+        return new PropertySourcesPlaceholderConfigurer();
+    }
 }

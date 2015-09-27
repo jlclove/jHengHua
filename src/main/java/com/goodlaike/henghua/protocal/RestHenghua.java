@@ -1,9 +1,7 @@
 package com.goodlaike.henghua.protocal;
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.PropertySource;
-import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Component;
 
@@ -15,7 +13,7 @@ import com.goodlaike.resttemplate.client.RestClient;
  * public static PropertySourcesPlaceholderConfigurer propertyConfigInDev() {
  * <br>
  * return new PropertySourcesPlaceholderConfigurer();<br>
- * } 才能正确取到值
+ * } 才能正确取到值 ， 已经迁移到  {@link com.goodlaike.henghua.config.AppConfigurer}
  * 
  * @author jail
  */
@@ -42,20 +40,15 @@ public class RestHenghua {
     @Value("${cloth_filter}")
     private String apiClothFilter;
 
-    @Bean
-    public static PropertySourcesPlaceholderConfigurer propertyConfigInDev() {
-        return new PropertySourcesPlaceholderConfigurer();
+    public  void test(){
+        System.out.println(this.apiSampleList);
     }
 
     /**
      * 获得所有样卡数据， 接口提供非正常 json,当 json 输出
      * 
      * @return
-     * @since 1.0.0
      * @author jail
-     * @createTime 2015年9月4日下午12:22:52
-     * @updator jail
-     * @updateTime 2015年9月4日下午12:22:52
      */
     public String restSampleAll() {
         return RestClient.exchange(this.apiSampleList, HttpMethod.GET, String.class);
@@ -67,11 +60,7 @@ public class RestHenghua {
      * @param langType
      *            语言参数 ，0 中文 1英文
      * @return String
-     * @since 1.0.0
      * @author jail
-     * @createTime 2015年9月4日上午11:49:39
-     * @updator jail
-     * @updateTime 2015年9月4日上午11:49:39
      */
     public String restSampleType(int langType) {
         return RestClient.exchange(TextUtil.format(this.apiSampleType, langType), HttpMethod.GET, String.class);
@@ -82,11 +71,7 @@ public class RestHenghua {
      * 
      * @param detailName
      * @return
-     * @since 1.0.0
      * @author jail
-     * @createTime 2015年9月4日下午11:48:43
-     * @updator jail
-     * @updateTime 2015年9月4日下午11:48:43
      */
     public String restSampleDetail(String detailName) {
         return RestClient.exchange(TextUtil.format(this.apiSampleDetail, detailName), HttpMethod.GET, String.class);
@@ -100,11 +85,7 @@ public class RestHenghua {
      * @param filter
      *            筛选参数
      * @return
-     * @since 1.0.0
      * @author jail
-     * @createTime 2015年9月5日上午9:45:04
-     * @updator jail
-     * @updateTime 2015年9月5日上午9:45:04
      */
     public String restSampleFilter(int langType, String filter) {
         return RestClient.exchange(TextUtil.format(this.apiSampleDetailFilter, langType, filter), HttpMethod.GET,
@@ -115,11 +96,7 @@ public class RestHenghua {
      * 获得所有服装款式
      * 
      * @return
-     * @since 1.0.0
      * @author jail
-     * @createTime 2015年9月5日下午3:10:26
-     * @updator jail
-     * @updateTime 2015年9月5日下午3:10:26
      */
     public String restClothAll() {
         return RestClient.exchange(this.apiClothList, HttpMethod.GET, String.class);
@@ -131,11 +108,7 @@ public class RestHenghua {
      * @param serialNo
      *            服装内部编码
      * @return
-     * @since 1.0.0
      * @author jail
-     * @createTime 2015年9月5日下午3:10:08
-     * @updator jail
-     * @updateTime 2015年9月5日下午3:10:08
      */
     public String restClothDetail(String serialNo) {
         return RestClient.exchange(TextUtil.format(this.apiClothDetail, serialNo), HttpMethod.GET, String.class);
@@ -145,11 +118,7 @@ public class RestHenghua {
      * 获得所有洗标
      * 
      * @return
-     * @since 1.0.0
      * @author jail
-     * @createTime 2015年9月5日下午5:06:21
-     * @updator jail
-     * @updateTime 2015年9月5日下午5:06:21
      */
     public String restWashingList() {
         return RestClient.exchange(this.apiWashingList, HttpMethod.GET, String.class);
@@ -159,11 +128,7 @@ public class RestHenghua {
      * 获得服装分类
      * 
      * @return
-     * @since 1.0.0
      * @author jail
-     * @createTime 2015年9月5日下午6:38:05
-     * @updator jail
-     * @updateTime 2015年9月5日下午6:38:05
      */
     public String restClothType() {
         return RestClient.exchange(this.apiClothType, HttpMethod.GET, String.class);
@@ -174,11 +139,7 @@ public class RestHenghua {
      * 
      * @param filter
      * @return
-     * @since 1.0.0
      * @author jail
-     * @createTime 2015年9月5日下午7:02:04
-     * @updator jail
-     * @updateTime 2015年9月5日下午7:02:04
      */
     public String restClothFilter(String filter) {
         return RestClient.exchange(TextUtil.format(this.apiClothFilter, filter), HttpMethod.GET, String.class);

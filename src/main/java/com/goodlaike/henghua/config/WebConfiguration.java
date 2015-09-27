@@ -24,4 +24,8 @@ public class WebConfiguration {
     public String getVersion() {
         return env.getProperty("version");
     }
+    
+    public boolean isDev(){
+        return this.getEnv().equals("development");
+    }
 }

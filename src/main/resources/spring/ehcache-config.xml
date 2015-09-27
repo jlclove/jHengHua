@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ehcache name="es">
+	<diskStore path="java.io.tmpdir" />
+
+	<defaultCache maxEntriesLocalHeap="1000" eternal="false"
+		timeToIdleSeconds="3600" timeToLiveSeconds="3600" overflowToDisk="true">
+	</defaultCache>
+
+	<cache name="sample" maxElementsInMemory="10000" eternal="false"
+		timeToIdleSeconds="900" timeToLiveSeconds="3600" overflowToDisk="true"
+		memoryStoreEvictionPolicy="LFU">
+	</cache>
+
+	<cache name="sampleDetail" maxElementsInMemory="10000" eternal="false"
+		timeToIdleSeconds="900" timeToLiveSeconds="3600" overflowToDisk="true"
+		memoryStoreEvictionPolicy="LFU">
+	</cache>
+	
+	<cache name="cloth" maxElementsInMemory="10000" eternal="false"
+		timeToIdleSeconds="900" timeToLiveSeconds="3600" overflowToDisk="true"
+		memoryStoreEvictionPolicy="LFU">
+	</cache>
+	
+	<cache name="clothDetail" maxElementsInMemory="10000" eternal="false"
+		timeToIdleSeconds="900" timeToLiveSeconds="3600" overflowToDisk="true"
+		memoryStoreEvictionPolicy="LFU">
+	</cache>
+</ehcache>

@@ -7,6 +7,8 @@ import java.util.Map;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
@@ -31,6 +33,7 @@ import com.goodlaike.tools.utils.CoderUtil;
  */
 @Service
 @Lazy(true)
+@EnableCaching(proxyTargetClass = true)
 public class HenghuaService {
 
     private Logger logger = Logger.getLogger(getClass());
@@ -48,12 +51,9 @@ public class HenghuaService {
      * @param cardId
      *            样卡名
      * @return HenghuaSample
-     * @since 1.0.0
      * @author jail
-     * @createTime 2015年9月5日上午11:55:16
-     * @updator jail
-     * @updateTime 2015年9月5日上午11:55:16
      */
+    @Cacheable(value = "sample", key = "#cardId")
     public HenghuaSample getSample(String cardId) {
         HenghuaSample sample = henghuaSampleDao.findSample(cardId);
         if (sample != null) {
@@ -67,11 +67,7 @@ public class HenghuaService {
      * 
      * @param id
      * @return
-     * @since 1.0.0
      * @author jail
-     * @createTime 2015年9月4日下午6:14:47
-     * @updator jail
-     * @updateTime 2015年9月4日下午6:14:47
      */
     public List<HenghuaSample> getNextSampleList(long id) {
         List<HenghuaSample> list = henghuaSampleDao.findNextList(id);
@@ -85,11 +81,7 @@ public class HenghuaService {
      * 格式化 图片到 样品
      * 
      * @param sample
-     * @since 1.0.0
      * @author jail
-     * @createTime 2015年9月5日上午11:58:55
-     * @updator jail
-     * @updateTime 2015年9月5日上午11:58:55
      */
     private void formatSampleDetail(HenghuaSample sample) {
         for (String detail : sample.getSample2Img().split(",")) {
@@ -108,11 +100,7 @@ public class HenghuaService {
     /**
      * 同步样卡数据
      * 
-     * @since 1.0.0
      * @author jail
-     * @createTime 2015年9月4日下午6:14:18
-     * @updator jail
-     * @updateTime 2015年9月4日下午6:14:18
      */
     public void syncHenghuaSampleList() {
         henghuaSampleDao.batchReplaceInto(this.getSampleAll());
@@ -123,12 +111,9 @@ public class HenghuaService {
      * 
      * @param detailName
      * @return HenghuaSampleDetail
-     * @since 1.0.0
      * @author jail
-     * @createTime 2015年9月4日下午11:50:43
-     * @updator jail
-     * @updateTime 2015年9月4日下午11:50:43
      */
+    @Cacheable(value = "sampleDetail", key = "#detailName")
     public HenghuaSampleDetail getSampleDetail(String detailName) {
         String r = restHenghua.restSampleDetail(detailName);
         r = CoderUtil.decodeUnicode(r);
@@ -144,11 +129,7 @@ public class HenghuaService {
      * 获得 所有样品
      * 
      * @return
-     * @since 1.0.0
      * @author jail
-     * @createTime 2015年9月4日下午12:27:55
-     * @updator jail
-     * @updateTime 2015年9月4日下午12:27:55
      */
     private List<HenghuaSample> getSampleAll() {
         String r = restHenghua.restSampleAll();
@@ -168,11 +149,7 @@ public class HenghuaService {
      * @param lang
      * @param filter
      * @return
-     * @since 1.0.0
      * @author jail
-     * @createTime 2015年9月5日上午9:48:33
-     * @updator jail
-     * @updateTime 2015年9月5日上午9:48:33
      */
     public List<HenghuaSampleDetail> getSampleDetailFilter(String lang, String filter) {
         lang = LanguageStore.getLanguage(lang);
@@ -186,11 +163,7 @@ public class HenghuaService {
     /**
      * 同步服装数据
      * 
-     * @since 1.0.0
      * @author jail
-     * @createTime 2015年9月4日下午6:14:18
-     * @updator jail
-     * @updateTime 2015年9月4日下午6:14:18
      */
     public void syncHenghuaClothList() {
         henghuaClothDao.batchReplaceInto(this.getClothAll());
@@ -201,11 +174,7 @@ public class HenghuaService {
      * 
      * @param id
      * @return
-     * @since 1.0.0
      * @author jail
-     * @createTime 2015年9月5日下午2:04:03
-     * @updator jail
-     * @updateTime 2015年9月5日下午2:04:03
      */
     public List<HenghuaCloth> getNextClothList(long id) {
         List<HenghuaCloth> list = henghuaClothDao.findNextList(id);
@@ -217,12 +186,9 @@ public class HenghuaService {
      * 
      * @param serialNo
      * @return
-     * @since 1.0.0
      * @author jail
-     * @createTime 2015年9月5日下午4:43:27
-     * @updator jail
-     * @updateTime 2015年9月5日下午4:43:27
      */
+    @Cacheable(value = "cloth", key = "#serialNo")
     public HenghuaCloth getCloth(String serialNo) {
         return henghuaClothDao.findCloth(serialNo);
     }
@@ -232,12 +198,9 @@ public class HenghuaService {
      * 
      * @param serialNo
      * @return
-     * @since 1.0.0
      * @author jail
-     * @createTime 2015年9月5日下午4:28:28
-     * @updator jail
-     * @updateTime 2015年9月5日下午4:28:28
      */
+    @Cacheable(value = "clothDetail", key = "#serialNo")
     public HenghuaClothDetail getClothDetail(String serialNo) {
         String r = restHenghua.restClothDetail(serialNo);
         r = CoderUtil.decodeUnicode(r);
@@ -251,11 +214,7 @@ public class HenghuaService {
      * 获得所有服装数据
      * 
      * @return
-     * @since 1.0.0
      * @author jail
-     * @createTime 2015年9月5日下午1:56:49
-     * @updator jail
-     * @updateTime 2015年9月5日下午1:56:49
      */
     private List<HenghuaCloth> getClothAll() {
         String r = restHenghua.restClothAll();
@@ -270,11 +229,7 @@ public class HenghuaService {
      * 
      * @param lang
      * @return
-     * @since 1.0.0
      * @author jail
-     * @createTime 2015年9月4日上午11:50:42
-     * @updator jail
-     * @updateTime 2015年9月4日上午11:50:42
      */
     public Map<String, List<String>> getSampleType(String lang) {
         lang = LanguageStore.getLanguage(lang);
@@ -335,11 +290,7 @@ public class HenghuaService {
      * 获得洗标缓存MAP
      * 
      * @return
-     * @since 1.0.0
      * @author jail
-     * @createTime 2015年9月5日下午6:38:25
-     * @updator jail
-     * @updateTime 2015年9月5日下午6:38:25
      */
     public HenghuaWashingCacheMap getWashingMap() {
         if (this.washingCacheMap == null || this.washingCacheMap.isOutOfTime()) {
@@ -388,11 +339,7 @@ public class HenghuaService {
      * 获得服装分类缓存MAP
      * 
      * @return
-     * @since 1.0.0
      * @author jail
-     * @createTime 2015年9月5日下午6:38:25
-     * @updator jail
-     * @updateTime 2015年9月5日下午6:38:25
      */
     public HenghuaClothTypeCacheMap getClothType() {
         if (this.clothTypeCacheMap == null || this.clothTypeCacheMap.isOutOfTime()) {

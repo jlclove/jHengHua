@@ -12,14 +12,17 @@
 	default-autowire="byName" default-lazy-init="false">
 
 	<!-- 静态文件映射 -->
-	<mvc:resources mapping="/static/**" location="/resources/" cache-period="86400"/>
-	<mvc:resources mapping="/html/**" location="/resources/html/" cache-period="86400"/>
-	<mvc:resources mapping="/attach/**" location="/attach/" cache-period="86400"/>
+	<mvc:resources mapping="/static/**" location="/resources/"
+		cache-period="86400" />
+	<mvc:resources mapping="/html/**" location="/resources/html/"
+		cache-period="86400" />
+	<mvc:resources mapping="/attach/**" location="/attach/"
+		cache-period="86400" />
 
 	<context:component-scan base-package="com.goodlaike.henghua" />
-
-	<task:annotation-driven />
 	
+	<task:annotation-driven />
+
 	<mvc:annotation-driven conversion-service="conversionService">
 		<mvc:message-converters>
 			<ref bean="stringHttpMessageConverter" />
@@ -49,7 +52,7 @@
 			</list>
 		</property>
 	</bean>
-	
+
 
 	<!-- 视图文件映射 -->
 	<bean
@@ -136,9 +139,21 @@
 
 	<mvc:interceptors>
 		<mvc:interceptor>
-			<mvc:mapping path="/admin/**"/>
-			<mvc:exclude-mapping path="/admin/login"/>
+			<mvc:mapping path="/admin/**" />
+			<mvc:exclude-mapping path="/admin/login" />
 			<bean class="com.goodlaike.henghua.interceptor.LoginInterceptor" />
 		</mvc:interceptor>
 	</mvc:interceptors>
+
+
+	<bean id="ehcacheManager"
+		class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
+		<property name="configLocation" value="classpath:spring/ehcache-config.xml" />
+	</bean>
+	
+	<bean id="cacheManager" class="org.springframework.cache.ehcache.EhCacheCacheManager">
+		<property name="cacheManager" ref="ehcacheManager"/>
+		<property name="transactionAware" value="true" />
+	</bean>
+	
 </beans>
