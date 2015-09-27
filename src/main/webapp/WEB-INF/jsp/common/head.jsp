@@ -7,6 +7,9 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ include file="include.jsp"%>
+<c:if test="${empty lang}">
+    <c:set var="lang" value="cn" scope="request"/>
+</c:if>
 <!DOCTYPE html>
 <html>
 <head lang="en">
@@ -126,86 +129,60 @@
                         </div>
                         <!--menu end-->
                     </li>
-                    <%--<li>--%>
-                        <%--<a href="#" data-nav="true">专业服务</a>--%>
-                        <%--<!--menu begin-->--%>
-                        <%--<div class="nav-menu">--%>
-                            <%--<div class="nav-menu-wrap container-fluid">--%>
-                                <%--<div class="col-sm-6">--%>
-                                    <%--<div class="category-title">专业服务</div>--%>
-                                    <%--<ul class="list-unstyled category-list">--%>
-                                        <%--<li class="category-item"><a href="service.html">驻店裁缝</a></li>--%>
-                                        <%--<li class="category-item"><a href="service.html">支付方式</a></li>--%>
-                                        <%--<li class="category-item"><a href="service.html">配送</a></li>--%>
-                                        <%--<li class="category-item"><a href="service.html">退换货</a></li>--%>
-                                        <%--<li class="category-item"><a href="service.html">常见问题</a></li>--%>
-                                        <%--<li class="category-item"><a href="service.html">客户服务</a></li>--%>
-                                        <%--<li class="category-item"><a href="service.html">企业团购</a></li>--%>
-                                    <%--</ul>--%>
-                                <%--</div>--%>
-                                <%--<div class="col-sm-3">--%>
-                                    <%--<div class="category-title">联系我们</div>--%>
-                                    <%--<ul class="list-unstyled category-list">--%>
-                                        <%--<li class="category-item">--%>
-                                            <%--<small>免费客服热线</small>--%>
-                                        <%--</li>--%>
-                                        <%--<li class="category-item">--%>
-                                            <%--<small>40088 59421</small>--%>
-                                        <%--</li>--%>
-                                        <%--<li class="category-item">--%>
-                                            <%--<small>周一至周五</small>--%>
-                                        <%--</li>--%>
-                                        <%--<li class="category-item">--%>
-                                            <%--<small>10.00 - 18.00</small>--%>
-                                        <%--</li>--%>
-                                        <%--<li class="category-item">--%>
-                                            <%--<small>(节假日除外)</small>--%>
-                                        <%--</li>--%>
-                                    <%--</ul>--%>
-                                <%--</div>--%>
-                                <%--<div class="col-sm-3">--%>
-                                    <%--<div class="category-title">客服邮件</div>--%>
-                                    <%--<div>--%>
-                                        <%--<p>邮件您的问题和建议至 service@suitsupply.com 我们将于2个工作日内回复您。</p>--%>
-                                        <%--<a class="unit-link mt10" href="#">发邮件</a>--%>
-                                    <%--</div>--%>
-                                <%--</div>--%>
-                            <%--</div>--%>
-                        <%--</div>--%>
-                        <%--<!--menu end-->--%>
-                    <%--</li>--%>
-                    <%--<li>--%>
-                        <%--<a href="#" data-nav="true">全球门店</a>--%>
-                        <%--<!--menu begin-->--%>
-                        <%--<div class="nav-menu">--%>
-                            <%--<div class="nav-menu-wrap container-fluid">--%>
-                                <%--<div class="col-sm-6">--%>
-                                    <%--<div class="category-title">寻找最近门店</div>--%>
-                                    <%--<div class="f18">--%>
+                    <li>
+                        <a href="#" data-nav="true">专业服务</a>
+                        <!--menu begin-->
+                        <div class="nav-menu">
+                            <div class="nav-menu-wrap container-fluid">
+                                <div class="col-sm-6">
+                                    <div class="category-title">专业服务</div>
+                                    <ul class="list-unstyled category-list">
+                                        <li class="category-item"><a href="/service/tailor">驻店裁缝</a></li>
+                                        <li class="category-item"><a href="/service/payment">支付方式</a></li>
+                                        <li class="category-item"><a href="/service/shipment">配送</a></li>
+                                        <li class="category-item"><a href="/service/return">退换货</a></li>
+                                        <li class="category-item"><a href="/service/question">常见问题</a></li>
+                                        <li class="category-item"><a href="/service/customer">客户服务</a></li>
+                                        <li class="category-item"><a href="/service/corporate">企业团购</a></li>
+                                    </ul>
+                                </div>
+
+                            </div>
+                        </div>
+                        <!--menu end-->
+                    </li>
+                    <li>
+                        <a href="#" data-nav="true">全球门店</a>
+                        <!--menu begin-->
+                        <div class="nav-menu">
+                            <div class="nav-menu-wrap container-fluid">
+                                <div class="col-sm-6">
+                                    <div class="category-title">寻找最近门店</div>
+                                    <div class="f18">
+                                        <div class="col-sm-4"><a href="#">中国</a></div>
+                                        <div class="col-sm-4"><a href="#">意大利</a></div>
+                                        <div class="col-sm-4"><a href="#">白俄罗斯</a></div>
                                         <%--<div class="col-sm-4"><a href="#">中国</a></div>--%>
                                         <%--<div class="col-sm-4"><a href="#">意大利</a></div>--%>
                                         <%--<div class="col-sm-4"><a href="#">白俄罗斯</a></div>--%>
-                                        <%--<div class="col-sm-4"><a href="#">中国</a></div>--%>
-                                        <%--<div class="col-sm-4"><a href="#">意大利</a></div>--%>
-                                        <%--<div class="col-sm-4"><a href="#">白俄罗斯</a></div>--%>
-                                    <%--</div>--%>
-                                <%--</div>--%>
-                                <%--<div class="col-sm-3 unit-box pl10">--%>
-                                    <%--<div class="category-title">上海公馆旗舰店现已开业！</div>--%>
-                                    <%--<a href="#">--%>
-                                        <%--<img src="/static/images/navigation/stories/shanghai-opened.jpg" width="100%"/>--%>
-                                    <%--</a>--%>
-                                <%--</div>--%>
-                                <%--<div class="col-sm-3 unit-box pl10">--%>
-                                    <%--<div class="category-title">旧金山门店已盛大开幕</div>--%>
-                                    <%--<a href="#">--%>
-                                        <%--<img src="/static/images/navigation/stories/sanfran-drawing.jpg" width="100%"/>--%>
-                                    <%--</a>--%>
-                                <%--</div>--%>
-                            <%--</div>--%>
-                        <%--</div>--%>
-                        <%--<!--menu end-->--%>
-                    <%--</li>--%>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3 unit-box pl10">
+                                    <div class="category-title">上海公馆旗舰店现已开业！</div>
+                                    <a href="#">
+                                        <img src="/static/images/navigation/stories/shanghai-opened.jpg" width="100%"/>
+                                    </a>
+                                </div>
+                                <div class="col-sm-3 unit-box pl10">
+                                    <div class="category-title">旧金山门店已盛大开幕</div>
+                                    <a href="#">
+                                        <img src="/static/images/navigation/stories/sanfran-drawing.jpg" width="100%"/>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <!--menu end-->
+                    </li>
                     <li>
                         <a href="#" data-nav="true">企业信息</a>
                         <!--menu begin-->
@@ -215,11 +192,11 @@
                                     <div class="category-title">关于 HENGHUA</div>
                                     <ul class="list-unstyled category-list">
                                         <li class="category-item"><a href="/media">媒体报道</a></li>
-                                        <li class="category-item"><a href="/franchise">合作伙伴</a></li>
+                                        <li class="category-item"><a href="/enterprise/franchise">合作伙伴</a></li>
                                         <li class="category-item"><a href="/news">新闻</a></li>
-                                        <li class="category-item"><a href="/career">加入我们</a></li>
-                                        <li class="category-item"><a href="/about">关于我们</a></li>
-                                        <li class="category-item"><a href="/contact">联系我们</a></li>
+                                        <li class="category-item"><a href="/enterprise/career">加入我们</a></li>
+                                        <li class="category-item"><a href="/enterprise/about">关于我们</a></li>
+                                        <li class="category-item"><a href="/enterprise/contact">联系我们</a></li>
                                     </ul>
                                 </div>
                                 <div class="col-sm-3">
@@ -281,7 +258,7 @@
                                     <div class="custom-select ml10">
                                         <select id="selectLang" class="custom-select">
                                             <c:forEach items="${languages}" var="language">
-                                                <option value="${language.key}">${language.value}</option>
+                                                <option value="${language.key}" <c:if test="${language.key==lang}"> selected="selected"</c:if> > ${language.value}</option>
                                             </c:forEach>
                                         </select>
                                     </div>

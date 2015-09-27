@@ -7,13 +7,13 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <jsp:include page="common/head.jsp">
-    <jsp:param name="title" value="专业服务"/>
+    <jsp:param name="title" value="企业信息"/>
 </jsp:include>
 <div class="content container-fluid">
-    <h2 class="titlebar">专业服务</h2>
+    <h2 class="titlebar">企业信息</h2>
     <div class="row">
         <div class="col-sm-2">
-            <jsp:include page="common/sidebar-service.jsp"/>
+            <jsp:include page="common/sidebar.jsp"/>
         </div>
         <div class="col-sm-8" id="template">
         </div>

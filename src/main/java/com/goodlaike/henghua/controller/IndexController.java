@@ -2,6 +2,7 @@ package com.goodlaike.henghua.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
@@ -19,60 +20,72 @@ public class IndexController  extends BaseController{
         return "index";
     }
 
-    @RequestMapping("/service")
-    protected String service() {
-        return "service";
-    }
     @RequestMapping("/service-faq")
     protected String serviceFaq() {
         return "service-faq";
     }
+
+    /**
+     * 了解衬衫
+     * @return
+     */
     @RequestMapping("/about-our-shirts")
     protected String aboutOurShirts() {
         return "about-our-shirts";
     }
+
+    /**
+     * 了解西装
+     * @return
+     */
     @RequestMapping("/about-our-suits")
     protected String aboutOurSuits() {
         return "about-our-suits";
     }
+
+    /**
+     * 媒体报道
+     * @param model
+     * @return
+     */
     @RequestMapping("/media")
     protected String media(Model model) {
         model.addAttribute(pageName, "media");
         return "media";
     }
+
+    /**
+     * 新闻
+     * @param model
+     * @return
+     */
     @RequestMapping("/news")
     protected String news(Model model) {
         model.addAttribute(pageName, "news");
         return "news";
     }
-    @RequestMapping("/about")
-    protected String about(Model model) {
-        model.addAttribute(pageName, "about");
-        return "about";
-    }
-    @RequestMapping("/contact")
-    protected String contact(Model model) {
-        model.addAttribute(pageName, "contact");
-        return "contact";
-    }
-    @RequestMapping("/career")
-    protected String career(Model model) {
-        model.addAttribute(pageName, "career");
-        return "career";
-    }
-    @RequestMapping("/franchise")
-    protected String franchise(Model model) {
-        model.addAttribute(pageName, "franchise");
-        return "franchise";
+
+    /**
+     * 企业信息
+     * @param pageName
+     * @param model
+     * @return
+     */
+    @RequestMapping("/enterprise/{pageName}")
+    protected String enterprise(@PathVariable String pageName, Model model){
+        model.addAttribute(pageName, "pageName");
+        return "enterprise";
     }
 
-    @RequestMapping("/privacy")
-    protected String privacy(Model model) {
-        return "privacy";
-    }
-
-    @RequestMapping("/term")
-    protected String term(Model model) {
-        return "term";
+    /**
+     * 专业服务
+     * @param pageName
+     * @param model
+     * @return
+     */
+    @RequestMapping("/service/{pageName}")
+    protected String service(@PathVariable String pageName, Model model){
+        model.addAttribute(pageName, "pageName");
+        return "service";
     }
 }

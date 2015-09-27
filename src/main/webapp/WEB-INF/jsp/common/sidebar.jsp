@@ -15,15 +15,15 @@
         <a href="/news" <c:if test="${pageName==\"news\"}">class="selected"</c:if>>新闻</a>
     </li>
     <li>
-        <a href="/about" <c:if test="${pageName==\"about\"}">class="selected"</c:if>>关于我们</a>
+        <a href="/enterprise/about" <c:if test="${pageName==\"about\"}">class="selected"</c:if>>关于我们</a>
     </li>
     <li>
-        <a href="/franchise" <c:if test="${pageName==\"franchise\"}">class="selected"</c:if>>合作伙伴</a>
+        <a href="/enterprise/franchise" <c:if test="${pageName==\"franchise\"}">class="selected"</c:if>>合作伙伴</a>
     </li>
     <li>
-        <a href="/career" <c:if test="${pageName==\"career\"}">class="selected"</c:if>>加入我们</a>
+        <a href="/enterprise/career" <c:if test="${pageName==\"career\"}">class="selected"</c:if>>加入我们</a>
     </li>
     <li>
-        <a href="/contact" <c:if test="${pageName==\"contact\"}">class="selected"</c:if>>联系我们</a>
+        <a href="/enterprise/contact" <c:if test="${pageName==\"contact\"}">class="selected"</c:if>>联系我们</a>
     </li>
 </ul>
