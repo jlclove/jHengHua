@@ -15,6 +15,7 @@
     <title>${param.title} - 江苏恒华实业纺织面料服饰</title>
     <link rel="stylesheet" type="text/css" href="/static/bower_components/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="/static/bower_components/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/static/bower_components/upload/css/jquery.fileupload.css">
     <link rel="stylesheet" type="text/css" href="/static/stylesheets/admin/main.css">
     <c:forTokens items="${param.css}" delims="," var="file">
     <link rel="stylesheet" type="text/css" href="/static/stylesheets/admin/${file}.css">

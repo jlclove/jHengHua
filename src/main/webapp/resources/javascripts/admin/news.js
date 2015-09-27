@@ -150,6 +150,23 @@ function initView(){
         });
     });
 
+    // 初始化上传组件
+    $('#fileupload').fileupload({
+        dataType : 'json',
+        done : function(e, data) {
+            if (data.result) {
+                var newsPicture = {
+                    sort: 1,
+                    main: true,
+                    picPath: data.result
+                };
+                $('#pics').val(JSON.stringify([newsPicture]));
+                $('#filename').text(data.files[0].name);
+                //$('#preview').attr('src', data.result.url);
+            }
+        }
+    });
+
     reRender(1);
 }
 

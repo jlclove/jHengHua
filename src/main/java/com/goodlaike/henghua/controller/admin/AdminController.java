@@ -2,12 +2,16 @@ package com.goodlaike.henghua.controller.admin;
 
 import com.goodlaike.business.core.helper.LoginHelper;
 import com.goodlaike.business.core.model.User;
+import com.goodlaike.business.news.config.NewsConfig;
+import com.goodlaike.henghua.controller.BaseController;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
@@ -19,11 +23,18 @@ import javax.servlet.http.HttpServletResponse;
  */
 @Controller
 @RequestMapping("admin")
-public class AdminController {
+public class AdminController extends BaseController {
+
+    @Autowired
+    private NewsConfig newsConfig;
 
     @ModelAttribute("user")
     public User getUser(HttpServletRequest request){
         return LoginHelper.getLoginUser(request);
+    }
+    @ModelAttribute("newsType")
+    protected List<String> getNewsTypeList() {
+        return newsConfig.getNewsTypeList();
     }
 
     @RequestMapping("login")

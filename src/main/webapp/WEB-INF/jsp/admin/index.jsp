@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: charles
@@ -68,9 +69,29 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="pics" class="col-sm-2 control-label">图片</label>
-                        <div class="col-sm-9">
-                            <input type="file" id="pics" name="pics">
+                        <label for="type" class="col-sm-2 control-label">类型</label>
+                        <div class="col-sm-3">
+                            <%--<input type="text" id="type" name="type">--%>
+                                <select name="type" id="type" class="form-control">
+                                <c:forEach items="${newsType}" var="type">
+                                    <option value="${type}">${type}</option>
+                                </c:forEach>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="fileupload" class="col-sm-2 control-label">图片</label>
+                        <div class="col-sm-3">
+                            <span class="btn btn-success btn-block fileinput-button">
+								<i class="glyphicon glyphicon-plus"></i>
+								<span>上传图片</span>
+                                <%--<form method="post">--%>
+                                    <input id="fileupload" type="file" name="file" data-url="/business/file" multiple>
+                                <%--</form>--%>
+							</span>
+                        </div>
+                        <div class="col-sm-7">
+                            <p class="form-control-static" id="filename"></p>
                         </div>
                     </div>
                     <div class="form-group">
@@ -86,7 +107,8 @@
                 <button type="submit" class="btn btn-primary">提交</button>
             </div>
             <input type="hidden" name="id" id="id" value="0">
-            <input type="hidden" name="type" id="type" value="新闻">
+            <input type="hidden" name="pics" id="pics">
+            <%--<input type="hidden" name="type" id="type" value="新闻">--%>
         </form>
         </div>
     </div>
@@ -94,5 +116,5 @@
 <!-- 新增新闻表单模板 -->
 
 <jsp:include page="common/foot.jsp">
-    <jsp:param name="js" value="javascripts/admin/news"/>
+    <jsp:param name="js" value="bower_components/upload/js/vendor/jquery.ui.widget,bower_components/upload/js/jquery.fileupload,javascripts/admin/news"/>
 </jsp:include>
