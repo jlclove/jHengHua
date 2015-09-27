@@ -19,7 +19,7 @@
 		<mybatis-spring-version>1.2.2</mybatis-spring-version>
 		<goodlaike-framework-tools-version>0.0.7</goodlaike-framework-tools-version>
 		<goodlaike-framework-dao-mybatis-version>0.1.1</goodlaike-framework-dao-mybatis-version>
-		<goodlaike-business-version>0.0.4</goodlaike-business-version>
+		<goodlaike-business-version>0.0.5</goodlaike-business-version>
 	</properties>
 
 	<dependencies>
