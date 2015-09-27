@@ -88,4 +88,25 @@ public class IndexController  extends BaseController{
         model.addAttribute(pageName, "pageName");
         return "service";
     }
+    
+    /**
+     * 隐私声明
+     * @return
+     * @author jail
+     */
+    @RequestMapping("privacy")
+    protected String privacy(){
+        return "privacy";
+    }
+    
+    /**
+     * 购买条款
+     * @return
+     * @author jail
+     */
+    @RequestMapping("term")
+    protected String term(){
+        return "term";
+    }
+    
 }

@@ -18,7 +18,7 @@
     <div class="col-sm-3">
         <ul class="sidebar">
             <li>
-                <a href="/team" class="selected">GENERAL TERMS AND CONDITIONS</a>
+                <a href="/privacy" class="selected">GENERAL TERMS AND CONDITIONS</a>
             </li>
         </ul>
     </div>

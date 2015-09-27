@@ -18,7 +18,7 @@
     <div class="col-sm-3">
         <ul class="sidebar">
             <li>
-                <a href="/team" class="selected">PRIVACY POLICY</a>
+                <a href="/term" class="selected">PRIVACY POLICY</a>
             </li>
         </ul>
     </div>
