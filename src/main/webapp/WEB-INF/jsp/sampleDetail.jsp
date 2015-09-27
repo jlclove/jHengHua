@@ -9,15 +9,16 @@
 <%@ include file="common/include.jsp"%>
 <jsp:include page="common/head.jsp">
     <jsp:param name="css" value="sample"/>
-    <jsp:param name="title" value="在线购买"/>
+    <jsp:param name="title" value="nav_shop"/>
 </jsp:include>
+<fmt:bundle basename="site">
 <div class="sample-detail-bg">
     <div class="content container sample-detail-page">
         <div class="row">
             <div class="col-sm-8">
-                <span class="f14">编号:</span>
+                <span class="f14"><fmt:message key="product_sample_cardId"/>:</span>
                 <i class="f_large ml20 c_black fb">${sampleDetail.cardId}</i>
-                <span class="f14 ml30">原料:</span>
+                <span class="f14 ml30"><fmt:message key="product_sample_marterial"/>:</span>
                 <span class="f20 ml20">${sampleDetail.material}</span>
             </div>
             <div class="col-sm-4 text-right">
@@ -26,14 +27,14 @@
         </div>
         <div class="row">
             <div class="col-sm-8">
-                <span class="f14">幅宽:</span>
+                <span class="f14"><fmt:message key="product_sample_width"/>:</span>
                 <span class="f20 ml20">57/58"</span>
             </div>
             <div class="col-sm-4 text-right">
                 <span class="f16">${sampleDetail.nick}</span>
             </div>
         </div>
-        <p class="f14 mt10">柔软而密实的平纹组织融入完美的色彩搭配。英伦休闲范儿十足。</p>
+        <p class="f14 mt10"><fmt:message key="product_sample_features"/></p>
         <hr/>
         <div class="row mt20">
             <c:forEach items="${sampleDetail.detailList}" var="detail">
@@ -52,3 +53,4 @@
 <jsp:include page="common/foot.jsp">
     <jsp:param name="js" value="bower_components/jquery/dist/jquery.min,javascripts/jquery-barcode.min,javascripts/sampleDetail"/>
 </jsp:include>
+</fmt:bundle>

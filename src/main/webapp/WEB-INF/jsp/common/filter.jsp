@@ -7,11 +7,12 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ include file="include.jsp"%>
+<fmt:bundle basename="site">
 <div class="suits filter-bar" data-spy="affix" data-offset-top="62">
     <div class="filter-btn clearfix">
         <div class="pull-left">
             <a id="filterBtn" class="filter-item animated" href="#">
-                <span>筛选</span>
+                <span><fmt:message key="product_filter_text"/></span>
                 <i class="icon-suiticon icon-suiticon-filter-1-1"></i>
                 <span class="tip">1</span>
             </a>
@@ -49,3 +50,4 @@
         </div>
     </div>
 </div>
+</fmt:bundle>

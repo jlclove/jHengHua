@@ -9,8 +9,9 @@
 <%@ include file="common/include.jsp"%>
 <jsp:include page="common/head.jsp">
     <jsp:param name="css" value="sample"/>
-    <jsp:param name="title" value="在线购买"/>
+    <jsp:param name="title" value="nav_shop"/>
 </jsp:include>
+<fmt:bundle basename="site">
 <div class="content container mt20">
     <h3 class="c_black">${cloth.name}</h3>
     <div class="row">
@@ -20,43 +21,43 @@
         <div class="col-md-6 f16">
             <form class="form-horizontal">
                 <div class="form-group">
-                    <label class="col-sm-2 control-label">BarCode</label>
+                    <label class="col-sm-2 control-label"><fmt:message key="product_cloth_detail_barcode"/></label>
                     <div class="col-sm-10">
                         <p class="form-control-static">${clothDetail.barCode}</p>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label">Category</label>
+                    <label class="col-sm-2 control-label"><fmt:message key="product_cloth_detail_category"/></label>
                     <div class="col-sm-10">
                         <p class="form-control-static">${clothDetail.category}</p>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label">Color</label>
+                    <label class="col-sm-2 control-label"><fmt:message key="product_cloth_detail_color"/></label>
                     <div class="col-sm-10">
                         <p class="form-control-static">${clothDetail.color}</p>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label">fabricNo</label>
+                    <label class="col-sm-2 control-label"><fmt:message key="product_cloth_detail_fabricno"/></label>
                     <div class="col-sm-10">
                         <p class="form-control-static">${clothDetail.fabricNo}</p>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label">Materials</label>
+                    <label class="col-sm-2 control-label"><fmt:message key="product_cloth_detail_materials"/></label>
                     <div class="col-sm-10">
                         <p class="form-control-static">${clothDetail.materials}</p>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label">RetailPrice</label>
+                    <label class="col-sm-2 control-label"><fmt:message key="product_cloth_detail_retailprice"/></label>
                     <div class="col-sm-10">
                         <p class="form-control-static">${clothDetail.retailPrice}</p>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label">SerialNo</label>
+                    <label class="col-sm-2 control-label"><fmt:message key="product_cloth_detail_serialno"/></label>
                     <div class="col-sm-10">
                         <p class="form-control-static serialno-container">
                             <c:forTokens items="${clothDetail.serialNo}" delims="," var="s">
@@ -66,7 +67,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label">Size</label>
+                    <label class="col-sm-2 control-label"><fmt:message key="product_cloth_detail_size"/></label>
                     <div class="col-sm-10">
                         <p class="form-control-static size-container">
                             <c:forTokens items="${clothDetail.size}" delims="," var="s">
@@ -76,13 +77,13 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label">Style</label>
+                    <label class="col-sm-2 control-label"><fmt:message key="product_cloth_detail_style"/></label>
                     <div class="col-sm-10">
                         <p class="form-control-static">${clothDetail.style}</p>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label">Washing</label>
+                    <label class="col-sm-2 control-label"><fmt:message key="product_cloth_detail_washing"/></label>
                     <div class="col-sm-10">
                         <p class="form-control-static washing-container">
                             <c:forTokens items="${clothDetail.washing}" delims="," var="w">
@@ -92,7 +93,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label">Wearing</label>
+                    <label class="col-sm-2 control-label"><fmt:message key="product_cloth_detail_wearing"/></label>
                     <div class="col-sm-10">
                         <p class="form-control-static">${clothDetail.wearing}</p>
                     </div>
@@ -105,3 +106,4 @@
 <jsp:include page="common/foot.jsp">
     <jsp:param name="js" value="bower_components/jquery/dist/jquery.min,javascripts/clothDetail"/>
 </jsp:include>
+</fmt:bundle>

@@ -1,4 +1,3 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: charles
@@ -7,18 +6,20 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ include file="common/include.jsp"%>
 <jsp:include page="common/head.jsp">
     <jsp:param name="css" value="sample"/>
-    <jsp:param name="title" value="在线购买"/>
+    <jsp:param name="title" value="nav_shop"/>
 </jsp:include>
+<fmt:bundle basename="site">
 <!-- .banner -->
 <div class="suits banner container-fluid">
-    <div class="col-sm-3 title">了解我们的西装</div>
-    <div class="col-sm-4 visible-xs visible-sm sub">了解我们的西装和不同的价格系列</div>
-    <div class="col-sm-4 visible-md visible-lg sub mt5">全面了解我们独一无二的优质细节和隐藏特点。</div>
+    <div class="col-sm-3 title"><fmt:message key="nav_shop_features_suit"/></div>
+    <div class="col-sm-4 visible-xs visible-sm sub"><fmt:message key="nav_shop_features_text1"/></div>
+    <div class="col-sm-4 visible-md visible-lg sub mt5"><fmt:message key="nav_shop_features_text2"/></div>
     <div class="col-sm-5 unit-box">
         <div class="unit reverse">
-            <a class="unit-link" href="/about-our-suits">了解更多</a>
+            <a class="unit-link" href="/about-our-suits"><fmt:message key="nav_shop_features_more"/></a>
         </div>
     </div>
 </div>
@@ -56,3 +57,4 @@
 <jsp:include page="common/foot.jsp">
     <jsp:param name="js" value="javascripts/filter,javascripts/cloth"/>
 </jsp:include>
+</fmt:bundle>

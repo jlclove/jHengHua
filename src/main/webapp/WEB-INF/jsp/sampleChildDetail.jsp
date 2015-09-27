@@ -9,7 +9,7 @@
 <%@ include file="common/include.jsp"%>
 <jsp:include page="common/head.jsp">
     <jsp:param name="css" value="sample"/>
-    <jsp:param name="title" value="在线购买"/>
+    <jsp:param name="title" value="nav_shop"/>
 </jsp:include>
 <div class="sample-detail-bg">
     <div class="content container sample-detail-page">
@@ -20,57 +20,51 @@
             <div class="col-md-6 f16">
                 <form class="form-horizontal">
                     <div class="form-group">
-                        <label class="col-sm-4 control-label">Name</label>
+                        <label class="col-sm-4 control-label"><fmt:message key="product_sample_detail_name"/></label>
                         <div class="col-sm-8">
                             <p class="form-control-static">${sampleDetail.nameCn}</p>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-4 control-label">Currency</label>
+                        <label class="col-sm-4 control-label"><fmt:message key="product_sample_detail_samplename"/></label>
                         <div class="col-sm-8">
-                            <p class="form-control-static">${sampleDetail.currency}</p>
+                            <p class="form-control-static">${sampleDetail.sampleName}</p>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-4 control-label">DetailName</label>
-                        <div class="col-sm-8">
-                            <p class="form-control-static">${sampleDetail.detailName}</p>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-4 control-label">Material</label>
+                        <label class="col-sm-4 control-label"><fmt:message key="product_sample_detail_material"/></label>
                         <div class="col-sm-8">
                             <p class="form-control-static">${sampleDetail.material}</p>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-4 control-label">NameEn</label>
+                        <label class="col-sm-4 control-label"><fmt:message key="product_sample_detail_currency"/></label>
                         <div class="col-sm-8">
-                            <p class="form-control-static">${sampleDetail.nameEn}</p>
+                            <p class="form-control-static">${sampleDetail.currency}</p>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-4 control-label">Price</label>
+                        <label class="col-sm-4 control-label"><fmt:message key="product_sample_detail_price"/></label>
                         <div class="col-sm-8">
                             <p class="form-control-static">${sampleDetail.price}</p>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-4 control-label">Reserve</label>
+                        <label class="col-sm-4 control-label"><fmt:message key="product_sample_detail_reserve"/></label>
                         <div class="col-sm-8">
                             <p class="form-control-static">${sampleDetail.reserve}</p>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-4 control-label">RetailUnit</label>
+                        <label class="col-sm-4 control-label"><fmt:message key="product_sample_detail_retailunit"/></label>
                         <div class="col-sm-8">
                             <p class="form-control-static">${sampleDetail.retailUnit}</p>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-4 control-label">SampleName</label>
+                        <label class="col-sm-4 control-label"><fmt:message key="product_sample_detail_detailname"/></label>
                         <div class="col-sm-8">
-                            <p class="form-control-static">${sampleDetail.sampleName}</p>
+                            <p class="form-control-static">${sampleDetail.detailName}</p>
                         </div>
                     </div>
                 </form>

@@ -7,15 +7,16 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ include file="include.jsp"%>
+<fmt:bundle basename="site">
 <footer class="footer">
     <section class="footer-section pt50 pb50 text-center">
         <h2>
-            <span class="color_blue">掌握最新资讯</span>
+            <span class="color_blue"><fmt:message key="footer_alpha_text1"/></span>
         </h2>
-        <h4>订阅邮件，立即尊享 HENGHUA 最新产品信息</h4>
+        <h4><fmt:message key="footer_alpha_text2"/></h4>
 
         <form class="email-form mt30">
-            <input type="email" placeholder="输入邮件地址"/>
+            <input type="email" placeholder="<fmt:message key="footer_alpha_text3"/>"/>
             <input type="button" class="btn-submit transition"/>
         </form>
     </section>
@@ -27,8 +28,8 @@
                     <img src="/static/images/shipping.png"/>
                 </div>
                 <div class="media-body">
-                    <div class="color_blue">免费配送</div>
-                    <div class="small">3000元起免运费</div>
+                    <div class="color_blue"><fmt:message key="footer_beta1_text1"/></div>
+                    <div class="small"><fmt:message key="footer_beta1_text2"/></div>
                 </div>
             </div>
         </div>
@@ -38,9 +39,9 @@
                     <img src="/static/images/contact.png"/>
                 </div>
                 <div class="media-body">
-                    <div class="color_blue">需要帮助？</div>
-                    <div class="small">免费客服热线 40088 59421</div>
-                    <a class="small" href="#">邮件客服.</a>
+                    <div class="color_blue"><fmt:message key="footer_beta2_text1"/></div>
+                    <div class="small"><fmt:message key="footer_beta2_text2"/></div>
+                    <a class="small" href="#"><fmt:message key="footer_beta2_text3"/></a>
                 </div>
             </div>
         </div>
@@ -50,8 +51,8 @@
                     <img src="/static/images/returns.png"/>
                 </div>
                 <div class="media-body">
-                    <div class="color_blue">免费退换货</div>
-                    <div class="small">或许您改变了主意？可以30日内免费退换货。</div>
+                    <div class="color_blue"><fmt:message key="footer_beta3_text1"/></div>
+                    <div class="small"><fmt:message key="footer_beta3_text2"/></div>
                 </div>
             </div>
         </div>
@@ -59,10 +60,10 @@
 
     <section class="footer-section container-fluid pt50 pb120">
         <ul class="help-bar pl100 list-inline clearfix">
-            <li class="help-bar-link"><a href="/privacy">隐私声明</a></li>
-            <li class="help-bar-link"><a href="/term">购买条款</a></li>
+            <li class="help-bar-link"><a href="/privacy"><fmt:message key="footer_gamma_privacy"/></a></li>
+            <li class="help-bar-link"><a href="/term"><fmt:message key="footer_gamma_term"/></a></li>
             <%--<li class="help-bar-link"><a href="#">购买指南</a></li>--%>
-            <li class="help-bar-link"><a href="#">沪ICP备13019284</a></li>
+            <li class="help-bar-link"><a href="#"><fmt:message key="footer_gamma_right"/></a></li>
         </ul>
 
         <%--<ul class="social-bar col-sm-5 pl100 list-inline clearfix">--%>
@@ -168,3 +169,4 @@
     <script type="text/javascript" src="/static/${file}.js"></script>
 </c:forTokens>
 </html>
+</fmt:bundle>

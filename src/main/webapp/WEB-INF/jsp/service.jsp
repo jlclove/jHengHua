@@ -6,11 +6,13 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ include file="common/include.jsp"%>
 <jsp:include page="common/head.jsp">
-    <jsp:param name="title" value="专业服务"/>
+    <jsp:param name="title" value="title_service"/>
 </jsp:include>
+<fmt:bundle basename="site">
 <div class="content container-fluid">
-    <h2 class="titlebar">专业服务</h2>
+    <h2 class="titlebar"><fmt:message key="title_service"/></h2>
     <div class="row">
         <div class="col-sm-2">
             <jsp:include page="common/sidebar-service.jsp"/>
@@ -28,3 +30,4 @@
         }
     })
 </script>
+</fmt:bundle>

@@ -7,15 +7,13 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ include file="include.jsp"%>
-<c:if test="${empty lang}">
-    <c:set var="lang" value="cn" scope="request"/>
-</c:if>
+<fmt:bundle basename="site">
 <!DOCTYPE html>
 <html>
 <head lang="en">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0"/>
-    <title>${param.title} - 江苏恒华实业纺织面料服饰</title>
+    <title><fmt:message key="${param.title}"/> - <fmt:message key="companyname"/></title>
     <link rel="stylesheet" type="text/css" href="/static/build/css/all.min.css">
     <%--<link rel="stylesheet" type="text/css" href="/static/fonts/fonts.css">--%>
     <%--<link rel="stylesheet" type="text/css" href="/static/bower_components/bootstrap/dist/css/bootstrap.min.css">--%>
@@ -51,20 +49,20 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="#" data-nav="true">在线购买</a>
+                        <a href="#" data-nav="true"><fmt:message key="nav_shop"/></a>
                         <!--shop menu begin-->
                         <div class="nav-menu category">
                             <div class="nav-menu-wrap container-fluid">
                                 <div class="col-sm-8">
-                                    <div class="category-title">产品目录</div>
+                                    <div class="category-title"><fmt:message key="nav_shop_category"/></div>
                                     <ul class="list-unstyled category-list">
-                                        <li class="category-item"><a href="/product/sample">面料</a></li>
+                                        <li class="category-item"><a href="/product/sample"><fmt:message key="nav_shop_category_sample"/></a></li>
                                         <li class="category-item"><a href="#"></a></li>
-                                        <li class="category-item"><a href="/product/cloth">服装</a></li>
+                                        <li class="category-item"><a href="/product/cloth"><fmt:message key="nav_shop_category_cloth"/></a></li>
                                     </ul>
                                 </div>
                                 <div class="col-sm-4">
-                                    <div class="category-title">特色栏目</div>
+                                    <div class="category-title"><fmt:message key="nav_shop_features"/></div>
                                     <ul class="list-unstyled category-list">
                                         <li class="category-item pr5">
                                             <div class="unit-box">
@@ -73,7 +71,7 @@
                                                 </a>
 
                                                 <div class="unit pos-right pos-top w1of4">
-                                                    <span class="unit-title">了解我们的西装</span>
+                                                    <span class="unit-title"><fmt:message key="nav_shop_features_suit"/></span>
                                                 </div>
                                             </div>
                                         </li>
@@ -84,7 +82,7 @@
                                                 </a>
 
                                                 <div class="unit pos-right pos-top w1of4">
-                                                    <span class="unit-title">设计您的专属衬衫</span>
+                                                    <span class="unit-title"><fmt:message key="nav_shop_features_shirt"/></span>
                                                 </div>
                                             </div>
                                         </li>
@@ -95,7 +93,7 @@
                         <!--shop menu end-->
                     </li>
                     <li>
-                        <a href="#" data-nav="true">风尚专栏</a>
+                        <a href="#" data-nav="true"><fmt:message key="nav_stories"/></a>
                         <!--menu begin -->
                         <div class="nav-menu">
                             <div class="nav-menu-wrap container-fluid">
@@ -103,7 +101,7 @@
                                     <a href="/media">
                                         <img src="/static/images/navigation/stories/what-they-say-about-us.jpg" width="100%"/>
                                         <div class="unit reverse pos-right pos-top w3of8">
-                                            <span class="unit-title">媒体报道</span>
+                                            <span class="unit-title"><fmt:message key="nav_stories_media"/></span>
                                         </div>
                                     </a>
                                 </div>
@@ -112,7 +110,7 @@
                                         <img src="/static/images/navigation/stories/about_our_suits_1.jpg" width="100%"/>
 
                                         <div class="unit pos-right pos-top w3of8">
-                                            <span class="unit-title">了解我们的西装</span>
+                                            <span class="unit-title"><fmt:message key="nav_stories_suit"/></span>
                                         </div>
                                     </a>
                                 </div>
@@ -121,7 +119,7 @@
                                         <img src="/static/images/navigation/stories/about-our-shirts.jpg" width="100%"/>
 
                                         <div class="unit pos-top pos-left w3of8">
-                                            <span class="unit-title">了解我们的衬衫</span>
+                                            <span class="unit-title"><fmt:message key="nav_stories_shirt"/></span>
                                         </div>
                                     </a>
                                 </div>
@@ -130,20 +128,20 @@
                         <!--menu end-->
                     </li>
                     <li>
-                        <a href="#" data-nav="true">专业服务</a>
+                        <a href="#" data-nav="true"><fmt:message key="nav_service"/></a>
                         <!--menu begin-->
                         <div class="nav-menu">
                             <div class="nav-menu-wrap container-fluid">
                                 <div class="col-sm-6">
-                                    <div class="category-title">专业服务</div>
+                                    <div class="category-title"><fmt:message key="nav_service"/></div>
                                     <ul class="list-unstyled category-list">
-                                        <li class="category-item"><a href="/service/tailor">驻店裁缝</a></li>
-                                        <li class="category-item"><a href="/service/payment">支付方式</a></li>
-                                        <li class="category-item"><a href="/service/shipment">配送</a></li>
-                                        <li class="category-item"><a href="/service/return">退换货</a></li>
-                                        <li class="category-item"><a href="/service/question">常见问题</a></li>
-                                        <li class="category-item"><a href="/service/customer">客户服务</a></li>
-                                        <li class="category-item"><a href="/service/corporate">企业团购</a></li>
+                                        <li class="category-item"><a href="/service/tailor"><fmt:message key="nav_service_tailor"/></a></li>
+                                        <li class="category-item"><a href="/service/payment"><fmt:message key="nav_service_payment"/></a></li>
+                                        <li class="category-item"><a href="/service/shipment"><fmt:message key="nav_service_shipment"/></a></li>
+                                        <li class="category-item"><a href="/service/return"><fmt:message key="nav_service_return"/></a></li>
+                                        <li class="category-item"><a href="/service/question"><fmt:message key="nav_service_question"/></a></li>
+                                        <li class="category-item"><a href="/service/customer"><fmt:message key="nav_service_customer"/></a></li>
+                                        <li class="category-item"><a href="/service/corporate"><fmt:message key="nav_service_corporate"/></a></li>
                                     </ul>
                                 </div>
 
@@ -152,29 +150,26 @@
                         <!--menu end-->
                     </li>
                     <li>
-                        <a href="#" data-nav="true">全球门店</a>
+                        <a href="#" data-nav="true"><fmt:message key="nav_stores"/></a>
                         <!--menu begin-->
                         <div class="nav-menu">
                             <div class="nav-menu-wrap container-fluid">
                                 <div class="col-sm-6">
-                                    <div class="category-title">寻找最近门店</div>
+                                    <div class="category-title"><fmt:message key="nav_stores_nearby"/></div>
                                     <div class="f18">
-                                        <div class="col-sm-4"><a href="#">中国</a></div>
-                                        <div class="col-sm-4"><a href="#">意大利</a></div>
-                                        <div class="col-sm-4"><a href="#">白俄罗斯</a></div>
-                                        <%--<div class="col-sm-4"><a href="#">中国</a></div>--%>
-                                        <%--<div class="col-sm-4"><a href="#">意大利</a></div>--%>
-                                        <%--<div class="col-sm-4"><a href="#">白俄罗斯</a></div>--%>
+                                        <div class="col-sm-4"><a href="#"><fmt:message key="nav_stores_china"/></a></div>
+                                        <div class="col-sm-4"><a href="#"><fmt:message key="nav_stores_italy"/></a></div>
+                                        <div class="col-sm-4"><a href="#"><fmt:message key="nav_stores_russia"/></a></div>
                                     </div>
                                 </div>
                                 <div class="col-sm-3 unit-box pl10">
-                                    <div class="category-title">上海公馆旗舰店现已开业！</div>
+                                    <div class="category-title"><fmt:message key="nav_stores_open_shanghai"/></div>
                                     <a href="#">
                                         <img src="/static/images/navigation/stories/shanghai-opened.jpg" width="100%"/>
                                     </a>
                                 </div>
                                 <div class="col-sm-3 unit-box pl10">
-                                    <div class="category-title">旧金山门店已盛大开幕</div>
+                                    <div class="category-title"><fmt:message key="nav_stores_open_san_francisco"/></div>
                                     <a href="#">
                                         <img src="/static/images/navigation/stories/sanfran-drawing.jpg" width="100%"/>
                                     </a>
@@ -184,46 +179,46 @@
                         <!--menu end-->
                     </li>
                     <li>
-                        <a href="#" data-nav="true">企业信息</a>
+                        <a href="#" data-nav="true"><fmt:message key="nav_company"/></a>
                         <!--menu begin-->
                         <div class="nav-menu">
                             <div class="nav-menu-wrap container-fluid">
                                 <div class="col-sm-6">
-                                    <div class="category-title">关于 HENGHUA</div>
+                                    <div class="category-title"><fmt:message key="nav_company_about"/></div>
                                     <ul class="list-unstyled category-list">
-                                        <li class="category-item"><a href="/media">媒体报道</a></li>
-                                        <li class="category-item"><a href="/enterprise/franchise">合作伙伴</a></li>
-                                        <li class="category-item"><a href="/news">新闻</a></li>
-                                        <li class="category-item"><a href="/enterprise/career">加入我们</a></li>
-                                        <li class="category-item"><a href="/enterprise/about">关于我们</a></li>
-                                        <li class="category-item"><a href="/enterprise/contact">联系我们</a></li>
+                                        <li class="category-item"><a href="/media"><fmt:message key="nav_company_media"/></a></li>
+                                        <li class="category-item"><a href="/enterprise/franchise"><fmt:message key="nav_company_franchise"/></a></li>
+                                        <li class="category-item"><a href="/news"><fmt:message key="nav_company_news"/></a></li>
+                                        <li class="category-item"><a href="/enterprise/career"><fmt:message key="nav_company_career"/></a></li>
+                                        <li class="category-item"><a href="/enterprise/about"><fmt:message key="nav_company_about_us"/></a></li>
+                                        <li class="category-item"><a href="/enterprise/contact"><fmt:message key="nav_company_contact"/></a></li>
                                     </ul>
                                 </div>
                                 <div class="col-sm-3">
-                                    <div class="category-title">联系我们</div>
+                                    <div class="category-title"><fmt:message key="nav_company_contact"/></div>
                                     <ul class="list-unstyled category-list">
                                         <li class="category-item">
-                                            <small>免费客服热线</small>
+                                            <small><fmt:message key="nav_company_contact_text1"/></small>
                                         </li>
                                         <li class="category-item">
                                             <small>40088 59421</small>
                                         </li>
                                         <li class="category-item">
-                                            <small>周一至周五</small>
+                                            <small><fmt:message key="nav_company_contact_text2"/></small>
                                         </li>
                                         <li class="category-item">
                                             <small>10.00 - 18.00</small>
                                         </li>
                                         <li class="category-item">
-                                            <small>(节假日除外)</small>
+                                            <small><fmt:message key="nav_company_contact_text3"/></small>
                                         </li>
                                     </ul>
                                 </div>
                                 <div class="col-sm-3">
-                                    <div class="category-title">客服邮件</div>
+                                    <div class="category-title"><fmt:message key="nav_company_contact_text4"/></div>
                                     <div>
-                                        <p>邮件您的问题和建议至 service@henghua.com 我们将于2个工作日内回复您。</p>
-                                        <a class="unit-link mt10" href="#">发邮件</a>
+                                        <p><fmt:message key="nav_company_contact_text5"/></p>
+                                        <a class="unit-link mt10" href="#"><fmt:message key="nav_company_contact_text6"/></a>
                                     </div>
                                 </div>
                                 <%--<div class="col-sm-3 pl10">--%>
@@ -272,8 +267,8 @@
 
                         <div class="nav-menu">
                             <div class="nav-menu-wrap container-fluid">
-                                <input type="text" class="custom-text" placeholder="输入关键字或商品号"/>
-                                <a class="unit-link ml10" href="#">搜索</a>
+                                <input type="text" class="custom-text" placeholder="<fmt:message key="nav_search_text"/>"/>
+                                <a class="unit-link ml10" href="#"><fmt:message key="nav_search_btn"/></a>
                             </div>
                         </div>
                     </li>
@@ -410,3 +405,4 @@
         <%--</div>--%>
     <%--</div>--%>
 <%--</div>--%>
+</fmt:bundle>
