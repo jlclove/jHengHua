@@ -18,9 +18,11 @@
 		cache-period="86400" />
 	<mvc:resources mapping="/attach/**" location="/attach/"
 		cache-period="86400" />
+	<mvc:resources mapping="/imgs/**" location="/imgs/"
+		cache-period="86400" />
 
 	<context:component-scan base-package="com.goodlaike.henghua" />
-	
+
 	<task:annotation-driven />
 
 	<mvc:annotation-driven conversion-service="conversionService">
@@ -150,10 +152,10 @@
 		class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
 		<property name="configLocation" value="classpath:spring/ehcache-config.xml" />
 	</bean>
-	
+
 	<bean id="cacheManager" class="org.springframework.cache.ehcache.EhCacheCacheManager">
-		<property name="cacheManager" ref="ehcacheManager"/>
+		<property name="cacheManager" ref="ehcacheManager" />
 		<property name="transactionAware" value="true" />
 	</bean>
-	
+
 </beans>
