@@ -1,9 +1,20 @@
 package com.goodlaike.henghua.controller;
 
+import com.goodlaike.business.core.helper.LanguageHelper;
+import com.goodlaike.business.news.service.NewsService;
+import com.goodlaike.framework.dao.order.OrderFilter;
+import com.goodlaike.framework.dao.search.AbstractSearchFilter;
+import com.goodlaike.framework.dao.search.SearchFilter;
+import com.goodlaike.framework.dao.search.SearchType;
+import com.goodlaike.framework.dao.support.Pagination;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * 
@@ -12,6 +23,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/")
 public class IndexController  extends BaseController{
+
+    @Autowired
+    NewsService newsService;
 
     private String pageName = "pageName";
 
@@ -60,8 +74,15 @@ public class IndexController  extends BaseController{
      * @return
      */
     @RequestMapping("/news")
-    protected String news(Model model) {
+    protected String news(HttpServletRequest request, Model model) {
         model.addAttribute(pageName, "news");
+        Pagination pagination = new Pagination();
+        pagination.setPageNo(1);
+        pagination.setPageSize(5);
+        pagination.addFilters(new AbstractSearchFilter[]{SearchFilter.and("type", SearchType.EQUAL, new Object[] {"新闻"})});
+        pagination.addFilters(new OrderFilter[]{OrderFilter.desc("id")});
+        pagination = this.newsService.getPagination(pagination, LanguageHelper.getLocalization(request, ""));
+        model.addAttribute("newsList", pagination.getList());
         return "news";
     }
 

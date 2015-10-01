@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <jsp:include page="common/head.jsp">
     <jsp:param name="css" value="about"/>
-    <jsp:param name="title" value="企业信息"/>
+    <jsp:param name="title" value="title_enterprise"/>
 </jsp:include>
 <div class="about-page container-fluid">
     <h2 class="titlebar">关于我们</h2>

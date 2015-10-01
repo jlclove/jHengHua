@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <jsp:include page="common/head.jsp">
     <jsp:param name="css" value="media"/>
-    <jsp:param name="title" value="企业信息"/>
+    <jsp:param name="title" value="title_enterprise"/>
 </jsp:include>
 <div class="media-page container-fluid">
     <h4 class="text-center titlebar">媒体报道</h4>

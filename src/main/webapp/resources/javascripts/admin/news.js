@@ -76,7 +76,14 @@ function initView(){
         var newsId = $(e.relatedTarget).data('id');
         if(newsId) {
             $.get('/business/news/' + newsId, function(res){
+                var newsPicture = {
+                    sort: 1,
+                    main: true,
+                    picPath: res.mainPicPath
+                };
+
                 $('#id').val(res.id);
+                $('#pics').val(JSON.stringify([newsPicture]));
                 $('#title').val(res.title);
                 $('#subtitle').val(res.subtitle);
                 $('#content').val(res.content);

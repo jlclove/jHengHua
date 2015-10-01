@@ -7,7 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <jsp:include page="common/head.jsp">
-    <jsp:param name="title" value="企业信息"/>
+    <jsp:param name="title" value="title_enterprise"/>
     <jsp:param name="css" value="static"/>
 </jsp:include>
 

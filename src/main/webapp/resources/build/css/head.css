@@ -118,6 +118,7 @@ header a:hover {
     width: 185px;
 }
 .nav-menu .custom-select > select {
+    font-family: sans-serif;
     width:100%;
     background-image: none;
     background-color: #fff;
@@ -146,7 +147,7 @@ header a:hover {
     pointer-events: none;
 }
 .nav-menu .unit-link {
-    padding: 14px 22px 13px;
+    padding: 16px 22px 12px;
     font-size: 14px;
 }
 .nav-menu .custom-text {
