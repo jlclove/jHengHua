@@ -11,7 +11,7 @@
     <jsp:param name="title" value="title_stories"/>
 </jsp:include>
 <div class="content container-fluid">
-    <h2>了解我们的西装</h2>
+    <h2>了解我们的面料</h2>
     <div class="row">
         <div class="col-sm-8">
             <div class="fit-header">
