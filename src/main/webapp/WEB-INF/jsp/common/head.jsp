@@ -15,6 +15,13 @@
     <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0"/>
     <title><fmt:message key="${param.title}"/> - <fmt:message key="companyname"/></title>
     <link rel="stylesheet" type="text/css" href="/static/build/css/all.min.css">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
     <%--<link rel="stylesheet" type="text/css" href="/static/fonts/fonts.css">--%>
     <%--<link rel="stylesheet" type="text/css" href="/static/bower_components/bootstrap/dist/css/bootstrap.min.css">--%>
     <%--<link rel="stylesheet" type="text/css" href="/static/bower_components/font-awesome/css/font-awesome.min.css">--%>

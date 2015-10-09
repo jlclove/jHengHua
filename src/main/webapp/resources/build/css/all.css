@@ -154,13 +154,16 @@ header a:hover {
     border-bottom-width: 2px;
 }
 .navbar-default .navbar-brand {
+    height: 60px;
     height: 5rem;
     font-size: 24px;
     line-height: 36px;
     color: #183051;
 }
 .navbar-brand img {
+    width: 120px;
     width: 10rem;
+    padding: 8px 0;
     padding: 0.67rem 0;
     display: inline;
 }
@@ -180,7 +183,9 @@ header a:hover {
 .navbar-default .navbar-nav>li>a {
     padding-top: 3px;
     padding-bottom: 0;
+    line-height: 60px;
     line-height: 5rem;
+    height: 60px;
     height: 5rem;
 }
 .navbar-form {
@@ -194,6 +199,7 @@ header a:hover {
     max-width: 120px;
 }
 .navbar-default .navbar-nav>li>.icon-suiticon {
+    padding-top: 5px;
     padding-top: 0.4167rem;
     font-size: 18px;
 }
@@ -208,7 +214,9 @@ header a:hover {
     margin: 0;
     font-size: 26px;
     height: 100%;
+    padding-right: 15px;
     padding-right: 1.25rem;
+    padding-left: 15rem;
     padding-left: 1.25rem;
     padding-top: 16px;
     color: #666;
@@ -430,7 +438,7 @@ header a:hover {
 body,html {
     /*font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;*/
     font-size: 12px;
-    font-size: 62.5%;
+    /*font-size: 62.5%;*/
 }
 body,a {
     font-family: "PillGothic300mgLight";
