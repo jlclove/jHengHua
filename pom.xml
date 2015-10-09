@@ -17,18 +17,11 @@
 		<mysql-version>5.1.30</mysql-version>
 		<mybatis-version>3.2.6</mybatis-version>
 		<mybatis-spring-version>1.2.2</mybatis-spring-version>
-		<goodlaike-framework-tools-version>0.0.7</goodlaike-framework-tools-version>
-		<goodlaike-framework-dao-mybatis-version>0.1.1</goodlaike-framework-dao-mybatis-version>
-		<goodlaike-business-version>0.0.5</goodlaike-business-version>
+		<goodlaike-business-version>0.0.7</goodlaike-business-version>
 	</properties>
 
 	<dependencies>
 		<!--spring 和 springmvc相关 -->
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-beans</artifactId>
-			<version>${spring-version}</version>
-		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context-support</artifactId>
@@ -36,27 +29,7 @@
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
-			<artifactId>spring-context</artifactId>
-			<version>${spring-version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-core</artifactId>
-			<version>${spring-version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
 			<artifactId>spring-test</artifactId>
-			<version>${spring-version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-tx</artifactId>
-			<version>${spring-version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-web</artifactId>
 			<version>${spring-version}</version>
 		</dependency>
 		<dependency>
@@ -99,16 +72,6 @@
 		</dependency>
 
 		<dependency>
-			<groupId>log4j</groupId>
-			<artifactId>log4j</artifactId>
-			<version>1.2.17</version>
-		</dependency>
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-api</artifactId>
-			<version>1.7.2</version>
-		</dependency>
-		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-log4j12</artifactId>
 			<version>1.7.2</version>
@@ -138,12 +101,6 @@
 			<groupId>com.alibaba</groupId>
 			<artifactId>fastjson</artifactId>
 			<version>1.2.5</version>
-		</dependency>
-
-		<dependency>
-			<groupId>com.fasterxml.jackson.dataformat</groupId>
-			<artifactId>jackson-dataformat-xml</artifactId>
-			<version>2.5.3</version>
 		</dependency>
 
 		<dependency>
@@ -182,24 +139,6 @@
 			<version>${tomcat-version}</version>
 		</dependency>
 
-		<!--@DateTimeFormat 依赖 -->
-		<dependency>
-			<groupId>joda-time</groupId>
-			<artifactId>joda-time</artifactId>
-			<version>2.1</version>
-		</dependency>
-		<dependency>
-			<groupId>com.goodlaikeframework</groupId>
-			<artifactId>goodlaike-dao-mybatis</artifactId>
-			<version>${goodlaike-framework-dao-mybatis-version}</version>
-		</dependency>
-
-		<dependency>
-			<groupId>com.goodlaikeframework</groupId>
-			<artifactId>goodlaike-tools</artifactId>
-			<version>${goodlaike-framework-tools-version}</version>
-		</dependency>
-
 		<dependency>
 			<groupId>com.goodlaike.business</groupId>
 			<artifactId>goodlaike-business-core</artifactId>
@@ -216,6 +155,7 @@
 			<artifactId>goodlaike-business-fileupload</artifactId>
 			<version>${goodlaike-business-version}</version>
 		</dependency>
+		
 		<dependency>
 			<groupId>commons-fileupload</groupId>
 			<artifactId>commons-fileupload</artifactId>
