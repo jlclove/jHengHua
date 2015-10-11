@@ -1,0 +1,13 @@
+<%_.forEach(list, function(medias){%>
+<tr>
+    <td><%=medias.id%></td>
+    <td><%=medias.title%></td>
+    <td><a href="<%=medias.link%>" target="_blank"><%=medias.link%></td>
+    <td><%=medias.createTime%></td>
+    <td><%=medias.createUserId%></td>
+    <td>
+        <a href="#" class="mr10 medias_edit" data-id="<%=medias.id%>" data-toggle="modal" data-target="#addMediasModal">编辑</a>
+        <a href="#" class="mr10 medias_delete" data-id="<%=medias.id%>">删除</a>
+    </td>
+</tr>
+<%})%>

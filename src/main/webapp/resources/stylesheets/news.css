@@ -51,14 +51,9 @@ body, body a, body a h2 {
 .news-box {
     position: relative;
 
-
-
-
-
-
-
-
-
+}
+.news-box img {
+    min-height: 200px;
 }
 .news-info {
     position: absolute;

@@ -1,9 +1,13 @@
 /**
  * Created by charles on 15/9/18.
  */
+var ue;
+$(document).ready(function(){
+    //初始化
+    initView();
+    ue = UE.getEditor('editor');
+});
 
-//初始化
-initView();
 
 //填充表格
 function reRender(pageNo){
@@ -17,42 +21,6 @@ function reRender(pageNo){
         });
     });
 }
-
-var Template = {
-    // 模板缓存
-    _tmplCache : {},
-    // 获取模板
-    getHtml: function(url, callback){
-        if(this._tmplCache[url]) {
-            callback(this._tmplCache[url]);
-        } else {
-            $.get('/static/template/' + url, function(res){
-                callback(res);
-                Template._tmplCache[url] = res;
-            })
-        }
-    },
-    // 计算分页
-    getPage : function(pageNo, totalPages) {
-        var show = 2;
-        var left = pageNo - show;
-        var right = pageNo + show, totalPages;
-        if(left < 1) {
-            left = 1;
-            right = Math.min(right + show - pageNo + 1, totalPages);
-        }
-        if (right> totalPages){
-            right = totalPages;
-            left = Math.max(left + (totalPages - (show + pageNo)), 1);
-        }
-        return {
-            left: left,
-            right: right,
-            pageNo: pageNo,
-            totalPages: totalPages
-        };
-    }
-};
 
 // 初始化界面
 function initView(){
@@ -86,12 +54,13 @@ function initView(){
                 $('#pics').val(JSON.stringify([newsPicture]));
                 $('#title').val(res.title);
                 $('#subtitle').val(res.subtitle);
-                $('#content').val(res.content);
                 $('#link').val(res.link);
+                ue.setContent(res.content);
             });
         }
     }).on('hide.bs.modal', function(){
         $('#form')[0].reset();
+        ue.setContent('');
     });
 
 
@@ -127,6 +96,11 @@ function initView(){
         submitHandler: function(form, e){
             e.preventDefault();
 
+            if(!$('[name=content]').val()){
+                //alert('请输入内容');
+                ue.focus();
+                return;
+            }
             var newsId = $('#id').val();
             if(newsId > 0) {
                 $.ajax({

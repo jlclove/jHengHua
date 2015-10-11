@@ -1,6 +1,8 @@
 package com.goodlaike.henghua.controller;
 
 import com.goodlaike.business.core.helper.LanguageHelper;
+import com.goodlaike.business.core.support.LanguageStore;
+import com.goodlaike.business.news.model.News;
 import com.goodlaike.business.news.service.NewsService;
 import com.goodlaike.framework.dao.order.OrderFilter;
 import com.goodlaike.framework.dao.search.AbstractSearchFilter;
@@ -8,7 +10,6 @@ import com.goodlaike.framework.dao.search.SearchFilter;
 import com.goodlaike.framework.dao.search.SearchType;
 import com.goodlaike.framework.dao.support.Pagination;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -63,9 +64,30 @@ public class IndexController  extends BaseController{
      * @return
      */
     @RequestMapping("/media")
-    protected String media(Model model) {
+    protected String media(HttpServletRequest request, Model model) {
         model.addAttribute(pageName, "media");
+        Pagination pagination = new Pagination();
+        pagination.setPageNo(1);
+        pagination.setPageSize(20);
+        pagination.addFilters(new AbstractSearchFilter[]{SearchFilter.and("type", SearchType.EQUAL, new Object[] {"媒体"})});
+        pagination.addFilters(new OrderFilter[]{OrderFilter.desc("id")});
+        pagination = this.newsService.getPagination(pagination, LanguageHelper.getLocalization(request, ""));
+        model.addAttribute("mediaList", pagination.getList());
         return "media";
+    }
+
+    /**
+     * 媒体报道详情
+     * @param id
+     * @param request
+     * @param model
+     * @return
+     */
+    @RequestMapping("/media/{id}")
+    protected String mediaDetail(@PathVariable int id, HttpServletRequest request, Model model){
+        News news = newsService.getNews(id, LanguageHelper.getLocalization(request));
+        model.addAttribute("media", news);
+        return "mediaDetail";
     }
 
     /**
@@ -84,6 +106,20 @@ public class IndexController  extends BaseController{
         pagination = this.newsService.getPagination(pagination, LanguageHelper.getLocalization(request, ""));
         model.addAttribute("newsList", pagination.getList());
         return "news";
+    }
+
+    /**
+     * 新闻详情
+     * @param id
+     * @param request
+     * @param model
+     * @return
+     */
+    @RequestMapping("/news/{id}")
+    protected String newsDetail(@PathVariable int id, HttpServletRequest request, Model model){
+        News news = newsService.getNews(id, LanguageHelper.getLocalization(request));
+        model.addAttribute("news", news);
+        return "newsDetail";
     }
 
     /**

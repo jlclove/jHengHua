@@ -30,7 +30,8 @@
             <div class="collapse navbar-collapse">
                 <c:if test="${not empty user}">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="#">新闻</a></li>
+                    <li class="active"><a href="/admin/news">新闻</a></li>
+                    <li><a href="/admin/medias">媒体</a></li>
                 </ul>
                 </c:if>
                 <ul class="nav navbar-nav navbar-right">

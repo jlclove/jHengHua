@@ -10,8 +10,8 @@
 <jsp:include page="common/head.jsp"/>
 <div class="container">
     <div class="clearfix">
-        <h4 class="pull-left">新闻列表</h4>
-        <button class="btn btn-primary pull-right" data-toggle="modal" data-target="#addNewsModal">
+        <h4 class="pull-left">媒体列表</h4>
+        <button class="btn btn-primary pull-right" data-toggle="modal" data-target="#addMediasModal">
             <i class="glyphicon glyphicon-plus"></i> 创建</button>
     </div>
     <div class="panel panel-default">
@@ -39,14 +39,14 @@
     </nav>
 </div>
 
-<!-- 新增新闻表单模板 -->
-<div class="modal fade" id="addNewsModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<!-- 新增媒体表单模板 -->
+<div class="modal fade" id="addMediasModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
         <form action="/business/news" method="post" id="form">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">添加新闻</h4>
+                <h4 class="modal-title" id="myModalLabel">添加媒体</h4>
             </div>
             <div class="modal-body">
                 <div class="form-horizontal">
@@ -65,18 +65,7 @@
                     <div class="form-group">
                         <label for="link" class="col-sm-2 control-label">链接</label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control" id="link" name="link" placeholder="输入链接地址会使新闻直接跳转到目标链接地址而看不到详情哦">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="type" class="col-sm-2 control-label">类型</label>
-                        <div class="col-sm-3">
-                            <%--<input type="text" id="type" name="type">--%>
-                                <select name="type" id="type" class="form-control">
-                                <c:forEach items="${newsType}" var="type">
-                                    <option value="${type}">${type}</option>
-                                </c:forEach>
-                            </select>
+                            <input type="text" class="form-control" id="link" name="link" placeholder="输入链接地址会使媒体直接跳转到目标链接地址而看不到详情哦">
                         </div>
                     </div>
                     <div class="form-group">
@@ -97,7 +86,7 @@
                     <div class="form-group">
                         <label for="content" class="col-sm-2 control-label">内容</label>
                         <div class="col-sm-9">
-                            <textarea id="content" name="content" class="form-control" rows="5"></textarea>
+                            <div id="editor" style="width:100%;height:200px;"></div>
                         </div>
                     </div>
                 </div>
@@ -108,6 +97,7 @@
             </div>
             <input type="hidden" name="id" id="id" value="0">
             <input type="hidden" name="pics" id="pics">
+            <input type="hidden" name="type" value="媒体">
             <%--<input type="hidden" name="type" id="type" value="新闻">--%>
         </form>
         </div>
@@ -116,5 +106,5 @@
 <!-- 新增新闻表单模板 -->
 
 <jsp:include page="common/foot.jsp">
-    <jsp:param name="js" value="bower_components/upload/js/vendor/jquery.ui.widget,bower_components/upload/js/jquery.fileupload,javascripts/admin/news"/>
+    <jsp:param name="js" value="bower_components/upload/js/vendor/jquery.ui.widget,bower_components/upload/js/jquery.fileupload,bower_components/ueditor/ueditor.config,bower_components/ueditor/ueditor.all.min,javascripts/admin/medias"/>
 </jsp:include>

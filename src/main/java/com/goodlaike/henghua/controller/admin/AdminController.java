@@ -48,8 +48,13 @@ public class AdminController extends BaseController {
         return "redirect:/admin/login";
     }
 
-    @RequestMapping("index")
-    protected String index() {
-        return "/admin/index";
+    @RequestMapping({"/", "","/news"})
+    protected String news() {
+        return "/admin/news";
+    }
+
+    @RequestMapping("/medias")
+    protected String medias() {
+        return "/admin/medias";
     }
 }

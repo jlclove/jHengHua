@@ -35,7 +35,7 @@ $('#loginForm').validate({
                 $('#loginBtn').button('reset');
             },
             success: function(){
-                window.location.href = '/admin/index';
+                window.location.href = '/admin';
             },
             error: function(data){
                 var result = data.responseJSON;
@@ -47,3 +47,40 @@ $('#loginForm').validate({
         });
     }
 });
+
+
+var Template = {
+    // 模板缓存
+    _tmplCache : {},
+    // 获取模板
+    getHtml: function(url, callback){
+        if(this._tmplCache[url]) {
+            callback(this._tmplCache[url]);
+        } else {
+            $.get('/static/template/' + url, function(res){
+                callback(res);
+                Template._tmplCache[url] = res;
+            })
+        }
+    },
+    // 计算分页
+    getPage : function(pageNo, totalPages) {
+        var show = 2;
+        var left = pageNo - show;
+        var right = pageNo + show, totalPages;
+        if(left < 1) {
+            left = 1;
+            right = Math.min(right + show - pageNo + 1, totalPages);
+        }
+        if (right> totalPages){
+            right = totalPages;
+            left = Math.max(left + (totalPages - (show + pageNo)), 1);
+        }
+        return {
+            left: left,
+            right: right,
+            pageNo: pageNo,
+            totalPages: totalPages
+        };
+    }
+};

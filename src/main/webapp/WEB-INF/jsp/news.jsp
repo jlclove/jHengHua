@@ -1,4 +1,3 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: charles
@@ -20,7 +19,14 @@
                 <div class="news-box">
                     <img src="/imgs/${news.mainPicPath}" class="img-responsive"/>
                     <div class="news-info animated">
-                        <a href="#">
+                        <c:choose>
+                            <c:when test="${not empty news.link}">
+                                <a href="${news.link}" target="_blank">
+                            </c:when>
+                            <c:otherwise>
+                                <a href="/news/${news.id}" target="_blank">
+                            </c:otherwise>
+                        </c:choose>
                             <p>${news.title}</p>
                             <div class="text-right">${news.subtitle}</div>
                         </a>
@@ -29,12 +35,17 @@
             </c:forEach>
 
             <div class="container-fluid news-list row mt30 news-left">
-                <c:forEach items="${newsList}" var="news" begin="1" varStatus="status">
-                    <c:if test="${(status.index-1) % 2 == 0}">
-                    <div class="row mt15">
-                    </c:if>
+                <div class="row mt15">
+                <c:forEach items="${newsList}" var="news" begin="1" varStatus="status" step="2">
                     <div class="col-sm-6">
-                        <a href="${news.link}" target="_blank">
+                        <c:choose>
+                            <c:when test="${not empty news.link}">
+                                <a href="${news.link}" target="_blank">
+                            </c:when>
+                            <c:otherwise>
+                                <a href="/news/${news.id}" target="_blank">
+                            </c:otherwise>
+                        </c:choose>
                             <img src="/imgs/${news.mainPicPath}" class="img-responsive"/>
                             <p class="title">${news.title}</p>
                             <div class="date"><fmt:formatDate value="${news.createTime}" pattern="MM月dd, yyyy"/></div>
@@ -42,10 +53,27 @@
                             <span class="arrow-right">更多信息</span>
                         </a>
                     </div>
-                    <c:if test="${(status.index) % 2 == 0}">
+                    <c:if test="${status.index < fn:length(newsList)}">
+                        <div class="col-sm-6">
+                            <c:choose>
+                                <c:when test="${not empty news.link}">
+                                <a href="${newsList[status.index + 1].link}" target="_blank">
+                                </c:when>
+                                <c:otherwise>
+                                    <a href="${newsList[status.index + 1].id}" target="_blank">
+                                </c:otherwise>
+                            </c:choose>
+                            <a href="${newsList[status.index + 1].link}" target="_blank">
+                                <img src="/imgs/${newsList[status.index + 1].mainPicPath}" class="img-responsive"/>
+                                <p class="title">${newsList[status.index + 1].title}</p>
+                                <div class="date"><fmt:formatDate value="${newsList[status.index + 1].createTime}" pattern="MM月dd, yyyy"/></div>
+                                <p>${news.subtitle}</p>
+                                <span class="arrow-right">更多信息</span>
+                            </a>
                         </div>
                     </c:if>
                 </c:forEach>
+                </div>
             </div>
         </div>
         <div class="col-sm-4 news-right">
@@ -53,7 +81,15 @@
             <ul class="list-unstyled news-list">
                 <c:forEach items="${newsList}" var="news">
                     <li>
-                        <a href="">${news.title}</a>  <fmt:formatDate value="${news.createTime}" pattern="MM月dd日 yyyy"/>
+                        <c:choose>
+                            <c:when test="${not empty news.link}">
+                                <a href="${news.link}" target="_blank">${news.title}</a>
+                            </c:when>
+                            <c:otherwise>
+                                <a href="/news/${news.id}" target="_blank">${news.title}</a>
+                            </c:otherwise>
+                        </c:choose>
+                        &nbsp;&nbsp;<fmt:formatDate value="${news.createTime}" pattern="MM月dd日 yyyy"/>
                     </li>
                 </c:forEach>
             </ul>
