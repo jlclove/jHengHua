@@ -51,7 +51,7 @@ public class RestHenghua {
      * @author jail
      */
     public String restSampleAll() {
-        return RestClient.exchange(this.apiSampleList, HttpMethod.GET, String.class);
+        return this.rest(this.apiSampleList);
     }
 
     /**
@@ -63,7 +63,7 @@ public class RestHenghua {
      * @author jail
      */
     public String restSampleType(int langType) {
-        return RestClient.exchange(TextUtil.format(this.apiSampleType, langType), HttpMethod.GET, String.class);
+        return this.rest(TextUtil.format(this.apiSampleType, langType));
     }
 
     /**
@@ -74,7 +74,7 @@ public class RestHenghua {
      * @author jail
      */
     public String restSampleDetail(String detailName) {
-        return RestClient.exchange(TextUtil.format(this.apiSampleDetail, detailName), HttpMethod.GET, String.class);
+        return this.rest(TextUtil.format(this.apiSampleDetail, detailName));
     }
 
     /**
@@ -88,8 +88,7 @@ public class RestHenghua {
      * @author jail
      */
     public String restSampleFilter(int langType, String filter) {
-        return RestClient.exchange(TextUtil.format(this.apiSampleDetailFilter, langType, filter), HttpMethod.GET,
-                String.class);
+        return this.rest(TextUtil.format(this.apiSampleDetailFilter, langType, filter));
     }
 
     /**
@@ -99,7 +98,7 @@ public class RestHenghua {
      * @author jail
      */
     public String restClothAll() {
-        return RestClient.exchange(this.apiClothList, HttpMethod.GET, String.class);
+        return this.rest(this.apiClothList);
     }
 
     /**
@@ -111,7 +110,7 @@ public class RestHenghua {
      * @author jail
      */
     public String restClothDetail(String serialNo) {
-        return RestClient.exchange(TextUtil.format(this.apiClothDetail, serialNo), HttpMethod.GET, String.class);
+        return this.rest(TextUtil.format(this.apiClothDetail, serialNo));
     }
 
     /**
@@ -121,7 +120,7 @@ public class RestHenghua {
      * @author jail
      */
     public String restWashingList() {
-        return RestClient.exchange(this.apiWashingList, HttpMethod.GET, String.class);
+        return this.rest(this.apiWashingList);
     }
 
     /**
@@ -131,7 +130,7 @@ public class RestHenghua {
      * @author jail
      */
     public String restClothType() {
-        return RestClient.exchange(this.apiClothType, HttpMethod.GET, String.class);
+        return this.rest(this.apiClothType);
     }
 
     /**
@@ -142,7 +141,12 @@ public class RestHenghua {
      * @author jail
      */
     public String restClothFilter(String filter) {
-        return RestClient.exchange(TextUtil.format(this.apiClothFilter, filter), HttpMethod.GET, String.class);
+        return this.rest(TextUtil.format(this.apiClothFilter, filter));
     }
 
+    
+    private String rest(String url){
+        System.out.println("==============>>" + url);
+        return RestClient.exchange(url, HttpMethod.GET, String.class);
+    }
 }
