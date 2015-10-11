@@ -74,6 +74,6 @@
     </div>
 </div>
 <jsp:include page="common/foot.jsp">
-    <jsp:param name="js" value="bower_components/jquery/dist/jquery.min,javascripts/jquery-barcode.min,javascripts/sampleDetail"/>
+    <jsp:param name="js" value="javascripts/sampleDetail"/>
 </jsp:include>
 </fmt:bundle>

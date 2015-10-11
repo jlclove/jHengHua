@@ -21,8 +21,7 @@
                 <span class="f14 ml30"><fmt:message key="product_sample_marterial"/>:</span>
                 <span class="f20 ml20">${sampleDetail.material}</span>
             </div>
-            <div class="col-sm-4 text-right">
-                <img src="/static/images/barcode.png"/>
+            <div class="col-sm-4 text-right" id="qrcode">
             </div>
         </div>
         <div class="row">
@@ -51,6 +50,9 @@
     </div>
 </div>
 <jsp:include page="common/foot.jsp">
-    <jsp:param name="js" value="bower_components/jquery/dist/jquery.min,javascripts/jquery-barcode.min,javascripts/sampleDetail"/>
+    <jsp:param name="js" value="javascripts/sampleDetail,javascripts/jquery.qrcode.min"/>
 </jsp:include>
 </fmt:bundle>
+<script type="text/javascript">
+	$('#qrcode').qrcode({width: 64,height: 64,text: "size doesn't matter"});
+</script>
