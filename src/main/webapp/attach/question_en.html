@@ -86,27 +86,32 @@
     </ul>
 
     <script type="text/javascript">
-        $('.faq-category ul li').on('click', function(){
-            var target = $(this).data('target');
-
-            if(target) {
-                if($('[data-target=""]').is('.selected')){
-                    $('[data-target=""]').removeClass('selected');
-                    $('.accordion-group li').hide();
-                }
-                if($(this).is('.selected')) {
-                    $('.' + target).hide();
-                } else {
-                    $('.' + target).show();
-                }
-                $(this).toggleClass('selected');
-            } else {
-                $('.faq-category ul li').removeClass('selected');
-                $('.accordion-group li').show();
-                $(this).addClass('selected');
-            }
-
-        });
+	    $('.faq-category ul li').on('click', function(){
+	        c(this);
+	    });
+	    
+	    function c(u){
+	    	var target = $(u).data('target');
+	
+	        if(target) {
+	            if($('[data-target=""]').is('.selected')){
+	                $('[data-target=""]').removeClass('selected');
+	                $('.accordion-group li').hide();
+	            }
+	            if($(u).is('.selected')) {
+	                $('.' + target).hide();
+	            } else {
+	                $('.' + target).show();
+	            }
+	            $(u).toggleClass('selected');
+	        } else {
+	            $('.faq-category ul li').removeClass('selected');
+	            $('.accordion-group li').show();
+	            $(u).addClass('selected');
+	        }
+	    } 
+	    
+	    c($('[data-target=""]'));
         $('.collapse').on('hide.bs.collapse', function () {
             $(this).closest('.panel').find('.state').text('+');
         });

@@ -298,35 +298,35 @@
     <%--</div>--%>
 </header>
 <div class="float-bg animated"></div>
-<div class="mobile-menu animated">
+<%-- <div class="mobile-menu animated">
     <i class="icon-suiticon icon-suiticon-delete-1"></i>
 
-    <%--<div class="mobile-menu-content">--%>
-        <%--<p>hello</p>--%>
+    <div class="mobile-menu-content">
+        <p>hello</p>
 
-        <%--<p>hello</p>--%>
+        <p>hello</p>
 
-        <%--<p>hello</p>--%>
+        <p>hello</p>
 
-        <%--<p>hello</p>--%>
+        <p>hello</p>
 
-        <%--<p>hello</p>--%>
+        <p>hello</p>
 
-        <%--<p>hello</p>--%>
+        <p>hello</p>
 
-        <%--<p>hello</p>--%>
+        <p>hello</p>
 
-        <%--<p>hello</p>--%>
+        <p>hello</p>
 
-        <%--<p>hello</p>--%>
+        <p>hello</p>
 
-        <%--<p>hello</p>--%>
+        <p>hello</p>
 
-        <%--<p>hello</p>--%>
+        <p>hello</p>
 
-        <%--<p>hello</p>--%>
-    <%--</div>--%>
-</div>
+        <p>hello</p>
+    </div>
+</div> --%>
 <!-- Modal login-->
 <div class="pop-modal login-modal modal fade" id="popModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">

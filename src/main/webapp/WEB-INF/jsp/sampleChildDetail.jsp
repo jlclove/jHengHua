@@ -11,6 +11,7 @@
     <jsp:param name="css" value="sample"/>
     <jsp:param name="title" value="nav_shop"/>
 </jsp:include>
+<fmt:bundle basename="site">
 <div class="sample-detail-bg">
     <div class="content container sample-detail-page">
         <div class="row">
@@ -72,4 +73,7 @@
         </div>
     </div>
 </div>
-<jsp:include page="common/foot.jsp"/>
+<jsp:include page="common/foot.jsp">
+    <jsp:param name="js" value="bower_components/jquery/dist/jquery.min,javascripts/jquery-barcode.min,javascripts/sampleDetail"/>
+</jsp:include>
+</fmt:bundle>
