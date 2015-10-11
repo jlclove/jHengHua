@@ -6,14 +6,117 @@
     <link rel="stylesheet" type="text/css" href="http://henghua.goodlaike.com/static/build/css/all.min.css">
 </head>
 <body>
-    <div class="template container">
+<div class="template container">
 
-        <!-- 从此处开始修改！从此处开始修改！从此处开始修改！ 重要的事情说三遍，加入我们 -->
+    <!-- 从此处开始修改！从此处开始修改！从此处开始修改！ 重要的事情说三遍，加入我们 -->
 
-        <h4>常见问题</h4>
-
-        <!-- 到这里结束！到这里结束！到这里结束！ -->
-
+    <style>
+        .faq-category {
+            border: 1px solid #ccc;
+            padding: 10px 10px 0;
+        }
+        .faq-category li {
+            line-height: 20px;
+            padding-left: 10px;
+            margin: 3px 0;
+            border-left: 2px solid transparent;
+        }
+        .faq-category li:hover {
+            cursor: pointer;
+            color: #183051;
+        }
+        .faq-category li.selected {
+            border-left-color: #183051;
+        }
+        .accordion-group .collapse .accordion-body {
+        }
+        .accordion-group li {
+            border-bottom: 1px solid #ccc;
+            display: none;
+        }
+        .accordion-group li .state {
+            float: right;
+            margin-right: 10px;
+        }
+        .accordion-group li a {
+            height: 40px;
+            line-height: 40px;
+            display: block;
+        }
+        .accordion-group.panel-group {
+            border-top: 1px solid #ccc;;
+        }
+        .accordion-group.panel-group .panel {
+            border-radius: 0;
+            box-shadow: none;
+        }
+    </style>
+    <h4>常见问题</h4>
+    <div class="faq-category">
+        <ul class="list-unstyled clearfix">
+            <li class="" data-target="">所有问题</li>
+            <li class="w1of2 pull-left" data-target="aaa">企业团购</li>
+            <li class="w1of2 pull-left" data-target="bbb">配送</li>
+            <!--<li class="w1of2 pull-left" data-target="ccc">礼品卡</li>-->
+            <!--<li class="w1of2 pull-left" data-target="ddd">支付方式</li>-->
+            <!--<li class="w1of2 pull-left" data-target="eee">个人制定</li>-->
+        </ul>
     </div>
+    <h4 class="mt20">购买资讯</h4>
+
+    <ul class="list-unstyled accordion-group panel-group" id="parent">
+        <li class="aaa panel">
+            <a data-toggle="collapse" data-parent="#parent" href="#drop1">Henghua 销售礼品卡吗？ <span class="state">+</span></a>
+            <div id="drop1" class="collapse">
+                <div class="accordion-body">
+                    <p>我们为公司、团队提供整体造型设计和服装制作服务（包括女性服装）；此服务不仅限于工作制服的定制，日常着装、晚宴/宴会活动和西服都包括在内。以我们丰富的面料、专业的剪裁和时尚造型，我们会竭诚帮助你选择并设计出你团队的专有的服饰。</p>
+                    <p>为了确保剪裁的合身，我们会于专卖店中（或你的指定地点）为你团队的人员逐个量身定制。在送货时，我们可以安排裁缝师傅到场做最后的完善修改。保证制服的合身优雅，体现企业精神。</p>
+                    <p>想了解中国企业团购相关信息， <a href="mailto:china@suitsupply.com">请点击咨询当地办公室</a>.</p>
+                </div>
+            </div>
+        </li>
+        <li class="bbb panel">
+            <a data-toggle="collapse" data-parent="#parent" href="#drop2">AAAAAAAA <span class="state">+</span></a>
+            <div id="drop2" class="collapse">
+                <div class="accordion-body">
+                    Suitsupply 发行多种不同金额的的礼品卡，可在店铺或官网购得，并可在全球任何一家 Suitsupply 店铺或网上购物结算时使用。我们的礼品卡不会过期，不可兑现现金。可在Suitsupply 店铺购买或者 <a href="/giftcards">点击这里网上购买</a>.
+                </div>
+            </div>
+        </li>
+    </ul>
+
+    <script type="text/javascript">
+        $('.faq-category ul li').on('click', function(){
+            var target = $(this).data('target');
+
+            if(target) {
+                if($('[data-target=""]').is('.selected')){
+                    $('[data-target=""]').removeClass('selected');
+                    $('.accordion-group li').hide();
+                }
+                if($(this).is('.selected')) {
+                    $('.' + target).hide();
+                } else {
+                    $('.' + target).show();
+                }
+                $(this).toggleClass('selected');
+            } else {
+                $('.faq-category ul li').removeClass('selected');
+                $('.accordion-group li').show();
+                $(this).addClass('selected');
+            }
+
+        });
+        $('.collapse').on('hide.bs.collapse', function () {
+            $(this).closest('.panel').find('.state').text('+');
+        });
+        $('.collapse').on('show.bs.collapse', function () {
+            $(this).closest('.panel').find('.state').text('-');
+        });
+    </script>
+
+    <!-- 到这里结束！到这里结束！到这里结束！ -->
+
+</div>
 </body>
 </html>
