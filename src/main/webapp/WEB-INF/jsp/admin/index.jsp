@@ -65,7 +65,7 @@
                     <div class="form-group">
                         <label for="link" class="col-sm-2 control-label">链接</label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control" id="link" name="link">
+                            <input type="text" class="form-control" id="link" name="link" placeholder="输入链接地址会使新闻直接跳转到目标链接地址而看不到详情哦">
                         </div>
                     </div>
                     <div class="form-group">
