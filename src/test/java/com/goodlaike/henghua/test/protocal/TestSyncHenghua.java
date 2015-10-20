@@ -4,13 +4,13 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.goodlaike.henghua.protocal.RestHenghua;
-import com.goodlaike.henghua.test.BaseTest;
+import com.goodlaike.henghua.test.TestBase;
 
 /**
  * 
  * @author jail
  */
-public class TestSyncHenghua extends BaseTest {
+public class TestSyncHenghua extends TestBase {
 
     @Autowired
     private RestHenghua syncHenghua;

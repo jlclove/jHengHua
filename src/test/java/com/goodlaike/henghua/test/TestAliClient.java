@@ -9,7 +9,7 @@ import com.goodlaike.henghua.protocal.AlipayClientManager;
  * AliClient 测试
  * @author jail
  */
-public class TestAliClient extends BaseTest{
+public class TestAliClient extends TestBase{
 
     @Autowired
     private AlipayClientManager alipayClientManager;

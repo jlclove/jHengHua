@@ -4,14 +4,14 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.goodlaike.henghua.service.HenghuaService;
-import com.goodlaike.henghua.test.BaseTest;
+import com.goodlaike.henghua.test.TestBase;
 
 /**
  * HenghuaService Test
  * 
  * @author jail
  */
-public class TestHenghuaService extends BaseTest {
+public class TestHenghuaService extends TestBase {
 
     @Autowired
     private HenghuaService henghuaService;
