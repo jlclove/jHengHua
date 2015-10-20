@@ -90,10 +90,15 @@
 <script type="text/javascript" src="/static/javascripts/main.js"></script>
 <script type="text/javascript">
     $('a[data-nav]').click(function(e){
+        var navMenu = $(this).parent().find('.nav-menu');
         var current = $(this).parent().find('.nav-menu-wrap');
         var visible = current.data('visible');
         closeMenu();
         if(!visible) {
+            navMenu.css('visibility', 'visible');
+            if($(document).width() <= 768) {
+                navMenu.css('position', 'static');
+            }
             current.css('marginTop', 0).addClass('active');
             current.data('visible', true);
         }
@@ -144,14 +149,14 @@
         }
     });
     $('#collapse-left').click(function(){
-        $('header').css('transform', 'translate3d(80%,0,0)');
-        $('.mobile-menu').css('transform', 'translate3d(0,0,0)');
-        $('.float-bg').addClass('visible');
+//        $('header').css('transform', 'translate3d(80%,0,0)');
+//        $('.mobile-menu').css('transform', 'translate3d(0,0,0)');
+//        $('.float-bg').addClass('visible');
     });
     $('.float-bg').click(function(){
-        $('header').css('transform', 'translate3d(0,0,0)');
-        $('.mobile-menu').css('transform', 'translate3d(-100%,0,0)');
-        $('.float-bg').removeClass('visible');
+//        $('header').css('transform', 'translate3d(0,0,0)');
+//        $('.mobile-menu').css('transform', 'translate3d(-100%,0,0)');
+//        $('.float-bg').removeClass('visible');
     });
 
     $('img').on('error', function(){
