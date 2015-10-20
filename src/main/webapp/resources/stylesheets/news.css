@@ -4,9 +4,18 @@ body, body a, body a h2 {
     outline: 0;
 }
 .news-page {
-    padding-top: 62px;
-    padding-bottom: 70px;
+    padding-top: 4em;
+    padding-bottom: 4em;
 }
+.news-page,.news-page h5{
+	line-height:150%;
+}
+
+.news-page h3{
+	line-height:120%;
+}
+
+
 .news-list .date {
     color: #c1c1c1;
     display: block;

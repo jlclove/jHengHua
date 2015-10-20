@@ -8,14 +8,14 @@
             <div class="unit-box">
                 <img src="/static/images/shanghai-desktop-v4.jpg" width="100%" class="hidden-xs"/>
                 <img src="/static/images/shanghai-mobile.jpg" width="100%" class="visible-xs"/>
-                <div class="unit reverse pos-right pos-bottom w1of4 hidden-xs">
+                <!-- <div class="unit reverse pos-right pos-bottom w1of4 hidden-xs">
                     <span class="unit-title">SHANGHAI MANSION NOW OPEN</span>
                     <a class="unit-link mt25" href="#">DISCOVER</a>
                 </div>
                 <div class="unit reverse pos-middle pos-bottom visible-xs">
                     <span class="unit-title">SHANGHAI MANSION NOW OPEN</span>
                     <a class="unit-link mt25" href="#">DISCOVER</a>
-                </div>
+                </div> -->
             </div>
         </div>
         

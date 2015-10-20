@@ -12,6 +12,16 @@
   <jsp:param name="title" value="title_enterprise"/>
 </jsp:include>
 <div class="news-page container mt50">
-  ${media.content}
+  <h3>${media.title}</h3>
+  <h5>${media.subtitle}</h5>
+  <div><fmt:formatDate value="${media.createTime }" pattern="yyyy-MM-dd HH:mm"/></div>
+  <div>
+  	<c:if test="${not empty media.mainPicPath }">
+  		<img class="mt15" src="/imgs/${media.mainPicPath }">
+  	</c:if>
+  	<div class="mt15">
+  		${media.content}
+  	</div>
+  </div>
 </div>
 <jsp:include page="common/foot.jsp"/>
