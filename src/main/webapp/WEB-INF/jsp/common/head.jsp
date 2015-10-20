@@ -256,7 +256,7 @@
                         <div class="nav-menu">
                             <div class="nav-menu-wrap container-fluid">
                                 <div class="input-group">
-                                    <span class="f16">Choose your shipping destination and language</span>
+                                    <span class="f16"><fmt:message key="choose_language"/></span>
                                     <div class="custom-select ml10">
                                         <select id="selectLang" class="custom-select">
                                             <c:forEach items="${languages}" var="language">
@@ -264,7 +264,7 @@
                                             </c:forEach>
                                         </select>
                                     </div>
-                                    <a class="unit-link ml10" href="javascript:selectLang()">CONTINUE</a>
+                                    <a class="unit-link ml10" href="javascript:selectLang()"><fmt:message key="choose_language_button"/></a>
                                 </div>
                             </div>
                         </div>

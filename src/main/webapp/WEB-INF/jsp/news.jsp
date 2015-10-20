@@ -11,8 +11,9 @@
     <jsp:param name="css" value="news"/>
     <jsp:param name="title" value="title_enterprise"/>
 </jsp:include>
+<fmt:bundle basename="site">
 <div class="news-page container-fluid">
-    <h2 class="titlebar">新闻</h2>
+    <h2 class="titlebar"><fmt:message key="news_title"/></h2>
     <div class="row">
         <div class="col-sm-8">
             <c:forEach items="${newsList}" var="news" begin="0" end="0">
@@ -48,9 +49,9 @@
                         </c:choose>
                             <img src="/imgs/${news.mainPicPath}" class="img-responsive"/>
                             <p class="title">${news.title}</p>
-                            <div class="date"><fmt:formatDate value="${news.createTime}" pattern="MM月dd, yyyy"/></div>
+                            <div class="date"><fmt:formatDate value="${news.createTime}" pattern="yyyy,MMdd"/></div>
                             <p>${news.subtitle}</p>
-                            <span class="arrow-right">更多信息</span>
+                            <span class="arrow-right"><fmt:message key="news_more"/></span>
                         </a>
                     </div>
                     <c:if test="${status.index < fn:length(newsList)}">
@@ -66,9 +67,9 @@
                             <a href="${newsList[status.index + 1].link}" target="_blank">
                                 <img src="/imgs/${newsList[status.index + 1].mainPicPath}" class="img-responsive"/>
                                 <p class="title">${newsList[status.index + 1].title}</p>
-                                <div class="date"><fmt:formatDate value="${newsList[status.index + 1].createTime}" pattern="MM月dd, yyyy"/></div>
+                                <div class="date"><fmt:formatDate value="${newsList[status.index + 1].createTime}" pattern="yyyy,MMdd"/></div>
                                 <p>${news.subtitle}</p>
-                                <span class="arrow-right">更多信息</span>
+                                <span class="arrow-right"><fmt:message key="news_more"/></span>
                             </a>
                         </div>
                     </c:if>
@@ -77,7 +78,7 @@
             </div>
         </div>
         <div class="col-sm-4 news-right">
-            <h4>新闻</h4>
+            <h4><fmt:message key="news_title"/></h4>
             <ul class="list-unstyled news-list">
                 <c:forEach items="${newsList}" var="news">
                     <li>
@@ -89,11 +90,12 @@
                                 <a href="/news/${news.id}" target="_blank">${news.title}</a>
                             </c:otherwise>
                         </c:choose>
-                        &nbsp;&nbsp;<fmt:formatDate value="${news.createTime}" pattern="MM月dd日 yyyy"/>
+                        &nbsp;&nbsp;<fmt:formatDate value="${news.createTime}" pattern="yyyy,MMdd"/>
                     </li>
                 </c:forEach>
             </ul>
         </div>
     </div>
 </div>
+</fmt:bundle>
 <jsp:include page="common/foot.jsp"/>
