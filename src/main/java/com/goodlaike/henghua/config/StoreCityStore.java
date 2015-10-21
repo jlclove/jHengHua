@@ -3,19 +3,18 @@ package com.goodlaike.henghua.config;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URISyntaxException;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Optional;
 
-import org.apache.commons.configuration.ConfigurationException;
-import org.apache.commons.configuration.PropertiesConfiguration;
+import javax.servlet.http.HttpServletRequest;
 
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.goodlaike.business.core.CoreConfig;
+import com.goodlaike.business.core.helper.LanguageHelper;
 import com.goodlaike.henghua.entity.model.Country;
 
 /**
@@ -29,12 +28,17 @@ public final class StoreCityStore extends HashMap<String, List<Country>> {
 
     private static StoreCityStore store;
 
-    @SuppressWarnings("unchecked")
-    public static synchronized StoreCityStore getInstance() {
+    /**
+     * 单例
+     * 
+     * @return
+     * @author jail
+     */
+    private static synchronized StoreCityStore getInstance() {
         if (store == null) {
-            store = new StoreCityStore();
             try {
-                File file = new File(ClassLoader.getSystemClassLoader().getResource("store_countries.js").toURI());
+                store = new StoreCityStore();
+                File file = new File(StoreCityStore.class.getClassLoader().getResource("store_countries.js").toURI());
                 FileInputStream is = new FileInputStream(file);
                 InputStreamReader r = new InputStreamReader(is);
                 BufferedReader bufferedReader = new BufferedReader(r);
@@ -42,16 +46,69 @@ public final class StoreCityStore extends HashMap<String, List<Country>> {
                 String c;
                 while ((c = bufferedReader.readLine()) != null) {
                     sb.append(c);
-
                 }
                 r.close();
                 is.close();
-                HashMap<String, String> countryMap = JSONObject.parseObject(sb.toString(), HashMap.class);
-                System.out.println("=====" + countryMap);
+                @SuppressWarnings("unchecked")
+                HashMap<String, Object> map = JSONObject.parseObject(sb.toString(), HashMap.class);
+                map.forEach((k, v) -> {
+                    String jsonString = ((JSONArray) v).toJSONString();
+                    List<Country> list = JSONObject.parseArray(jsonString, Country.class);
+                    store.put(k, list);
+                });
             } catch (URISyntaxException | IOException e) {
                 e.printStackTrace();
             }
         }
         return store;
+    }
+
+    /**
+     * 获得当前语言环境下的国家List
+     * 
+     * @param request
+     * @return List<Country>
+     * @author jail
+     */
+    public static List<Country> getCountryList(HttpServletRequest request) {
+        String lang = LanguageHelper.getLocalization(request);
+        return getCountryList(lang);
+    }
+
+    /**
+     * 获得指定语言下的国家List
+     * 
+     * @param lang
+     *            语言
+     * @return List<Country>
+     * @author jail
+     */
+    public static List<Country> getCountryList(String lang) {
+        return StoreCityStore.getInstance().get(lang);
+    }
+
+    /**
+     * 获得指定ID的country对象
+     * 
+     * @param request
+     * @param id
+     * @return Country
+     */
+    public static Country getCountry(HttpServletRequest request, int id) {
+        String lang = LanguageHelper.getLocalization(request);
+        return getCountry(lang, id);
+    }
+
+    /**
+     * 获得指定ID的country对象
+     * 
+     * @param lang
+     * @param id
+     * @return Country
+     */
+    public static Country getCountry(String lang, int id) {
+        List<Country> countryList = getCountryList(lang);
+        Optional<Country> stream = countryList.stream().filter(country -> country.getId() == id).findFirst();
+        return stream.get();
     }
 }

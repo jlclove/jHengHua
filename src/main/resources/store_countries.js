@@ -1,1 +1,1 @@
-{'cn':[{'name':'中国','id':1}],'en':[{'name':'China','id':1}]}
+{'cn':[{'name':'中国','id':1},{'name':'英国','id':2}],'en':[{'name':'China','id':1},{'name':'England','id':2}]}
