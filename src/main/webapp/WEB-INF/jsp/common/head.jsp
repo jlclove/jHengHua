@@ -46,10 +46,9 @@
                     HENGHUA
                     <%--<img alt="Brand" src="/static/images/logo.png">--%>
                 </a>
-                <%--<button type="button" class="navbar-toggle collapsed right" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"--%>
-                        <%--id="collapse-right">--%>
-                    <%--<i class="icon-suiticon icon-suiticon-cart-2"></i>--%>
-                <%--</button>--%>
+                <button type="button" class="navbar-toggle collapsed right">
+                    <a class="btnAccount icon-suiticon icon-suiticon-user-2"></a>
+                </button>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -61,17 +60,23 @@
                         <div class="nav-menu category">
                             <div class="nav-menu-wrap container-fluid">
                                 <div class="col-sm-8">
-                                    <div class="category-title"><fmt:message key="nav_shop_category"/></div>
+                                    <div class="category-title hidden-xs"><fmt:message key="nav_shop_category"/></div>
                                     <ul class="list-unstyled category-list">
                                         <li class="category-item"><a href="/product/sample"><fmt:message key="nav_shop_category_sample"/></a></li>
-                                        <li class="category-item"><a href="#"></a></li>
+                                        <li class="category-item hidden-xs"><a href="#"></a></li>
                                         <li class="category-item"><a href="/product/cloth"><fmt:message key="nav_shop_category_cloth"/></a></li>
                                     </ul>
                                 </div>
                                 <div class="col-sm-4">
-                                    <div class="category-title"><fmt:message key="nav_shop_features"/></div>
+                                    <div class="category-title hidden-xs"><fmt:message key="nav_shop_features"/></div>
                                     <ul class="list-unstyled category-list">
-                                        <li class="category-item pr5">
+                                        <li class="category-item visible-xs">
+                                            <a href="/about-our-suits"><fmt:message key="nav_shop_features_suit"/></a></li>
+                                        </li>
+                                        <li class="category-item last visible-xs">
+                                            <a href="/about-our-shirts"><fmt:message key="nav_shop_features_shirt"/></a></li>
+                                        </li>
+                                        <li class="category-item pr5 hidden-xs">
                                             <div class="unit-box">
                                                 <a href="/about-our-suits">
                                                     <img src="/static/images/navigation/shop/pre-order.jpg" width="100%"/>
@@ -82,7 +87,7 @@
                                                 </div>
                                             </div>
                                         </li>
-                                        <li class="category-item pr5">
+                                        <li class="category-item pr5 hidden-xs">
                                             <div class="unit-box">
                                                 <a href="#">
                                                     <img src="/static/images/navigation/shop/nav_shirt-configurator_01.jpg" width="100%"/>
@@ -104,7 +109,18 @@
                         <!--menu begin -->
                         <div class="nav-menu">
                             <div class="nav-menu-wrap container-fluid">
-                                <div class="col-sm-2 unit-box pl10">
+                                <ul class="list-unstyled category-list visible-xs">
+                                    <li class="category-item visible-xs">
+                                        <a href="/media"><fmt:message key="nav_stories_media"/></a></li>
+                                    </li>
+                                    <li class="category-item visible-xs">
+                                        <a href="/about-our-suits"><fmt:message key="nav_stories_suit"/></a></li>
+                                    </li>
+                                    <li class="category-item last visible-xs">
+                                        <a href="/about-our-shirts"><fmt:message key="nav_stories_shirt"/></a></li>
+                                    </li>
+                                </ul>
+                                <div class="col-sm-2 unit-box pl10 hidden-xs">
                                     <a href="/media">
                                         <img src="/static/images/navigation/stories/what-they-say-about-us.jpg" width="100%"/>
                                         <div class="unit reverse pos-right pos-top w3of8">
@@ -112,7 +128,7 @@
                                         </div>
                                     </a>
                                 </div>
-                                <div class="col-sm-2 unit-box pl10">
+                                <div class="col-sm-2 unit-box pl10 hidden-xs">
                                     <a href="/about-our-suits">
                                         <img src="/static/images/navigation/stories/about_our_suits_1.jpg" width="100%"/>
 
@@ -121,7 +137,7 @@
                                         </div>
                                     </a>
                                 </div>
-                                <div class="col-sm-2 unit-box pl10">
+                                <div class="col-sm-2 unit-box pl10 hidden-xs">
                                     <a href="/about-our-shirts">
                                         <img src="/static/images/navigation/stories/about-our-shirts.jpg" width="100%"/>
 
@@ -140,7 +156,7 @@
                         <div class="nav-menu">
                             <div class="nav-menu-wrap container-fluid">
                                 <div class="col-sm-6">
-                                    <div class="category-title"><fmt:message key="nav_service"/></div>
+                                    <div class="category-title hidden-xs"><fmt:message key="nav_service"/></div>
                                     <ul class="list-unstyled category-list">
                                         <li class="category-item"><a href="/service/tailor"><fmt:message key="nav_service_tailor"/></a></li>
                                         <li class="category-item"><a href="/service/payment"><fmt:message key="nav_service_payment"/></a></li>
@@ -148,7 +164,7 @@
                                         <li class="category-item"><a href="/service/return"><fmt:message key="nav_service_return"/></a></li>
                                         <li class="category-item"><a href="/service/question"><fmt:message key="nav_service_question"/></a></li>
                                         <li class="category-item"><a href="/service/customer"><fmt:message key="nav_service_customer"/></a></li>
-                                        <li class="category-item"><a href="/service/corporate"><fmt:message key="nav_service_corporate"/></a></li>
+                                        <li class="category-item last"><a href="/service/corporate"><fmt:message key="nav_service_corporate"/></a></li>
                                     </ul>
                                 </div>
 
@@ -161,7 +177,24 @@
                         <!--menu begin-->
                         <div class="nav-menu">
                             <div class="nav-menu-wrap container-fluid">
-                                <div class="col-sm-6">
+                                <ul class="list-unstyled category-list visible-xs f18">
+                                    <li class="category-item"><a href="#"><fmt:message key="nav_stores_china"/></a></li>
+                                    <li class="category-item"><a href="#"><fmt:message key="nav_stores_italy"/></a></li>
+                                    <li class="category-item"><a href="#"><fmt:message key="nav_stores_russia"/></a></li>
+                                    <li class="category-item">
+                                        <a href="#" class="category-item">
+                                            <div class="category-title"><fmt:message key="nav_stores_open_shanghai"/></div>
+                                            <img src="/static/images/navigation/stories/shanghai-opened.jpg" width="100%"/>
+                                        </a>
+                                    </li>
+                                    <li class="category-item last">
+                                        <a href="#">
+                                            <div class="category-title"><fmt:message key="nav_stores_open_san_francisco"/></div>
+                                            <img src="/static/images/navigation/stories/sanfran-drawing.jpg" width="100%"/>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <div class="col-sm-6 hidden-xs">
                                     <div class="category-title"><fmt:message key="nav_stores_nearby"/></div>
                                     <div class="f18">
                                         <div class="col-sm-4"><a href="#"><fmt:message key="nav_stores_china"/></a></div>
@@ -169,13 +202,13 @@
                                         <div class="col-sm-4"><a href="#"><fmt:message key="nav_stores_russia"/></a></div>
                                     </div>
                                 </div>
-                                <div class="col-sm-3 unit-box pl10">
+                                <div class="col-sm-3 unit-box pl10 hidden-xs">
                                     <div class="category-title"><fmt:message key="nav_stores_open_shanghai"/></div>
-                                    <a href="#">
+                                    <a href="#" class="category-item">
                                         <img src="/static/images/navigation/stories/shanghai-opened.jpg" width="100%"/>
                                     </a>
                                 </div>
-                                <div class="col-sm-3 unit-box pl10">
+                                <div class="col-sm-3 unit-box pl10 hidden-xs">
                                     <div class="category-title"><fmt:message key="nav_stores_open_san_francisco"/></div>
                                     <a href="#">
                                         <img src="/static/images/navigation/stories/sanfran-drawing.jpg" width="100%"/>
@@ -191,18 +224,18 @@
                         <div class="nav-menu">
                             <div class="nav-menu-wrap container-fluid">
                                 <div class="col-sm-6">
-                                    <div class="category-title"><fmt:message key="nav_company_about"/></div>
+                                    <div class="category-title hidden-xs"><fmt:message key="nav_company_about"/></div>
                                     <ul class="list-unstyled category-list">
                                         <li class="category-item"><a href="/media"><fmt:message key="nav_company_media"/></a></li>
                                         <li class="category-item"><a href="/enterprise/franchise"><fmt:message key="nav_company_franchise"/></a></li>
                                         <li class="category-item"><a href="/news"><fmt:message key="nav_company_news"/></a></li>
                                         <li class="category-item"><a href="/enterprise/career"><fmt:message key="nav_company_career"/></a></li>
                                         <li class="category-item"><a href="/enterprise/about"><fmt:message key="nav_company_about_us"/></a></li>
-                                        <li class="category-item"><a href="/enterprise/contact"><fmt:message key="nav_company_contact"/></a></li>
+                                        <li class="category-item last"><a href="/enterprise/contact"><fmt:message key="nav_company_contact"/></a></li>
                                     </ul>
                                 </div>
-                                <div class="col-sm-3">
-                                    <div class="category-title"><fmt:message key="nav_company_contact"/></div>
+                                <div class="col-sm-3 hidden-xs">
+                                    <div class="category-title hidden-xs"><fmt:message key="nav_company_contact"/></div>
                                     <ul class="list-unstyled category-list">
                                         <li class="category-item">
                                             <small><fmt:message key="nav_company_contact_text1"/></small>
@@ -221,8 +254,8 @@
                                         </li>
                                     </ul>
                                 </div>
-                                <div class="col-sm-3">
-                                    <div class="category-title"><fmt:message key="nav_company_contact_text4"/></div>
+                                <div class="col-sm-3 hidden-xs">
+                                    <div class="category-title hidden-xs"><fmt:message key="nav_company_contact_text4"/></div>
                                     <div>
                                         <p><fmt:message key="nav_company_contact_text5"/></p>
                                         <a class="unit-link mt10" href="#"><fmt:message key="nav_company_contact_text6"/></a>
@@ -264,7 +297,7 @@
                                             </c:forEach>
                                         </select>
                                     </div>
-                                    <a class="unit-link ml10" href="javascript:selectLang()"><fmt:message key="choose_language_button"/></a>
+                                    <a class="unit-link ml10 text-center" href="javascript:selectLang()"><fmt:message key="choose_language_button"/></a>
                                 </div>
                             </div>
                         </div>
@@ -274,12 +307,14 @@
 
                         <div class="nav-menu">
                             <div class="nav-menu-wrap container-fluid">
-                                <input type="text" class="custom-text" placeholder="<fmt:message key="nav_search_text"/>"/>
-                                <a class="unit-link ml10" href="#"><fmt:message key="nav_search_btn"/></a>
+                                <div class="input-group">
+                                    <input type="text" class="custom-text" placeholder="<fmt:message key="nav_search_text"/>"/>
+                                    <a class="unit-link ml10 text-center" href="#"><fmt:message key="nav_search_btn"/></a>
+                                </div>
                             </div>
                         </div>
                     </li>
-                    <li><a href="#" id="btnAccount" class="icon-suiticon icon-suiticon-user-2"></a></li>
+                    <li class="hidden-xs"><a href="#" class="btnAccount icon-suiticon icon-suiticon-user-2"></a></li>
                     <%--<li><a href="#" class="icon-suiticon icon-suiticon-cart-2"></a></li>--%>
                 </ul>
             </div>

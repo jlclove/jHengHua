@@ -111,6 +111,11 @@ header a:hover {
     border-bottom: 1px solid #d9d9d9;
     opacity: 0;
 }
+@media (max-width: 768px) {
+    .nav-menu-wrap {
+        padding: 0;
+    }
+}
 .nav-menu-wrap.active {
     opacity: 1;
 }
@@ -150,6 +155,7 @@ header a:hover {
     .navbar-default .navbar-nav>li>a {
         max-width: initial;
         padding-left: 30px;
+        border-bottom: 1px solid #ccc;
     }
     .navbar-collapse {
         overflow-y: scroll;
@@ -196,6 +202,25 @@ header a:hover {
     display: inline-block;
     width: 50%;
     font-size: 18px;
+}
+@media (max-width: 768px) {
+    .category-item,
+    .category-item-fluid{
+        width: 100%;
+        display: block;
+        padding: 0 30px;
+    }
+    .category-item.last a{
+        border-bottom-width: 0;
+    }
+    .category-item a {
+        display: block;
+        padding: 15px;
+        border-bottom: 1px solid #d9d9d9;
+    }
+    .nav-menu-wrap .category-item:last-child:not(.hidden-xs) a {
+        /*border-bottom-width: 0;*/
+    }
 }
 .category-item-fluid {
     width: 100%;
@@ -315,4 +340,35 @@ header a:hover {
     padding: 10px 35px 10px 15px;
     border-radius: 0;
     margin-bottom: -5px;
+}
+
+.navbar-fixed-bottom .navbar-collapse, .navbar-fixed-top .navbar-collapse {
+    max-height: 400px;
+}
+@media (max-width: 768px) {
+    .nav-menu-wrap .input-group{
+        display: block;
+        padding: 10px 30px;
+    }
+    .nav-menu-wrap .input-group > span{
+        height: 44px;
+        line-height: 44px;
+        display: inline-block;
+    }
+    .nav-menu .custom-select {
+        width: 40%;
+        float: right;
+    }
+    .nav-menu .unit-link {
+        margin-top: 15px;
+        margin-left: 0!important;
+        display: block;
+    }
+    .navbar-nav {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+    .nav-menu .custom-text {
+        width: 100%;
+    }
 }

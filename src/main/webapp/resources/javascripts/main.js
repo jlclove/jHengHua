@@ -21,7 +21,7 @@
 })(window, $);
 
 //login
-$('#btnAccount').on('click', function(e){
+$('.btnAccount').on('click', function(e){
     e.preventDefault();
     $('#popModal').modal('show');
 });
