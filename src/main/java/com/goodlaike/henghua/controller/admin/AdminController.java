@@ -6,6 +6,7 @@ import com.goodlaike.business.news.config.NewsConfig;
 import com.goodlaike.henghua.controller.BaseController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -49,12 +50,14 @@ public class AdminController extends BaseController {
     }
 
     @RequestMapping({"/", "","/news"})
-    protected String news() {
+    protected String news(Model model) {
+        model.addAttribute(pageName, "news");
         return "/admin/news";
     }
 
     @RequestMapping("/medias")
-    protected String medias() {
+    protected String medias(Model model) {
+        model.addAttribute(pageName, "medias");
         return "/admin/medias";
     }
 }

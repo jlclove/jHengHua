@@ -14,6 +14,9 @@ import com.goodlaike.business.core.support.LanguageStore;
  * @author jail
  */
 public abstract class BaseController {
+
+    protected String pageName = "pageName";
+
     @ModelAttribute("languages")
     protected HashMap<String, String> initLanguages() {
         return LanguageStore.getLanguages();

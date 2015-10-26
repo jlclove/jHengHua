@@ -28,8 +28,6 @@ public class IndexController  extends BaseController{
     @Autowired
     NewsService newsService;
 
-    private String pageName = "pageName";
-
     @RequestMapping("/")
     protected String index() {
         return "index";
