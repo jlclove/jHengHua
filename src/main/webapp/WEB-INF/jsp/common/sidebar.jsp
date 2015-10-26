@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ include file="include.jsp"%>
 <fmt:bundle basename="site">
-<ul class="sidebar">
+<ul class="sidebar hidden-xs">
     <li>
         <a href="/media" <c:if test="${pageName==\"media\"}">class="selected"</c:if>><fmt:message key="nav_company_media"/></a>
     </li>

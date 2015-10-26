@@ -16,15 +16,19 @@
     <div class="content container sample-detail-page">
         <div class="row">
             <div class="col-sm-8">
-                <span class="f14"><fmt:message key="product_sample_cardId"/>:</span>
-                <i class="f_large ml20 c_black fb">${sampleDetail.cardId}</i>
-                <span class="f14 ml30"><fmt:message key="product_sample_marterial"/>:</span>
-                <span class="f20 ml20">${sampleDetail.material}</span>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <span class="f14"><fmt:message key="product_sample_cardId"/>:</span>
+                        <i class="f_large ml20 c_black fb">${sampleDetail.cardId}</i>
+                    </div>
+                    <div class="col-sm-6">
+                        <span class="f14"><fmt:message key="product_sample_marterial"/>:</span>
+                        <span class="f20 ml20">${sampleDetail.material}</span>
+                    </div>
+                </div>
             </div>
             <div class="col-sm-4 text-right" id="qrcode">
             </div>
-        </div>
-        <div class="row">
             <div class="col-sm-8">
                 <span class="f14"><fmt:message key="product_sample_width"/>:</span>
                 <span class="f20 ml20">57/58"</span>

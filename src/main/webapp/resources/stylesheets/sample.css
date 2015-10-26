@@ -100,7 +100,6 @@ div[class*=col-].product-item>img {
 }
 @media (max-width: 768px) {
     .product-item img {
-        max-width: 200px;
         margin-right: 50px;
     }
 }
@@ -234,6 +233,19 @@ div[class*=col-].product-item>img {
     padding-top: 80px;
     padding-bottom: 20px;
     background-color: #f5f5f5;
+}
+@media (max-width: 768px) {
+    .sample-detail-page {
+        padding-left: 15px;
+    }
+    .sample-detail-page .row {
+        position: relative;
+    }
+    .sample-detail-page #qrcode {
+        position: absolute;
+        top:0;
+        right:0;
+    }
 }
 .washing-container img {
     width: 25px;

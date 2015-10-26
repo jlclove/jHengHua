@@ -38,7 +38,7 @@
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed left" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+                <button id="top-nav" type="button" class="navbar-toggle collapsed left" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
                         id="collapse-left">
                     <i class="icon-suiticon icon-suiticon-menu-1"></i>
                 </button>
@@ -333,87 +333,58 @@
     <%--</div>--%>
 </header>
 <div class="float-bg animated"></div>
-<%-- <div class="mobile-menu animated">
-    <i class="icon-suiticon icon-suiticon-delete-1"></i>
-
-    <div class="mobile-menu-content">
-        <p>hello</p>
-
-        <p>hello</p>
-
-        <p>hello</p>
-
-        <p>hello</p>
-
-        <p>hello</p>
-
-        <p>hello</p>
-
-        <p>hello</p>
-
-        <p>hello</p>
-
-        <p>hello</p>
-
-        <p>hello</p>
-
-        <p>hello</p>
-
-        <p>hello</p>
-    </div>
-</div> --%>
 <!-- Modal login-->
 <div class="pop-modal login-modal modal fade" id="popModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-body" id="loginBody">
                 <div class="clearfix mb10">
-                    <span class="f20 c_black pull-left">用户登录</span>
-                    <span class="pull-right">还没有账号？<a href="#" class="red loginOrRegist">马上注册</a></span>
+                    <span class="f20 c_black pull-left"><fmt:message key="login_title"/></span>
+                    <span class="pull-right"><fmt:message key="login_no_account"/><a href="#" class="red loginOrRegist"><fmt:message key="login_regist"/></a></span>
                 </div>
                 <div class="error-msg alert alert-danger alert-dismissible fade in" role="alert">
                     <%--<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>--%>
-                    账号或密码不正确，请重新输入
+                    <fmt:message key="login_failed"/>
                 </div>
                 <form class="mt20" id="loginForm">
                     <div class="form-group with-icon">
                         <i class="fa fa-mobile"></i>
-                        <input type="text" class="form-control" name="userId" placeholder="请输入用户名">
+                        <input type="text" class="form-control" name="userId" placeholder="<fmt:message key="login_userid_hint"/>">
                     </div>
                     <div class="form-group with-icon">
                         <i class="fa fa-lock"></i>
-                        <input type="password" class="form-control" name="password" placeholder="请输入登录密码">
+                        <input type="password" class="form-control" name="password" placeholder="<fmt:message key="login_pwd_hint"/>">
                     </div>
                     <div class="checkbox">
                         <label>
-                            <input type="checkbox"> 下次自动登录
+                            <input type="checkbox"> <fmt:message key="login_auto_submit"/>
                         </label>
-                        <a href="#" class="pull-right">找回密码</a>
+                        <a href="#" class="pull-right"><fmt:message key="login_forgot"/></a>
                     </div>
-                    <button id="btn-login" class="btn btn-success btn-large btn-block" type="submit" data-loading-text="登录中...">立即登录</button>
+                    <button id="btn-login" class="btn btn-success btn-large btn-block" type="submit" data-loading-text="<fmt:message key="login_doing"/>"><fmt:message key="login_go"/></button>
                 </form>
             </div>
 
             <div class="modal-body" id="registBody" style="display: none">
                 <div class="clearfix mb10">
-                    <span class="f20 c_black pull-left">新用户注册</span>
-                    <span class="pull-right">已有账号？<a href="#" class="red loginOrRegist">马上登录</a></span>
+                    <span class="f20 c_black pull-left"><fmt:message key="regist_title"/></span>
+                    <span class="pull-right"><fmt:message key="regist_has_account"/><a href="#" class="red loginOrRegist"><fmt:message key="regist_login"/></a></span>
                 </div>
                 <div class="error-msg alert alert-danger alert-dismissible fade in" role="alert"></div>
                 <form class="mt20" id="registForm">
                     <div class="form-group">
-                        <input type="text" class="form-control" name="mobilePhone" placeholder="请输入手机号码">
+                        <input type="text" class="form-control" name="mobilePhone" placeholder="<fmt:message key="regist_mobile_hint"/>">
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" name="nickname" placeholder="昵称">
+                        <input type="text" class="form-control" name="nickname" placeholder="<fmt:message key="regist_nickname_hint"/>">
                     </div>
                     <div class="form-group">
-                        <input type="password" class="form-control" name="password" placeholder="请输入密码">
+                        <input type="password" class="form-control" name="password" placeholder="<fmt:message key="regist_pwd_hint"/>">
                     </div>
                     <div class="form-group">
-                        <input type="password" class="form-control" name="password2" placeholder="请确认新密码">
+                        <input type="password" class="form-control" name="password2" placeholder="<fmt:message key="regist_pwd_again_hint"/>">
                     </div>
-                    <button id="btn-regist" class="btn btn-success btn-large btn-block" data-loading-text="注册中..."type="submit">立即注册</button>
+                    <button id="btn-regist" class="btn btn-success btn-large btn-block" data-loading-text="<fmt:message key="regist_doing"/>"type="submit"><fmt:message key="regist_go"/></button>
                 </form>
             </div>
         </div>

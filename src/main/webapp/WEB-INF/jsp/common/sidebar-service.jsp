@@ -8,9 +8,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ include file="include.jsp"%>
 <fmt:bundle basename="site">
-<ul class="sidebar">
+<ul class="sidebar hidden-xs">
     <li>
-        <a href="/service/tailor" <c:if test="${pageName==\"tailor\"}">class="selected"</c:if>><fmt:message key="nav_service_tailor"/></a>
+        <a href="/service/tailor" <c:if test="${pageName==\"tailor\"}">class="selected"</c:if>>
+            <fmt:message key="nav_service_tailor"/>
+        </a>
     </li>
     <li>
         <a href="/service/payment" <c:if test="${pageName==\"payment\"}">class="selected"</c:if>><fmt:message key="nav_service_payment"/></a>

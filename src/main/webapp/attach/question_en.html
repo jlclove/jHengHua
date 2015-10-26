@@ -35,13 +35,20 @@
             display: none;
         }
         .accordion-group li .state {
-            float: right;
-            margin-right: 10px;
+            position: absolute;
+            right: 10px;
+            z-index: 10;
+            top: 0;
         }
         .accordion-group li a {
             height: 40px;
             line-height: 40px;
             display: block;
+            text-overflow: ellipsis;
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+            padding-right: 26px;
         }
         .accordion-group.panel-group {
             border-top: 1px solid #ccc;;

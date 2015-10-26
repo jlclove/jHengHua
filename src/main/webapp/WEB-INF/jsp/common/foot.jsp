@@ -168,6 +168,12 @@
         }
 
     });
+
+    $(document).on('click', function(e){
+        if(!$(e.target).is('#top-nav') && $(e.target).closest('.navbar-collapse').length == 0){
+            $('#bs-example-navbar-collapse-1').collapse('hide');
+        }
+    });
 </script>
 
 <c:forTokens items="${param.js}" delims="," var="file">

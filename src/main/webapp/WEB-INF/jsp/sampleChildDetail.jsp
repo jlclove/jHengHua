@@ -15,8 +15,8 @@
 <div class="sample-detail-bg">
     <div class="content container sample-detail-page">
         <div class="row">
-            <div class="col-md-6">
-                <img src="http://www.jshenghua.com:82/Detail/${sampleDetail.picPath}" class="img-responsive"/>
+            <div class="col-md-6 mb20">
+                <img src="http://www.jshenghua.com:82/Detail/${sampleDetail.picPath}" class="img-responsive" width="100%"/>
             </div>
             <div class="col-md-6 f16">
                 <form class="form-horizontal">
