@@ -16,4 +16,15 @@
 <c:forTokens items="${param.js}" delims="," var="file">
     <script type="text/javascript" src="/static/${file}.js"></script>
 </c:forTokens>
+<script type="text/javascript">
+    function selectLang(lang){
+        $.ajax({
+            url: '/business/core/localization?lang=' + lang,
+            method: 'put',
+            success: function(){
+                window.location.reload();
+            }
+        });
+    }
+</script>
 </html>

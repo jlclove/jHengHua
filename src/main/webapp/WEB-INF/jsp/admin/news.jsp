@@ -10,7 +10,19 @@
 <jsp:include page="common/head.jsp"/>
 <div class="container">
     <div class="clearfix">
-        <h4 class="pull-left">新闻列表</h4>
+        <h4 class="pull-left">新闻列表
+            <div class="dropdown" style="display: inline-block;margin-left: 10px;">
+                <button class="btn btn-sm btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                    ${languages[lang]}
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                    <c:forEach items="${languages}" var="language">
+                        <li><a href="javascript:selectLang('${language.key}')">${language.value}</a></li>
+                    </c:forEach>
+                </ul>
+            </div>
+        </h4>
         <button class="btn btn-primary pull-right" data-toggle="modal" data-target="#addNewsModal">
             <i class="glyphicon glyphicon-plus"></i> 创建</button>
     </div>
