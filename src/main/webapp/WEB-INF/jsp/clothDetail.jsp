@@ -15,7 +15,7 @@
 <div class="content container mt20">
     <h3 class="c_black">${cloth.name}</h3>
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-6 mb20">
             <img src="http://www.jshenghua.com:82/Detail/${cloth.image}" class="img-responsive" width="100%"/>
         </div>
         <div class="col-md-6 f16">
