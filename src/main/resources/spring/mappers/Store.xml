@@ -1,0 +1,154 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Store">
+	<insert id="insertAndReturnId" parameterType="store">
+		INSERT INTO `store_cn`
+		(
+		`countryId`,
+		`storeName`,
+		`address`,
+		`province`,
+		`zipCode`,
+		`phone`,
+		`picPath`,
+		`workTime1`,
+		`workTime2`,
+		`workTime3`,
+		`workTime4`,
+		`workTime5`,
+		`workTime6`,
+		`workTime7`,
+		`createUserId`,
+		`updateUserId`)
+		VALUES
+		(
+		#{countryId},
+		#{storeName},
+		#{address},
+		#{province},
+		#{zipCode},
+		#{phone},
+		#{picPath},
+		#{workTime1},
+		#{workTime2},
+		#{workTime3},
+		#{workTime4},
+		#{workTime5},
+		#{workTime6},
+		#{workTime7},
+		#{createUserId},
+		#{createUserId});
+		<selectKey keyProperty="id" resultType="int">
+			select @@IDENTITY
+		</selectKey>
+	</insert>
+
+	<!-- 填充扩展门店 -->
+	<insert id="insertOthers" parameterType="map">
+		<foreach collection="langs" item="lang">
+			INSERT INTO store_${lang}
+			(
+			`id`,
+			`storeName`,
+			`address`,
+			`province`
+			)
+			VALUES
+			(
+			#{id},
+			'',
+			'',
+			''
+			);
+		</foreach>
+	</insert>
+
+	<!-- 根据id获得门店 -->
+	<select id="findById" resultType="vStore" parameterType="map">
+		select *
+		from
+		v_store_${lang}
+		where id = #{id}
+	</select>
+
+	<!-- 修改默认表数据 -->
+	<update id="updateDefault" parameterType="store">
+		UPDATE `store_cn`
+		SET
+		`countryId` = #{countryId},
+		`storeName` = #{storeName},
+		`address` =
+		#{address},
+		`province` = #{province},
+		`zipCode` = #{zipCode},
+		`phone` =
+		#{phone},
+		`picPath` = #{picPath},
+		`workTime1` = #{workTime1},
+		`workTime2` = #{workTime2},
+		`workTime3` = #{workTime3},
+		`workTime4` =
+		#{workTime4},
+		`workTime5` = #{workTime5},
+		`workTime6` = #{workTime6},
+		`workTime7` = #{workTime7},
+		`updateUserId` = #{updateUserId},
+		`updateTime` = now()
+		WHERE `id` = #{id};
+	</update>
+
+	<!-- 修改中文表数据 -->
+	<update id="updateCn" parameterType="store">
+		UPDATE `store_cn`
+		SET
+		`countryId` = #{countryId},
+		`zipCode` = #{zipCode},
+		`phone` =
+		#{phone},
+		`picPath` = #{picPath},
+		`workTime1` = #{workTime1},
+		`workTime2` =
+		#{workTime2},
+		`workTime3` = #{workTime3},
+		`workTime4` =
+		#{workTime4},
+		`workTime5` = #{workTime5},
+		`workTime6` = #{workTime6},
+		`workTime7` =
+		#{workTime7},
+		`updateUserId` = #{updateUserId},
+		`updateTime` = now()
+		WHERE `id` = #{id};
+	</update>
+
+	<!-- 修改其他语言的门店数据 -->
+	<update id="updateOther" parameterType="map">
+		UPDATE `store_${lang}`
+		SET
+		`storeName` = #{store.storeName},
+		`address` = #{store.address},
+		`province` =
+		#{store.province}
+		WHERE `id` = #{store.id};
+	</update>
+
+	<!-- 逻辑删除门店 -->
+	<update id="delete" parameterType="map">
+		update store_cn
+		set `status` =
+		9,
+		`updateUserId` = #{userId},
+		`updateTime` = now()
+		where id = #{id}
+	</update>
+
+	<!-- 根据国家ID获得门店列表 -->
+	<select id="findStoreListByCountryId" parameterType="map"
+		resultType="vStore">
+		select *
+		from
+		v_store_${lang}
+		where countryId = #{countryId}
+	</select>
+</mapper>

@@ -44,6 +44,10 @@ public class Store implements Serializable {
      */
     private String phone;
     /**
+     * 背景图相对地址
+     */
+    private String picPath;
+    /**
      * 工作时间1， 格式 10:00-21:00
      */
     private String workTime1;
@@ -72,9 +76,13 @@ public class Store implements Serializable {
      */
     private String workTime7;
     /**
+     * 门店状态 0：正常 9：删除
+     */
+    private byte status;
+    /**
      * 创建人ID
      */
-    private int creator;
+    private int createUserId;
     /**
      * 创建时间
      */
@@ -82,7 +90,7 @@ public class Store implements Serializable {
     /**
      * 更新人ID
      */
-    private int updator;
+    private int updateUserId;
     /**
      * 更新时间
      */
@@ -222,6 +230,25 @@ public class Store implements Serializable {
     }
 
     /**
+     * 获得 picPath
+     * 
+     * @return String
+     */
+    public String getPicPath() {
+        return picPath;
+    }
+
+    /**
+     * 设置 picPath
+     * 
+     * @param picPath
+     *            String
+     */
+    public void setPicPath(String picPath) {
+        this.picPath = picPath;
+    }
+
+    /**
      * 获得 workTime1
      * 
      * @return String
@@ -355,22 +382,41 @@ public class Store implements Serializable {
     }
 
     /**
-     * 获得 creator
+     * 获得 status
+     * 
+     * @return byte
+     */
+    public byte getStatus() {
+        return status;
+    }
+
+    /**
+     * 设置 status
+     * 
+     * @param status
+     *            byte
+     */
+    public void setStatus(byte status) {
+        this.status = status;
+    }
+
+    /**
+     * 获得 createUserId
      * 
      * @return int
      */
-    public int getCreator() {
-        return creator;
+    public int getCreateUserId() {
+        return createUserId;
     }
 
     /**
      * 设置 creator
      * 
-     * @param creator
+     * @param createUserId
      *            int
      */
-    public void setCreator(int creator) {
-        this.creator = creator;
+    public void setCreateUserId(int createUserId) {
+        this.createUserId = createUserId;
     }
 
     /**
@@ -393,22 +439,22 @@ public class Store implements Serializable {
     }
 
     /**
-     * 获得 updator
+     * 获得 updateUserId
      * 
      * @return int
      */
-    public int getUpdator() {
-        return updator;
+    public int getUpdateUserId() {
+        return updateUserId;
     }
 
     /**
-     * 设置 updator
+     * 设置 updateUserId
      * 
-     * @param updator
+     * @param updateUserId
      *            int
      */
-    public void setUpdator(int updator) {
-        this.updator = updator;
+    public void setUpdateUserId(int updateUserId) {
+        this.updateUserId = updateUserId;
     }
 
     /**
@@ -438,9 +484,11 @@ public class Store implements Serializable {
     @Override
     public String toString() {
         return "Store [id=" + id + ", countryId=" + countryId + ", storeName=" + storeName + ", address=" + address
-                + ", province=" + province + ", zipCode=" + zipCode + ", phone=" + phone + ", workTime1=" + workTime1
-                + ", workTime2=" + workTime2 + ", workTime3=" + workTime3 + ", workTime4=" + workTime4 + ", workTime5="
-                + workTime5 + ", workTime6=" + workTime6 + ", workTime7=" + workTime7 + ", creator=" + creator
-                + ", createTime=" + createTime + ", updator=" + updator + ", updateTime=" + updateTime + "]";
+                + ", province=" + province + ", zipCode=" + zipCode + ", phone=" + phone + ", picPath=" + picPath
+                + ", workTime1=" + workTime1 + ", workTime2=" + workTime2 + ", workTime3=" + workTime3 + ", workTime4="
+                + workTime4 + ", workTime5=" + workTime5 + ", workTime6=" + workTime6 + ", workTime7=" + workTime7
+                + ", status=" + status + ", createUserId=" + createUserId + ", createTime=" + createTime + ", updateUserId="
+                + updateUserId + ", updateTime=" + updateTime + "]";
     }
+
 }

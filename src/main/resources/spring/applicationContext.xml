@@ -119,11 +119,11 @@
 	</bean>
 
 	<!-- 配置事务管理器，注意这里的dataSource和SqlSessionFactoryBean的dataSource要一致，不然事务就没有作用了 -->
-	<bean id="transactionManager"
+	<bean id="transactionManagerDefault"
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="goodlaikeDataSource" />
 	</bean>
-	<tx:annotation-driven transaction-manager="transactionManager" />
+	<tx:annotation-driven transaction-manager="transactionManagerDefault" />
 
 	<!-- 自定义日期转换 ，支持 long 与 yyyy-MM-dd HH:mm:ss -->
 	<bean id="conversionService"

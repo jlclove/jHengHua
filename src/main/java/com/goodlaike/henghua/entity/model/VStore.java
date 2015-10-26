@@ -1,5 +1,7 @@
 package com.goodlaike.henghua.entity.model;
 
+import org.apache.ibatis.type.Alias;
+
 /**
  * Store 的子类 <br>
  * 包含 countryName
@@ -7,6 +9,7 @@ package com.goodlaike.henghua.entity.model;
  * @author jail
  *
  */
+@Alias("vStore")
 public class VStore extends Store {
 
     private static final long serialVersionUID = -7671320365416604624L;

@@ -22,11 +22,11 @@ import com.goodlaike.henghua.entity.model.Country;
  * 
  * @author jail
  */
-public final class StoreCityStore extends HashMap<String, List<Country>> {
+public final class StoreCountryStore extends HashMap<String, List<Country>> {
 
     private static final long serialVersionUID = -5572768972086381788L;
 
-    private static StoreCityStore store;
+    private static StoreCountryStore store;
 
     /**
      * 单例
@@ -34,11 +34,11 @@ public final class StoreCityStore extends HashMap<String, List<Country>> {
      * @return
      * @author jail
      */
-    private static synchronized StoreCityStore getInstance() {
+    private static synchronized StoreCountryStore getInstance() {
         if (store == null) {
             try {
-                store = new StoreCityStore();
-                File file = new File(StoreCityStore.class.getClassLoader().getResource("store_countries.js").toURI());
+                store = new StoreCountryStore();
+                File file = new File(StoreCountryStore.class.getClassLoader().getResource("store_countries.js").toURI());
                 FileInputStream is = new FileInputStream(file);
                 InputStreamReader r = new InputStreamReader(is);
                 BufferedReader bufferedReader = new BufferedReader(r);
@@ -84,7 +84,7 @@ public final class StoreCityStore extends HashMap<String, List<Country>> {
      * @author jail
      */
     public static List<Country> getCountryList(String lang) {
-        return StoreCityStore.getInstance().get(lang);
+        return StoreCountryStore.getInstance().get(lang);
     }
 
     /**
