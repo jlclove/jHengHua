@@ -1,0 +1,14 @@
+<%_.forEach(list, function(stores){%>
+<tr>
+    <td><%=stores.id%></td>
+    <td><%=stores.storeName%></td>
+    <td><%=stores.address%></td>
+    <td><%=stores.province%></td>
+    <td><%=stores.zipCode%></td>
+    <td><%=stores.phone%></td>
+    <td>
+        <a href="#" class="mr10 stores_edit" data-id="<%=stores.id%>" data-toggle="modal" data-target="#addStoresModal">编辑</a>
+        <a href="#" class="mr10 stores_delete" data-id="<%=stores.id%>">删除</a>
+    </td>
+</tr>
+<%})%>

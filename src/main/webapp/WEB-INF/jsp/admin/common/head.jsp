@@ -42,6 +42,12 @@
                             </c:when>
                             <c:otherwise><li><a href="/admin/medias">媒体</a></li></c:otherwise>
                         </c:choose>
+                        <c:choose>
+                            <c:when test="${pageName=='stores'}">
+                                <li class="active"><a href="/admin/stores">门店</a></li>
+                            </c:when>
+                            <c:otherwise><li><a href="/admin/stores">门店</a></li></c:otherwise>
+                        </c:choose>
                     </ul>
                 </c:if>
                 <ul class="nav navbar-nav navbar-right">

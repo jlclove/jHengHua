@@ -60,6 +60,8 @@ function initView(){
         }
     }).on('hide.bs.modal', function(){
         $('#form')[0].reset();
+        $('#pics').val('');
+        $('#filename').text('');
         ue.setContent('');
     });
 

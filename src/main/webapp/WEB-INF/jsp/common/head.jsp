@@ -178,9 +178,9 @@
                         <div class="nav-menu">
                             <div class="nav-menu-wrap container-fluid">
                                 <ul class="list-unstyled category-list visible-xs f18">
-                                    <li class="category-item"><a href="#"><fmt:message key="nav_stores_china"/></a></li>
-                                    <li class="category-item"><a href="#"><fmt:message key="nav_stores_italy"/></a></li>
-                                    <li class="category-item"><a href="#"><fmt:message key="nav_stores_russia"/></a></li>
+                                    <c:forEach items="${countries}" var="country">
+                                        <li class="category-item"><a href="/stores?countryId=${country.id}">${country.name}</a></li>
+                                    </c:forEach>
                                     <li class="category-item">
                                         <a href="#" class="category-item">
                                             <div class="category-title"><fmt:message key="nav_stores_open_shanghai"/></div>
@@ -197,9 +197,9 @@
                                 <div class="col-sm-6 hidden-xs">
                                     <div class="category-title"><fmt:message key="nav_stores_nearby"/></div>
                                     <div class="f18">
-                                        <div class="col-sm-4"><a href="#"><fmt:message key="nav_stores_china"/></a></div>
-                                        <div class="col-sm-4"><a href="#"><fmt:message key="nav_stores_italy"/></a></div>
-                                        <div class="col-sm-4"><a href="#"><fmt:message key="nav_stores_russia"/></a></div>
+                                        <c:forEach items="${countries}" var="country">
+                                        <div class="col-sm-4"><a href="/stores?countryId=${country.id}">${country.name}</a></div>
+                                        </c:forEach>
                                     </div>
                                 </div>
                                 <div class="col-sm-3 unit-box pl10 hidden-xs">

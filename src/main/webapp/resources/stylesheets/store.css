@@ -1,0 +1,32 @@
+.store-page {
+    margin-top: 60px;
+    padding-top: 30px;
+    padding-bottom: 60px;
+    min-height: 500px;
+}
+.wrapper {
+    max-width: 1440px;
+}
+.store-info {
+    position: relative;
+}
+.arrow-left {
+    background-image: url(/static/images/arrow-left.png);
+    background-position: left center;
+    background-repeat: no-repeat;
+    padding-left: 10px;
+}
+.store-info .overlay {
+    position: absolute;
+    background: #fff;
+    padding: 8px 16px;
+    top: 15px;
+    left: 40px;
+    min-width: 360px;
+    bottom: 15px;
+}
+@media (max-width: 768px) {
+    .store-info .overlay {
+        position: static;
+    }
+}

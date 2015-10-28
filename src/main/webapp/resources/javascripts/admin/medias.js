@@ -61,6 +61,8 @@ function initView(){
     }).on('hide.bs.modal', function(){
         $('#form')[0].reset();
         $('#id').val('');
+        $('#pics').val('');
+        $('#filename').text('');
         ue.setContent('');
     });
 
@@ -122,14 +124,6 @@ function initView(){
                 });
             }
         }
-    });
-    $('#pics').on('change', function(e){
-        console.log(this.files);
-        $.ajax({
-            url: '/business/file',
-            enctype : "multipart/form-data",
-            data: 'file=file'
-        });
     });
 
     // 初始化上传组件

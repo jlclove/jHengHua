@@ -2,6 +2,9 @@ package com.goodlaike.henghua.controller;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.goodlaike.henghua.config.StoreCountryStore;
+import com.goodlaike.henghua.entity.model.Store;
+import com.goodlaike.henghua.service.StoreService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,6 +19,9 @@ import com.goodlaike.framework.dao.search.AbstractSearchFilter;
 import com.goodlaike.framework.dao.search.SearchFilter;
 import com.goodlaike.framework.dao.search.SearchType;
 import com.goodlaike.framework.dao.support.Pagination;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.List;
 
 /**
  * 
@@ -27,6 +33,9 @@ public class IndexController  extends BaseController{
 
     @Autowired
     NewsService newsService;
+
+    @Autowired
+    private StoreService storeService;
 
     @RequestMapping("/")
     protected String index() {
@@ -163,5 +172,29 @@ public class IndexController  extends BaseController{
     protected String term(){
         return "term";
     }
-    
+
+    /**
+     * 全球门店
+     * @return
+     */
+    @RequestMapping("stores")
+    protected String store(@RequestParam int countryId, HttpServletRequest request, Model model){
+        model.addAttribute("storeList", storeService.getStoreList(countryId, LanguageHelper.getLocalization(request)));
+        model.addAttribute("country", StoreCountryStore.getCountry(request, countryId));
+        return "stores";
+    }
+
+    /**
+     * 门店详情
+     * @return
+     */
+    @RequestMapping("stores/{storeId}")
+    protected String storeDetail(@PathVariable int storeId, HttpServletRequest request, Model model){
+        Store store = storeService.getStore(storeId, LanguageHelper.getLocalization(request));
+        if (store != null) {
+            model.addAttribute("store", storeService.getStore(storeId, LanguageHelper.getLocalization(request)));
+            model.addAttribute("country", StoreCountryStore.getCountry(request, store.getCountryId()));
+        }
+        return "storesDetail";
+    }
 }
