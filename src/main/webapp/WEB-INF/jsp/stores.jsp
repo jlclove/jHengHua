@@ -14,7 +14,6 @@
 <fmt:bundle basename="site">
 <div class="store-page container">
     <h3>商店地址</h3>
-    <input class="form-control" type="text" placeholder="<fmt:message key="store_hint"/>" style="width: 330px">
     <select class="form-control mt10" name="" id="" style="width: 330px;" onchange="javascript:window.location.href='/stores?countryId=' + this.value;">
         <c:forEach items="${countries}" var="cty">
             <option value="${cty.id}" <c:if test="${cty.id==country.id}">selected</c:if>  >${cty.name}</option>

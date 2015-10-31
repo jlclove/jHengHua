@@ -1,32 +1,48 @@
 .store-page {
-    margin-top: 60px;
-    padding-top: 30px;
-    padding-bottom: 60px;
-    min-height: 500px;
+	margin-top: 60px;
+	padding-top: 30px;
+	padding-bottom: 60px;
+	min-height: 500px;
 }
+
 .wrapper {
-    max-width: 1440px;
+	max-width: 1440px;
 }
+
 .store-info {
-    position: relative;
+	min-height: 500px;
+	margin: 0;
+	position: relative;
+	margin: 0 0 40px;
+	padding: 20px 0 20px 40px;
+	background-position: 0 0;
+	background-image: url(/static/images/tmp-store-big.jpg);
+	background-repeat: no-repeat;
+	background-size: auto 100%;
 }
+
 .arrow-left {
-    background-image: url(/static/images/arrow-left.png);
-    background-position: left center;
-    background-repeat: no-repeat;
-    padding-left: 10px;
+	background-image: url(/static/images/arrow-left.png);
+	background-position: left center;
+	background-repeat: no-repeat;
+	padding-left: 10px;
 }
+
 .store-info .overlay {
-    position: absolute;
-    background: #fff;
-    padding: 8px 16px;
-    top: 15px;
-    left: 40px;
-    min-width: 360px;
-    bottom: 15px;
+	min-height: 410px;
+	padding-bottom: 210px;
+	position: relative;
+	width: 380px;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+	padding: 20px;
+	background: white;
+	position: relative;
 }
-@media (max-width: 768px) {
-    .store-info .overlay {
-        position: static;
-    }
+
+@media ( max-width : 768px) {
+	.store-info .overlay {
+		position: static;
+	}
 }
