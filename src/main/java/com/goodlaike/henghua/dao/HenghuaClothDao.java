@@ -17,58 +17,58 @@ import com.goodlaike.henghua.entity.model.HenghuaCloth;
 @Lazy(true)
 public class HenghuaClothDao extends LocalRWDao<HenghuaCloth> {
 
-    /**
-     * 批量插入数据了，100条一次
-     * 
-     * @param clothList
-     * @since 1.0.0
-     * @author jail
-     * @createTime 2015年9月3日下午8:58:56
-     * @updator jail
-     * @updateTime 2015年9月3日下午8:58:56
-     */
-    public void batchReplaceInto(List<HenghuaCloth> clothList) {
-        List<HenghuaCloth> list = new ArrayList<>();
-        clothList.forEach(cloth -> {
-            cloth.setImage(cloth.getImage() + ".png");
-            list.add(cloth);
-            if (list.size() >= 100) {
-                super.insert("replaceSource", list);
-                list.clear();
-            }
-        });
-        if (list.size() > 0) {
-            super.insert("replaceSource", list);
-        }
-    }
+	/**
+	 * 批量插入数据了，100条一次
+	 * 
+	 * @param clothList
+	 * @since 1.0.0
+	 * @author jail
+	 * @createTime 2015年9月3日下午8:58:56
+	 * @updator jail
+	 * @updateTime 2015年9月3日下午8:58:56
+	 */
+	public void batchReplaceInto(List<HenghuaCloth> clothList) {
+		List<HenghuaCloth> list = new ArrayList<>();
+		clothList.forEach(cloth -> {
+			cloth.setImage(cloth.getImage() + ".png");
+			list.add(cloth);
+			if (list.size() >= 100) {
+				super.insert("replaceSource", list);
+				list.clear();
+			}
+		});
+		if (list.size() > 0) {
+			super.insert("replaceSource", list);
+		}
+	}
 
-    /**
-     * 获得下一页服装数据
-     * 
-     * @param id
-     * @return
-     * @since 1.0.0
-     * @author jail
-     * @createTime 2015年9月4日下午6:14:01
-     * @updator jail
-     * @updateTime 2015年9月4日下午6:14:01
-     */
-    public List<HenghuaCloth> findNextList(long id) {
-        return super.selectList("findNextList", id);
-    }
+	/**
+	 * 获得下一页服装数据
+	 * 
+	 * @param id
+	 * @return
+	 * @since 1.0.0
+	 * @author jail
+	 * @createTime 2015年9月4日下午6:14:01
+	 * @updator jail
+	 * @updateTime 2015年9月4日下午6:14:01
+	 */
+	public List<HenghuaCloth> findNextList(long id) {
+		return super.selectList("findNextList", id);
+	}
 
-    /**
-     * 获得服装详情
-     * 
-     * @param serialNo
-     * @return
-     * @since 1.0.0
-     * @author jail
-     * @createTime 2015年9月5日下午4:42:21
-     * @updator jail
-     * @updateTime 2015年9月5日下午4:42:21
-     */
-    public HenghuaCloth findCloth(String serialNo) {
-        return super.selectOne("findCloth", serialNo);
-    }
+	/**
+	 * 获得服装详情
+	 * 
+	 * @param serialNo
+	 * @return
+	 * @since 1.0.0
+	 * @author jail
+	 * @createTime 2015年9月5日下午4:42:21
+	 * @updator jail
+	 * @updateTime 2015年9月5日下午4:42:21
+	 */
+	public HenghuaCloth findCloth(String serialNo) {
+		return super.selectOne("findCloth", serialNo);
+	}
 }

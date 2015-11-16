@@ -43,8 +43,8 @@
                     <i class="icon-suiticon icon-suiticon-menu-1"></i>
                 </button>
                 <a class="navbar-brand" href="/">
-                    HENGHUA
-                    <%--<img alt="Brand" src="/static/images/logo.png">--%>
+                    <%-- HENGHUA --%>
+                    <img alt="Brand" src="/static/images/logo.jpg">
                 </a>
                 <button type="button" class="navbar-toggle collapsed right">
                     <a class="btnAccount icon-suiticon icon-suiticon-user-2"></a>

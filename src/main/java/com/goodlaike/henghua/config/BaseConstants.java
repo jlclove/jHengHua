@@ -26,13 +26,12 @@ public final class BaseConstants {
 	public static final String ENV_PRODUCTION = "production";
 
 	/**
-	 * mysql 新增字段和备注
-	 * eg:ALTER TABLE {表名 0} ADD COLUMN {字段1} {类型2} {(长度3)} {4是否必填} {DEFAULT 5}COMMENT '{备注信息6}' ;
+	 * mysql 新增字段和备注 eg:ALTER TABLE {表名 0} ADD COLUMN {字段1} {类型2} {(长度3)}
+	 * {4是否必填} {DEFAULT 5}COMMENT '{备注信息6}' ;
 	 */
 	public static final String MYSQL_ALTER_CREATE = "ALTER TABLE {0} ADD COLUMN {1} {2}{3} {4} {5} COMMENT '{6}' ";
 	/**
-	 * mysql 删除一列
-	 * eg:ALTER TABLE {表名} DROP COLUMN {字段名称}
+	 * mysql 删除一列 eg:ALTER TABLE {表名} DROP COLUMN {字段名称}
 	 */
 	public static final String MYSQL_ALTER_DROP = "ALTER TABLE {0} DROP COLUMN {1}";
 

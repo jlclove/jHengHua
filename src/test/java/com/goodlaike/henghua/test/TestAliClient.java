@@ -7,16 +7,17 @@ import com.goodlaike.henghua.protocal.AlipayClientManager;
 
 /**
  * AliClient 测试
+ * 
  * @author jail
  */
-public class TestAliClient extends TestBase{
+public class TestAliClient extends TestBase {
 
-    @Autowired
-    private AlipayClientManager alipayClientManager;
-    
-    @Test
-    public void test(){
-//        alipayClientManager.al();
-        System.out.println(alipayClientManager.getClient());
-    }
+	@Autowired
+	private AlipayClientManager alipayClientManager;
+
+	@Test
+	public void test() {
+		// alipayClientManager.al();
+		System.out.println(alipayClientManager.getClient());
+	}
 }

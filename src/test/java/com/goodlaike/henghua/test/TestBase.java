@@ -13,7 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(value = { "classpath:spring/applicationContext.xml" })
 @Rollback
-@Transactional(transactionManager="transactionManagerDefault")
+@Transactional(transactionManager = "transactionManagerDefault")
 public class TestBase {
 
 }

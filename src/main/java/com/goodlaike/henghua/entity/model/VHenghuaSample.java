@@ -12,15 +12,15 @@ import org.apache.ibatis.type.Alias;
 @Alias("vSample")
 public class VHenghuaSample extends HenghuaSample {
 
-    private static final long serialVersionUID = 5227356351542906864L;
+	private static final long serialVersionUID = 5227356351542906864L;
 
-    public List<HenghuaSampleDetail> detailList = new ArrayList<>();
+	public List<HenghuaSampleDetail> detailList = new ArrayList<>();
 
-    public List<HenghuaSampleDetail> getDetailList() {
-        return detailList;
-    }
+	public List<HenghuaSampleDetail> getDetailList() {
+		return detailList;
+	}
 
-    public void setDetailList(List<HenghuaSampleDetail> detailList) {
-        this.detailList = detailList;
-    }
+	public void setDetailList(List<HenghuaSampleDetail> detailList) {
+		this.detailList = detailList;
+	}
 }

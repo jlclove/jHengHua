@@ -14,18 +14,18 @@ import org.springframework.core.env.Environment;
 @PropertySource(name = "webSource", value = { "classpath:global.properties" })
 public class WebConfiguration {
 
-    @Autowired
-    Environment env;
+	@Autowired
+	Environment env;
 
-    public String getEnv() {
-        return env.getProperty("env");
-    }
+	public String getEnv() {
+		return env.getProperty("env");
+	}
 
-    public String getVersion() {
-        return env.getProperty("version");
-    }
-    
-    public boolean isDev(){
-        return this.getEnv().equals("development");
-    }
+	public String getVersion() {
+		return env.getProperty("version");
+	}
+
+	public boolean isDev() {
+		return this.getEnv().equals("development");
+	}
 }

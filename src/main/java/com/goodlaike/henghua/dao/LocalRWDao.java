@@ -13,8 +13,8 @@ import com.goodlaike.framework.dao.support.BaseRWDao;
  */
 public abstract class LocalRWDao<T> extends BaseRWDao<T> {
 
-    @Resource(name = "goodlaikeHenghuaSqlSessionFactory")
-    public void setSqlSessionFactory(SqlSessionFactory sqlSessionFactory) {
-        super.setSqlSessionFactory(sqlSessionFactory);
-    }
+	@Resource(name = "goodlaikeHenghuaSqlSessionFactory")
+	public void setSqlSessionFactory(SqlSessionFactory sqlSessionFactory) {
+		super.setSqlSessionFactory(sqlSessionFactory);
+	}
 }
