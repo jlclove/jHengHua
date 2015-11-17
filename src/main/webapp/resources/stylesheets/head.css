@@ -20,9 +20,9 @@ header a:hover {
 }
 .navbar-brand img {
     width: 120px;
-    width: 10rem;
+    width: 11.5rem;
     padding: 8px 0;
-    padding: 0.67rem 0;
+    padding: 0 0 1rem ;
     display: inline;
 }
 @media (max-width: 768px){

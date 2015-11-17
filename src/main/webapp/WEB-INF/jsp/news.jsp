@@ -54,7 +54,7 @@
                             <span class="arrow-right"><fmt:message key="news_more"/></span>
                         </a>
                     </div>
-                    <c:if test="${status.index < fn:length(newsList)}">
+                    <%-- <c:if test="${status.index < fn:length(newsList)}">
                         <div class="col-sm-6">
                             <c:choose>
                                 <c:when test="${not empty news.link}">
@@ -72,7 +72,7 @@
                                 <span class="arrow-right"><fmt:message key="news_more"/></span>
                             </a>
                         </div>
-                    </c:if>
+                    </c:if> --%>
                 </c:forEach>
                 </div>
             </div>
