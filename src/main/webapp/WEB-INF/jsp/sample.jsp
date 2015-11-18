@@ -59,4 +59,27 @@
 <jsp:include page="common/foot.jsp">
     <jsp:param name="js" value="javascripts/filter,javascripts/sample"/>
 </jsp:include>
+<script type ="text/javascript">
+	$(document).ready(function() {
+		
+		//alert('${indexType}');
+		if('${indexType}' == '1')
+			$('[name=singleCheck][value="原料,全棉"]').click();
+		if('${indexType}' == '2')
+			$('[name=singleCheck][value="原料,全毛"]').click();
+		if('${indexType}' == '3')
+			$('[name=singleCheck][value="原料,竹纤维"]').click();
+		if('${indexType}' == '4')
+			$('[name=singleCheck][value="原料,莫代尔"]').click();
+		if('${indexType}' == '5')
+			$('[name=singleCheck][value="织物名称,朝阳条格"]').click();
+		if('${indexType}' == '6')
+			$('[name=singleCheck][value="织物名称,牛津纺"]').click();
+		if('${indexType}' == '7')
+			$('[name=singleCheck][value="原料,全麻"]').click();
+		if('${indexType}' == '8')
+			$('[name=singleCheck][value="原料,真丝"]').click();
+	})
+</script>
+
 </fmt:bundle>

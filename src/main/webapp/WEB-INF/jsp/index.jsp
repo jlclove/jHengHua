@@ -23,7 +23,7 @@
         
         <div class="col-sm-3">
             <div class="unit-box">
-                <a href="#">
+                <a href="/product/sample?indexType=1">
                     <img src="/static/images/1-1.jpg"  width="100%" class="hidden-xs"/>
                     <img src="/static/images/mobile-1-1.jpg" width="100%" class="visible-xs"/>
                 </a>
@@ -38,7 +38,7 @@
 
         <div class="col-sm-3">
             <div class="unit-box">
-                <a href="#">
+                <a href="/product/sample?indexType=2">
                     <img src="/static/images/1-2.jpg"  width="100%" class="hidden-xs"/>
                     <img src="/static/images/mobile-1-2.jpg" width="100%" class="visible-xs"/>
                 </a>
@@ -53,7 +53,7 @@
 
         <div class="col-sm-3">
             <div class="unit-box">
-                <a href="#">
+                <a href="/product/sample?indexType=3">
                     <img src="/static/images/1-3.jpg"  width="100%" class="hidden-xs"/>
                     <img src="/static/images/mobile-1-3.jpg" width="100%" class="visible-xs"/>
                 </a>
@@ -68,7 +68,7 @@
 
         <div class="col-sm-3">
             <div class="unit-box">
-                <a href="#">
+                <a href="/product/sample?indexType=4">
                     <img src="/static/images/1-4.jpg"  width="100%" class="hidden-xs"/>
                     <img src="/static/images/mobile-1-4.jpg" width="100%" class="visible-xs"/>
                 </a>
@@ -85,7 +85,7 @@
 
         <div class="col-sm-3">
             <div class="unit-box">
-                <a href="#">
+                <a href="/product/sample?indexType=5">
                     <img src="/static/images/1-5.jpg"  width="100%" class="hidden-xs"/>
                     <img src="/static/images/mobile-1-5.jpg" width="100%" class="visible-xs"/>
                 </a>
@@ -100,7 +100,7 @@
 
         <div class="col-sm-3">
             <div class="unit-box">
-                <a href="#">
+                <a href="/product/sample?indexType=6">
                     <img src="/static/images/1-6.jpg"  width="100%" class="hidden-xs"/>
                     <img src="/static/images/mobile-1-6.jpg" width="100%" class="visible-xs"/>
                 </a>
@@ -115,7 +115,7 @@
 
         <div class="col-sm-3">
             <div class="unit-box">
-                <a href="#">
+                <a href="/product/sample?indexType=7">
                     <img src="/static/images/1-7.jpg"  width="100%" class="hidden-xs"/>
                     <img src="/static/images/mobile-1-7.jpg" width="100%" class="visible-xs"/>
                 </a>
@@ -130,7 +130,7 @@
 
         <div class="col-sm-3">
             <div class="unit-box">
-                <a href="#">
+                <a href="/product/sample?indexType=8">
                     <img src="/static/images/1-8.jpg"  width="100%" class="hidden-xs"/>
                     <img src="/static/images/mobile-1-8.jpg" width="100%" class="visible-xs"/>
                 </a>

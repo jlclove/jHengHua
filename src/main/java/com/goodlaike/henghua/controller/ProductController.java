@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.goodlaike.business.core.helper.LanguageHelper;
 import com.goodlaike.henghua.service.HenghuaService;
@@ -24,9 +25,11 @@ public class ProductController extends BaseController {
 	private HenghuaService henghuaService;
 
 	@RequestMapping("/sample")
-	protected String sampleList(Model model, HttpServletRequest request) {
+	protected String sampleList(Model model, HttpServletRequest request,
+			@RequestParam(value = "indexType", required = false) String indexType) {
 		model.addAttribute("filters", henghuaService.getSampleType(LanguageHelper.getLocalization(request)));
 		model.addAttribute("sampleList", henghuaService.getNextSampleList(0));
+		model.addAttribute("indexType",indexType);
 		return "sample";
 	}
 
