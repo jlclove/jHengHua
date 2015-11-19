@@ -54,7 +54,7 @@
                             <span class="arrow-right"><fmt:message key="news_more"/></span>
                         </a>
                     </div>
-                    <%-- <c:if test="${status.index < fn:length(newsList)}">
+                     <c:if test="${status.index < fn:length(newsList)}">
                         <div class="col-sm-6">
                             <c:choose>
                                 <c:when test="${not empty news.link}">
@@ -68,11 +68,11 @@
                                 <img src="/imgs/${newsList[status.index + 1].mainPicPath}" class="img-responsive"/>
                                 <p class="title">${newsList[status.index + 1].title}</p>
                                 <div class="date"><fmt:formatDate value="${newsList[status.index + 1].createTime}" pattern="yyyy,MMdd"/></div>
-                                <p>${news.subtitle}</p>
+                                <p>${newsList[status.index + 1].subtitle}</p>
                                 <span class="arrow-right"><fmt:message key="news_more"/></span>
                             </a>
                         </div>
-                    </c:if> --%>
+                    </c:if> 
                 </c:forEach>
                 </div>
             </div>

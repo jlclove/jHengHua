@@ -68,7 +68,7 @@ body, body a, body a h2 {
     position: absolute;
     right: 20px;
     bottom: 20px;
-    background: rgba(0,0,0,.5);
+    background: rgba(0,0,0,0); 
     padding: 10px;
     color: #fff;
     font-size: 12px;
