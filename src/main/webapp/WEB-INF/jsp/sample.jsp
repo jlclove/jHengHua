@@ -66,7 +66,7 @@
 		if('${indexType}' == '1')
 			$('[name=singleCheck][value="原料,全棉"]').click();
 		if('${indexType}' == '2')
-			$('[name=singleCheck][value="原料,全毛"]').click();
+			$('[name=singleCheck][value="原料,毛"]').click();
 		if('${indexType}' == '3')
 			$('[name=singleCheck][value="原料,竹纤维"]').click();
 		if('${indexType}' == '4')
@@ -78,7 +78,7 @@
 		if('${indexType}' == '7')
 			$('[name=singleCheck][value="原料,全麻"]').click();
 		if('${indexType}' == '8')
-			$('[name=singleCheck][value="原料,真丝"]').click();
+			$('[name=singleCheck][value="原料,全毛"]').click();
 	})
 </script>
 
