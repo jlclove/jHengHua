@@ -64,11 +64,11 @@
 		
 		//alert('${indexType}');
 		if('${indexType}' == '1')
-			$('[name=singleCheck][value="原料,全棉"]').click();
+			$('[name=singleCheck][value="整理方式,液氨"]').click();
 		if('${indexType}' == '2')
 			$('[name=singleCheck][value="原料,毛"]').click();
 		if('${indexType}' == '3')
-			$('[name=singleCheck][value="原料,竹纤维"]').click();
+			$('[name=singleCheck][value="原料,涤纶"]').click();
 		if('${indexType}' == '4')
 			$('[name=singleCheck][value="原料,莫代尔"]').click();
 		if('${indexType}' == '5')
@@ -76,7 +76,7 @@
 		if('${indexType}' == '6')
 			$('[name=singleCheck][value="织物名称,牛津纺"]').click();
 		if('${indexType}' == '7')
-			$('[name=singleCheck][value="原料,全麻"]').click();
+			$('[name=singleCheck][value="原料,麻"]').click();
 		if('${indexType}' == '8')
 			$('[name=singleCheck][value="原料,全毛"]').click();
 	})
