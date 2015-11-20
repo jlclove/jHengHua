@@ -66,6 +66,16 @@ public class IndexController extends BaseController {
 	protected String aboutOurSuits() {
 		return "about-our-suits";
 	}
+	
+	/**
+	 * 元素扩散
+	 * 
+	 * @return
+	 */
+	@RequestMapping("/about-our-element")
+	protected String aboutOurelement() {
+		return "about-our-element";
+	}
 
 	/**
 	 * 媒体报道
