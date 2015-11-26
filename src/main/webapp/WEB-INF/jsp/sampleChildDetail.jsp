@@ -20,6 +20,8 @@
             </div>
             <div class="col-md-6 f16">
                 <form class="form-horizontal">
+                <p>&nbsp</p>
+                
                     <div class="form-group">
                         <label class="col-sm-4 control-label"><fmt:message key="product_sample_detail_name"/></label>
                         <div class="col-sm-8">
@@ -29,7 +31,7 @@
                     <div class="form-group">
                         <label class="col-sm-4 control-label"><fmt:message key="product_sample_detail_samplename"/></label>
                         <div class="col-sm-8">
-                            <p class="form-control-static">${sampleDetail.sampleName}</p>
+                            <p style="font-weight:bold" class="form-control-static">${sampleDetail.sampleName}</p>
                         </div>
                     </div>
                     <div class="form-group">
@@ -62,12 +64,14 @@
                             <p class="form-control-static">${sampleDetail.retailUnit}</p>
                         </div>
                     </div>
-                    <div class="form-group">
+                   <%--  
+                   <div class="form-group">
                         <label class="col-sm-4 control-label"><fmt:message key="product_sample_detail_detailname"/></label>
                         <div class="col-sm-8">
                             <p class="form-control-static">${sampleDetail.detailName}</p>
                         </div>
                     </div>
+                    --%>
                 </form>
             </div>
         </div>

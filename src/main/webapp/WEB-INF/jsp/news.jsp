@@ -18,7 +18,7 @@
         <div class="col-sm-8">
             <c:forEach items="${newsList}" var="news" begin="0" end="0">
                 <div class="news-box">
-                    <img src="/imgs/${news.mainPicPath}" class="img-responsive"/>
+                    <img style="width:100%" src="/imgs/${news.mainPicPath}" class="img-responsive"/>
                     <div class="news-info animated">
                         <c:choose>
                             <c:when test="${not empty news.link}">
