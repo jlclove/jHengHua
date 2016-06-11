@@ -5,9 +5,11 @@
     <settings>
         <setting name="logImpl" value="STDOUT_LOGGING"/>
     </settings>
+	
 
     <typeAliases>
 		<typeAlias type="com.goodlaike.framework.dao.support.Pagination" alias="pagination"/>
+		<typeAlias type="java.util.List" alias="list"/>
 		<package name="com.goodlaike.henghua.entity.model" />
 	</typeAliases>
 

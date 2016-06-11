@@ -16,18 +16,18 @@ import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
  */
 public class AppConfigurer extends PropertyPlaceholderConfigurer {
 
-	Log log = LogFactory.getLog(AppConfigurer.class);
+    Log log = LogFactory.getLog(AppConfigurer.class);
 
-	@Override
-	protected Properties mergeProperties() throws IOException {
-		Properties superProps = super.mergeProperties();
-		log.info(">>>>>>>>>>>>> env:" + superProps.getProperty("env"));
-		return superProps;
-	}
+    @Override
+    protected Properties mergeProperties() throws IOException {
+        Properties superProps = super.mergeProperties();
+        log.info(">>>>>>>>>>>>> env:" + superProps.getProperty("env"));
+        return superProps;
+    }
 
-	// 用于 其余地方 @propertySource + @value 取值
-	@Bean
-	public static PropertySourcesPlaceholderConfigurer propertyConfigInDev() {
-		return new PropertySourcesPlaceholderConfigurer();
-	}
+    //用于 其余地方 @propertySource + @value 取值
+    @Bean
+    public static PropertySourcesPlaceholderConfigurer propertyConfigInDev() {
+        return new PropertySourcesPlaceholderConfigurer();
+    }
 }

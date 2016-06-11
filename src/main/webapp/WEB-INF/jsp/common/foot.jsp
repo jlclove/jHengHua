@@ -63,7 +63,7 @@
             <li class="help-bar-link"><a href="/privacy"><fmt:message key="footer_gamma_privacy"/></a></li>
             <li class="help-bar-link"><a href="/term"><fmt:message key="footer_gamma_term"/></a></li>
             <%--<li class="help-bar-link"><a href="#">购买指南</a></li>--%>
-            <li class="help-bar-link"><a href="http://www.miibeian.gov.cn"><fmt:message key="footer_gamma_right"/></a></li>
+            <li class="help-bar-link"><a href="#"><fmt:message key="footer_gamma_right"/></a></li>
         </ul>
 
         <%--<ul class="social-bar col-sm-5 pl100 list-inline clearfix">--%>

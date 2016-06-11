@@ -43,8 +43,8 @@
                     <i class="icon-suiticon icon-suiticon-menu-1"></i>
                 </button>
                 <a class="navbar-brand" href="/">
-                    <%-- HENGHUA --%>
-                    <img alt="Brand" src="/static/images/logo.jpg">
+                    HENGHUA
+                    <%--<img alt="Brand" src="/static/images/logo.png">--%>
                 </a>
                 <button type="button" class="navbar-toggle collapsed right">
                     <a class="btnAccount icon-suiticon icon-suiticon-user-2"></a>
@@ -119,9 +119,6 @@
                                     <li class="category-item last visible-xs">
                                         <a href="/about-our-shirts"><fmt:message key="nav_stories_shirt"/></a></li>
                                     </li>
-                                    <li class="category-item visible-xs">
-                                        <a href="/media"><fmt:message key="nav_stories_element"/></a></li>
-                                    </li>
                                 </ul>
                                 <div class="col-sm-2 unit-box pl10 hidden-xs">
                                     <a href="/media">
@@ -146,15 +143,6 @@
 
                                         <div class="unit pos-top pos-left w3of8">
                                             <span class="unit-title"><fmt:message key="nav_stories_shirt"/></span>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="col-sm-2 unit-box pl10 hidden-xs">
-                                    <a href="/about-our-element">
-                                        <img src="/static/images/navigation/stories/about-our-element.jpg" width="100%"/>
-
-                                        <div class="unit pos-top pos-left w3of8">
-                                            <span class="unit-title"><fmt:message key="nav_stories_element"/></span>
                                         </div>
                                     </a>
                                 </div>

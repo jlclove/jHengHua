@@ -77,7 +77,7 @@ $('.filter-category-item').on('click', 'input[type=checkbox]', function(){
 
     var url;
     if(!isEmpty(filters)) {
-        url = filterConfig.search_url + '?filter=' + mapToList(filters).join(',');
+        url = filterConfig.search_url + '?sinceId=0&filter=' + mapToList(filters).join(',');
     } else {
         url = filterConfig.list_url;
     }
@@ -159,12 +159,12 @@ function reRender(data, clear, from){
     if(data.length == 0) {
         sinceId = 0;
     }
-    var url;
-    if(from == 'search') {
+    var url = filterConfig.template_url;
+    /*if(from == 'search') {
         url = filterConfig.search_template_url ? filterConfig.search_template_url : filterConfig.template_url;
     } else {
         url = filterConfig.template_url;
-    }
+    }*/
     if(url) {
         $.get(url, function(html){
             var outerHTML = _.template(html)({list: data});

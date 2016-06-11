@@ -3,30 +3,55 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="HenghuaSample">
 
-	<insert id="replaceSource" parameterType="list">
-		replace INTO
-		`henghua_sample`
-		(
-		`cardId`,
-		`nick`,
-		`sample2Img`,
-		`material`,
-		`descCn`,
-		`descEn`,
-		`creator`,
-		`updator`)
-		<foreach collection="list" item="sample" separator=" union all ">
-			(select
-			#{sample.cardId} as cardId,
+	<insert id="insertSource" parameterType="list">
+		insert INTO `henghua_sample`
+		(`cardId`,`nick`,`sample2Img`,`sampleList`,`alias`,`material`,`cardCreateTime`,`descCn`,`descEn`)
+		select `cardId`,`nick`,`sample2Img`,`sampleList`,`alias`,`material`,`cardCreateTime`,`descCn`,`descEn`
+		from  
+		<foreach collection="list" item="sample" separator=" union all " open="(" close=")">
+			select #{sample.cardId} as cardId,
 			#{sample.nick} as nick,
 			#{sample.sample2Img} as sample2Img,
+			#{sample.sampleList} as sampleList,
+			#{sample.alias} as alias,
 			#{sample.material} as material,
+			#{sample.cardCreateTime} as cardCreateTime,
 			#{sample.descCn} as descCn,
-			#{sample.descEn} as descEn,
-			#{sample.creator} as creator,
-			#{sample.updator} as updator)
+			#{sample.descEn} as descEn
 		</foreach>
+		as temp where not exists (select 1 from henghua_sample as s where s.cardId = temp.cardId)
 	</insert>
+	
+	
+	<update id="updateSource" parameterType="list">
+		update henghua_sample as a
+		inner join 
+		<foreach collection="list" item="sample" separator=" union all " open="(" close=")">
+			select #{sample.cardId} as cardId,
+			#{sample.nick} as nick,
+			#{sample.sample2Img} as sample2Img,
+			#{sample.sampleList} as sampleList,
+			#{sample.alias} as alias,
+			#{sample.material} as material,
+			#{sample.cardCreateTime} as cardCreateTime,
+			#{sample.descCn} as descCn,
+			#{sample.descEn} as descEn
+		</foreach>
+		as temp on a.cardId = temp.cardId
+		set a.nick = temp.nick,
+			a.sample2Img = temp.sample2Img,
+			a.sampleList = temp.sampleList,
+			a.alias = temp.alias,
+			a.material = temp.material,
+			a.cardCreateTime = temp.cardCreateTime,
+			a.descCn = temp.descCn,
+			a.descEn = temp.descEn,
+			a.updateTime = now()
+	</update>
+	
+	<delete id="deleteOutOfTime" parameterType="date">
+		delete from henghua_sample where updateTime &lt; #{time}
+	</delete>
 
 	<!-- 下一分页 -->
 	<select id="findNextList" resultType="vSample" parameterType="long">
@@ -44,4 +69,84 @@
 		henghua_sample
 		where cardId = #{cardId}
 	</select>
+	
+	<select id="searchSample" parameterType="map" resultType="vSample" >
+		select * from 
+		henghua_sample as s
+		where id > #{id}
+		<if test="level!=null">
+			and exists (select 1 from henghua_sample_detail_relation as dr
+									  inner join henghua_sample_detail as sd on dr.detailId = sd.detailId
+									  where sd.level = #{level} and dr.cardId = s.cardId)
+		</if>
+		<if test="style!=null">
+			and exists (select 1 from henghua_sample_detail_relation as dr
+									  inner join henghua_sample_detail as sd on dr.detailId = sd.detailId
+									  where sd.style = #{style} and dr.cardId = s.cardId)
+		</if>
+		<if test="gramWeight!=null">
+			and exists (select 1 from henghua_sample_detail_relation as dr
+									  inner join henghua_sample_detail as sd on dr.detailId = sd.detailId
+									  where sd.gramWeight = #{gramWeight} and dr.cardId = s.cardId)
+		</if>
+		<if test="season!=null">
+			and exists (select 1 from henghua_sample_detail_relation as dr
+									  inner join henghua_sample_detail as sd on dr.detailId = sd.detailId
+									  where sd.season = #{season} and dr.cardId = s.cardId)
+		</if>
+		<if test="zuzhi!=null">
+			and exists (select 1 from henghua_sample_detail_relation as dr
+									  inner join henghua_sample_detail as sd on dr.detailId = sd.detailId
+									  where sd.zuzhi = #{zuzhi} and dr.cardId = s.cardId)
+		</if>
+		<if test="fabrics!=null">
+			and exists (select 1 from henghua_sample_detail_relation as dr
+									  inner join henghua_sample_detail as sd on dr.detailId = sd.detailId
+									  where sd.fabrics = #{fabrics} and dr.cardId = s.cardId)
+		</if>
+		<if test="colorTypes!=null">
+			and exists (select 1 from henghua_sample_detail_relation as dr
+									  inner join henghua_sample_detail_items as sdi on dr.detailId = sdi.detailId
+									  where sdi.itemType = 'colorTypes' and dr.cardId = s.cardId 
+									  and sdi.value in
+									  <foreach collection="colorTypes" item="s" separator="," open="(" close=")">
+									  	#{s}
+									  </foreach>)
+		</if>
+		<if test="clearTypes!=null">
+			and exists (select 1 from henghua_sample_detail_relation as dr
+									  inner join henghua_sample_detail_items as sdi on dr.detailId = sdi.detailId
+									  where sdi.itemType = 'clearTypes' and dr.cardId = s.cardId 
+									  and sdi.value in
+									  <foreach collection="clearTypes" item="s" separator="," open="(" close=")">
+									  	#{s}
+									  </foreach>)
+		</if><if test="materialTypes!=null">
+			and exists (select 1 from henghua_sample_detail_relation as dr
+									  inner join henghua_sample_detail_items as sdi on dr.detailId = sdi.detailId
+									  where sdi.itemType = 'materialTypes' and dr.cardId = s.cardId 
+									  and sdi.value in
+									  <foreach collection="materialTypes" item="s" separator="," open="(" close=")">
+									  	#{s}
+									  </foreach>)
+		</if>
+		order by id
+		limit 30;
+	</select>
+
+	<delete id="deleteCardDetailRelation" parameterType="list">
+		delete from henghua_sample_detail_relation 
+		where cardId in 
+		<foreach collection="list" item="card" separator="," open="(" close=")">
+		    #{card.cardId}
+		</foreach>
+	</delete>
+	
+	<insert id="insertCardDetailRelation" parameterType="list">
+		insert into `henghua_sample_detail_relation` (cardId,detailId,sort)
+		values
+		<foreach collection="list" item="item" separator=",">
+			(#{item.cardId},#{item.detailId},#{item.sort})
+		</foreach>
+	</insert>	
 </mapper>

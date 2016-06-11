@@ -37,7 +37,7 @@
                     <div class="clearfix">
                     <c:forEach items="${sample.detailList}" var="detail" begin="0" end="2">
                         <div class="w1of3 pull-left pl5 pr5">
-                            <img src="http://www.jshenghua.com:82/Thumb/${detail.picPath}" class="img-responsive" width="100%"/>
+                            <img src="http://www.jshenghua.com:82/Thumb/${detail.desc_png}" class="img-responsive" width="100%"/>
                         </div>
                     </c:forEach>
                     </div>
@@ -59,27 +59,4 @@
 <jsp:include page="common/foot.jsp">
     <jsp:param name="js" value="javascripts/filter,javascripts/sample"/>
 </jsp:include>
-<script type ="text/javascript">
-	$(document).ready(function() {
-		
-		//alert('${indexType}');
-		if('${indexType}' == '1')
-			$('[name=singleCheck][value="整理方式,液氨"]').click();
-		if('${indexType}' == '2')
-			$('[name=singleCheck][value="原料,毛"]').click();
-		if('${indexType}' == '3')
-			$('[name=singleCheck][value="原料,涤纶"]').click();
-		if('${indexType}' == '4')
-			$('[name=singleCheck][value="原料,莫代尔"]').click();
-		if('${indexType}' == '5')
-			$('[name=singleCheck][value="织物名称,朝阳条格"]').click();
-		if('${indexType}' == '6')
-			$('[name=singleCheck][value="织物名称,牛津纺"]').click();
-		if('${indexType}' == '7')
-			$('[name=singleCheck][value="原料,麻"]').click();
-		if('${indexType}' == '8')
-			$('[name=singleCheck][value="原料,全毛"]').click();
-	})
-</script>
-
 </fmt:bundle>

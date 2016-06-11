@@ -43,7 +43,7 @@
             <c:forEach items="${sampleDetail.detailList}" var="detail">
             <div class="col-sm-4 mb15">
                 <a href="/product/sample/detail/${detail.sampleName}">
-                    <img src="http://www.jshenghua.com:82/Detail/${detail.picPath}" class="img-responsive" width="100%"/>
+                    <img src="http://www.jshenghua.com:82/Detail/${detail.desc_png}" class="img-responsive" width="100%"/>
                 </a>
             </div>
             </c:forEach>

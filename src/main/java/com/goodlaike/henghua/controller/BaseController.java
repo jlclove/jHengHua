@@ -18,21 +18,22 @@ import com.goodlaike.business.core.support.LanguageStore;
  */
 public abstract class BaseController {
 
-	protected String pageName = "pageName";
+    protected String pageName = "pageName";
 
-	@ModelAttribute("languages")
-	protected HashMap<String, String> initLanguages() {
-		return LanguageStore.getLanguages();
-	}
+    @ModelAttribute("languages")
+    protected HashMap<String, String> initLanguages() {
+        return LanguageStore.getLanguages();
+    }
 
-	@ModelAttribute("lang")
-	protected String initCurrentLanguage(HttpServletRequest request) {
-		return LanguageHelper.getLocalization(request);
-	}
+    @ModelAttribute("lang")
+    protected String initCurrentLanguage(HttpServletRequest request) {
+        return LanguageHelper.getLocalization(request);
+    }
 
-	@ModelAttribute("countries")
-	protected List<Country> initCountries(HttpServletRequest request) {
-		return StoreCountryStore.getCountryList(request);
-	}
+    @ModelAttribute("countries")
+    protected List<Country> initCountries(HttpServletRequest request) {
+        return StoreCountryStore.getCountryList(request);
+    }
+
 
 }

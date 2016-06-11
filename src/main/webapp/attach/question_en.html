@@ -1,254 +1,124 @@
 <!DOCTYPE html>
 <html>
-<head lang="cn">
-<meta charset="UTF-8">
-<meta name="viewport"
-	content="width=device-width,minimum-scale=1.0,maximum-scale=1.0" />
-<link rel="stylesheet" type="text/css"
-	href="http://henghua.goodlaike.com/static/build/css/all.min.css">
-	
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0"/>
+    <link rel="stylesheet" type="text/css" href="http://henghua.goodlaike.com/static/build/css/all.min.css">
 </head>
 <body>
-	<div class="template container">
+<div class="template container">
 
-		<!-- 从此处开始修改！从此处开始修改！从此处开始修改！ 重要的事情说三遍，常见问题 -->
+    <!-- 从此处开始修改！从此处开始修改！从此处开始修改！ 重要的事情说三遍，加入我们 -->
 
-		<style>
-		 
-li {
-	font-size: 128%
-}
+    <style>
+        .faq-category {
+            border: 1px solid #ccc;
+            padding: 10px 10px 0;
+        }
+        .faq-category li {
+            line-height: 20px;
+            padding-left: 10px;
+            margin: 3px 0;
+            border-left: 2px solid transparent;
+        }
+        .faq-category li:hover {
+            cursor: pointer;
+            color: #183051;
+        }
+        .faq-category li.selected {
+            border-left-color: #183051;
+        }
+        .accordion-group .collapse .accordion-body {
+        }
+        .accordion-group li {
+            border-bottom: 1px solid #ccc;
+            display: none;
+        }
+        .accordion-group li .state {
+            position: absolute;
+            right: 10px;
+            z-index: 10;
+            top: 0;
+        }
+        .accordion-group li a {
+            height: 40px;
+            line-height: 40px;
+            display: block;
+            text-overflow: ellipsis;
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+            padding-right: 26px;
+        }
+        .accordion-group.panel-group {
+            border-top: 1px solid #ccc;;
+        }
+        .accordion-group.panel-group .panel {
+            border-radius: 0;
+            box-shadow: none;
+        }
+    </style>
+    <h4>常见问题</h4>
+    <div class="faq-category">
+        <ul class="list-unstyled clearfix">
+            <li class="" data-target="">所有问题</li>
+            <li class="w1of2 pull-left" data-target="aaa">企业团购</li>
+            <li class="w1of2 pull-left" data-target="bbb">配送</li>
+            <!--<li class="w1of2 pull-left" data-target="ccc">礼品卡</li>-->
+            <!--<li class="w1of2 pull-left" data-target="ddd">支付方式</li>-->
+            <!--<li class="w1of2 pull-left" data-target="eee">个人制定</li>-->
+        </ul>
+    </div>
+    <h4 class="mt20">购买资讯</h4>
 
-		
-.faq-category {
-	border: 1px solid #ccc;
-	padding: 10px 10px 0;
-}
+    <ul class="list-unstyled accordion-group panel-group" id="parent">
+        <li class="aaa panel">
+            <a data-toggle="collapse" data-parent="#parent" href="#drop1">Henghua 销售礼品卡吗？ <span class="state">+</span></a>
+            <div id="drop1" class="collapse">
+                <div class="accordion-body">
+                    <p>我们为公司、团队提供整体造型设计和服装制作服务（包括女性服装）；此服务不仅限于工作制服的定制，日常着装、晚宴/宴会活动和西服都包括在内。以我们丰富的面料、专业的剪裁和时尚造型，我们会竭诚帮助你选择并设计出你团队的专有的服饰。</p>
+                    <p>为了确保剪裁的合身，我们会于专卖店中（或你的指定地点）为你团队的人员逐个量身定制。在送货时，我们可以安排裁缝师傅到场做最后的完善修改。保证制服的合身优雅，体现企业精神。</p>
+                    <p>想了解中国企业团购相关信息， <a href="mailto:china@suitsupply.com">请点击咨询当地办公室</a>.</p>
+                </div>
+            </div>
+        </li>
+        <li class="bbb panel">
+            <a data-toggle="collapse" data-parent="#parent" href="#drop2">AAAAAAAA <span class="state">+</span></a>
+            <div id="drop2" class="collapse">
+                <div class="accordion-body">
+                    Suitsupply 发行多种不同金额的的礼品卡，可在店铺或官网购得，并可在全球任何一家 Suitsupply 店铺或网上购物结算时使用。我们的礼品卡不会过期，不可兑现现金。可在Suitsupply 店铺购买或者 <a href="/giftcards">点击这里网上购买</a>.
+                </div>
+            </div>
+        </li>
+    </ul>
 
-.faq-category li {
-	line-height: 20px;
-	padding-left: 10px;
-	margin: 3px 0;
-	border-left: 2px solid transparent;
-}
-
-.faq-category li:hover {
-	cursor: pointer;
-	color: #183051;
-}
-
-.faq-category li.selected {
-	border-left-color: #183051;
-}
-
-.accordion-group .collapse .accordion-body {
+    <script type="text/javascript">
+	    $('.faq-category ul li').on('click', function(){
+	        c(this);
+	    });
+	    
+	    function c(u){
+	    	var target = $(u).data('target');
 	
-}
-
-.accordion-group li {
-	border-bottom: 1px solid #ccc;
-	display: none;
-}
-
-.accordion-group li .state {
-	position: absolute;
-	right: 10px;
-	z-index: 10;
-	top: 0;
-}
-
-.accordion-group li a {
-	height: 40px;
-	line-height: 40px;
-	display: block;
-	text-overflow: ellipsis;
-	width: 100%;
-	overflow: hidden;
-	position: relative;
-	padding-right: 26px;
-}
-
-.accordion-group.panel-group {
-	border-top: 1px solid #ccc;;
-}
-
-.accordion-group.panel-group .panel {
-	border-radius: 0;
-	box-shadow: none;
-}
-</style>
-		<h4>F&Q</h4>
-		<div class="faq-category">
-			<ul class="list-unstyled clearfix">
-				<li class="" data-target="">ALL</li>
-				<li class="w1of2 pull-left" data-target="aaa">Business information</li>
-				<li class="w1of2 pull-left" data-target="bbb">Service of Dwins</li>
-				<li class="w1of2 pull-left" data-target="ccc">Discounts&Shipments</li>
-				<li class="w1of2 pull-left" data-target="ddd">Exchanging and Refunding</li>
-				<li class="w1of2 pull-left" data-target="eee">Membership</li>
-			</ul>
-		</div>
-		<h4 class="mt20">Buying information</h4>
-
-		<ul class="list-unstyled accordion-group panel-group" id="parent">
-			<li class="aaa panel"><a data-toggle="collapse"
-				data-parent="#parent" href="#drop1">What are relationships between HengHua group and Dwins fabric?<span
-					class="state">+</span></a>
-				<div id="drop1" class="collapse">
-					<div class="accordion-body">
-						<p>Dwins fabric focus on advanced fabric. It is a subsidiary company of HengHua. HengHua is a comprehensive commercial consortium which has 30 years professional experiences of textile.</p>
-					</div>
-				</div></li>
-			<li class="aaa panel"><a data-toggle="collapse"
-				data-parent="#parent" href="#drop2">What kinds of business does DWINS focus on?<span
-					class="state">+</span></a>
-				<div id="drop2" class="collapse">
-					<div class="accordion-body">
-						<p>We are able to offer a lot of patterns of fabric with very adequate inventory to our customers. If you want to customize futures, please contact the nearby DWINS store for further more information.</p>
-					</div>
-				</div></li>
-			<li class="aaa panel"><a data-toggle="collapse"
-				data-parent="#parent" href="#drop3">What are the differences between DWINS and other fabrics wholesalers?<span
-					class="state">+</span></a>
-				<div id="drop3" class="collapse">
-					<div class="accordion-body">
-						<p>Our fabrics are all well-produced by the best quality of yarns.We never use recycled coarse yarns.</p>
-						<p>Every pieces of our fabrics have to pass a special physical and chemical qualified test.The fabrics which do not meet qualified requirement will not be sent into all markets.</p>
-						<p>According to our ERP system, the production of your fabric will be tracked by every procedures in detail. You can understand your fabric more clearly.</p>
-					</div>
-				</div></li>
-			<li class="aaa panel"><a data-toggle="collapse"
-				data-parent="#parent" href="#drop4">What is the qualified stander of DWINS Fabric?<span
-					class="state">+</span></a>
-				<div id="drop4" class="collapse">
-					<div class="accordion-body">
-						<p>Our qualified stander is “American stander”.</p>
-					</div>
-				</div></li>
-			<li class="bbb panel"><a data-toggle="collapse"
-				data-parent="#parent" href="#drop5">Does Dwins offer OEM service?<span
-					class="state">+</span></a>
-				<div id="drop5" class="collapse">
-					<div class="accordion-body">
-						<p>The subsidiary company of HengHua Group “HengHua textile cooperate limited” can provide you advanced OEM service.The qualified stander test of DWINS will be applied.</p>
-					</div>
-				</div></li>
-			<li class="bbb panel"><a data-toggle="collapse"
-				data-parent="#parent" href="#drop6">Does Dwins offer ODM+OEM service?
-					<span class="state">+</span>
-			</a>
-				<div id="drop6" class="collapse">
-					<div class="accordion-body">
-						<p>We offer both fabrics and clothes’ ODM+OEM service.</p>
-					</div>
-				</div></li>
-			<li class="bbb panel"><a data-toggle="collapse"
-				data-parent="#parent" href="#drop12">Does Dwins recruit agents?<span
-					class="state">+</span></a>
-				<div id="drop12" class="collapse">
-					<div class="accordion-body"></div>
-				</div></li>
-			<li class="bbb panel"><a data-toggle="collapse"
-				data-parent="#parent" href="#drop13">Does Dwins offer wholesales service?<span
-					class="state">+</span></a>
-				<div id="drop13" class="collapse">
-					<div class="accordion-body"></div>
-				</div></li>
-			<li class="ccc panel"><a data-toggle="collapse"
-				data-parent="#parent" href="#drop7">Is there any discount for Dwins Fabric?<span
-					class="state">+</span></a>
-				<div id="drop7" class="collapse">
-					<div class="accordion-body">
-						<p>No,there is no discount for our fabrics.</p>
-					</div>
-				</div></li>
-			<li class="ccc panel"><a data-toggle="collapse"
-				data-parent="#parent" href="#drop11">About shipment fee?<span class="state">+</span></a>
-				<div id="drop11" class="collapse">
-					<div class="accordion-body">
-						<p>Customers have to pay the two kinds of following shipment fee:</p>
-						<p>Customers have to pay the express fee of pattern.</p>
-						<p>Customers have to pay logistic fee of shipment to the designated location.</p>
-
-					</div>
-				</div></li>
-			<li class="ccc panel"><a data-toggle="collapse"
-				data-parent="#parent" href="#drop10">About tax？<span class="state">+</span></a>
-				<div id="drop10" class="collapse">
-					<div class="accordion-body">
-						<p>Price is after tax.</p>
-					</div>
-				</div></li>
-			<li class="ddd panel"><a data-toggle="collapse"
-				data-parent="#parent" href="#drop8">How to exchange and refund our fabrics?<span class="state">+</span></a>
-				<div id="drop8" class="collapse">
-					<div class="accordion-body">
-						<p>Once the sales of fabric have been recorded in to ERP system, these sales can not be refunded.</p>
-						<p>If the customers purchased wrong fabric, it is possible to exchange them for our inventory.</p>
-						<p>If the orders have been shipped out for 7 days without receiving your exchanging requests, we will no longer apply any exchanging services for this shipment.</p>
-						<p>If the codes of fabric lost or the packaging breaks, we will not apply exchanging services.</p>
-						<p>If the fabric has already been cut, we will not apply exchanging services.</p>
-					</div>
-				</div></li>
-			<li class="ddd panel"><a data-toggle="collapse"
-				data-parent="#parent" href="#drop9">When can I get new exchanged items?<span
-					class="state">+</span></a>
-				<div id="drop9" class="collapse">
-					<div class="accordion-body">
-						<p>After receiving the goods that need to be exchanged , we will arrange the shipment for new goods in 1-2 days.</p>
-						<p>Be attention, if your exchange or refund goods have been damaged , Dwins will ask for extra costs.</p>
-						<p>If you have any question about order,exchanging and refunding, please feel free to contact our customer service.</p>
-					</div>
-				</div></li>
-			<li class="eee panel"><a data-toggle="collapse"
-				data-parent="#parent" href="#drop14">How to check our inventory?<span
-					class="state">+</span></a>
-				<div id="drop14" class="collapse">
-					<div class="accordion-body">
-						<p>First, you have to be our member by registering on our official website,and then our customer service center confirms your information, you can check our inventory stocks on our official website.</p>
-					</div>
-				</div></li>
-			<li class="eee panel"><a data-toggle="collapse"
-				data-parent="#parent" href="#drop15">How to register our membership?<span class="state">+</span></a>
-				<div id="drop15" class="collapse">
-					<div class="accordion-body"></div>
-				</div></li>
-			<li class="eee panel"><a data-toggle="collapse"
-				data-parent="#parent" href="#drop16">Forgot password?<span class="state">+</span></a>
-				<div id="drop16" class="collapse">
-					<div class="accordion-body"></div>
-				</div></li>
-
-		</ul>
-
-		<script type="text/javascript">
-        $('.faq-category ul li').on('click', function(){
-            c(this);
-        });
-        
-        function c(u){
-        	var target = $(u).data('target');
-
-            if(target) {
-                if($('[data-target=""]').is('.selected')){
-                    $('[data-target=""]').removeClass('selected');
-                    $('.accordion-group li').hide();
-                }
-                if($(u).is('.selected')) {
-                    $('.' + target).hide();
-                } else {
-                    $('.' + target).show();
-                }
-                $(u).toggleClass('selected');
-            } else {
-                $('.faq-category ul li').removeClass('selected');
-                $('.accordion-group li').show();
-                $(u).addClass('selected');
-            }
-        } 
-        
-        c($('[data-target=""]'));
-        
+	        if(target) {
+	            if($('[data-target=""]').is('.selected')){
+	                $('[data-target=""]').removeClass('selected');
+	                $('.accordion-group li').hide();
+	            }
+	            if($(u).is('.selected')) {
+	                $('.' + target).hide();
+	            } else {
+	                $('.' + target).show();
+	            }
+	            $(u).toggleClass('selected');
+	        } else {
+	            $('.faq-category ul li').removeClass('selected');
+	            $('.accordion-group li').show();
+	            $(u).addClass('selected');
+	        }
+	    } 
+	    
+	    c($('[data-target=""]'));
         $('.collapse').on('hide.bs.collapse', function () {
             $(this).closest('.panel').find('.state').text('+');
         });
@@ -257,8 +127,8 @@ li {
         });
     </script>
 
-		<!-- 到这里结束！到这里结束！到这里结束！ -->
+    <!-- 到这里结束！到这里结束！到这里结束！ -->
 
-	</div>
+</div>
 </body>
 </html>

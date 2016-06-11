@@ -3,26 +3,31 @@
 	<diskStore path="java.io.tmpdir" />
 
 	<defaultCache maxEntriesLocalHeap="1000" eternal="false"
-		timeToIdleSeconds="3600" timeToLiveSeconds="3600" overflowToDisk="true">
+		timeToIdleSeconds="3600" timeToLiveSeconds="86400" overflowToDisk="true">
 	</defaultCache>
 
 	<cache name="sample" maxElementsInMemory="10000" eternal="false"
-		timeToIdleSeconds="900" timeToLiveSeconds="3600" overflowToDisk="true"
+		timeToIdleSeconds="3600" timeToLiveSeconds="86400" overflowToDisk="true"
 		memoryStoreEvictionPolicy="LFU">
 	</cache>
 
 	<cache name="sampleDetail" maxElementsInMemory="10000" eternal="false"
-		timeToIdleSeconds="900" timeToLiveSeconds="3600" overflowToDisk="true"
+		timeToIdleSeconds="3600" timeToLiveSeconds="86400" overflowToDisk="true"
 		memoryStoreEvictionPolicy="LFU">
 	</cache>
 	
 	<cache name="cloth" maxElementsInMemory="10000" eternal="false"
-		timeToIdleSeconds="900" timeToLiveSeconds="3600" overflowToDisk="true"
+		timeToIdleSeconds="3600" timeToLiveSeconds="86400" overflowToDisk="true"
 		memoryStoreEvictionPolicy="LFU">
 	</cache>
 	
 	<cache name="clothDetail" maxElementsInMemory="10000" eternal="false"
-		timeToIdleSeconds="900" timeToLiveSeconds="3600" overflowToDisk="true"
+		timeToIdleSeconds="3600" timeToLiveSeconds="86400" overflowToDisk="true"
+		memoryStoreEvictionPolicy="LFU">
+	</cache>
+	
+	<cache name="globalConfig" maxElementsInMemory="10000" eternal="false"
+		timeToIdleSeconds="86400" timeToLiveSeconds="172800" overflowToDisk="true"
 		memoryStoreEvictionPolicy="LFU">
 	</cache>
 </ehcache>

@@ -33,13 +33,13 @@
         <div class="row pos-rel">
             <c:forEach items="${filters}" var="filter">
                 <div class="filter-category-item">
-                    <a href="#" class="">${filter.key}</a>
+                    <a href="#" class="">${filter.text}</a>
                     <ul class="list-inline animated">
-                        <c:forEach items="${filter.value}" var="v" varStatus="status">
+                        <c:forEach items="${filter.values}" var="v" varStatus="status">
                             <li>
                                 <div class="checkbox">
                                     <label>
-                                        <input name="singleCheck" type="checkbox" value="${filter.key},${v}">${v}
+                                        <input name="singleCheck" type="checkbox" value="${filter.column},${v}">${v}
                                     </label>
                                 </div>
                             </li>

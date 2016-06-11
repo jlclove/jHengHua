@@ -11,14 +11,14 @@ import com.goodlaike.henghua.config.StoreCountryStore;
  */
 public class TestStoreCityConfig extends TestBase {
 
-	@Test
-	public void test() {
-		System.out.println(StoreCountryStore.getCountryList("en"));
+    @Test
+    public void test() {
+        System.out.println(StoreCountryStore.getCountryList("en"));
 
-	}
+    }
 
-	@Test
-	public void test2() {
-		System.out.println(StoreCountryStore.getCountry("en", 1));
-	}
+    @Test
+    public void test2() {
+        System.out.println(StoreCountryStore.getCountry("en", 1));
+    }
 }

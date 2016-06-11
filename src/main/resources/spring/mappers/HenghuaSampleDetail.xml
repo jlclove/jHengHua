@@ -1,0 +1,117 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="HenghuaSampleDetail">
+
+	<insert id="insertSource" parameterType="list">
+		insert INTO `henghua_sample_detail` (`detailId`,`desc_jpg`,`desc_png`,`desc_video`,`cardIds`,`nameCn`,`nameEn`,`level`,`material`,
+		`style`,`season`,`gramWeight`,`fabrics`,`zuzhi`,`colorTypes`,`materialTypes`,`clearTypes`)
+		select `detailId`,`desc_jpg`,`desc_png`,`desc_video`,`cardIds`,`nameCn`,`nameEn`,`level`,`material`,
+		`style`,`season`,`gramWeight`,`fabrics`,`zuzhi`,`colorTypes`,`materialTypes`,`clearTypes`
+		from  
+		<foreach collection="list" item="detail" separator=" union all " open="(" close=")">
+		    select #{detail.detailId} as detailId,
+			#{detail.desc_jpg} as desc_jpg,
+			#{detail.desc_png} as desc_png,
+			#{detail.desc_video} as desc_video,
+			#{detail.cardIds} as cardIds,
+			#{detail.nameCn} as nameCn,
+			#{detail.nameEn} as nameEn,
+			#{detail.level} as level,
+			#{detail.material} as material,
+			#{detail.style} as style,
+			#{detail.season} as season,
+			#{detail.gramWeight} as gramWeight,
+			#{detail.fabrics} as fabrics,
+			#{detail.zuzhi} as zuzhi,
+			#{detail.colorTypes} as colorTypes,
+			#{detail.materialTypes} as materialTypes,
+			#{detail.clearTypes} as clearTypes
+		</foreach>
+		as temp where not exists (select 1 from henghua_sample_detail as d where d.detailId = temp.detailId)
+	</insert>
+	
+	<update id="updateSource" parameterType="list">
+		update `henghua_sample_detail` as a 
+		inner join 
+		<foreach collection="list" item="detail" separator=" union all " open="(" close=")">
+		    select #{detail.detailId} as detailId,
+			#{detail.desc_jpg} as desc_jpg,
+			#{detail.desc_png} as desc_png,
+			#{detail.desc_video} as desc_video,
+			#{detail.cardIds} as cardIds,
+			#{detail.nameCn} as nameCn,
+			#{detail.nameEn} as nameEn,
+			#{detail.level} as level,
+			#{detail.material} as material,
+			#{detail.style} as style,
+			#{detail.season} as season,
+			#{detail.gramWeight} as gramWeight,
+			#{detail.fabrics} as fabrics,
+			#{detail.zuzhi} as zuzhi,
+			#{detail.colorTypes} as colorTypes,
+			#{detail.materialTypes} as materialTypes,
+			#{detail.clearTypes} as clearTypes
+		</foreach>
+		as temp on a.detailId = temp.detailId
+		set a.`desc_jpg` = temp.desc_jpg,
+		a.`desc_png` = temp.desc_png,
+		a.`desc_video` = temp.desc_video,
+		a.`cardIds` = temp.cardIds,
+		a.`nameCn` = temp.nameCn,
+		a.`nameEn` = temp.nameEn,
+		a.`level` = temp.level,
+		a.`material` = temp.material,
+		a.`style` = temp.style,
+		a.`season` = temp.season,
+		a.`gramWeight` = temp.gramWeight,
+		a.`fabrics` = temp.fabrics,
+		a.`zuzhi` = temp.zuzhi,
+		a.`colorTypes` = temp.colorTypes,
+		a.`materialTypes` = temp.materialTypes,
+		a.`clearTypes` = temp.clearTypes,
+		a.`updateTime` = now()
+	</update>
+	
+	<delete id="deleteOutOfTime" parameterType="date">
+		delete from henghua_sample_detail where updateTime &lt; #{time}
+	</delete>
+
+	<!-- 根据多个detailId 获得样品 -->
+	<select id="findSampleDetails" resultType="henghuaSampleDetail" parameterType="map">
+		select d.`detailId`,d.`desc_jpg`,d.`desc_png`,d.`desc_video`,temp.cardId as `cardIds`,d.`nameCn`,d.`nameEn`,d.`level`,d.`material`,
+		d.`style`,d.`season`,d.`gramWeight`,d.`fabrics`,d.`zuzhi`,d.`colorTypes`,d.`materialTypes`,d.`clearTypes`
+		from henghua_sample_detail as d
+		inner join 
+		<foreach collection="_parameter.keys" item="k" separator=" union all "  open="(" close=")" >
+			<foreach collection="_parameter[k]" item="s" separator=" union all " index="i">
+				select #{k} as cardId, #{s} as detailId,#{i} as i
+			</foreach>
+		</foreach>
+		as temp on d.detailId = temp.detailId
+		order by temp.cardId,temp.i asc
+	</select>
+	
+	<select id="findSampleDetail" resultType="henghuaSampleDetail" parameterType="string">
+		select *
+		from
+		henghua_sample_detail
+		where detailId = #{detailId}
+	</select>
+	
+	<delete id="deleteDetailItem" parameterType="list">
+		delete from henghua_sample_detail_items 
+		where detailId in 
+		<foreach collection="list" item="detail" separator="," open="(" close=")">
+		    #{detail.detailId}
+		</foreach>
+	</delete>
+	
+	<insert id="insertDetailItem" parameterType="list">
+		insert into `henghua_sample_detail_items` (detailId,itemType,value)
+		values
+		<foreach collection="list" item="item" separator=",">
+			(#{item.detailId},#{item.itemType},#{item.value})
+		</foreach>
+	</insert>	
+</mapper>

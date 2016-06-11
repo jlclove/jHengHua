@@ -3,6 +3,6 @@
  */
 filterConfig.multi = true;
 filterConfig.list_url = '/henghua/sample';
-filterConfig.search_url = '/henghua/sample/detail/search';
+filterConfig.search_url = '/henghua/sample/search';
 filterConfig.template_url = '/static/template/sample.html';
 filterConfig.search_template_url = '/static/template/sampleDetailList.html';
