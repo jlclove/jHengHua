@@ -19,38 +19,39 @@
                 <div class="row">
                     <div class="col-sm-6">
                         <span class="f14"><fmt:message key="product_sample_cardId"/>:</span>
-                        <i class="f_large ml20 c_black fb">${sampleDetail.cardId}</i>
+                        <i class="f_large ml20 c_black fb">${sample.cardId}</i>
                     </div>
-                    <div class="col-sm-6">
+                    <%-- <div class="col-sm-6">
                         <span class="f14"><fmt:message key="product_sample_marterial"/>:</span>
                         <span class="f20 ml20">${sampleDetail.material}</span>
-                    </div>
+                    </div> --%>
                 </div>
             </div>
             <div class="col-sm-4 text-right" id="qrcode">
             </div>
             <div class="col-sm-8">
-                <span class="f14"><fmt:message key="product_sample_width"/>:</span>
-                <span class="f20 ml20">57/58"</span>
+                <span class="f14"><fmt:message key="product_sample_marterial"/>:</span>
+                <span class="f20 ml20">${sample.material }</span>
             </div>
             <div class="col-sm-4 text-right">
-                <span class="f16">${sampleDetail.nick}</span>
+                <span class="f16">${sample.nick}</span>
             </div>
         </div>
-        <p class="f14 mt10"><fmt:message key="product_sample_features"/></p>
+        <p class="f14 mt10"><fmt:message key="product_sample_features"/>:</span><span class="f20 ml20">${sample.descCn }</span></p>
         <hr/>
         <div class="row mt20">
-            <c:forEach items="${sampleDetail.detailList}" var="detail">
+            <c:forEach items="${sample.detailList}" var="detail">
             <div class="col-sm-4 mb15">
-                <a href="/product/sample/detail/${detail.sampleName}">
+                <a href="/product/sample/detail/${detail.detailId}">
                     <img src="http://www.jshenghua.com:82/Detail/${detail.desc_png}" class="img-responsive" width="100%"/>
+                    <p>${detail.detailId}</p>
                 </a>
             </div>
             </c:forEach>
         </div>
-        <div id="washing-container" class="washing-container mt50 text-right">
+       <!--  <div id="washing-container" class="washing-container mt50 text-right">
             <a class="f14 mr30" href="www.jshenghua.com" target="_blank">www.jshenghua.com</a>
-        </div>
+        </div> -->
     </div>
 </div>
 <jsp:include page="common/foot.jsp">

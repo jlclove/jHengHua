@@ -14,6 +14,7 @@ import org.springframework.stereotype.Component;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.goodlaike.framework.dao.utils.TextUtil;
+import com.goodlaike.henghua.entity.model.HenghuaCloth;
 import com.goodlaike.henghua.entity.model.HenghuaSample;
 import com.goodlaike.henghua.entity.model.HenghuaSampleDetail2;
 import com.goodlaike.henghua.utils.HenghuaDamnJsonUtil;
@@ -139,7 +140,7 @@ public class RestHenghua {
    * @return String
    * @author jail
    */
-  public Map<String,List<String>> restSampleType(String langType) {
+  public Map<String, List<String>> restSampleType(String langType) {
     String typeStr = this.restSampleTypeStr();
     typeStr = HenghuaDamnJsonUtil.format(typeStr);
     JSONObject obj = JSONObject.parseObject(typeStr);
@@ -149,7 +150,7 @@ public class RestHenghua {
     String listDetailStr = JSONObject.parseArray(listStr, String.class).get(0);
     // 将内容转成json对象并分析所有的value
     JSONObject listObj = JSONObject.parseObject(listDetailStr);
-    Map<String,List<String>> sampleTypeMap = new HashMap<String,List<String>>();
+    Map<String, List<String>> sampleTypeMap = new HashMap<String, List<String>>();
     listObj.forEach((k, v) -> {
       if (k.toLowerCase().startsWith(langType)) {
         sampleTypeMap.put(k.toLowerCase().replace(langType, ""), Arrays.asList(String.valueOf(v).split(",")));
@@ -228,8 +229,19 @@ public class RestHenghua {
    * @return
    * @author jail
    */
-  public String restClothAll() {
+  private String restClothAllStr() {
     return this.rest(this.apiClothList);
+  }
+
+  /**
+   * 获得所有服装款式
+   * 
+   * @return
+   * @author jail
+   */
+  public List<HenghuaCloth> restClothAll() {
+    String clothStr = this.restClothAllStr();
+    return this.getList(clothStr, HenghuaCloth.class);
   }
 
   /**

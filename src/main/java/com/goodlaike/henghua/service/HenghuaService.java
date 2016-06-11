@@ -64,14 +64,6 @@ public class HenghuaService {
     HenghuaSample sample = henghuaSampleDao.findSample(cardId);
     if (sample != null) {
       bindSampleDetailData(Arrays.asList(sample));
-      /*
-       * Map<String, Object> m = new HashMap<>(); m.put(sample.getCardId(),
-       * StringUtils.isNotBlank(sample.getSampleList()) ?
-       * Arrays.asList(sample.getSampleList().split(",")) : Collections.emptyList()); Map<String,
-       * List<HenghuaSampleDetail2>> map = this.getSampleDetailList(m); if
-       * (map.containsKey(sample.getCardId())) { ((VHenghuaSample)
-       * sample).setDetailList(map.get(sample.getCardId())); }
-       */
     }
     return sample;
   }
@@ -229,8 +221,8 @@ public class HenghuaService {
    * 
    * @author jail
    */
-  public void syncHenghuaClothList() {
-    henghuaClothDao.batchReplaceInto(this.getClothAll());
+  public void syncAllHenghuaClothList() {
+    henghuaClothDao.batchReplaceInto(this.restHenghua.restClothAll(), true);
   }
 
   /**
@@ -272,20 +264,6 @@ public class HenghuaService {
     r = obj.getString("result").replaceAll("\\[\\[", "").replaceAll("\\]\\]", "");
     HenghuaClothDetail detail = JSONObject.parseObject(r, HenghuaClothDetail.class);
     return detail;
-  }
-
-  /**
-   * 获得所有服装数据
-   * 
-   * @return
-   * @author jail
-   */
-  private List<HenghuaCloth> getClothAll() {
-    String r = restHenghua.restClothAll();
-    r = CoderUtil.decodeUnicode(r);
-    JSONObject obj = JSONObject.parseObject(r);
-    r = obj.getString("result").replaceAll("\\[\\[", "[").replaceAll("\\]\\]", "]");
-    return JSONArray.parseArray(r, HenghuaCloth.class);
   }
 
   /**
@@ -365,15 +343,19 @@ public class HenghuaService {
       this.clothTypeCacheMap.clear();
       this.clothTypeCacheMap.reActive();
       logger.debug("初始化===服装分类");
-      String r = restHenghua.restClothType();
-      r = CoderUtil.decodeUnicode(r);
-      JSONObject obj = JSONObject.parseObject(r);
-      r = obj.getString("result").replaceAll("\\[\\[", "[").replaceAll("\\]\\]", "]").replaceAll("%, ", "%，");
-      JSONArray ar = JSONArray.parseArray(r);
-      ar.forEach(a -> {
-        JSONObject o = (JSONObject) a;
-        o.keySet().forEach(key -> this.clothTypeCacheMap.put(key, Arrays.asList(o.getString(key).split(","))));
-      });
+      try {
+        String r = restHenghua.restClothType();
+        r = CoderUtil.decodeUnicode(r);
+        JSONObject obj = JSONObject.parseObject(r);
+        r = obj.getString("result").replaceAll("\\[\\[", "[").replaceAll("\\]\\]", "]").replaceAll("%, ", "%，");
+        JSONArray ar = JSONArray.parseArray(r);
+        ar.forEach(a -> {
+          JSONObject o = (JSONObject) a;
+          o.keySet().forEach(key -> this.clothTypeCacheMap.put(key, Arrays.asList(o.getString(key).split(","))));
+        });
+      } catch (Exception e) {
+
+      }
     }
     return this.clothTypeCacheMap;
   }
@@ -437,7 +419,7 @@ public class HenghuaService {
     JSONObject obj = JSONObject.parseObject(r);
     r = obj.getString("result").replaceAll("\\[\\[", "[").replaceAll("\\]\\]", "]");
     List<HenghuaCloth> list = JSONArray.parseArray(r, HenghuaCloth.class);
-    list.forEach(cloth -> cloth.setImage(cloth.getImage() + ".png"));
+    // list.forEach(cloth -> cloth.setImage(cloth.getImage() + ".png"));
     return list;
   }
 

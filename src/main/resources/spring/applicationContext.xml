@@ -71,7 +71,7 @@
 		<property name="locations">
 			<list>
 				<value>classpath:global.properties</value>
-				<value>classpath:jdbc.properties</value>
+				<value>classpath:${env}.web.properties</value>
 			</list>
 		</property>
 		<property name="ignoreUnresolvablePlaceholders" value="true" />

@@ -93,9 +93,9 @@ public class HenghuaController extends BaseRestController {
    * @updator jail
    * @updateTime 2015年9月4日下午11:58:23
    */
-  @RequestMapping(value = "sample/detail/{detailName}", method = RequestMethod.GET)
-  protected ResponseEntity<?> getSampleDetail(HttpServletRequest request, @PathVariable String detailName) {
-    HenghuaSampleDetail2 detail = henghuaService.getSampleDetail(detailName);
+  @RequestMapping(value = "sample/detail/{detailId}", method = RequestMethod.GET)
+  protected ResponseEntity<?> getSampleDetail(HttpServletRequest request, @PathVariable String detailId) {
+    HenghuaSampleDetail2 detail = henghuaService.getSampleDetail(detailId);
     return detail == null ? super.notFound(RestResultWeb.NOTFOUND) : ResponseEntity.ok(detail);
   }
 

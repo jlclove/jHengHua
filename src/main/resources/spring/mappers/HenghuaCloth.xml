@@ -2,23 +2,84 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="HenghuaCloth">
-	<insert id="replaceSource" parameterType="list">
-		replace INTO `henghua_cloth`
-		(
-		`serialNo`,
-		`name`,
-		`image`,
-		`creator`,
-		`updator`)
-		<foreach collection="list" item="cloth" separator=" union all ">
-			(select
+	
+	<insert id="insertSource" parameterType="list">
+		insert INTO `henghua_cloth`
+		(`serialNo`,`name`,`desc_jpg`,`desc_png`,`desc_video`,
+		`sonCodeList`,`sizeList`,`onUnderStyle`,`wearStyle`,`style`,`material`,`mainColor`,
+		`detailId`,`price`,`unit`,`washCodes`)
+		SELECT `serialNo`,`name`,`desc_jpg`,`desc_png`,`desc_video`,
+		`sonCodeList`,`sizeList`,`onUnderStyle`,`wearStyle`,`style`,`material`,`mainColor`,
+		`detailId`,`price`,`unit`,`washCodes`
+		from 
+		<foreach collection="list" item="cloth" separator=" union all " open="(" close=")">
+			select
 			#{cloth.serialNo} as serialNo,
 			#{cloth.name} as name,
-			#{cloth.image} as image,
-			#{cloth.creator} as creator,
-			#{cloth.updator} as updator)
+			#{cloth.desc_jpg} as desc_jpg,
+			#{cloth.desc_png} as desc_png,
+			#{cloth.desc_video} as desc_video,
+			#{cloth.sonCodeList} as sonCodeList,
+			#{cloth.sizeList} as sizeList,
+			#{cloth.onUnderStyle} as onUnderStyle,
+			#{cloth.wearStyle} as wearStyle,
+			#{cloth.style} as style,
+			#{cloth.material} as material,
+			#{cloth.mainColor} as mainColor,
+			#{cloth.detailId} as detailId,
+			#{cloth.price} as price,
+			#{cloth.unit} as unit,
+			#{cloth.washCodes} as washCodes
 		</foreach>
+		as temp 
+		where not exists (select 1 from henghua_cloth as c where c.serialNo = temp.serialNo)
 	</insert>
+	
+	<update id="updateSource" parameterType="list">
+		update `henghua_cloth` as c
+		inner join 
+		<foreach collection="list" item="cloth" separator=" union all " open="(" close=")">
+			select
+			#{cloth.serialNo} as serialNo,
+			#{cloth.name} as name,
+			#{cloth.desc_jpg} as desc_jpg,
+			#{cloth.desc_png} as desc_png,
+			#{cloth.desc_video} as desc_video,
+			#{cloth.sonCodeList} as sonCodeList,
+			#{cloth.sizeList} as sizeList,
+			#{cloth.onUnderStyle} as onUnderStyle,
+			#{cloth.wearStyle} as wearStyle,
+			#{cloth.style} as style,
+			#{cloth.material} as material,
+			#{cloth.mainColor} as mainColor,
+			#{cloth.detailId} as detailId,
+			#{cloth.price} as price,
+			#{cloth.unit} as unit,
+			#{cloth.washCodes} as washCodes
+		</foreach>
+		as temp on c.serialNo = temp.serialNo
+		set c.serialNo = temp.serialNo,
+		c.name = temp.name,
+		c.desc_jpg = temp.desc_jpg,
+		c.desc_png = temp.desc_png,
+		c.desc_video = temp.desc_video,
+		c.sonCodeList = temp.sonCodeList,
+		c.sizeList = temp.sizeList,
+		c.onUnderStyle = temp.onUnderStyle,
+		c.wearStyle = temp.wearStyle,
+		c.style = temp.style,
+		c.material = temp.material,
+		c.mainColor = temp.mainColor,
+		c.detailId = temp.detailId,
+		c.price = temp.price,
+		c.unit = temp.unit,
+		c.washCodes = temp.washCodes,
+		c.updateTime = now()
+	</update>
+	
+	<delete id="deleteOutOfTime" parameterType="date">
+		delete from henghua_cloth where updateTime &lt; #{time}
+	</delete>
 
 	<!-- 下一分页 -->
 	<select id="findNextList" resultType="cloth" parameterType="long">

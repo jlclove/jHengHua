@@ -35,13 +35,13 @@ public class ProductController extends BaseController{
 
     @RequestMapping("/sample/{cardId}")
     protected String sampleDetail(@PathVariable String cardId, Model model) {
-        model.addAttribute("sampleDetail", henghuaService.getSample(cardId));
+        model.addAttribute("sample", henghuaService.getSample(cardId));
         return "sampleDetail";
     }
 
-    @RequestMapping("/sample/detail/{sampleName}")
-    protected String sampleChildDetail(@PathVariable String sampleName, Model model) {
-        model.addAttribute("sampleDetail", henghuaService.getSampleDetail(sampleName));
+    @RequestMapping("/sample/detail/{detailId}")
+    protected String sampleChildDetail(@PathVariable String detailId, Model model) {
+        model.addAttribute("sampleDetail", henghuaService.getSampleDetail(detailId));
         return "sampleChildDetail";
     }
 

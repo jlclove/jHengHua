@@ -37,7 +37,7 @@
         <%--</c:if>--%>
             <div class="col-sm-3 product-item">
                 <a href="/product/cloth/${cloth.serialNo}">
-                    <img src="http://www.jshenghua.com:82/Thumb/${cloth.image}" class="img-responsive" width="100%"/>
+                    <img src="http://www.jshenghua.com:82/Thumb/${cloth.desc_png}" class="img-responsive" width="100%"/>
                     <div class="product-desc mt10 pl5">
                         <div><span class="head">${cloth.name}</span>  -  <span class="f16">${cloth.serialNo}</span></div>
                     </div>

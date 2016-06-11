@@ -87,8 +87,8 @@ public class TestHenghuaService extends TestBase {
   }
 
   @Test
-  public void syncHenghuaClothList() {
-    henghuaService.syncHenghuaClothList();
+  public void syncAllHenghuaClothList() {
+    henghuaService.syncAllHenghuaClothList();
   }
 
   @Test
