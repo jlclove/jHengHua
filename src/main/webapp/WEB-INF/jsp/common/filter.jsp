@@ -39,11 +39,16 @@
                             <li>
                                 <div class="checkbox">
                                     <label>
-                                        <input name="singleCheck" type="checkbox" value="${filter.column},${v}">${v}
+                                        <input name="singleCheck" type="checkbox" value="${filter.column},${v},${filter.text}" data-multi="${multiColumns.contains(filter.column)}">${v}
                                     </label>
                                 </div>
                             </li>
                         </c:forEach>
+                        <li>
+                            <c:if test="${multiColumns.contains(filter.column)}">
+                                <a href="javascript:;" class="btn-confirm unit-link ml10"><fmt:message key="product_filter_ok"/></a>
+                            </c:if>
+                        </li>
                     </ul>
                 </div>
             </c:forEach>

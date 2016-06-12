@@ -6,7 +6,7 @@ $('#filterBtn').click(function(e){
     toggleFilter();
 });
 
-$('.filter-category-item a').click(function(e){
+$('.filter-category-item > a').click(function(e){
     e.preventDefault();
     $('.filter-category-item a.opened').removeClass('opened');
     $(this).addClass('opened');
@@ -55,61 +55,101 @@ var filterConfig = {};
 var filters = {};
 $('.filter-category-item').on('click', 'input[type=checkbox]', function(){
     sinceId = 0;
-    var kv = $(this).val().split(',');
+    filters = {};
+    var multiSelect = $(this).data('multi');
     if(filterConfig.multi) {
-        $(this).closest('li').siblings().find('input[type=checkbox]').attr('checked', false);
+        if(!multiSelect) {
+            $(this).closest('li').siblings().find('input[type=checkbox]').attr('checked', false);
+        }
     } else {
-        $(this).closest('li').siblings().find('input[type=checkbox]').attr('checked', false);
-        $(this).closest('.filter-category-item').siblings().find('input[type=checkbox]').attr('checked', false);
+        if(!multiSelect) {
+            $(this).closest('li').siblings().find('input[type=checkbox]').attr('checked', false);
+            $(this).closest('.filter-category-item').siblings().find('input[type=checkbox]').attr('checked', false);
+        }
     }
     $('.filter-category-item input[type=checkbox]:checked').each(function(i, e){
-        var arr = $(e).val().split(',');
+        var arr = $(e).val().split(','), currentMultiSelect = $(e).data('multi');
         if(filterConfig.multi) {
-            filters[arr[0]] = arr[1];
+            if(currentMultiSelect){
+                if(!filters[arr[0]]) {
+                    filters[arr[0]] = {value: [arr[1]]}
+                } else if (filters[arr[0]].value.indexOf(arr[1]) < 0){
+                    filters[arr[0]].value.push(arr[1])
+                }
+                filters[arr[0]].text = arr[2];
+            } else {
+                filters[arr[0]] = {
+                    text: arr[2],
+                    value: arr[1]
+                };
+            }
         } else {
-            filters[arr[0]] = $(this).val();
+            filters[arr[0]] = {text: arr[2], value: $(this).val()};
         }
     });
-    closeFilter();
     if(isLoading) {
         return;
     }
 
+    if(!multiSelect) {
+        search();
+    }
+});
+
+$('.filter-category-item').on('click', '.btn-confirm', function(){
+    search();
+});
+
+function search(){
     var url;
     if(!isEmpty(filters)) {
-        url = filterConfig.search_url + '?sinceId=0&filter=' + mapToList(filters).join(',');
+        sinceId = 0;
+        url = filterConfig.search_url + '?sinceId=' +  sinceId + '&' + mapToList(filters).join('&');
     } else {
         url = filterConfig.list_url;
     }
-    // 重置筛选条件数量
-    resetFilterCount(mapToList(filters).length);
 
     if(url) {
         Loading.open();
+        closeFilter();
+
         $.get(url, function(data){
             Loading.close();
+            // 重置筛选条件数量
+            resetFilterCount(mapToList(filters).length);
+            if (!data || data.length == 0) {
+                sinceId = 0;
+                return;
+            }
+            sinceId = data[data.length - 1].id;
+            $(document).scrollTop(0);
             reRender(data, true, 'search');
             $('.filter-selected-content').show();
             if(filterConfig.multi) {
                 $('.filter-property').empty();
                 for(var k in filters){
                     if(filters.hasOwnProperty(k)) {
-                        $('.filter-property').append('<span class="filter-key">' + k + '</span> : <span class="filter-value mr20">' + filters[k] + '</span>');
+                        $('.filter-property').append('<span class="filter-key">' + filters[k].text + '</span> : <span class="filter-value mr20">' + filters[k].value + '</span>');
                     }
                 }
             } else {
+                var kv = $(this).val().split(',');
                 $('.filter-property').html('<span class="filter-key">' + kv[0] + '</span> : <span class="filter-value mr20">' + kv[1] + '</span>');
             }
 
         });
     }
-});
+}
 
 function mapToList(filterMap){
     var result = [];
     for(var k in filterMap){
         if(filterMap.hasOwnProperty(k)) {
-            result.push(filterMap[k]);
+            if(k instanceof Array) {
+                result.push(k + '=' + filterMap[k].value.join(','));
+            } else {
+                result.push(k + '=' + filterMap[k].value);
+            }
         }
     }
     return result;
@@ -153,11 +193,9 @@ $('.filter-clear').on('click', function(){
 
 function reRender(data, clear, from){
     isLoading = false;
-    if(!data) {
-        return;
-    }
-    if(data.length == 0) {
+    if(!data || data.length == 0) {
         sinceId = 0;
+        return;
     }
     var url = filterConfig.template_url;
     /*if(from == 'search') {

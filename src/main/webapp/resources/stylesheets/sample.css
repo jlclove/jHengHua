@@ -155,7 +155,7 @@ div[class*=col-].product-item>img {
 .filter-category-item {
     float: left;
 }
-.filter-category-item a {
+.filter-category-item > a {
     position: relative;
     height: 48px;
     line-height: 48px;
@@ -165,7 +165,10 @@ div[class*=col-].product-item>img {
     border-left: 1px solid transparent;
     border-right: 1px solid transparent;
 }
-.filter-category-item a:after {
+.filter-category-item .unit-link {
+    padding: 9px 22px 7px;
+}
+.filter-category-item > a:after {
     content: "+";
     position: absolute;
     right: 15px;

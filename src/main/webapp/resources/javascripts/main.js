@@ -10,10 +10,9 @@
         },
 
         close: function(){
-            $layer.hide();
             setTimeout(function(){
                 $layer.remove();
-            }, 0);
+            }, 500);
         }
     };
 
