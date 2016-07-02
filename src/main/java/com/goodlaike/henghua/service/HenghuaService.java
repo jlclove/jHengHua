@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -107,6 +108,9 @@ public class HenghuaService {
    * @since 2016年6月11日 下午7:46:23
    */
   private void bindSampleDetailData(List<HenghuaSample> list) {
+    if (list.size() == 0) {
+      return;
+    }
     Map<String, Object> map = list.stream().collect(Collectors.toMap(HenghuaSample::getCardId, (s) -> {
       return StringUtils.isNotBlank(s.getSampleList()) ? Arrays.asList(s.getSampleList().split(",")) : Collections.emptyList();
     }));
