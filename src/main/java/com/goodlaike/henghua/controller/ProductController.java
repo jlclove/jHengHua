@@ -58,7 +58,7 @@ public class ProductController extends BaseController{
     @RequestMapping("/cloth/{serialNo}")
     protected String clothDetail(@PathVariable String serialNo, Model model) {
         model.addAttribute("cloth", henghuaService.getCloth(serialNo));
-        model.addAttribute("clothDetail", henghuaService.getClothDetail(serialNo));
+//        model.addAttribute("clothDetail", henghuaService.getClothDetail(serialNo));
         model.addAttribute("washingMap", henghuaService.getWashingMap());
         return "clothDetail";
     }

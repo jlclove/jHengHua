@@ -30,9 +30,9 @@ public class HenghuaSampleDao extends LocalRWDao<HenghuaSample> {
    * @updator jail
    * @updateTime 2015年9月3日下午8:58:56
    */
-  public void batchReplaceInto(List<HenghuaSample> sampleList, boolean deleteOutOfTime) {
+  public int batchReplaceInto(List<HenghuaSample> sampleList, boolean deleteOutOfTime) {
     Date updateTime = new Date();
-    super.batchOperate(100, sampleList, new BatchOperation(super.getSqlSession()) {
+    int effectCount  = super.batchOperate(100, sampleList, new BatchOperation(super.getSqlSession()) {
       @Override
       public int process(List<?> dataList) {
         int effectCount = this.getSqlSession().update("HenghuaSample.updateSource", dataList);
@@ -54,6 +54,7 @@ public class HenghuaSampleDao extends LocalRWDao<HenghuaSample> {
     if (deleteOutOfTime) {
       super.getSqlSession().delete("HenghuaSample.deleteOutOfTime", updateTime);
     }
+    return effectCount;
   }
 
   public List<Map<String, Object>> createCardDetailRelation(HenghuaSample card) {

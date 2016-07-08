@@ -27,9 +27,9 @@ public class HenghuaClothDao extends LocalRWDao<HenghuaCloth> {
    * @updator jail
    * @updateTime 2015年9月3日下午8:58:56
    */
-  public void batchReplaceInto(List<HenghuaCloth> clothList, boolean deleteOutOfTime) {
+  public int batchReplaceInto(List<HenghuaCloth> clothList, boolean deleteOutOfTime) {
     Date updateTime = new Date();
-    super.batchOperate(100, clothList, new BatchOperation(super.getSqlSession()) {
+    int effectCount = super.batchOperate(100, clothList, new BatchOperation(super.getSqlSession()) {
       @Override
       public int process(List<?> dataList) {
         int effectCount = this.getSqlSession().update("HenghuaCloth.updateSource", dataList);
@@ -40,6 +40,7 @@ public class HenghuaClothDao extends LocalRWDao<HenghuaCloth> {
     if (deleteOutOfTime) {
       super.getSqlSession().delete("HenghuaCloth.deleteOutOfTime", updateTime);
     }
+    return effectCount;
   }
 
   /**

@@ -15,8 +15,7 @@ import com.goodlaike.business.core.helper.LanguageHelper;
 import com.goodlaike.business.core.support.RestResult;
 import com.goodlaike.henghua.RestResultWeb;
 import com.goodlaike.henghua.entity.model.HenghuaCloth;
-import com.goodlaike.henghua.entity.model.HenghuaClothDetail;
-import com.goodlaike.henghua.entity.model.HenghuaSampleDetail2;
+import com.goodlaike.henghua.entity.model.HenghuaSampleDetail;
 import com.goodlaike.henghua.service.HenghuaService;
 
 /**
@@ -95,7 +94,7 @@ public class HenghuaController extends BaseRestController {
    */
   @RequestMapping(value = "sample/detail/{detailId}", method = RequestMethod.GET)
   protected ResponseEntity<?> getSampleDetail(HttpServletRequest request, @PathVariable String detailId) {
-    HenghuaSampleDetail2 detail = henghuaService.getSampleDetail(detailId);
+    HenghuaSampleDetail detail = henghuaService.getSampleDetail(detailId);
     return detail == null ? super.notFound(RestResultWeb.NOTFOUND) : ResponseEntity.ok(detail);
   }
 
@@ -171,8 +170,10 @@ public class HenghuaController extends BaseRestController {
    */
   @RequestMapping(value = "cloth/detail/{serialNo}", method = RequestMethod.GET)
   protected ResponseEntity<?> getClothDetail(HttpServletRequest request, @PathVariable String serialNo) {
-    HenghuaClothDetail clothDetail = henghuaService.getClothDetail(serialNo);
-    return clothDetail == null ? super.notFound(RestResult.NOTFOUND) : ResponseEntity.ok(clothDetail);
+	  HenghuaCloth cloth = this.henghuaService.getCloth(serialNo);
+	  return cloth == null ? super.notFound(RestResult.NOTFOUND) : ResponseEntity.ok(cloth);
+//    HenghuaClothDetail clothDetail = henghuaService.getClothDetail(serialNo);
+//    return clothDetail == null ? super.notFound(RestResult.NOTFOUND) : ResponseEntity.ok(clothDetail);
   }
 
   /**

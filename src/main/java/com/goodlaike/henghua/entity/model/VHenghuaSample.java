@@ -17,13 +17,13 @@ public class VHenghuaSample extends HenghuaSample {
 
   private static final long serialVersionUID = 1L;
 
-  private List<HenghuaSampleDetail2> detailList = new ArrayList<>();
+  private List<HenghuaSampleDetail> detailList = new ArrayList<>();
 
-  public List<HenghuaSampleDetail2> getDetailList() {
+  public List<HenghuaSampleDetail> getDetailList() {
     return detailList;
   }
 
-  public void setDetailList(List<HenghuaSampleDetail2> detailList) {
+  public void setDetailList(List<HenghuaSampleDetail> detailList) {
     this.detailList = detailList;
   }
 }

@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.goodlaike.business.core.controller.BaseRestController;
 import com.goodlaike.henghua.RestResultWeb;
-import com.goodlaike.henghua.entity.model.HenghuaSampleDetail2;
+import com.goodlaike.henghua.entity.model.HenghuaSampleDetail;
 import com.goodlaike.henghua.service.HenghuaService;
 
 @RequestMapping("v1/sync")
@@ -32,7 +32,7 @@ public class SyncController extends BaseRestController {
       @RequestParam(name = "materialTypes", required = false) String materialTypes,
       @RequestParam(name = "clearTypes", required = false) String clearTypes) {
     Assert.hasText(detailId, "the argument [detailId] must not be null or empty");
-    HenghuaSampleDetail2 detail = new HenghuaSampleDetail2();
+    HenghuaSampleDetail detail = new HenghuaSampleDetail();
     detail.setDetailId(detailId);
     detail.setCardIds(cardIds);
     detail.setDesc_jpg(desc_jpg);
