@@ -67,7 +67,7 @@
 		select *
 		from
 		henghua_sample
-		where cardId = #{cardId}
+		where cardId = #{cardId} or alias = #{cardId}
 	</select>
 	
 	<select id="searchSample" parameterType="map" resultType="vSample" >

@@ -143,6 +143,20 @@ public class HenghuaService {
 	}
 
 	/**
+	 * 同步单条样卡数据
+	 * @param cardId 样卡编码
+	 * @return boolean
+	 */
+	public boolean syncHenghuaSample(String cardId) {
+		HenghuaSample sample = this.getSampleFromHost(cardId);
+		if (sample == null) {
+			return false;
+		}
+		return this.henghuaSampleDao.batchReplaceInto(Arrays.asList(sample), false) == 1;
+
+	}
+
+	/**
 	 * 从官方主机获得样卡详情
 	 * 
 	 * @param cardId
@@ -217,6 +231,9 @@ public class HenghuaService {
 	 */
 	public boolean syncHenghuaSampleDetail(String detailId) {
 		HenghuaSampleDetail detail = this.restHenghua.restSampleDatail(detailId);
+		if (detail == null) {
+			return false;
+		}
 		return this.henghuaSampleDetailDao.batchReplaceInto(Arrays.asList(detail), false) == 1;
 	}
 

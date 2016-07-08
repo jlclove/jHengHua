@@ -40,10 +40,16 @@ public class TestHenghuaService extends TestBase {
 		henghuaService.syncAllHenghuaSample();
 	}
 
+	// 同步单条样卡数据
+	@Test
+	public void syncHenghuaSample() {
+		System.out.println(this.henghuaService.syncHenghuaSample("YK150001"));
+	}
+
 	// 从服务器获得样卡详情
 	@Test
 	public void getSampleFromHost() {
-		System.out.println(henghuaService.getSampleFromHost("YK1C0012"));
+		System.out.println(henghuaService.getSampleFromHost("YK150001"));
 	}
 
 	// 获得样卡列表
@@ -55,7 +61,7 @@ public class TestHenghuaService extends TestBase {
 	// 获得样卡详情
 	@Test
 	public void getSample() {
-		System.out.println(this.henghuaService.getSample("YK1C0001"));
+		System.out.println(this.henghuaService.getSample("YK150001"));
 	}
 
 	// 获得样品详情
@@ -122,12 +128,11 @@ public class TestHenghuaService extends TestBase {
 	public void getClothFromHost() {
 		System.out.println(henghuaService.getClothFromHost("SAA0201_01"));
 	}
-	
+
 	@Test
-	public void syncHenghuaCloth(){
+	public void syncHenghuaCloth() {
 		System.out.println(this.henghuaService.syncHenghuaCloth("SAA0201_01"));
 	}
-
 
 	@Test
 	public void getWashingMap() {
