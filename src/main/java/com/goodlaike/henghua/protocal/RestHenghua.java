@@ -68,8 +68,6 @@ public class RestHenghua {
   @Value("${cloth_type}")
   private String apiClothType;
 
-  @Value("${cloth_filter}")
-  private String apiClothFilter;
 
   // 恒华json头
   public static final String JSON_HEAD = "result";
@@ -318,7 +316,7 @@ public class RestHenghua {
   /**
    * 获得指定服装库存信息
    * 
-   * @param sonSerialNo 服装子序列号，对应  {@link HenghuaCloth#getSonCodeList()}
+   * @param sonSerialNo 服装子序列号，对应 {@link HenghuaCloth#getSonCodeList()}
    * @return String
    */
   private String restClothQuantityStr(String sonSerialNo) {
@@ -328,7 +326,7 @@ public class RestHenghua {
   /**
    * 获得指定服装库存信息
    * 
-   * @param sonSerialNo 服装子序列号，对应  {@link HenghuaCloth#getSonCodeList()}
+   * @param sonSerialNo 服装子序列号，对应 {@link HenghuaCloth#getSonCodeList()}
    * @return HenghuaClothQuantity
    */
   public HenghuaClothQuantity restClothQuantity(String sonSerialNo) {
@@ -342,20 +340,33 @@ public class RestHenghua {
    * @return
    * @author jail
    */
-  public String restClothType() {
+  private String restClothTypeStr() {
     return this.rest(this.apiClothType);
   }
 
   /**
-   * 获得服饰筛选
+   * 获得服装分类的数组Map
    * 
-   * @param filter
-   * @return
+   * @return String Map<String, List<String>>
    * @author jail
    */
-  public String restClothFilter(String filter) {
-    return this.rest(TextUtil.format(this.apiClothFilter, filter));
+  public Map<String, List<String>> restClothType() {
+    String typeStr = this.restClothTypeStr();
+    typeStr = HenghuaDamnJsonUtil.format(typeStr);
+    JSONObject obj = JSONObject.parseObject(typeStr);
+    // 获取 result key 下的伪数组
+    String listStr = obj.getString(RestHenghua.JSON_HEAD);
+    // 获取伪数组下的第一个元素
+    String listDetailStr = JSONObject.parseArray(listStr, String.class).get(0);
+    // 将内容转成json对象并分析所有的value
+    JSONObject listObj = JSONObject.parseObject(listDetailStr);
+    Map<String, List<String>> clothTypeMap = new HashMap<String, List<String>>();
+    listObj.forEach((k, v) -> {
+      clothTypeMap.put(k, Arrays.asList(String.valueOf(v).split(",")));
+    });
+    return clothTypeMap;
   }
+
 
   private String rest(String url) {
     System.out.println("==============>>" + url);

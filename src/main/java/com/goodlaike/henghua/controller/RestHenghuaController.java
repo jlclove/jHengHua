@@ -222,7 +222,7 @@ public class RestHenghuaController extends BaseRestController {
    */
   @RequestMapping(value = "cloth/type", method = RequestMethod.GET)
   protected ResponseEntity<?> getClothType() {
-    return ResponseEntity.ok(henghuaService.getClothType());
+    return ResponseEntity.ok(this.henghuaService.getClothType());
   }
 
   /**
@@ -238,6 +238,6 @@ public class RestHenghuaController extends BaseRestController {
    */
   @RequestMapping(value = "cloth/search", method = RequestMethod.GET)
   protected ResponseEntity<?> searchCloth(@RequestParam(value = "filter") String filter) {
-    return ResponseEntity.ok(henghuaService.getClothFilter(filter));
+    return ResponseEntity.ok().build();
   }
 }

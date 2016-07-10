@@ -70,6 +70,7 @@ public class SampleFilter implements Serializable {
 
   /**
    * 获得 multiOption
+   * 
    * @return boolean
    */
   public boolean isMultiOption() {
@@ -77,7 +78,8 @@ public class SampleFilter implements Serializable {
   }
 
   /**
-   * 设置  multiOption
+   * 设置 multiOption
+   * 
    * @param multiOption boolean
    */
   public void setMultiOption(boolean multiOption) {
@@ -98,15 +100,24 @@ public class SampleFilter implements Serializable {
     // TODO Auto-generated constructor stub
   }
 
-  public SampleFilter(String text, List<String> values) {
+  public SampleFilter(String text, List<String> values, FilterType type) {
     this.text = text;
-    this.column = this.convertTextToColumn(text);
+    switch (type) {
+      case SAMPLE:
+        this.column=  this.convertSampleTextToColumn(text);
+        this.multiOption = this.convertSampleTextToMultiOption(text);
+        break;
+      case CLOTH:
+        this.column=  this.convertClothTextToColumn(text);
+        this.multiOption = this.convertClothTextToMultiOption(text);
+        break;
+    }
     this.values = values;
-    this.multiOption = this.convertTextToMultiOption(text);
   }
 
   /**
-   * 从接口文本转化为数据列
+   * 从接口文本转化为数据列【样卡】
+   * 
    * @param text
    * @return
    * @summary
@@ -114,7 +125,7 @@ public class SampleFilter implements Serializable {
    * @version v1
    * @since 2016年7月10日 下午8:17:04
    */
-  private String convertTextToColumn(String text) {
+  private String convertSampleTextToColumn(String text) {
     switch (text) {
       case "克重":
         return "gramWeight";
@@ -138,9 +149,10 @@ public class SampleFilter implements Serializable {
         return "";
     }
   }
-  
+
   /**
-   * 设置是否多选的属性
+   * 设置是否多选的属性【样卡】
+   * 
    * @param text
    * @return
    * @summary
@@ -148,14 +160,68 @@ public class SampleFilter implements Serializable {
    * @version v1
    * @since 2016年7月10日 下午8:16:52
    */
-  private boolean convertTextToMultiOption(String text) {
+  private boolean convertSampleTextToMultiOption(String text) {
     switch (text) {
-      case "原料": 
+      case "原料":
       case "颜色":
       case "整理方式":
         return true;
       default:
         return false;
     }
+  }
+  
+  /**
+   * 从接口文本转化为数据列【服装】
+   * 
+   * @param text
+   * @return
+   * @summary
+   * @author Jail Hu
+   * @version v1
+   * @since 2016年7月10日 下午8:17:04
+   */
+  private String convertClothTextToColumn(String text) {
+    switch (text) {
+      case "原料名称":
+        return "material";
+      case "穿着类别":
+        return "wearStyle";
+      case "颜色":
+        return "mainColor";
+      case "样式":
+        return "style";
+      case "上下类别":
+        return "onUnderStyle";
+      case "商品名称":
+        return "name";
+      default:
+        return "";
+    }
+  }
+
+  /**
+   * 设置是否多选的属性【服装】
+   * 
+   * @param text
+   * @return
+   * @summary
+   * @author Jail Hu
+   * @version v1
+   * @since 2016年7月10日 下午8:16:52
+   */
+  private boolean convertClothTextToMultiOption(String text) {
+    switch (text) {
+      case "原料名称":
+      case "颜色":
+      case "商品名称":
+        return true;
+      default:
+        return false;
+    }
+  }
+
+  public static enum FilterType {
+    SAMPLE, CLOTH;
   }
 }

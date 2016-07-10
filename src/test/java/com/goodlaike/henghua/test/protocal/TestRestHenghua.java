@@ -29,4 +29,9 @@ public class TestRestHenghua extends TestBase {
   public void restWashingList() {
     System.out.println(this.restHenghua.restWashingAllMap());
   }
+  
+  @Test
+  public void restClothType(){
+    System.out.println(this.restHenghua.restClothType());
+  }
 }
