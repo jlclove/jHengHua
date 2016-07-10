@@ -175,3 +175,8 @@ $(document).ready(function(){
         }
     });
 });
+
+//关键字搜索
+function searchKeyWord(){
+    window.location.href='/product/sample?keyword=' + encodeURIComponent($('#keyword').val())
+}

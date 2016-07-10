@@ -31,6 +31,7 @@
     <c:forTokens items="${param.css}" delims="," var="file">
         <link rel="stylesheet" type="text/css" href="/static/stylesheets/${file}.css">
     </c:forTokens>
+    <script src="/static/javascripts/vue.min.js"></script>
 </head>
 <body>
 <header class="animated">
@@ -43,7 +44,7 @@
                     <i class="icon-suiticon icon-suiticon-menu-1"></i>
                 </button>
                 <a class="navbar-brand" href="/">
-                    HENGHUA
+                    HENGHUA FASHION GROUP
                     <%--<img alt="Brand" src="/static/images/logo.png">--%>
                 </a>
                 <button type="button" class="navbar-toggle collapsed right">
@@ -308,8 +309,8 @@
                         <div class="nav-menu">
                             <div class="nav-menu-wrap container-fluid">
                                 <div class="input-group">
-                                    <input type="text" class="custom-text" placeholder="<fmt:message key="nav_search_text"/>"/>
-                                    <a class="unit-link ml10 text-center" href="#"><fmt:message key="nav_search_btn"/></a>
+                                    <input type="text" class="custom-text" id="keyword" placeholder="<fmt:message key="nav_search_text"/>"/>
+                                    <a class="unit-link ml10 text-center" href="javascript:searchKeyWord()"><fmt:message key="nav_search_btn"/></a>
                                 </div>
                             </div>
                         </div>

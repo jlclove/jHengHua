@@ -8,10 +8,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ include file="include.jsp"%>
 <fmt:bundle basename="site">
-<div class="suits filter-bar" data-spy="affix" data-offset-top="62">
+<div id="filter" class="suits filter-bar" data-spy="affix" data-offset-top="62">
     <div class="filter-btn clearfix">
         <div class="pull-left">
-            <a id="filterBtn" class="filter-item animated" href="#">
+            <a id="filterBtn" v-on:click="toggleFilter" class="filter-item animated" href="#">
                 <span><fmt:message key="product_filter_text"/></span>
                 <i class="icon-suiticon icon-suiticon-filter-1-1"></i>
                 <span class="tip">1</span>
@@ -26,33 +26,32 @@
     </div>
     <div class="filter-category container-fluid clearfix">
         <div class="row filter-selected-content clearfix">
-            <div class="filter-clear btn btn-default">Clear All <i
+            <div class="filter-clear btn btn-default" v-on:click="clearAll">Clear All <i
                     class="close-section close-section--alpha icon-suiticon icon-suiticon-delete-1"></i></div>
             <div class="filter-property"></div>
         </div>
         <div class="row pos-rel">
-            <c:forEach items="${filters}" var="filter">
-                <div class="filter-category-item">
-                    <a href="#" class="">${filter.text}</a>
-                    <ul class="list-inline animated">
-                        <c:forEach items="${filter.values}" var="v" varStatus="status">
-                            <li>
-                                <div class="checkbox">
-                                    <label>
-                                        <input name="singleCheck" type="checkbox" value="${filter.column},${v},${filter.text}" data-multi="${multiColumns.contains(filter.column)}">${v}
-                                    </label>
-                                </div>
-                            </li>
-                        </c:forEach>
-                        <li>
-                            <c:if test="${multiColumns.contains(filter.column)}">
-                                <a href="javascript:;" class="btn-confirm unit-link ml10"><fmt:message key="product_filter_ok"/></a>
-                            </c:if>
-                        </li>
-                    </ul>
-                </div>
-            </c:forEach>
+            <div class="filter-category-item" v-for="filter in filters">
+                <a href="#" class="" v-on:click="toggleMenuItem">{{filter.text}}</a>
+                <ul class="list-inline animated">
+                    <li v-for="v in filter.values">
+                        <div class="checkbox">
+                            <label>
+                                <input v-on:click="check" name="singleCheck" type="checkbox" value="{{filter.column}},{{v}},{{filter.text}}" data-multi="{{filter.multiOption}}">{{v}}
+                            </label>
+                        </div>
+                    </li>
+                    <li>
+                        <a v-if="filter.multiOption" v-on:click="search" href="javascript:;" class="btn-confirm unit-link ml10"><fmt:message key="product_filter_ok"/></a>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
 </div>
+<script>
+    var keyword = '${param.keyword}';
+    var materialTypes = '${param.materialTypes}';
+    var fabrics = '${param.fabrics}';
+</script>
 </fmt:bundle>

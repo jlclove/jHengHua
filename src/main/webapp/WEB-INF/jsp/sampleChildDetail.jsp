@@ -72,9 +72,15 @@
                         <div class="col-sm-8">
                             <p class="form-control-static">${sampleDetail.colorTypes}</p>
                         </div>
-                    </div> 
-                    
-                 <%--    <div class="form-group">
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label"><fmt:message key="product_sample_detail_quantity"/></label>
+                        <div class="col-sm-8">
+                            <p class="form-control-static"><span id="stock">0</span> <span id="unit"></span></p>
+                        </div>
+                    </div>
+
+                <%--    <div class="form-group">
                         <label class="col-sm-4 control-label"><fmt:message key="product_sample_detail_price"/></label>
                         <div class="col-sm-8">
                             <p class="form-control-static">${sampleDetail.price}</p>
@@ -103,6 +109,9 @@
         </div>
     </div>
 </div>
+<script>
+    var detailId = '${sampleDetail.detailId}';
+</script>
 <jsp:include page="common/foot.jsp">
     <jsp:param name="js" value="javascripts/sampleDetail"/>
 </jsp:include>

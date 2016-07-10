@@ -23,7 +23,7 @@
         
         <div class="col-sm-3">
             <div class="unit-box">
-                <a href="#">
+                <a href="/product/sample?materialTypes=麻">
                     <img src="/static/images/1-1.jpg"  width="100%" class="hidden-xs"/>
                     <img src="/static/images/mobile-1-1.jpg" width="100%" class="visible-xs"/>
                 </a>
@@ -38,7 +38,7 @@
 
         <div class="col-sm-3">
             <div class="unit-box">
-                <a href="#">
+                <a href="/product/sample?materialTypes=毛">
                     <img src="/static/images/1-2.jpg"  width="100%" class="hidden-xs"/>
                     <img src="/static/images/mobile-1-2.jpg" width="100%" class="visible-xs"/>
                 </a>
@@ -53,7 +53,7 @@
 
         <div class="col-sm-3">
             <div class="unit-box">
-                <a href="#">
+                <a href="/product/sample?materialTypes=锦纶,腈纶,竹纤维">
                     <img src="/static/images/1-3.jpg"  width="100%" class="hidden-xs"/>
                     <img src="/static/images/mobile-1-3.jpg" width="100%" class="visible-xs"/>
                 </a>
@@ -68,7 +68,7 @@
 
         <div class="col-sm-3">
             <div class="unit-box">
-                <a href="#">
+                <a href="/product/sample?materialTypes=莫代尔">
                     <img src="/static/images/1-4.jpg"  width="100%" class="hidden-xs"/>
                     <img src="/static/images/mobile-1-4.jpg" width="100%" class="visible-xs"/>
                 </a>
@@ -85,7 +85,7 @@
 
         <div class="col-sm-3">
             <div class="unit-box">
-                <a href="#">
+                <a href="/product/sample?fabrics=朝阳条格">
                     <img src="/static/images/1-5.jpg"  width="100%" class="hidden-xs"/>
                     <img src="/static/images/mobile-1-5.jpg" width="100%" class="visible-xs"/>
                 </a>
@@ -100,7 +100,7 @@
 
         <div class="col-sm-3">
             <div class="unit-box">
-                <a href="#">
+                <a href="/product/sample?fabrics=牛津纺">
                     <img src="/static/images/1-6.jpg"  width="100%" class="hidden-xs"/>
                     <img src="/static/images/mobile-1-6.jpg" width="100%" class="visible-xs"/>
                 </a>
@@ -115,7 +115,7 @@
 
         <div class="col-sm-3">
             <div class="unit-box">
-                <a href="#">
+                <a href="/product/sample?materialTypes=麻,全麻">
                     <img src="/static/images/1-7.jpg"  width="100%" class="hidden-xs"/>
                     <img src="/static/images/mobile-1-7.jpg" width="100%" class="visible-xs"/>
                 </a>
@@ -130,7 +130,7 @@
 
         <div class="col-sm-3">
             <div class="unit-box">
-                <a href="#">
+                <a href="/product/sample?materialTypes=真丝">
                     <img src="/static/images/1-8.jpg"  width="100%" class="hidden-xs"/>
                     <img src="/static/images/mobile-1-8.jpg" width="100%" class="visible-xs"/>
                 </a>

@@ -1,15 +1,71 @@
 /**
  * Created by charles on 15/9/7.
  */
-$('#filterBtn').click(function(e){
-    e.preventDefault();
-    toggleFilter();
-});
+//筛选功能
+var filterConfig = {};
+var filters = {};
+$(document).ready(function(){
+    $.get(filterConfig.filterTypeUrl, function(res){
+        new Vue({
+            el: '#filter',
+            data: {
+                filters: res,
+            },
+            methods: {
+                toggleMenuItem: function(event){
+                    $('.filter-category-item a.opened').removeClass('opened');
+                    $(event.target).addClass('opened');
+                },
+                toggleFilter: toggleFilter,
+                search: search,
+                clearAll: clearAll
+            },
+            ready: function(){
+                $('.filter-category-item').on('click', 'input[type=checkbox]', function(){
+                    sinceId = 0;
+                    filters = {};
+                    var multiSelect = $(this).data('multi')!=undefined;
+                    if(filterConfig.multi) {
+                        if(!multiSelect) {
+                            $(this).closest('li').siblings().find('input[type=checkbox]').attr('checked', false);
+                        }
+                    } else {
+                        if(!multiSelect) {
+                            $(this).closest('li').siblings().find('input[type=checkbox]').attr('checked', false);
+                            $(this).closest('.filter-category-item').siblings().find('input[type=checkbox]').attr('checked', false);
+                        }
+                    }
+                    $('.filter-category-item input[type=checkbox]:checked').each(function(i, e){
+                        var arr = $(e).val().split(','), currentMultiSelect = ($(e).data('multi')!=undefined);
+                        if(filterConfig.multi) {
+                            if(currentMultiSelect){
+                                if(!filters[arr[0]]) {
+                                    filters[arr[0]] = {value: [arr[1]]}
+                                } else if (filters[arr[0]].value.indexOf(arr[1]) < 0){
+                                    filters[arr[0]].value.push(arr[1])
+                                }
+                                filters[arr[0]].text = arr[2];
+                            } else {
+                                filters[arr[0]] = {
+                                    text: arr[2],
+                                    value: arr[1]
+                                };
+                            }
+                        } else {
+                            filters[arr[0]] = {text: arr[2], value: $(this).val()};
+                        }
+                    });
+                    if(isLoading) {
+                        return;
+                    }
 
-$('.filter-category-item > a').click(function(e){
-    e.preventDefault();
-    $('.filter-category-item a.opened').removeClass('opened');
-    $(this).addClass('opened');
+                    if(!multiSelect) {
+                        search();
+                    }
+                });
+            }
+        });
+    });
 });
 
 $(document).click(function(e){
@@ -19,6 +75,30 @@ $(document).click(function(e){
 });
 function closeFilter(){
     toggleFilter(0)
+}
+function clearAll() {
+    closeFilter();
+    filters = {};
+    resetFilterCount(0);
+    if (filterConfig.search_url) {
+        Loading.open();
+        $.get(filterConfig.search_url, {
+            keys: keyword?keyword:undefined,
+            materialTypes: materialTypes?materialTypes:undefined,
+            fabrics:fabrics?fabrics:undefined
+        }, function (data) {
+            Loading.close();
+            if (!data || data.length == 0) {
+                sinceId = 0;
+                return;
+            }
+            sinceId = data[data.length - 1].id;
+            reRender(data, true);
+            $('.filter-category-item input[type=checkbox]').attr('checked', false);
+            $('.filter-selected-content').hide();
+            $('.filter-property').text('');
+        });
+    }
 }
 /**
  * 切换筛选框状态
@@ -49,81 +129,27 @@ function toggleFilter(type) {
     }
 }
 
-
-//筛选功能
-var filterConfig = {};
-var filters = {};
-$('.filter-category-item').on('click', 'input[type=checkbox]', function(){
-    sinceId = 0;
-    filters = {};
-    var multiSelect = $(this).data('multi');
-    if(filterConfig.multi) {
-        if(!multiSelect) {
-            $(this).closest('li').siblings().find('input[type=checkbox]').attr('checked', false);
-        }
-    } else {
-        if(!multiSelect) {
-            $(this).closest('li').siblings().find('input[type=checkbox]').attr('checked', false);
-            $(this).closest('.filter-category-item').siblings().find('input[type=checkbox]').attr('checked', false);
-        }
-    }
-    $('.filter-category-item input[type=checkbox]:checked').each(function(i, e){
-        var arr = $(e).val().split(','), currentMultiSelect = $(e).data('multi');
-        if(filterConfig.multi) {
-            if(currentMultiSelect){
-                if(!filters[arr[0]]) {
-                    filters[arr[0]] = {value: [arr[1]]}
-                } else if (filters[arr[0]].value.indexOf(arr[1]) < 0){
-                    filters[arr[0]].value.push(arr[1])
-                }
-                filters[arr[0]].text = arr[2];
-            } else {
-                filters[arr[0]] = {
-                    text: arr[2],
-                    value: arr[1]
-                };
-            }
-        } else {
-            filters[arr[0]] = {text: arr[2], value: $(this).val()};
-        }
-    });
-    if(isLoading) {
-        return;
-    }
-
-    if(!multiSelect) {
-        search();
-    }
-});
-
-$('.filter-category-item').on('click', '.btn-confirm', function(){
-    search();
-});
-
 function search(){
     var url;
-    if(!isEmpty(filters)) {
-        sinceId = 0;
-        url = filterConfig.search_url + '?sinceId=' +  sinceId + '&' + mapToList(filters).join('&');
-    } else {
-        url = filterConfig.list_url;
-    }
+    sinceId = 0;
+    url = filterConfig.search_url + '?sinceId=' +  sinceId + '&' + mapToList(filters).join('&');
 
     if(url) {
         Loading.open();
         closeFilter();
 
-        $.get(url, function(data){
+        $.get(url, {keys: keyword?keyword:undefined}, function(data){
             Loading.close();
             // 重置筛选条件数量
             resetFilterCount(mapToList(filters).length);
+            reRender(data, true, 'search');
             if (!data || data.length == 0) {
                 sinceId = 0;
-                return;
+            } else {
+                sinceId = data[data.length - 1].id;
             }
-            sinceId = data[data.length - 1].id;
             $(document).scrollTop(0);
-            reRender(data, true, 'search');
+
             $('.filter-selected-content').show();
             if(filterConfig.multi) {
                 $('.filter-property').empty();
@@ -139,6 +165,7 @@ function search(){
 
         });
     }
+
 }
 
 function mapToList(filterMap){
@@ -170,54 +197,23 @@ function resetFilterCount(count){
     }
 }
 
-$('.filter-clear').on('click', function(){
-    closeFilter();
-    filters = {};
-    resetFilterCount(0);
-    if(filterConfig.list_url) {
-        Loading.open();
-        $.get(filterConfig.list_url, function (data) {
-            Loading.close();
-            if (!data || data.length == 0) {
-                sinceId = 0;
-                return;
-            }
-            sinceId = data[data.length - 1].id;
-            reRender(data, true);
-            $('.filter-category-item input[type=checkbox]').attr('checked', false);
-            $('.filter-selected-content').hide();
-            $('.filter-property').text('');
-        });
-    }
-});
+
 
 function reRender(data, clear, from){
     isLoading = false;
     if(!data || data.length == 0) {
         sinceId = 0;
-        return;
     }
-    var url = filterConfig.template_url;
-    /*if(from == 'search') {
-        url = filterConfig.search_template_url ? filterConfig.search_template_url : filterConfig.template_url;
+    if(clear) {
+        listView.sampleList = data;
     } else {
-        url = filterConfig.template_url;
-    }*/
-    if(url) {
-        $.get(url, function(html){
-            var outerHTML = _.template(html)({list: data});
-            if(clear) {
-                $('#list').html(outerHTML);
-            } else {
-                $('#list').append(outerHTML);
-            }
-        })
+        listView.sampleList = listView.sampleList.concat(data);
     }
 }
 
 var isLoading = false;
 $(document).on('scroll', function(){
-    if(filterConfig.list_url) {
+    if(filterConfig.search_url) {
         if (isLoading || sinceId == 0) {
             return;
         }
@@ -227,7 +223,11 @@ $(document).on('scroll', function(){
         var bheight = rheight - theight - height;
         if (bheight <= 1170) {
             isLoading = true;
-            $.get(filterConfig.list_url + '?sinceId=' + sinceId, function (data) {
+            $.get(filterConfig.search_url + '?sinceId=' + sinceId + '&' + mapToList(filters).join('&'),{
+                keys: keyword?keyword:undefined,
+                materialTypes: materialTypes?materialTypes:undefined,
+                fabrics:fabrics?fabrics:undefined
+            }, function (data) {
                 if (!data || data.length == 0) {
                     sinceId = 0;
                     return;
