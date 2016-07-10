@@ -26,7 +26,7 @@ import com.goodlaike.henghua.service.HenghuaService;
  */
 @RestController
 @RequestMapping("henghua")
-public class HenghuaController extends BaseRestController {
+public class RestHenghuaController extends BaseRestController {
 
   @Autowired
   private HenghuaService henghuaService;
@@ -134,8 +134,9 @@ public class HenghuaController extends BaseRestController {
       @RequestParam(value = "zuzhi", required = false) String zuzhi, @RequestParam(value = "fabrics", required = false) String fabrics,
       @RequestParam(value = "colorTypes", required = false) String colorTypes,
       @RequestParam(value = "clearTypes", required = false) String clearTypes,
-      @RequestParam(value = "materialTypes", required = false) String materialTypes) {
-    return ResponseEntity.ok(this.henghuaService.search(id, level, style, gramWeight, season, zuzhi, fabrics, colorTypes, clearTypes, materialTypes));
+      @RequestParam(value = "materialTypes", required = false) String materialTypes,
+      @RequestParam(value = "keys", required = false) String keys) {
+    return ResponseEntity.ok(this.henghuaService.search(id, level, style, gramWeight, season, zuzhi, fabrics, colorTypes, clearTypes, materialTypes,keys));
   }
 
   /**

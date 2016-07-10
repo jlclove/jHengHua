@@ -9,6 +9,10 @@ public class SampleFilter implements Serializable {
   private String text;
   private String column;
   private List<String> values;
+  /**
+   * 是否多选
+   */
+  private boolean multiOption = false;
 
   /**
    * 获得 text
@@ -64,6 +68,22 @@ public class SampleFilter implements Serializable {
     this.values = values;
   }
 
+  /**
+   * 获得 multiOption
+   * @return boolean
+   */
+  public boolean isMultiOption() {
+    return multiOption;
+  }
+
+  /**
+   * 设置  multiOption
+   * @param multiOption boolean
+   */
+  public void setMultiOption(boolean multiOption) {
+    this.multiOption = multiOption;
+  }
+
   /*
    * (non-Javadoc)
    * 
@@ -82,11 +102,20 @@ public class SampleFilter implements Serializable {
     this.text = text;
     this.column = this.convertTextToColumn(text);
     this.values = values;
+    this.multiOption = this.convertTextToMultiOption(text);
   }
 
+  /**
+   * 从接口文本转化为数据列
+   * @param text
+   * @return
+   * @summary
+   * @author Jail Hu
+   * @version v1
+   * @since 2016年7月10日 下午8:17:04
+   */
   private String convertTextToColumn(String text) {
     switch (text) {
-
       case "克重":
         return "gramWeight";
       case "品级":
@@ -107,6 +136,26 @@ public class SampleFilter implements Serializable {
         return "materialTypes";
       default:
         return "";
+    }
+  }
+  
+  /**
+   * 设置是否多选的属性
+   * @param text
+   * @return
+   * @summary
+   * @author Jail Hu
+   * @version v1
+   * @since 2016年7月10日 下午8:16:52
+   */
+  private boolean convertTextToMultiOption(String text) {
+    switch (text) {
+      case "原料": 
+      case "颜色":
+      case "整理方式":
+        return true;
+      default:
+        return false;
     }
   }
 }

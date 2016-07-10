@@ -8,10 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.goodlaike.business.core.helper.LanguageHelper;
 import com.goodlaike.henghua.service.HenghuaService;
-
-import java.util.Arrays;
 
 /**
  * Created with IntelliJ IDEA.
@@ -30,9 +27,9 @@ public class ProductController extends BaseController{
 
     @RequestMapping("/sample")
     protected String sampleList(Model model, HttpServletRequest request) {
-        model.addAttribute("filters", henghuaService.getSampleType(LanguageHelper.getLocalization(request)));
-        model.addAttribute("multiColumns", Arrays.asList("materialTypes", "colorTypes", "clearTypes"));
-        model.addAttribute("sampleList", henghuaService.getNextSampleList(0));
+//        model.addAttribute("filters", henghuaService.getSampleType(LanguageHelper.getLocalization(request)));
+//        model.addAttribute("multiColumns", Arrays.asList("materialTypes", "colorTypes", "clearTypes"));
+//        model.addAttribute("sampleList", henghuaService.getNextSampleList(0));
         return "sample";
     }
 
@@ -45,7 +42,6 @@ public class ProductController extends BaseController{
     @RequestMapping("/sample/detail/{detailId}")
     protected String sampleChildDetail(@PathVariable String detailId, Model model) {
         model.addAttribute("sampleDetail", henghuaService.getSampleDetail(detailId));
-        model.addAttribute("sampleDetailQuantity", henghuaService.getSampleDetailQuantity(detailId));
         return "sampleChildDetail";
     }
 

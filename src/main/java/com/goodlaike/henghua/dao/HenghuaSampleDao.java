@@ -112,7 +112,7 @@ public class HenghuaSampleDao extends LocalRWDao<HenghuaSample> {
    * @author jail
    */
   public List<HenghuaSample> search(long id, String level, String style, String gramWeight, String season, String zuzhi, String fabrics,
-      String colorTypes, String clearTypes, String materialTypes) {
+      String colorTypes, String clearTypes, String materialTypes,String keys) {
     Map<String, Object> searchMap = new HashMap<>();
     searchMap.put("id", id);
     searchMap.put("level", level);
@@ -124,6 +124,7 @@ public class HenghuaSampleDao extends LocalRWDao<HenghuaSample> {
     searchMap.put("colorTypes", StringUtils.hasText(colorTypes) ? colorTypes.split(",") : null);
     searchMap.put("clearTypes", StringUtils.hasText(clearTypes) ? clearTypes.split(",") : null);
     searchMap.put("materialTypes", StringUtils.hasText(materialTypes) ? materialTypes.split(",") : null);
+    searchMap.put("keys", keys);
     return super.selectList("HenghuaSample.searchSample", searchMap);
   }
 }

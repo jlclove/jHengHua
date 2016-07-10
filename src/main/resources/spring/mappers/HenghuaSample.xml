@@ -74,6 +74,11 @@
 		select * from 
 		henghua_sample as s
 		where id > #{id}
+		<if test="keys!=null">
+			and (s.cardId = #{keys} or s.alias = #{keys} or exists (select 1 from henghua_sample_detail_relation as dr
+									  inner join henghua_sample_detail as sd on dr.detailId = sd.detailId
+									  where sd.detailId = #{keys} and dr.cardId = s.cardId))
+		</if>
 		<if test="level!=null">
 			and exists (select 1 from henghua_sample_detail_relation as dr
 									  inner join henghua_sample_detail as sd on dr.detailId = sd.detailId

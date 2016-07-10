@@ -90,9 +90,9 @@ public class HenghuaService {
    * @author jail
    */
   public List<HenghuaSample> search(long id, String level, String style, String gramWeight, String season, String zuzhi, String fabrics,
-      String colorTypes, String clearTypes, String materialTypes) {
+      String colorTypes, String clearTypes, String materialTypes,String keys) {
     List<HenghuaSample> list =
-        this.henghuaSampleDao.search(id, level, style, gramWeight, season, zuzhi, fabrics, colorTypes, clearTypes, materialTypes);
+        this.henghuaSampleDao.search(id, level, style, gramWeight, season, zuzhi, fabrics, colorTypes, clearTypes, materialTypes,keys);
     bindSampleDetailData(list);
     return list;
   }
