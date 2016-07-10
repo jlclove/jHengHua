@@ -86,9 +86,9 @@
                     <label class="col-sm-2 control-label"><fmt:message key="product_cloth_detail_washing"/></label>
                     <div class="col-sm-10">
                         <p class="form-control-static washing-container">
-                            <c:forTokens items="${clothDetail.washing}" delims="," var="w">
-                                <img src="http://www.jshenghua.com:82/${washingMap[w]}"></img>
-                            </c:forTokens>
+                        	<c:forEach items="${washingList }" var="w">
+                        		<img src="http://www.jshenghua.com:82/${w.png}"></img>
+                        	</c:forEach>
                         </p>
                     </div>
                 </div>

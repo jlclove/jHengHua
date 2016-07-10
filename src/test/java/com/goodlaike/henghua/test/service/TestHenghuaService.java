@@ -133,6 +133,7 @@ public class TestHenghuaService extends TestBase {
     System.out.println(this.henghuaService.syncHenghuaCloth("SAA0201_01"));
   }
 
+  // 获得所有洗标Map
   @Test
   public void getWashingMap() {
     System.out.println(henghuaService.getWashingMap());

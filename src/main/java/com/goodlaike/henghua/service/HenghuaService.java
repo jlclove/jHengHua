@@ -28,6 +28,7 @@ import com.goodlaike.henghua.entity.model.HenghuaSample;
 import com.goodlaike.henghua.entity.model.HenghuaSampleDetail;
 import com.goodlaike.henghua.entity.model.HenghuaSampleDetailQuantity;
 import com.goodlaike.henghua.entity.model.VHenghuaSample;
+import com.goodlaike.henghua.entity.model.Washing;
 import com.goodlaike.henghua.protocal.RestHenghua;
 import com.goodlaike.henghua.protocal.SampleFilter;
 import com.goodlaike.tools.utils.CoderUtil;
@@ -90,9 +91,9 @@ public class HenghuaService {
    * @author jail
    */
   public List<HenghuaSample> search(long id, String level, String style, String gramWeight, String season, String zuzhi, String fabrics,
-      String colorTypes, String clearTypes, String materialTypes,String keys) {
+      String colorTypes, String clearTypes, String materialTypes, String keys) {
     List<HenghuaSample> list =
-        this.henghuaSampleDao.search(id, level, style, gramWeight, season, zuzhi, fabrics, colorTypes, clearTypes, materialTypes,keys);
+        this.henghuaSampleDao.search(id, level, style, gramWeight, season, zuzhi, fabrics, colorTypes, clearTypes, materialTypes, keys);
     bindSampleDetailData(list);
     return list;
   }
@@ -201,7 +202,7 @@ public class HenghuaService {
    * @return HenghuaSampleDetailQuantity
    */
   public HenghuaSampleDetailQuantity getSampleDetailQuantity(String detailId) {
-      return this.restHenghua.restSampleDetailQuantity(detailId);
+    return this.restHenghua.restSampleDetailQuantity(detailId);
   }
 
   /**
@@ -359,46 +360,9 @@ public class HenghuaService {
    * @return
    * @author jail
    */
-  public HenghuaWashingCacheMap getWashingMap() {
-    if (this.washingCacheMap == null || this.washingCacheMap.isOutOfTime()) {
-      this.washingCacheMap.clear();
-      this.washingCacheMap.reActive();
-      logger.debug("初始化===洗标");
-      String r = restHenghua.restWashingList();
-      r = CoderUtil.decodeUnicode(r);
-      JSONObject obj = JSONObject.parseObject(r);
-      r = obj.getString("result").replaceAll("\\[\\[", "[").replaceAll("\\]\\]", "]");
-      JSONArray ar = JSONArray.parseArray(r);
-      ar.forEach(a -> {
-        JSONObject o = (JSONObject) a;
-        o.keySet().forEach(key -> this.washingCacheMap.put(key, o.getString(key) + ".png"));
-      });
-    }
-    return this.washingCacheMap;
-  }
-
-  /**
-   * 洗标缓存 相关
-   */
-  private final HenghuaWashingCacheMap washingCacheMap = new HenghuaWashingCacheMap();
-
-  private static class HenghuaWashingCacheMap extends HashMap<String, String> {
-
-    private static final long serialVersionUID = 7155720117282678187L;
-    private long timeout;
-
-    public boolean isOutOfTime() {
-      return System.currentTimeMillis() > this.timeout;
-    }
-
-    public void reActive() {
-      this.timeout = System.currentTimeMillis() + 60 * 60 * 1000;
-    }
-
-    /**
-     * 默认一天过期
-     */
-    public HenghuaWashingCacheMap() {}
+  @Cacheable(value = "globalConfig", key = "'HenghuaService.getWashingMap'")
+  public Map<Integer, Washing> getWashingMap() {
+    return this.restHenghua.restWashingMap();
   }
 
   /**

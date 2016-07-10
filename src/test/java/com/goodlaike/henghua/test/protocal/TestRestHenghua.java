@@ -10,24 +10,23 @@ import com.goodlaike.henghua.test.TestBase;
  * 
  * @author jail
  */
-public class TestSyncHenghua extends TestBase {
+public class TestRestHenghua extends TestBase {
 
   @Autowired
-  private RestHenghua syncHenghua;
+  private RestHenghua restHenghua;
 
   @Test
   public void restSampleType() {
-    System.out.println(syncHenghua.restSampleType("cn"));
+    System.out.println(restHenghua.restSampleType("cn"));
   }
 
   @Test
   public void restClothAll() {
-    System.out.println(syncHenghua.restClothAll());
+    System.out.println(restHenghua.restClothAll());
   }
 
   @Test
-  public void adf() {
-    String a = "aaaa\"竹节棉纱+DUPONT NYLON 66+LYCRA弹力\"bbb";
-    System.out.println(a.replaceAll("\"竹节棉纱\\+DUPONT NYLON 66\\+LYCRA弹力\"", ""));
+  public void restWashingList() {
+    System.out.println(this.restHenghua.restWashingMap());
   }
 }
