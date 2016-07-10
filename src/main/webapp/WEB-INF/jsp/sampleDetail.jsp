@@ -55,7 +55,7 @@
     </div>
 </div>
 <jsp:include page="common/foot.jsp">
-    <jsp:param name="js" value="javascripts/sampleDetail,javascripts/jquery.qrcode.min"/>
+    <jsp:param name="js" value="javascripts/jquery.qrcode.min"/>
 </jsp:include>
 </fmt:bundle>
 <script type="text/javascript">

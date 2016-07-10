@@ -134,7 +134,7 @@ div[class*=col-].product-item>img {
     border-bottom: 1px solid #d9d9d9;
     margin-top: 0;
     max-height: 360px;
-    overflow: auto;
+    /* overflow: auto; */
 }
 .filter-category .filter-selected-content {
     padding: 15px;

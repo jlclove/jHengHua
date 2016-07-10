@@ -79,14 +79,13 @@
                             <p class="form-control-static"><span id="stock">0</span> <span id="unit"></span></p>
                         </div>
                     </div>
-
-                <%--    <div class="form-group">
+               		<div class="form-group">
                         <label class="col-sm-4 control-label"><fmt:message key="product_sample_detail_price"/></label>
                         <div class="col-sm-8">
-                            <p class="form-control-static">${sampleDetail.price}</p>
+                            <p class="form-control-static"><span id="price">0</span></p>
                         </div>
                     </div> 
-                    <div class="form-group">
+                     <%--    <div class="form-group">
                         <label class="col-sm-4 control-label"><fmt:message key="product_sample_detail_reserve"/></label>
                         <div class="col-sm-8">
                             <p class="form-control-static">${sampleDetail.reserve}</p>

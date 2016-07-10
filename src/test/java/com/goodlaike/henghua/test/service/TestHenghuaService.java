@@ -77,7 +77,7 @@ public class TestHenghuaService extends TestBase {
   // 获得指定样品库存信息
   @Test
   public void getSampleDetailQuantity() {
-    System.out.println(this.henghuaService.getSampleDetailQuantity("HC130124-01"));
+    System.out.println(this.henghuaService.getSampleDetailQuantity("HK140498-01"));
   }
 
   // 同步所有样品数据
