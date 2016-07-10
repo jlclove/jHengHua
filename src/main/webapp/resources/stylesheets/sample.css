@@ -256,6 +256,7 @@ div[class*=col-].product-item>img {
 }
 .product-property-item {
     margin-right: 5px;
+    margin-bottom:5px;
     padding: 4px 5px 2px;
     display: block;
     border: 1px solid #e9e9e9;

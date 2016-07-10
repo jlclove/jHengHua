@@ -21,46 +21,40 @@
         <div class="col-md-6 f16">
             <form class="form-horizontal">
                 <div class="form-group">
-                    <label class="col-sm-2 control-label"><fmt:message key="product_cloth_detail_barcode"/></label>
+                    <label class="col-sm-2 control-label"><fmt:message key="product_cloth_detail_serialNo"/></label>
                     <div class="col-sm-10">
-                        <p class="form-control-static">${clothDetail.barCode}</p>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-2 control-label"><fmt:message key="product_cloth_detail_category"/></label>
-                    <div class="col-sm-10">
-                        <p class="form-control-static">${clothDetail.category}</p>
+                         <p class="form-control-static">${cloth.serialNo}</p>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label"><fmt:message key="product_cloth_detail_color"/></label>
                     <div class="col-sm-10">
-                        <p class="form-control-static">${clothDetail.color}</p>
+                        <p class="form-control-static">${cloth.mainColor}</p>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label"><fmt:message key="product_cloth_detail_fabricno"/></label>
+                    <label class="col-sm-2 control-label"><fmt:message key="product_cloth_detail_onUnderStyle"/></label>
                     <div class="col-sm-10">
-                        <p class="form-control-static">${clothDetail.fabricNo}</p>
+                        <p class="form-control-static">${cloth.onUnderStyle}</p>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label"><fmt:message key="product_cloth_detail_materials"/></label>
                     <div class="col-sm-10">
-                        <p class="form-control-static">${clothDetail.materials}</p>
+                        <p class="form-control-static">${cloth.material}</p>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label"><fmt:message key="product_cloth_detail_retailprice"/></label>
+                    <label class="col-sm-2 control-label"><fmt:message key="product_cloth_detail_price"/></label>
                     <div class="col-sm-10">
-                        <p class="form-control-static">${clothDetail.retailPrice}</p>
+                        <p class="form-control-static">${cloth.price} <fmt:message key="product_cloth_detail_priceMoney"/>/${cloth.unit }</p>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label"><fmt:message key="product_cloth_detail_serialno"/></label>
                     <div class="col-sm-10">
                         <p class="form-control-static serialno-container">
-                            <c:forTokens items="${clothDetail.serialNo}" delims="," var="s">
+                            <c:forTokens items="${cloth.sonCodeList}" delims="," var="s">
                                 <span class="product-property-item animated">${s}</span>
                             </c:forTokens>
                         </p>
@@ -70,7 +64,7 @@
                     <label class="col-sm-2 control-label"><fmt:message key="product_cloth_detail_size"/></label>
                     <div class="col-sm-10">
                         <p class="form-control-static size-container">
-                            <c:forTokens items="${clothDetail.size}" delims="," var="s">
+                            <c:forTokens items="${cloth.sizeList}" delims="," var="s">
                                 <span class="product-property-item animated">${s}</span>
                             </c:forTokens>
                         </p>
@@ -79,7 +73,7 @@
                 <div class="form-group">
                     <label class="col-sm-2 control-label"><fmt:message key="product_cloth_detail_style"/></label>
                     <div class="col-sm-10">
-                        <p class="form-control-static">${clothDetail.style}</p>
+                        <p class="form-control-static">${cloth.style}</p>
                     </div>
                 </div>
                 <div class="form-group">
@@ -95,7 +89,7 @@
                 <div class="form-group">
                     <label class="col-sm-2 control-label"><fmt:message key="product_cloth_detail_wearing"/></label>
                     <div class="col-sm-10">
-                        <p class="form-control-static">${clothDetail.wearing}</p>
+                        <p class="form-control-static">${cloth.wearStyle}</p>
                     </div>
                 </div>
             </form>
