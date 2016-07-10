@@ -51,7 +51,7 @@ public class SyncController extends BaseRestController {
     detail.setMaterialTypes(materialTypes);
     detail.setClearTypes(clearTypes);
     try {
-      this.henghuaService.syncHenghuaSampleDetail(detail);
+      this.henghuaService.syncSampleDetail(detail);
       return ResponseEntity.ok().build();
     } catch (Exception e) {
       return super.serverError(RestResultWeb.SERVERERROR.rebuild(e.getMessage()));

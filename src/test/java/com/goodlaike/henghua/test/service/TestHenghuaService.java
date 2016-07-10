@@ -30,19 +30,18 @@ public class TestHenghuaService extends TestBase {
   public void getSampleType() {
     System.out.println(henghuaService.getSampleType("cn"));
     System.out.println(henghuaService.getSampleType("en"));
-    // System.out.println(henghuaService.getSampleType("en"));
   }
 
   // 同步所有的样卡数据
   @Test
-  public void syncAllHenghuaSample() {
-    henghuaService.syncAllHenghuaSample();
+  public void syncAllSample() {
+    henghuaService.syncAllSample();
   }
 
   // 同步单条样卡数据
   @Test
-  public void syncHenghuaSample() {
-    System.out.println(this.henghuaService.syncHenghuaSample("YK150001"));
+  public void syncSample() {
+    System.out.println(this.henghuaService.syncSample("YK150001"));
   }
 
   // 从服务器获得样卡详情
@@ -83,14 +82,14 @@ public class TestHenghuaService extends TestBase {
 
   // 同步所有样品数据
   @Test
-  public void syncAllHenghuaSampleDetail() {
-    this.henghuaService.syncAllHenghuaSampleDetail();
+  public void syncAllSampleDetail() {
+    this.henghuaService.syncAllSampleDetail();
   }
 
   // 同步单条样品数据
   @Test
-  public void syncHenghuaSampleDetail() {
-    this.henghuaService.syncHenghuaSampleDetail("HC130217-02");
+  public void syncSampleDetail() {
+    this.henghuaService.syncSampleDetail("HC130217-02");
   }
 
   @Test
@@ -98,16 +97,10 @@ public class TestHenghuaService extends TestBase {
     System.out.println(henghuaService.search(0, null, null, null, null, null, null, "黄", null, null, null));
   }
 
-  // 获得所有服装款式
-  @Test
-  public void getAllHenghuaClothList() {
-    System.out.println(henghuaService.getAllHenghuaCloth());
-  }
-
   // 同步所有服装款式
   @Test
-  public void syncAllHenghuaClothList() {
-    henghuaService.syncAllHenghuaClothList();
+  public void syncAllCloth() {
+    henghuaService.syncAllCloth();
   }
 
   // 获得下一页服装
@@ -129,16 +122,21 @@ public class TestHenghuaService extends TestBase {
   }
 
   @Test
-  public void syncHenghuaCloth() {
-    System.out.println(this.henghuaService.syncHenghuaCloth("SAA0201_01"));
+  public void syncCloth() {
+    System.out.println(this.henghuaService.syncCloth("SAA0201_01"));
+  }
+  
+  @Test
+  public void getClothQuantity(){
+    System.out.println(this.henghuaService.getClothQuantity("SAA0201101"));
   }
 
   // 获得所有洗标Map
   @Test
   public void getWashingMap() {
-    System.out.println(henghuaService.getWashingMap());
-    System.out.println(henghuaService.getWashingMap());
-    System.out.println(henghuaService.getWashingMap());
+    System.out.println(henghuaService.getWashingAllMap());
+    System.out.println(henghuaService.getWashingAllMap());
+    System.out.println(henghuaService.getWashingAllMap());
   }
 
   @Test

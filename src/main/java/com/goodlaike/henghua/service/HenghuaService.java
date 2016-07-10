@@ -24,6 +24,7 @@ import com.goodlaike.henghua.dao.HenghuaClothDao;
 import com.goodlaike.henghua.dao.HenghuaSampleDao;
 import com.goodlaike.henghua.dao.HenghuaSampleDetailDao;
 import com.goodlaike.henghua.entity.model.HenghuaCloth;
+import com.goodlaike.henghua.entity.model.HenghuaClothQuantity;
 import com.goodlaike.henghua.entity.model.HenghuaSample;
 import com.goodlaike.henghua.entity.model.HenghuaSampleDetail;
 import com.goodlaike.henghua.entity.model.HenghuaSampleDetailQuantity;
@@ -114,7 +115,7 @@ public class HenghuaService {
     Map<String, Object> map = list.stream().collect(Collectors.toMap(HenghuaSample::getCardId, (s) -> {
       return StringUtils.isNotBlank(s.getSampleList()) ? Arrays.asList(s.getSampleList().split(",")) : Collections.emptyList();
     }));
-    Map<String, List<HenghuaSampleDetail>> resultMap = this.getSampleDetailList(map);
+    Map<String, List<HenghuaSampleDetail>> resultMap = this.getSampleDetailMap(map);
     list.forEach(sample -> {
       ((VHenghuaSample) sample).setDetailList(resultMap.get(sample.getCardId()));
     });
@@ -126,7 +127,7 @@ public class HenghuaService {
    * @param sample
    * @author jail
    */
-  public Map<String, List<HenghuaSampleDetail>> getSampleDetailList(Map<String, Object> map) {
+  private Map<String, List<HenghuaSampleDetail>> getSampleDetailMap(Map<String, Object> map) {
     return this.henghuaSampleDetailDao.findSampleDetails(map).stream().collect(Collectors.groupingBy(HenghuaSampleDetail::getCardIds));
   }
 
@@ -135,7 +136,7 @@ public class HenghuaService {
    * 
    * @author jail
    */
-  public void syncAllHenghuaSample() {
+  public void syncAllSample() {
     List<HenghuaSample> list = this.restHenghua.restSampleAll();
     henghuaSampleDao.batchReplaceInto(list, true);
   }
@@ -146,7 +147,7 @@ public class HenghuaService {
    * @param cardId 样卡编码
    * @return boolean
    */
-  public boolean syncHenghuaSample(String cardId) {
+  public boolean syncSample(String cardId) {
     HenghuaSample sample = this.getSampleFromHost(cardId);
     if (sample == null) {
       return false;
@@ -210,7 +211,7 @@ public class HenghuaService {
    * 
    * @author jail
    */
-  public void syncAllHenghuaSampleDetail() {
+  public void syncAllSampleDetail() {
     List<HenghuaSampleDetail> list = this.restHenghua.restSampleDatailAll();
     this.henghuaSampleDetailDao.batchReplaceInto(list, true);
   }
@@ -224,7 +225,7 @@ public class HenghuaService {
    * @version v1
    * @since 2016年6月5日 下午5:50:51
    */
-  public boolean syncHenghuaSampleDetail(String detailId) {
+  public boolean syncSampleDetail(String detailId) {
     HenghuaSampleDetail detail = this.restHenghua.restSampleDatail(detailId);
     if (detail == null) {
       return false;
@@ -241,19 +242,9 @@ public class HenghuaService {
    * @version v1
    * @since 2016年6月5日 下午6:09:12
    */
-  public void syncHenghuaSampleDetail(HenghuaSampleDetail detail) {
+  public void syncSampleDetail(HenghuaSampleDetail detail) {
     Assert.hasText(detail.getDetailId(), "the argument [detailId] must not be null or empty");
     this.henghuaSampleDetailDao.batchReplaceInto(Arrays.asList(detail), false);
-  }
-
-  /**
-   * 获得所有服装款式
-   * 
-   * @return List<HenghuaCloth>
-   * @author jail
-   */
-  public List<HenghuaCloth> getAllHenghuaCloth() {
-    return this.restHenghua.restClothAll();
   }
 
   /**
@@ -261,7 +252,7 @@ public class HenghuaService {
    * 
    * @author jail
    */
-  public void syncAllHenghuaClothList() {
+  public void syncAllCloth() {
     henghuaClothDao.batchReplaceInto(this.restHenghua.restClothAll(), true);
   }
 
@@ -296,7 +287,7 @@ public class HenghuaService {
    * @return HenghuaCloth
    */
   public HenghuaCloth getClothFromHost(String serialNo) {
-    return this.restHenghua.restClothDetail(serialNo);
+    return this.restHenghua.restCloth(serialNo);
   }
 
   /**
@@ -305,7 +296,7 @@ public class HenghuaService {
    * @param cloth 服装对象
    * @return boolean
    */
-  public boolean syncHenghuaCloth(HenghuaCloth cloth) {
+  public boolean syncCloth(HenghuaCloth cloth) {
     Assert.notNull(cloth, "the argument [cloth] must not be null");
     return this.henghuaClothDao.batchReplaceInto(Arrays.asList(cloth), false) == 1;
   }
@@ -316,25 +307,26 @@ public class HenghuaService {
    * @param serialNo 服装编号
    * @return boolean
    */
-  public boolean syncHenghuaCloth(String serialNo) {
+  public boolean syncCloth(String serialNo) {
     HenghuaCloth cloth = this.getClothFromHost(serialNo);
     return this.henghuaClothDao.batchReplaceInto(Arrays.asList(cloth), false) == 1;
   }
 
   /**
-   * 获得服装详情
+   * 获得指定服装库存信息 
    * 
-   * @param serialNo
-   * @return
-   * @author jail
+   * @param sonSerialNo 服装子序列号，对应  {@link HenghuaCloth#getSonCodeList()}
+   * @return HenghuaClothQuantity
+   * @summary 获得指定服装库存信息
+   * @author Jail Hu
+   * @version v1
+   * @since 2016年7月10日 下午9:50:32
    */
-  /*
-   * @Cacheable(value = "clothDetail", key = "#serialNo") public HenghuaClothDetail
-   * getClothDetail(String serialNo) { String r = restHenghua.restClothDetail(serialNo); r =
-   * CoderUtil.decodeUnicode(r); JSONObject obj = JSONObject.parseObject(r); r =
-   * obj.getString("result").replaceAll("\\[\\[", "").replaceAll("\\]\\]", ""); HenghuaClothDetail
-   * detail = JSONObject.parseObject(r, HenghuaClothDetail.class); return detail; }
-   */
+  @Cacheable(value = "cloth", key = "'HenghuaService.getClothQuantity.'+#sonSerialNo")
+  public HenghuaClothQuantity getClothQuantity(String sonSerialNo) {
+    return this.restHenghua.restClothQuantity(sonSerialNo);
+  }
+
 
   /**
    * 获得 样品分类
@@ -360,9 +352,9 @@ public class HenghuaService {
    * @return
    * @author jail
    */
-  @Cacheable(value = "globalConfig", key = "'HenghuaService.getWashingMap'")
-  public Map<Integer, Washing> getWashingMap() {
-    return this.restHenghua.restWashingMap();
+  @Cacheable(value = "globalConfig", key = "'HenghuaService.getWashingAllMap'")
+  public Map<Integer, Washing> getWashingAllMap() {
+    return this.restHenghua.restWashingAllMap();
   }
 
   /**

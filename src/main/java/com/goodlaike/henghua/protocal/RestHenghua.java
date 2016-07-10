@@ -13,14 +13,15 @@ import org.springframework.stereotype.Component;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.goodlaike.framework.dao.utils.TextUtil;
 import com.goodlaike.henghua.entity.model.HenghuaCloth;
+import com.goodlaike.henghua.entity.model.HenghuaClothQuantity;
 import com.goodlaike.henghua.entity.model.HenghuaSample;
 import com.goodlaike.henghua.entity.model.HenghuaSampleDetail;
 import com.goodlaike.henghua.entity.model.HenghuaSampleDetailQuantity;
 import com.goodlaike.henghua.entity.model.Washing;
 import com.goodlaike.henghua.utils.HenghuaDamnJsonUtil;
 import com.goodlaike.resttemplate.client.RestClient;
+import com.goodlaike.tools.utils.TextUtil;
 
 /**
  * 恒华样卡同步类， 采用 @Component、@PropertySource 与 @Value 来实现，需要定义 @Bean <br>
@@ -34,8 +35,11 @@ import com.goodlaike.resttemplate.client.RestClient;
 @PropertySource(value = {"classpath:api_henghua.properties"})
 public class RestHenghua {
 
-  @Value("${sample_list}")
-  private String apiSampleList;
+  @Value("${sample_all}")
+  private String apiSampleAll;
+
+  @Value("${sample}")
+  private String apiSample;
 
   @Value("${sample_type}")
   private String apiSampleType;
@@ -49,14 +53,17 @@ public class RestHenghua {
   @Value("${sample_detail_quantity}")
   private String apiSampleDetailQuantity;
 
-  @Value("${cloth_list_all}")
-  private String apiClothList;
+  @Value("${cloth_all}")
+  private String apiClothAll;
 
-  @Value("${cloth_detail}")
-  private String apiClothDetail;
+  @Value("${cloth}")
+  private String apiCloth;
 
-  @Value("${washing_list}")
-  private String apiWashingList;
+  @Value("${cloth_quantity}")
+  private String apiClothQuantity;
+
+  @Value("${washing_all}")
+  private String apiWashingAll;
 
   @Value("${cloth_type}")
   private String apiClothType;
@@ -67,10 +74,6 @@ public class RestHenghua {
   // 恒华json头
   public static final String JSON_HEAD = "result";
 
-  public void test() {
-    System.out.println(this.apiSampleList);
-  }
-
   /**
    * 获得所有样卡数据， 接口提供非正常 json,当 json 输出
    * 
@@ -78,7 +81,7 @@ public class RestHenghua {
    * @author jail
    */
   public String restSampleAllStr() {
-    return this.rest(this.apiSampleList);
+    return this.rest(this.apiSampleAll);
   }
 
   /**
@@ -106,7 +109,7 @@ public class RestHenghua {
    * @since 2016年6月5日 上午11:32:34
    */
   private String restSampleStr(String cardId) {
-    return this.rest(this.apiSampleList + "/" + cardId);
+    return this.rest(TextUtil.format(this.apiSample, cardId));
   }
 
   /**
@@ -239,7 +242,7 @@ public class RestHenghua {
    * @author jail
    */
   private String restClothAllStr() {
-    return this.rest(this.apiClothList);
+    return this.rest(this.apiClothAll);
   }
 
   /**
@@ -260,8 +263,8 @@ public class RestHenghua {
    * @return
    * @author jail
    */
-  private String restClothDetailStr(String serialNo) {
-    return this.rest(TextUtil.format(this.apiClothDetail, serialNo));
+  private String restClothStr(String serialNo) {
+    return this.rest(TextUtil.format(this.apiCloth, serialNo));
   }
 
   /**
@@ -271,8 +274,8 @@ public class RestHenghua {
    * @return
    * @author jail
    */
-  public HenghuaCloth restClothDetail(String serialNo) {
-    String clothStr = this.restClothDetailStr(serialNo);
+  public HenghuaCloth restCloth(String serialNo) {
+    String clothStr = this.restClothStr(serialNo);
     return this.getObject(clothStr, HenghuaCloth.class);
   }
 
@@ -285,8 +288,8 @@ public class RestHenghua {
    * @version v1
    * @since 2016年7月10日 下午8:33:48
    */
-  private String restWashingStr() {
-    return this.rest(this.apiWashingList);
+  private String restWashingAllStr() {
+    return this.rest(this.apiWashingAll);
   }
 
   /**
@@ -295,8 +298,8 @@ public class RestHenghua {
    * @return
    * @author jail
    */
-  public Map<Integer, Washing> restWashingMap() {
-    String washingStr = this.restWashingStr();
+  public Map<Integer, Washing> restWashingAllMap() {
+    String washingStr = this.restWashingAllStr();
     washingStr = HenghuaDamnJsonUtil.format(washingStr);
     JSONObject obj = JSONObject.parseObject(washingStr);
     // 获取 result key 下的伪数组
@@ -310,6 +313,27 @@ public class RestHenghua {
       washingMap.put(Integer.valueOf(k), JSONObject.parseObject(v.toString(), Washing.class));
     });
     return washingMap;
+  }
+
+  /**
+   * 获得指定服装库存信息
+   * 
+   * @param sonSerialNo 服装子序列号，对应  {@link HenghuaCloth#getSonCodeList()}
+   * @return String
+   */
+  private String restClothQuantityStr(String sonSerialNo) {
+    return this.rest(TextUtil.format(this.apiClothQuantity, sonSerialNo));
+  }
+
+  /**
+   * 获得指定服装库存信息
+   * 
+   * @param sonSerialNo 服装子序列号，对应  {@link HenghuaCloth#getSonCodeList()}
+   * @return HenghuaClothQuantity
+   */
+  public HenghuaClothQuantity restClothQuantity(String sonSerialNo) {
+    String restStr = this.restClothQuantityStr(sonSerialNo);
+    return this.getObject(restStr, HenghuaClothQuantity.class);
   }
 
   /**

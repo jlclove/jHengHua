@@ -207,7 +207,7 @@ public class RestHenghuaController extends BaseRestController {
    */
   @RequestMapping(value = "washing", method = RequestMethod.GET)
   protected ResponseEntity<?> getWashingMap(HttpServletRequest request) {
-    return ResponseEntity.ok(henghuaService.getWashingMap());
+    return ResponseEntity.ok(henghuaService.getWashingAllMap());
   }
 
   /**

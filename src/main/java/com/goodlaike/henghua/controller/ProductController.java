@@ -31,11 +31,6 @@ public class ProductController extends BaseController {
 
   @RequestMapping("/sample")
   protected String sampleList(Model model, HttpServletRequest request) {
-    // model.addAttribute("filters",
-    // henghuaService.getSampleType(LanguageHelper.getLocalization(request)));
-    // model.addAttribute("multiColumns", Arrays.asList("materialTypes", "colorTypes",
-    // "clearTypes"));
-    // model.addAttribute("sampleList", henghuaService.getNextSampleList(0));
     return "sample";
   }
 
@@ -63,7 +58,7 @@ public class ProductController extends BaseController {
     HenghuaCloth cloth = this.henghuaService.getCloth(serialNo);
     model.addAttribute("cloth", cloth);
     if (cloth != null && !StringUtils.isEmpty(cloth.getWashCodes())) {
-      Map<Integer, Washing> washingMap = this.henghuaService.getWashingMap();
+      Map<Integer, Washing> washingMap = this.henghuaService.getWashingAllMap();
       Washing washing = null;
       List<Washing> washingList = new ArrayList<>();
       for (String code : cloth.getWashCodes().split(",")) {
