@@ -16,6 +16,7 @@ import com.goodlaike.business.core.support.RestResult;
 import com.goodlaike.henghua.RestResultWeb;
 import com.goodlaike.henghua.entity.model.HenghuaCloth;
 import com.goodlaike.henghua.entity.model.HenghuaSampleDetail;
+import com.goodlaike.henghua.entity.model.HenghuaSampleDetailQuantity;
 import com.goodlaike.henghua.service.HenghuaService;
 
 /**
@@ -95,6 +96,22 @@ public class HenghuaController extends BaseRestController {
   @RequestMapping(value = "sample/detail/{detailId}", method = RequestMethod.GET)
   protected ResponseEntity<?> getSampleDetail(HttpServletRequest request, @PathVariable String detailId) {
     HenghuaSampleDetail detail = henghuaService.getSampleDetail(detailId);
+    return detail == null ? super.notFound(RestResultWeb.NOTFOUND) : ResponseEntity.ok(detail);
+  }
+  
+  /**
+   * 获得样品库存
+   * @param request
+   * @param detailId
+   * @return
+   * @summary
+   * @author Jail Hu
+   * @version v1
+   * @since 2016年7月10日 下午8:00:14
+   */
+  @RequestMapping(value = "sample/detail/{detailId}/quantity", method = RequestMethod.GET)
+  protected ResponseEntity<?> getSampleDetailQuantity(HttpServletRequest request, @PathVariable String detailId) {
+    HenghuaSampleDetailQuantity detail = henghuaService.getSampleDetailQuantity(detailId);
     return detail == null ? super.notFound(RestResultWeb.NOTFOUND) : ResponseEntity.ok(detail);
   }
 

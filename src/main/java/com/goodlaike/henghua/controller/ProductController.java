@@ -45,6 +45,7 @@ public class ProductController extends BaseController{
     @RequestMapping("/sample/detail/{detailId}")
     protected String sampleChildDetail(@PathVariable String detailId, Model model) {
         model.addAttribute("sampleDetail", henghuaService.getSampleDetail(detailId));
+        model.addAttribute("sampleDetailQuantity", henghuaService.getSampleDetailQuantity(detailId));
         return "sampleChildDetail";
     }
 
