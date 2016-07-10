@@ -44,8 +44,6 @@
     z-index: 100;
     left: 0;
     top: 62px;
-    /*overflow: auto;*/
-    /*bottom: 0;*/
 }
 .filter-bar a.filter-item {
     position: relative;
@@ -133,8 +131,12 @@ div[class*=col-].product-item>img {
     top: 0;
     border-bottom: 1px solid #d9d9d9;
     margin-top: 0;
-    max-height: 360px;
-    /* overflow: auto; */
+}
+@media (max-width: 768px) {
+    .filter-category {
+        max-height: 360px;
+        overflow: auto;
+    }
 }
 .filter-category .filter-selected-content {
     padding: 15px;
