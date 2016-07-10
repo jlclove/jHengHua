@@ -159,15 +159,15 @@
 //        $('.float-bg').removeClass('visible');
     });
 
-    $('img').on('error', function(){
-        console.log('error');
-        var errorCount = $(this).data('errorCount') || 0;
-        $(this).data('errorCount', errorCount++);
-        if(errorCount <= 2) {
-            $(this).attr('src', '/static/images/navigation/shop/pre-order.jpg');
-        }
-
-    });
+//    $('img').on('error', function(){
+//        console.log('error');
+//        var errorCount = $(this).data('errorCount') || 0;
+//        $(this).data('errorCount', errorCount++);
+//        if(errorCount <= 2) {
+//            $(this).attr('src', '/static/images/navigation/shop/pre-order.jpg');
+//        }
+//
+//    });
 
     $(document).on('click', function(e){
         if(!$(e.target).is('#top-nav') && $(e.target).closest('.navbar-collapse').length == 0){

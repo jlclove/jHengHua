@@ -35,7 +35,9 @@
             <a href="/product/sample/{{sample.cardId}}">
                 <div class="clearfix">
                     <div class="w1of3 pull-left pl5 pr5" v-for="detail in sample.detailList.slice(0,3)">
-                        <img src="http://www.jshenghua.com:82/Thumb/{{detail.desc_png}}" class="img-responsive" width="100%"/>
+                        <a href="/product/sample/detail/{{detail.detailId}}">
+                            <img src="http://www.jshenghua.com:82/Thumb/{{detail.desc_png}}" class="img-responsive" width="100%"/>
+                        </a>
                     </div>
                 </div>
                 <div class="product-desc mt10 pl5">
