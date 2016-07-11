@@ -252,10 +252,13 @@ public class RestHenghuaController extends BaseRestController {
    */
   @RequestMapping(value = "cloth/search", method = RequestMethod.GET)
   protected ResponseEntity<?> searchCloth(@RequestParam(value = "sinceId", defaultValue = "0") long id,
-      @RequestParam(value = "material") String material, @RequestParam(value = "wearStyle") String wearStyle,
-      @RequestParam(value = "mainColor") String mainColor, @RequestParam(value = "style") String style,
-      @RequestParam(value = "onUnderStyle") String onUnderStyle, @RequestParam(value = "name") String name,
-      @RequestParam(value = "keys") String keys) {
+      @RequestParam(value = "material", required = false) String material,
+      @RequestParam(value = "wearStyle", required = false) String wearStyle,
+      @RequestParam(value = "mainColor", required = false) String mainColor,
+      @RequestParam(value = "style", required = false) String style,
+      @RequestParam(value = "onUnderStyle", required = false) String onUnderStyle,
+      @RequestParam(value = "name", required = false) String name,
+      @RequestParam(value = "keys", required = false) String keys) {
     return ResponseEntity.ok(this.henghuaService.searchCloth(id, material, wearStyle, mainColor, style, onUnderStyle, name, keys));
   }
 }

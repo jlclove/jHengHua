@@ -10,6 +10,8 @@ $(document).ready(function(){
             el: '#filter',
             data: {
                 filters: res,
+                materialTypes: materialTypes,
+                fabrics: fabrics
             },
             methods: {
                 toggleMenuItem: function(event){
@@ -25,36 +27,11 @@ $(document).ready(function(){
                     sinceId = 0;
                     filters = {};
                     var multiSelect = $(this).data('multi')!=undefined;
-                    if(filterConfig.multi) {
-                        if(!multiSelect) {
-                            $(this).closest('li').siblings().find('input[type=checkbox]').attr('checked', false);
-                        }
-                    } else {
-                        if(!multiSelect) {
-                            $(this).closest('li').siblings().find('input[type=checkbox]').attr('checked', false);
-                            $(this).closest('.filter-category-item').siblings().find('input[type=checkbox]').attr('checked', false);
-                        }
+                    //if(filterConfig.multi) {
+                    if(!multiSelect) {
+                        $(this).closest('li').siblings().find('input[type=checkbox]').attr('checked', false);
                     }
-                    $('.filter-category-item input[type=checkbox]:checked').each(function(i, e){
-                        var arr = $(e).val().split(','), currentMultiSelect = ($(e).data('multi')!=undefined);
-                        if(filterConfig.multi) {
-                            if(currentMultiSelect){
-                                if(!filters[arr[0]]) {
-                                    filters[arr[0]] = {value: [arr[1]]}
-                                } else if (filters[arr[0]].value.indexOf(arr[1]) < 0){
-                                    filters[arr[0]].value.push(arr[1])
-                                }
-                                filters[arr[0]].text = arr[2];
-                            } else {
-                                filters[arr[0]] = {
-                                    text: arr[2],
-                                    value: arr[1]
-                                };
-                            }
-                        } else {
-                            filters[arr[0]] = {text: arr[2], value: $(this).val()};
-                        }
-                    });
+                    initFilters();
                     if(isLoading) {
                         return;
                     }
@@ -63,6 +40,7 @@ $(document).ready(function(){
                         search();
                     }
                 });
+                initFilters();
             }
         });
     });
@@ -73,12 +51,45 @@ $(document).click(function(e){
         closeFilter();
     }
 });
+function initFilters(){
+    $('.filter-category-item input[type=checkbox]:checked').each(function(i, e){
+        var arr = $(e).val().split(','), currentMultiSelect = ($(e).data('multi')!=undefined);
+        //if(filterConfig.multi) {
+        if(currentMultiSelect){
+            if(!filters[arr[0]]) {
+                filters[arr[0]] = {value: [arr[1]]}
+            } else if (filters[arr[0]].value.indexOf(arr[1]) < 0){
+                filters[arr[0]].value.push(arr[1])
+            }
+            filters[arr[0]].text = arr[2];
+        } else {
+            filters[arr[0]] = {
+                text: arr[2],
+                value: arr[1]
+            };
+        }
+    });
+    var c = mapToList(filters).length;
+    resetFilterCount(c);
+    if(c > 0) {
+        $('.filter-selected-content').show();
+    }else{
+        $('.filter-selected-content').hide();
+    }
+    $('.filter-property').empty();
+    for(var k in filters){
+        if(filters.hasOwnProperty(k)) {
+            $('.filter-property').append('<span class="filter-key">' + filters[k].text + '</span> : <span class="filter-value mr20">' + filters[k].value + '</span>');
+        }
+    }
+}
 function closeFilter(){
     toggleFilter(0)
 }
 function clearAll() {
     closeFilter();
     filters = {};
+    materialTypes = fabrics = undefined;
     resetFilterCount(0);
     if (filterConfig.search_url) {
         Loading.open();
@@ -140,8 +151,6 @@ function search(){
 
         $.get(url, {keys: keyword?keyword:undefined}, function(data){
             Loading.close();
-            // 重置筛选条件数量
-            resetFilterCount(mapToList(filters).length);
             reRender(data, true, 'search');
             if (!data || data.length == 0) {
                 sinceId = 0;
@@ -150,19 +159,13 @@ function search(){
             }
             $(document).scrollTop(0);
 
-            $('.filter-selected-content').show();
-            if(filterConfig.multi) {
-                $('.filter-property').empty();
-                for(var k in filters){
-                    if(filters.hasOwnProperty(k)) {
-                        $('.filter-property').append('<span class="filter-key">' + filters[k].text + '</span> : <span class="filter-value mr20">' + filters[k].value + '</span>');
-                    }
-                }
-            } else {
-                var kv = $(this).val().split(',');
-                $('.filter-property').html('<span class="filter-key">' + kv[0] + '</span> : <span class="filter-value mr20">' + kv[1] + '</span>');
-            }
-
+            initFilters();
+            //$('.filter-property').empty();
+            //for(var k in filters){
+            //    if(filters.hasOwnProperty(k)) {
+            //        $('.filter-property').append('<span class="filter-key">' + filters[k].text + '</span> : <span class="filter-value mr20">' + filters[k].value + '</span>');
+            //    }
+            //}
         });
     }
 
@@ -205,9 +208,9 @@ function reRender(data, clear, from){
         sinceId = 0;
     }
     if(clear) {
-        listView.sampleList = data;
+        listView.list = data;
     } else {
-        listView.sampleList = listView.sampleList.concat(data);
+        listView.list = listView.list.concat(data);
     }
 }
 

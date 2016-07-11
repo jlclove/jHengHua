@@ -11,7 +11,7 @@
 <div id="filter" class="suits filter-bar" data-spy="affix" data-offset-top="62">
     <div class="filter-btn clearfix">
         <div class="pull-left">
-            <a id="filterBtn" v-on:click="toggleFilter" class="filter-item animated" href="#">
+            <a id="filterBtn" v-on:click="toggleFilter" class="filter-item animated" href="javascript:;">
                 <span><fmt:message key="product_filter_text"/></span>
                 <i class="icon-suiticon icon-suiticon-filter-1-1"></i>
                 <span class="tip">1</span>
@@ -32,12 +32,12 @@
         </div>
         <div class="row pos-rel">
             <div class="filter-category-item" v-for="filter in filters">
-                <a href="#" class="" v-on:click="toggleMenuItem">{{filter.text}}</a>
+                <a href="javascript:;" class="" v-on:click="toggleMenuItem">{{filter.text}}</a>
                 <ul class="list-inline animated">
                     <li v-for="v in filter.values">
                         <div class="checkbox">
                             <label>
-                                <input v-on:click="check" name="singleCheck" type="checkbox" value="{{filter.column}},{{v}},{{filter.text}}" data-multi="{{filter.multiOption}}">{{v}}
+                                <input v-on:click="check" checked="{{(filter.column=='fabrics'&&fabrics==v)||(filter.column=='materialTypes'&&materialTypes.split(',').indexOf(v)>=0)}}" name="singleCheck" type="checkbox" value="{{filter.column}},{{v}},{{filter.text}}" data-multi="{{filter.multiOption}}">{{v}}
                             </label>
                         </div>
                     </li>

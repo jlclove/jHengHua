@@ -30,28 +30,17 @@
 <!-- /.filter -->
 
 <div class="product-wrap container">
-    <div id="list" class="row">
-        <c:forEach items="${clothList}" var="cloth" varStatus="s">
-        <%--<c:if test="${s.index % 4 == 0}">--%>
-            <%--<div class="row">--%>
-        <%--</c:if>--%>
-            <div class="col-sm-3 product-item">
-                <a href="/product/cloth/${cloth.serialNo}">
-                    <img src="http://www.jshenghua.com:82/Thumb/${cloth.desc_png}" class="img-responsive" width="100%"/>
-                    <div class="product-desc mt10 pl5">
-                        <div><span class="head">${cloth.name}</span>  -  <span class="f16">${cloth.serialNo}</span></div>
-                    </div>
-                </a>
-            </div>
-        <c:if test="${s.last}">
-        <script type="text/javascript">
-            var sinceId = '${cloth.id}';
-        </script>
-        </c:if>
-        <%--<c:if test="${s.index % 4 == 3 || s.last}">--%>
-            <%--</div>--%>
-        <%--</c:if>--%>
-        </c:forEach>
+    <div class="row" id="list">
+        <p class="text-center mt30 f16" v-if="!list">加载中...</p>
+
+        <div class="col-sm-3 product-item" v-for="cloth in list" v-if="list.length > 0">
+            <a href="/product/cloth/{{cloth.serialNo}}">
+                <img src="http://www.jshenghua.com:82/Thumb/{{cloth.desc_png}}" class="img-responsive" width="100%"/>
+                <div class="product-desc mt10 pl5">
+                    <div><span class="head">{{cloth.name}}</span>  -  <span class="f16">{{cloth.serialNo}}</span></div>
+                </div>
+            </a>
+        </div>
     </div>
 </div>
 <jsp:include page="common/foot.jsp">

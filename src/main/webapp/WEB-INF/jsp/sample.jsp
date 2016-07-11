@@ -30,9 +30,9 @@
 <!-- /.filter -->
 <div class="product-wrap container">
     <div class="row" id="list">
-        <p class="text-center mt30 f16" v-if="!sampleList">加载中...</p>
-        <div class="col-sm-4 product-item" v-for="sample in sampleList" v-if="sampleList.length > 0">
-                <div class="clearfix">
+        <p class="text-center mt30 f16" v-if="!list">加载中...</p>
+        <div class="col-sm-4 product-item" v-for="sample in list" v-if="list.length > 0">
+                <div class="clearfix" style="min-height: 164px">
                     <div class="w1of3 pull-left pl5 pr5" v-for="detail in sample.detailList.slice(0,3)">
                         <a href="/product/sample/detail/{{detail.detailId}}">
                             <img src="http://www.jshenghua.com:82/Thumb/{{detail.desc_png}}" class="img-responsive" width="100%"/>
