@@ -27,7 +27,7 @@ import com.goodlaike.henghua.entity.model.HenghuaSampleDetailQuantity;
 import com.goodlaike.henghua.entity.model.VHenghuaSample;
 import com.goodlaike.henghua.entity.model.Washing;
 import com.goodlaike.henghua.protocal.RestHenghua;
-import com.goodlaike.henghua.protocal.SampleFilter;
+import com.goodlaike.henghua.protocal.SearchFilter;
 
 /**
  * 
@@ -84,7 +84,7 @@ public class HenghuaService {
    * @return
    * @author jail
    */
-  public List<HenghuaSample> search(long id, String level, String style, String gramWeight, String season, String zuzhi, String fabrics,
+  public List<HenghuaSample> searchSample(long id, String level, String style, String gramWeight, String season, String zuzhi, String fabrics,
       String colorTypes, String clearTypes, String materialTypes, String keys) {
     List<HenghuaSample> list =
         this.henghuaSampleDao.search(id, level, style, gramWeight, season, zuzhi, fabrics, colorTypes, clearTypes, materialTypes, keys);
@@ -322,6 +322,29 @@ public class HenghuaService {
 
 
   /**
+   * 服装搜索
+   * 
+   * @param id 其实ID
+   * @param material 原料，多选，用“,”号间隔
+   * @param wearStyle 穿着类别
+   * @param mainColor 颜色，多选，用“,”号间隔
+   * @param style 样式
+   * @param onUnderStyle 上下类别
+   * @param name 商品名称，多选，用“,”号间隔
+   * @param keys 关键词
+   * @return  List<HenghuaCloth>
+   * @summary 服装搜索
+   * @author Jail Hu
+   * @version v1
+   * @since 2016年7月11日 下午9:03:17
+   */
+  public List<HenghuaCloth> searchCloth(long id, String material, String wearStyle, String mainColor, String style, String onUnderStyle, String name,
+      String keys) {
+    return this.henghuaClothDao.search(id, material, wearStyle, mainColor, style, onUnderStyle, name, keys);
+  }
+
+
+  /**
    * 获得 样品分类
    * 
    * @param lang
@@ -329,12 +352,12 @@ public class HenghuaService {
    * @author jail
    */
   @Cacheable(value = "globalConfig", key = "'HenghuaService.getSampleType.'+#lang")
-  public List<SampleFilter> getSampleType(String lang) {
+  public List<SearchFilter> getSampleType(String lang) {
     lang = LanguageStore.getLanguage(lang);
     Map<String, List<String>> map = this.restHenghua.restSampleType(lang);
-    List<SampleFilter> filterList = new ArrayList<>();
+    List<SearchFilter> filterList = new ArrayList<>();
     map.forEach((k, v) -> {
-      filterList.add(new SampleFilter(k, v, SampleFilter.FilterType.SAMPLE));
+      filterList.add(new SearchFilter(k, v, SearchFilter.FilterType.SAMPLE));
     });
     return filterList;
   }
@@ -357,11 +380,11 @@ public class HenghuaService {
    * @author jail
    */
   @Cacheable(value = "globalConfig", key = "'HenghuaService.getClothType'")
-  public List<SampleFilter> getClothType() {
+  public List<SearchFilter> getClothType() {
     Map<String, List<String>> map = this.restHenghua.restClothType();
-    List<SampleFilter> filterList = new ArrayList<>();
+    List<SearchFilter> filterList = new ArrayList<>();
     map.forEach((k, v) -> {
-      filterList.add(new SampleFilter(k, v, SampleFilter.FilterType.CLOTH));
+      filterList.add(new SearchFilter(k, v, SearchFilter.FilterType.CLOTH));
     });
     return filterList;
   }

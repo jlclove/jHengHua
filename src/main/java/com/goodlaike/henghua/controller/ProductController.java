@@ -48,8 +48,8 @@ public class ProductController extends BaseController {
 
   @RequestMapping("/cloth")
   protected String clothList(Model model) {
-//    model.addAttribute("filters", henghuaService.getClothType());
-    model.addAttribute("clothList", henghuaService.getNextClothList(0));
+    // model.addAttribute("filters", henghuaService.getClothType());
+    // model.addAttribute("clothList", henghuaService.getNextClothList(0));
     return "cloth";
   }
 

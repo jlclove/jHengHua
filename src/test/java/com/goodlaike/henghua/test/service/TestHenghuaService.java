@@ -92,9 +92,10 @@ public class TestHenghuaService extends TestBase {
     this.henghuaService.syncSampleDetail("HC130217-02");
   }
 
+  // 搜索样卡
   @Test
-  public void search() {
-    System.out.println(henghuaService.search(0, null, null, null, null, null, null, "黄", null, null, null));
+  public void searchSample() {
+    System.out.println(henghuaService.searchSample(0, null, null, null, null, null, null, "黄", null, null, null));
   }
 
   // 同步所有服装款式
@@ -129,6 +130,12 @@ public class TestHenghuaService extends TestBase {
   @Test
   public void getClothQuantity(){
     System.out.println(this.henghuaService.getClothQuantity("SAA0201101"));
+  }
+  
+  // 搜索服装
+  @Test
+  public void searchCloth() {
+    System.out.println(henghuaService.searchCloth(0, null, null, null, null, null, "LABEL TOP 长袖系列,PURPLE LABEL 长袖系列", null));
   }
 
   // 获得所有洗标Map
