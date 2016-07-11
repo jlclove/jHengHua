@@ -280,6 +280,11 @@ div[class*=col-].product-item>img {
     line-height: 1;
     float: left;
 }
+.product-item img {
+    height: 300px;
+    width: auto;
+    margin: auto;
+}
 .product-property-item:hover,
 .product-property-item.selected{
     background-color: #183051;
