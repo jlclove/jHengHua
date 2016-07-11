@@ -98,9 +98,10 @@ public class RestHenghuaController extends BaseRestController {
     HenghuaSampleDetail detail = henghuaService.getSampleDetail(detailId);
     return detail == null ? super.notFound(RestResultWeb.NOTFOUND) : ResponseEntity.ok(detail);
   }
-  
+
   /**
    * 获得样品库存
+   * 
    * @param request
    * @param detailId
    * @return
@@ -116,16 +117,25 @@ public class RestHenghuaController extends BaseRestController {
   }
 
   /**
-   * 样品搜索
+   * 样卡搜索
    * 
    * @param request
-   * @param filter
+   * @param id
+   * @param level
+   * @param style
+   * @param gramWeight
+   * @param season
+   * @param zuzhi
+   * @param fabrics
+   * @param colorTypes
+   * @param clearTypes
+   * @param materialTypes
+   * @param keys
    * @return
-   * @since 1.0.0
-   * @author jail
-   * @createTime 2015年9月5日上午10:04:03
-   * @updator jail
-   * @updateTime 2015年9月5日上午10:04:03
+   * @summary
+   * @author Jail Hu
+   * @version v1
+   * @since 2016年7月11日 下午9:26:26
    */
   @RequestMapping(value = "sample/search", method = RequestMethod.GET)
   protected ResponseEntity<?> searchSample(HttpServletRequest request, @RequestParam(value = "sinceId", defaultValue = "0") long id,
@@ -134,9 +144,9 @@ public class RestHenghuaController extends BaseRestController {
       @RequestParam(value = "zuzhi", required = false) String zuzhi, @RequestParam(value = "fabrics", required = false) String fabrics,
       @RequestParam(value = "colorTypes", required = false) String colorTypes,
       @RequestParam(value = "clearTypes", required = false) String clearTypes,
-      @RequestParam(value = "materialTypes", required = false) String materialTypes,
-      @RequestParam(value = "keys", required = false) String keys) {
-    return ResponseEntity.ok(this.henghuaService.search(id, level, style, gramWeight, season, zuzhi, fabrics, colorTypes, clearTypes, materialTypes,keys));
+      @RequestParam(value = "materialTypes", required = false) String materialTypes, @RequestParam(value = "keys", required = false) String keys) {
+    return ResponseEntity
+        .ok(this.henghuaService.searchSample(id, level, style, gramWeight, season, zuzhi, fabrics, colorTypes, clearTypes, materialTypes, keys));
   }
 
   /**
@@ -188,10 +198,8 @@ public class RestHenghuaController extends BaseRestController {
    */
   @RequestMapping(value = "cloth/detail/{serialNo}", method = RequestMethod.GET)
   protected ResponseEntity<?> getClothDetail(HttpServletRequest request, @PathVariable String serialNo) {
-	  HenghuaCloth cloth = this.henghuaService.getCloth(serialNo);
-	  return cloth == null ? super.notFound(RestResult.NOTFOUND) : ResponseEntity.ok(cloth);
-//    HenghuaClothDetail clothDetail = henghuaService.getClothDetail(serialNo);
-//    return clothDetail == null ? super.notFound(RestResult.NOTFOUND) : ResponseEntity.ok(clothDetail);
+    HenghuaCloth cloth = this.henghuaService.getCloth(serialNo);
+    return cloth == null ? super.notFound(RestResult.NOTFOUND) : ResponseEntity.ok(cloth);
   }
 
   /**
@@ -226,18 +234,28 @@ public class RestHenghuaController extends BaseRestController {
   }
 
   /**
-   * 服装筛选,只支持一个条件搜索，见鬼
+   * 服装搜索
    * 
-   * @param filter
-   * @return
-   * @since 1.0.0
-   * @author jail
-   * @createTime 2015年9月5日下午7:08:46
-   * @updator jail
-   * @updateTime 2015年9月5日下午7:08:46
+   * @param id 其实ID
+   * @param material 原料，多选，用“,”号间隔
+   * @param wearStyle 穿着类别
+   * @param mainColor 颜色，多选，用“,”号间隔
+   * @param style 样式
+   * @param onUnderStyle 上下类别
+   * @param name 商品名称，多选，用“,”号间隔
+   * @param keys 关键词
+   * @return List<HenghuaCloth>
+   * @summary 服装搜索
+   * @author Jail Hu
+   * @version v1
+   * @since 2016年7月11日 下午9:03:17
    */
   @RequestMapping(value = "cloth/search", method = RequestMethod.GET)
-  protected ResponseEntity<?> searchCloth(@RequestParam(value = "filter") String filter) {
-    return ResponseEntity.ok().build();
+  protected ResponseEntity<?> searchCloth(@RequestParam(value = "sinceId", defaultValue = "0") long id,
+      @RequestParam(value = "material") String material, @RequestParam(value = "wearStyle") String wearStyle,
+      @RequestParam(value = "mainColor") String mainColor, @RequestParam(value = "style") String style,
+      @RequestParam(value = "onUnderStyle") String onUnderStyle, @RequestParam(value = "name") String name,
+      @RequestParam(value = "keys") String keys) {
+    return ResponseEntity.ok(this.henghuaService.searchCloth(id, material, wearStyle, mainColor, style, onUnderStyle, name, keys));
   }
 }

@@ -3,7 +3,7 @@ package com.goodlaike.henghua.protocal;
 import java.io.Serializable;
 import java.util.List;
 
-public class SampleFilter implements Serializable {
+public class SearchFilter implements Serializable {
 
   private static final long serialVersionUID = 1L;
   private String text;
@@ -96,11 +96,11 @@ public class SampleFilter implements Serializable {
     return "SampleFilter [text=" + text + ", column=" + column + ", values=" + values + "]";
   }
 
-  public SampleFilter() {
+  public SearchFilter() {
     // TODO Auto-generated constructor stub
   }
 
-  public SampleFilter(String text, List<String> values, FilterType type) {
+  public SearchFilter(String text, List<String> values, FilterType type) {
     this.text = text;
     switch (type) {
       case SAMPLE:

@@ -97,4 +97,44 @@
 		henghua_cloth
 		where serialNo = #{serialNo}
 	</select>
+	
+	
+	
+	<select id="searchCloth" parameterType="map" resultType="cloth" >
+		select * from 
+		henghua_cloth as s
+		where id > #{id}
+		<if test="keys!=null">
+			and s.serialNo = #{keys}
+		</if>
+		<if test="wearStyle!=null">
+			and s.wearStyle = #{wearStyle}
+		</if>
+		<if test="style!=null">
+			and s.style = #{style}
+		</if>
+		<if test="onUnderStyle!=null">
+			and s.onUnderStyle = #{onUnderStyle}
+		</if>
+		<if test="material!=null">
+			and s.material in
+			  <foreach collection="material" item="s" separator="," open="(" close=")">
+			  	#{s}
+			  </foreach>
+		</if>
+		<if test="mainColor!=null">
+			and s.mainColor in
+			  <foreach collection="mainColor" item="s" separator="," open="(" close=")">
+			  	#{s}
+			  </foreach>
+		</if>
+		<if test="name!=null">
+			and s.name in
+			  <foreach collection="name" item="s" separator="," open="(" close=")">
+			  	#{s}
+			  </foreach>
+		</if>
+		order by id
+		limit 30;
+	</select>
 </mapper>
