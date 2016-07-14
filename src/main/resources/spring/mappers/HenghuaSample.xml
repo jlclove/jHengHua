@@ -59,7 +59,7 @@
 		from
 		henghua_sample
 		where id > #{id}
-		order by id
+		order by cardCreateTime desc
 		limit 30;
 	</select>
 	
@@ -135,7 +135,7 @@
 									  	#{s}
 									  </foreach>)
 		</if>
-		order by id
+		order by cardCreateTime desc
 		limit 30;
 	</select>
 
