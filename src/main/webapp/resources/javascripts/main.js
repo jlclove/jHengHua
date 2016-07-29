@@ -45,6 +45,18 @@ function resetForm(){
 $.validator.addMethod('mobile', function(value, element){
     return this.optional( element ) || /^$/i.test( value );
 }, '请输入正确的手机号码');
+
+//退出
+$('#btn-logout').on('click', function(){
+    $.ajax({
+        url: '/business/user/logout',
+        method: 'post',
+        success: function(){
+            window.location.reload();
+        }
+    });
+});
+
 $(document).ready(function(){
     $('#loginForm').validate({
         rules: {
@@ -80,9 +92,7 @@ $(document).ready(function(){
                         password: form.password.value
                     },
                     success: function(res){
-                        console.log(res);
-                        $('#popModal').modal('hide');
-                        resetForm();
+                        window.location.reload();
                     },
                     error: function(data){
                         var result = data.responseJSON;

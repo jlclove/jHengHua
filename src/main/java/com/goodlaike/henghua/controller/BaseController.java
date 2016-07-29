@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.goodlaike.business.core.helper.LoginHelper;
+import com.goodlaike.business.core.model.User;
 import com.goodlaike.henghua.config.StoreCountryStore;
 import com.goodlaike.henghua.entity.model.Country;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -33,6 +35,11 @@ public abstract class BaseController {
     @ModelAttribute("countries")
     protected List<Country> initCountries(HttpServletRequest request) {
         return StoreCountryStore.getCountryList(request);
+    }
+
+    @ModelAttribute("session_user")
+    protected User getLoginUser(HttpServletRequest request) {
+        return LoginHelper.getLoginUser(request);
     }
 
 

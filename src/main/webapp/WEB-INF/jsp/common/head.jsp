@@ -315,7 +315,18 @@
                             </div>
                         </div>
                     </li>
-                    <li class="hidden-xs"><a href="#" class="btnAccount icon-suiticon icon-suiticon-user-2"></a></li>
+                    <c:if test="${empty session_user}">
+                    <li class="hidden-xs">
+                        <a href="#" class="btnAccount icon-suiticon icon-suiticon-user-2"></a>
+                    </li>
+                    </c:if>
+                    <c:if test="${not empty session_user}">
+                    <li class="hidden-xs">
+                        <span style="line-height: 60px;font-size: 16px;">Hello, ${session_user.nickname}</span>
+                        <a id="btn-logout" href="javascript:;" style="display: inline;font-size: 14px;"><fmt:message key="nav_logout_btn"/></a>
+                    </li>
+                    </c:if>
+                    </li>
                     <%--<li><a href="#" class="icon-suiticon icon-suiticon-cart-2"></a></li>--%>
                 </ul>
             </div>
