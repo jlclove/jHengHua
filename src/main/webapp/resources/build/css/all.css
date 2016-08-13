@@ -487,9 +487,14 @@ header a:hover {
 .navbar-fixed-bottom .navbar-collapse, .navbar-fixed-top .navbar-collapse {
     max-height: 400px;
 }
+
+.nav-menu-wrap .input-group{
+    width: 80%;
+}
 @media (max-width: 768px) {
     .nav-menu-wrap .input-group{
         display: block;
+        width: 100%;
         padding: 10px 30px;
     }
     .nav-menu-wrap .input-group > span{

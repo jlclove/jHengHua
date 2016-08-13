@@ -41,9 +41,7 @@ $(document).ready(function(){
                         return;
                     }
 
-                    if(!multiSelect) {
-                        search();
-                    }
+                    search(multiSelect);
                 });
                 initFilters();
             }
@@ -145,14 +143,16 @@ function toggleFilter(type) {
     }
 }
 
-function search(){
+function search(multiSelect){
     var url;
     sinceId = 0;
     url = filterConfig.search_url + '?sinceId=' +  sinceId + '&' + mapToList(filters).join('&');
 
     if(url) {
         Loading.open();
-        closeFilter();
+        if(!multiSelect){
+            closeFilter();
+        }
 
         $.get(url, {keys: keyword?keyword:undefined}, function(data){
             Loading.close();
@@ -165,12 +165,6 @@ function search(){
             $(document).scrollTop(0);
 
             initFilters();
-            //$('.filter-property').empty();
-            //for(var k in filters){
-            //    if(filters.hasOwnProperty(k)) {
-            //        $('.filter-property').append('<span class="filter-key">' + filters[k].text + '</span> : <span class="filter-value mr20">' + filters[k].value + '</span>');
-            //    }
-            //}
         });
     }
 

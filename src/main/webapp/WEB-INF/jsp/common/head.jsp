@@ -81,17 +81,6 @@
                                         </li>
                                         <li class="category-item pr5 hidden-xs">
                                             <div class="unit-box">
-                                                <a href="/about-our-suits">
-                                                    <img src="/static/images/navigation/shop/pre-order.jpg" width="100%"/>
-                                                </a>
-
-                                                <div class="unit pos-right pos-top w1of4">
-                                                    <span class="unit-title"><fmt:message key="nav_shop_features_suit"/></span>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li class="category-item pr5 hidden-xs">
-                                            <div class="unit-box">
                                                 <a href="#">
                                                     <img src="/static/images/navigation/shop/nav_shirt-configurator_01.jpg" width="100%"/>
                                                 </a>
