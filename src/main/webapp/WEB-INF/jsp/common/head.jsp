@@ -68,6 +68,8 @@
                                         <li class="category-item"><a href="/product/sample"><fmt:message key="nav_shop_category_sample"/></a></li>
                                         <li class="category-item hidden-xs"><a href="#"></a></li>
                                         <li class="category-item"><a href="/product/cloth"><fmt:message key="nav_shop_category_cloth"/></a></li>
+                                        <li class="category-item hidden-xs"><a href="#"></a></li>
+                                        <li class="category-item"><a href="/product/sample?isNew=true"><fmt:message key="nav_shop_category_sample_new"/></a></li>
                                     </ul>
                                 </div>
                                 <div class="col-sm-4">

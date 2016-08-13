@@ -7,6 +7,15 @@
 <fmt:bundle basename="site">
 <div class="sample-detail-bg">
     <div class="content container sample-detail-page">
+        <div class="detail-list">
+            <c:forEach items="${sample.detailList}" var="detail">
+                <a href="/product/sample/detail/${detail.detailId}?cardId=${param.cardId}"
+                   class="mb15 mr5 <c:if test="${detail.detailId eq sampleDetail.detailId}">current</c:if>">
+                    <img src="http://www.jshenghua.com:82/Detail/${detail.desc_png}" class="img-responsive" width="100%"/>
+                    <p style="margin-top: 10px;text-align: center">${detail.level}-${detail.cardIds.split('-')[1]}</p>
+                </a>
+            </c:forEach>
+        </div>
         <div class="row">
             <div class="col-md-6 mb20">
                 <img src="http://www.jshenghua.com:82/Detail/${sampleDetail.desc_png}" class="img-responsive" width="100%"/>
@@ -110,6 +119,7 @@
 </div>
 <script>
     var detailId = '${sampleDetail.detailId}';
+    var hasLogin = ${not empty session_user};
 </script>
 <jsp:include page="common/foot.jsp">
     <jsp:param name="js" value="javascripts/sampleDetail"/>

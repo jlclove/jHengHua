@@ -293,3 +293,20 @@ div[class*=col-].product-item>img {
     cursor: pointer;
     border-color: #183051;
 }
+
+.detail-list a {
+    display: inline-block;
+    width: 50px;
+}
+.detail-list a img {
+    opacity: .5;
+    border: 2px solid #ccc;
+}
+.detail-list a.current {
+    color: #000;
+    font-weight: bolder;
+}
+.detail-list a.current img {
+    border-color: #666;
+    opacity: 1;
+}

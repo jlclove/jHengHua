@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.goodlaike.henghua.entity.model.HenghuaCloth;
 import com.goodlaike.henghua.entity.model.Washing;
 import com.goodlaike.henghua.service.HenghuaService;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * Created with IntelliJ IDEA. PackageName:com.goodlaike.henghua.controller Author: Charles.xu
@@ -41,8 +42,9 @@ public class ProductController extends BaseController {
   }
 
   @RequestMapping("/sample/detail/{detailId}")
-  protected String sampleChildDetail(@PathVariable String detailId, Model model) {
+  protected String sampleChildDetail(@PathVariable String detailId, @RequestParam(value = "cardId", required = false) String cardId, Model model) {
     model.addAttribute("sampleDetail", henghuaService.getSampleDetail(detailId));
+    model.addAttribute("sample", henghuaService.getSample(cardId));
     return "sampleChildDetail";
   }
 

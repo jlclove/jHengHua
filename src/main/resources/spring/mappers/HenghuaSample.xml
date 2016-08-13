@@ -126,7 +126,7 @@
 									  	#{s}
 									  </foreach>)
 		</if>
-		<if test="isNew!=null">
+		<if test="isNew==true">
 			and cardCreateTime > date_add(now(),INTERVAL -30 day)
 		</if>
 		order by id desc

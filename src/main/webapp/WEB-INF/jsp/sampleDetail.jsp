@@ -42,9 +42,9 @@
         <div class="row mt20">
             <c:forEach items="${sample.detailList}" var="detail">
             <div class="col-sm-4 mb15">
-                <a href="/product/sample/detail/${detail.detailId}">
+                <a href="/product/sample/detail/${detail.detailId}?cardId=${sample.cardId}">
                     <img src="http://www.jshenghua.com:82/Detail/${detail.desc_png}" class="img-responsive" width="100%"/>
-                    <p>${detail.detailId}</p>
+                    <p style="margin-top: 10px;text-align: center">${detail.level}-${detail.cardIds.split('-')[1]}</p>
                 </a>
             </div>
             </c:forEach>
