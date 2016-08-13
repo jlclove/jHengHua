@@ -47,9 +47,11 @@
                     HENGHUA FASHION GROUP
                     <%--<img alt="Brand" src="/static/images/logo.png">--%>
                 </a>
+                <c:if test="${empty session_user}">
                 <button type="button" class="navbar-toggle collapsed right">
                     <a class="btnAccount icon-suiticon icon-suiticon-user-2"></a>
                 </button>
+                </c:if>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -76,17 +78,6 @@
                                         </li>
                                         <li class="category-item last visible-xs">
                                             <a href="/about-our-shirts"><fmt:message key="nav_shop_features_shirt"/></a></li>
-                                        </li>
-                                        <li class="category-item pr5 hidden-xs">
-                                            <div class="unit-box">
-                                                <a href="/about-our-suits">
-                                                    <img src="/static/images/navigation/shop/pre-order.jpg" width="100%"/>
-                                                </a>
-
-                                                <div class="unit pos-right pos-top w1of4">
-                                                    <span class="unit-title"><fmt:message key="nav_shop_features_suit"/></span>
-                                                </div>
-                                            </div>
                                         </li>
                                         <li class="category-item pr5 hidden-xs">
                                             <div class="unit-box">
@@ -239,19 +230,19 @@
                                     <div class="category-title hidden-xs"><fmt:message key="nav_company_contact"/></div>
                                     <ul class="list-unstyled category-list">
                                         <li class="category-item">
-                                            <small><fmt:message key="nav_company_contact_text1"/></small>
+                                            <fmt:message key="nav_company_contact_text1"/>
                                         </li>
                                         <li class="category-item">
-                                            <small>40088 59421</small>
+                                            40088 59421
                                         </li>
                                         <li class="category-item">
-                                            <small><fmt:message key="nav_company_contact_text2"/></small>
+                                            <fmt:message key="nav_company_contact_text2"/>
                                         </li>
                                         <li class="category-item">
-                                            <small>10.00 - 18.00</small>
+                                            10.00 - 18.00
                                         </li>
                                         <li class="category-item">
-                                            <small><fmt:message key="nav_company_contact_text3"/></small>
+                                            <fmt:message key="nav_company_contact_text3"/>
                                         </li>
                                     </ul>
                                 </div>
@@ -304,18 +295,29 @@
                         </div>
                     </li>
                     <li>
-                        <a href="#" data-nav="true" class="icon-suiticon icon-suiticon-magnifier-1"></a>
+                        <a href="#" data-nav="true" class="icon-suiticon icon-suiticon-magnifier-1" style="font-size: 24px"></a>
 
                         <div class="nav-menu">
                             <div class="nav-menu-wrap container-fluid">
                                 <div class="input-group">
-                                    <input type="text" class="custom-text" id="keyword" placeholder="<fmt:message key="nav_search_text"/>"/>
+                                    <input type="text" class="custom-text" id="keyword" value="${param.keyword}" placeholder="<fmt:message key="nav_search_text"/>"/>
                                     <a class="unit-link ml10 text-center" href="javascript:searchKeyWord()"><fmt:message key="nav_search_btn"/></a>
                                 </div>
                             </div>
                         </div>
                     </li>
-                    <li class="hidden-xs"><a href="#" class="btnAccount icon-suiticon icon-suiticon-user-2"></a></li>
+                    <c:if test="${empty session_user}">
+                    <li class="hidden-xs">
+                        <a href="#" class="btnAccount icon-suiticon icon-suiticon-user-2"></a>
+                    </li>
+                    </c:if>
+                    <c:if test="${not empty session_user}">
+                    <li class="hidden-xs">
+                        <span style="line-height: 60px;font-size: 16px;">Hello, ${session_user.nickname}</span>
+                        <a id="btn-logout" href="javascript:;" style="display: inline;font-size: 14px;"><fmt:message key="nav_logout_btn"/></a>
+                    </li>
+                    </c:if>
+                    </li>
                     <%--<li><a href="#" class="icon-suiticon icon-suiticon-cart-2"></a></li>--%>
                 </ul>
             </div>

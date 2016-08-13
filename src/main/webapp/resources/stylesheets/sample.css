@@ -170,6 +170,7 @@ div[class*=col-].product-item>img {
     display: block;
     border-left: 1px solid transparent;
     border-right: 1px solid transparent;
+    -webkit-tap-highlight-color: rgba(0,0,0,.4);
 }
 .filter-category-item .unit-link {
     padding: 9px 22px 7px;

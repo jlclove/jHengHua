@@ -41,9 +41,9 @@
                             </label>
                         </div>
                     </li>
-                    <li>
-                        <a v-if="filter.multiOption" v-on:click="search" href="javascript:;" class="btn-confirm unit-link ml10"><fmt:message key="product_filter_ok"/></a>
-                    </li>
+                    <%--<li>--%>
+                        <%--<a v-if="filter.multiOption" v-on:click="search" href="javascript:;" class="btn-confirm unit-link ml10"><fmt:message key="product_filter_ok"/></a>--%>
+                    <%--</li>--%>
                 </ul>
             </div>
         </div>

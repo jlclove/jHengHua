@@ -201,7 +201,7 @@ header a:hover {
 .category-item-fluid{
     display: inline-block;
     width: 50%;
-    font-size: 18px;
+    font-size: 16px;
 }
 @media (max-width: 768px) {
     .category-item,
@@ -345,9 +345,14 @@ header a:hover {
 .navbar-fixed-bottom .navbar-collapse, .navbar-fixed-top .navbar-collapse {
     max-height: 400px;
 }
+
+.nav-menu-wrap .input-group{
+    width: 80%;
+}
 @media (max-width: 768px) {
     .nav-menu-wrap .input-group{
         display: block;
+        width: 100%;
         padding: 10px 30px;
     }
     .nav-menu-wrap .input-group > span{
