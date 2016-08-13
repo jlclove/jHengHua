@@ -38,358 +38,353 @@ import com.goodlaike.henghua.protocal.SearchFilter;
 @EnableCaching(proxyTargetClass = true)
 public class HenghuaService {
 
-  @Autowired
-  private HenghuaSampleDao henghuaSampleDao;
-  @Autowired
-  private HenghuaSampleDetailDao henghuaSampleDetailDao;
-  @Autowired
-  private HenghuaClothDao henghuaClothDao;
-  @Autowired
-  private RestHenghua restHenghua;
+	@Autowired
+	private HenghuaSampleDao henghuaSampleDao;
+	@Autowired
+	private HenghuaSampleDetailDao henghuaSampleDetailDao;
+	@Autowired
+	private HenghuaClothDao henghuaClothDao;
+	@Autowired
+	private RestHenghua restHenghua;
 
-  /**
-   * 根据 样卡名获得样卡详情
-   * 
-   * @param cardId 样卡名
-   * @return HenghuaSample
-   * @author jail
-   */
-  @Cacheable(value = "sample", key = "'HenghuaService.getSample.'+#cardId")
-  public HenghuaSample getSample(String cardId) {
-    HenghuaSample sample = henghuaSampleDao.findSample(cardId);
-    if (sample != null) {
-      bindSampleDetailData(Arrays.asList(sample));
-    }
-    return sample;
-  }
+	/**
+	 * 根据 样卡名获得样卡详情
+	 * 
+	 * @param cardId
+	 *            样卡名
+	 * @return HenghuaSample
+	 * @author jail
+	 */
+	@Cacheable(value = "sample", key = "'HenghuaService.getSample.'+#cardId")
+	public HenghuaSample getSample(String cardId) {
+		HenghuaSample sample = henghuaSampleDao.findSample(cardId);
+		if (sample != null) {
+			bindSampleDetailData(Arrays.asList(sample));
+		}
+		return sample;
+	}
 
-  /**
-   * 获得下一页样品数据
-   * 
-   * @param id
-   * @return
-   * @author jail
-   */
-  public List<HenghuaSample> getNextSampleList(long id) {
-    List<HenghuaSample> list = henghuaSampleDao.findNextList(id);
-    bindSampleDetailData(list);
-    return list;
-  }
+	/**
+	 * 样卡搜索
+	 * 
+	 * @param lang
+	 * @param filter
+	 * @return
+	 * @author jail
+	 */
+	public List<HenghuaSample> searchSample(long id, String level, String style, String gramWeight, String season,
+			String zuzhi, String fabrics, String colorTypes, String clearTypes, String materialTypes, String keys,
+			boolean isNew) {
+		List<HenghuaSample> list = this.henghuaSampleDao.search(id, level, style, gramWeight, season, zuzhi, fabrics,
+				colorTypes, clearTypes, materialTypes, keys, isNew);
+		bindSampleDetailData(list);
+		return list;
+	}
 
-  /**
-   * 样卡搜索
-   * 
-   * @param lang
-   * @param filter
-   * @return
-   * @author jail
-   */
-  public List<HenghuaSample> searchSample(long id, String level, String style, String gramWeight, String season, String zuzhi, String fabrics,
-      String colorTypes, String clearTypes, String materialTypes, String keys) {
-    List<HenghuaSample> list =
-        this.henghuaSampleDao.search(id, level, style, gramWeight, season, zuzhi, fabrics, colorTypes, clearTypes, materialTypes, keys);
-    bindSampleDetailData(list);
-    return list;
-  }
+	/**
+	 * 绑定样品数据到 detailList
+	 * 
+	 * @param list
+	 * @summary
+	 * @author Jail Hu
+	 * @version v1
+	 * @since 2016年6月11日 下午7:46:23
+	 */
+	private void bindSampleDetailData(List<HenghuaSample> list) {
+		if (list.size() == 0) {
+			return;
+		}
+		Map<String, Object> map = list.stream().collect(Collectors.toMap(HenghuaSample::getCardId, (s) -> {
+			return StringUtils.isNotBlank(s.getSampleList()) ? Arrays.asList(s.getSampleList().split(","))
+					: Collections.emptyList();
+		}));
+		Map<String, List<HenghuaSampleDetail>> resultMap = this.getSampleDetailMap(map);
+		list.forEach(sample -> {
+			((VHenghuaSample) sample).setDetailList(resultMap.get(sample.getCardId()));
+		});
+	}
 
-  /**
-   * 绑定样品数据到 detailList
-   * 
-   * @param list
-   * @summary
-   * @author Jail Hu
-   * @version v1
-   * @since 2016年6月11日 下午7:46:23
-   */
-  private void bindSampleDetailData(List<HenghuaSample> list) {
-    if (list.size() == 0) {
-      return;
-    }
-    Map<String, Object> map = list.stream().collect(Collectors.toMap(HenghuaSample::getCardId, (s) -> {
-      return StringUtils.isNotBlank(s.getSampleList()) ? Arrays.asList(s.getSampleList().split(",")) : Collections.emptyList();
-    }));
-    Map<String, List<HenghuaSampleDetail>> resultMap = this.getSampleDetailMap(map);
-    list.forEach(sample -> {
-      ((VHenghuaSample) sample).setDetailList(resultMap.get(sample.getCardId()));
-    });
-  }
+	/**
+	 * 获取样品到样卡
+	 * 
+	 * @param sample
+	 * @author jail
+	 */
+	private Map<String, List<HenghuaSampleDetail>> getSampleDetailMap(Map<String, Object> map) {
+		return this.henghuaSampleDetailDao.findSampleDetails(map).stream()
+				.collect(Collectors.groupingBy(HenghuaSampleDetail::getCardId));
+	}
 
-  /**
-   * 获取样品到样卡
-   * 
-   * @param sample
-   * @author jail
-   */
-  private Map<String, List<HenghuaSampleDetail>> getSampleDetailMap(Map<String, Object> map) {
-    return this.henghuaSampleDetailDao.findSampleDetails(map).stream().collect(Collectors.groupingBy(HenghuaSampleDetail::getCardIds));
-  }
+	/**
+	 * 同步所有的样卡数据
+	 * 
+	 * @author jail
+	 */
+	public void syncAllSample() {
+		List<HenghuaSample> list = this.restHenghua.restSampleAll();
+		henghuaSampleDao.batchReplaceInto(list, true);
+	}
 
-  /**
-   * 同步所有的样卡数据
-   * 
-   * @author jail
-   */
-  public void syncAllSample() {
-    List<HenghuaSample> list = this.restHenghua.restSampleAll();
-    henghuaSampleDao.batchReplaceInto(list, true);
-  }
+	/**
+	 * 同步单条样卡数据
+	 * 
+	 * @param cardId
+	 *            样卡编码
+	 * @return boolean
+	 */
+	public boolean syncSample(String cardId) {
+		HenghuaSample sample = this.getSampleFromHost(cardId);
+		if (sample == null) {
+			return false;
+		}
+		return this.henghuaSampleDao.batchReplaceInto(Arrays.asList(sample), false) == 1;
 
-  /**
-   * 同步单条样卡数据
-   * 
-   * @param cardId 样卡编码
-   * @return boolean
-   */
-  public boolean syncSample(String cardId) {
-    HenghuaSample sample = this.getSampleFromHost(cardId);
-    if (sample == null) {
-      return false;
-    }
-    return this.henghuaSampleDao.batchReplaceInto(Arrays.asList(sample), false) == 1;
+	}
 
-  }
+	/**
+	 * 从官方主机获得样卡详情
+	 * 
+	 * @param cardId
+	 *            样卡ID
+	 * @return HenghuaSample
+	 * @summary 从官方主机获得样卡详情
+	 * @author Jail Hu
+	 * @version v1
+	 * @since 2016年6月5日 上午11:34:09
+	 */
+	public HenghuaSample getSampleFromHost(String cardId) {
+		return this.restHenghua.restSample(cardId);
+	}
 
-  /**
-   * 从官方主机获得样卡详情
-   * 
-   * @param cardId 样卡ID
-   * @return HenghuaSample
-   * @summary 从官方主机获得样卡详情
-   * @author Jail Hu
-   * @version v1
-   * @since 2016年6月5日 上午11:34:09
-   */
-  public HenghuaSample getSampleFromHost(String cardId) {
-    return this.restHenghua.restSample(cardId);
-  }
+	/**
+	 * 获得样品详情
+	 * 
+	 * @param detailName
+	 * @return HenghuaSampleDetail
+	 * @author jail
+	 */
+	@Cacheable(value = "sampleDetail", key = "'HenghuaService.getSampleDetail.'+#detailId")
+	public HenghuaSampleDetail getSampleDetail(String detailId) {
+		return this.henghuaSampleDetailDao.findSampleDetail(detailId);
+	}
 
-  /**
-   * 获得样品详情
-   * 
-   * @param detailName
-   * @return HenghuaSampleDetail
-   * @author jail
-   */
-  @Cacheable(value = "sampleDetail", key = "'HenghuaService.getSampleDetail.'+#detailId")
-  public HenghuaSampleDetail getSampleDetail(String detailId) {
-    return this.henghuaSampleDetailDao.findSampleDetail(detailId);
-  }
+	/**
+	 * 从官方主机根据样品编号获得样品详情
+	 * 
+	 * @param detailId
+	 *            样品编号
+	 * @return HenghuaSampleDetail2
+	 * @summary 从官方主机根据样品编号获得样品详情
+	 * @author Jail Hu
+	 * @version v1
+	 * @since 2016年6月5日 下午4:27:20
+	 */
+	public HenghuaSampleDetail getSampleDetailFromHost(String detailId) {
+		return this.restHenghua.restSampleDatail(detailId);
+	}
 
-  /**
-   * 从官方主机根据样品编号获得样品详情
-   * 
-   * @param detailId 样品编号
-   * @return HenghuaSampleDetail2
-   * @summary 从官方主机根据样品编号获得样品详情
-   * @author Jail Hu
-   * @version v1
-   * @since 2016年6月5日 下午4:27:20
-   */
-  public HenghuaSampleDetail getSampleDetailFromHost(String detailId) {
-    return this.restHenghua.restSampleDatail(detailId);
-  }
+	/**
+	 * 获得指定样品库存信息
+	 * 
+	 * @param detailId
+	 *            样品编码
+	 * @return HenghuaSampleDetailQuantity
+	 */
+	public HenghuaSampleDetailQuantity getSampleDetailQuantity(String detailId) {
+		return this.restHenghua.restSampleDetailQuantity(detailId);
+	}
 
-  /**
-   * 获得指定样品库存信息
-   * 
-   * @param detailId 样品编码
-   * @return HenghuaSampleDetailQuantity
-   */
-  public HenghuaSampleDetailQuantity getSampleDetailQuantity(String detailId) {
-    return this.restHenghua.restSampleDetailQuantity(detailId);
-  }
+	/**
+	 * 同步所有的样卡数据
+	 * 
+	 * @author jail
+	 */
+	public void syncAllSampleDetail() {
+		List<HenghuaSampleDetail> list = this.restHenghua.restSampleDatailAll();
+		this.henghuaSampleDetailDao.batchReplaceInto(list, true);
+	}
 
-  /**
-   * 同步所有的样卡数据
-   * 
-   * @author jail
-   */
-  public void syncAllSampleDetail() {
-    List<HenghuaSampleDetail> list = this.restHenghua.restSampleDatailAll();
-    this.henghuaSampleDetailDao.batchReplaceInto(list, true);
-  }
+	/**
+	 * 根据样品ID同步指定样品数据
+	 * 
+	 * @param detailId
+	 *            样品ID
+	 * @summary 同步指定样品数据
+	 * @author Jail Hu
+	 * @version v1
+	 * @since 2016年6月5日 下午5:50:51
+	 */
+	public boolean syncSampleDetail(String detailId) {
+		HenghuaSampleDetail detail = this.restHenghua.restSampleDatail(detailId);
+		if (detail == null) {
+			return false;
+		}
+		return this.henghuaSampleDetailDao.batchReplaceInto(Arrays.asList(detail), false) == 1;
+	}
 
-  /**
-   * 根据样品ID同步指定样品数据
-   * 
-   * @param detailId 样品ID
-   * @summary 同步指定样品数据
-   * @author Jail Hu
-   * @version v1
-   * @since 2016年6月5日 下午5:50:51
-   */
-  public boolean syncSampleDetail(String detailId) {
-    HenghuaSampleDetail detail = this.restHenghua.restSampleDatail(detailId);
-    if (detail == null) {
-      return false;
-    }
-    return this.henghuaSampleDetailDao.batchReplaceInto(Arrays.asList(detail), false) == 1;
-  }
+	/**
+	 * 根据样品对象同步指定样品数据
+	 * 
+	 * @param detail
+	 *            样品对象
+	 * @summary 根据样品对象同步指定样品数据
+	 * @author Jail Hu
+	 * @version v1
+	 * @since 2016年6月5日 下午6:09:12
+	 */
+	public void syncSampleDetail(HenghuaSampleDetail detail) {
+		Assert.hasText(detail.getDetailId(), "the argument [detailId] must not be null or empty");
+		this.henghuaSampleDetailDao.batchReplaceInto(Arrays.asList(detail), false);
+	}
 
-  /**
-   * 根据样品对象同步指定样品数据
-   * 
-   * @param detail 样品对象
-   * @summary 根据样品对象同步指定样品数据
-   * @author Jail Hu
-   * @version v1
-   * @since 2016年6月5日 下午6:09:12
-   */
-  public void syncSampleDetail(HenghuaSampleDetail detail) {
-    Assert.hasText(detail.getDetailId(), "the argument [detailId] must not be null or empty");
-    this.henghuaSampleDetailDao.batchReplaceInto(Arrays.asList(detail), false);
-  }
+	/**
+	 * 同步服装数据
+	 * 
+	 * @author jail
+	 */
+	public void syncAllCloth() {
+		henghuaClothDao.batchReplaceInto(this.restHenghua.restClothAll(), true);
+	}
 
-  /**
-   * 同步服装数据
-   * 
-   * @author jail
-   */
-  public void syncAllCloth() {
-    henghuaClothDao.batchReplaceInto(this.restHenghua.restClothAll(), true);
-  }
+	/**
+	 * 获得指定服装
+	 * 
+	 * @param serialNo
+	 * @return
+	 * @author jail
+	 */
+	@Cacheable(value = "cloth", key = "#serialNo")
+	public HenghuaCloth getCloth(String serialNo) {
+		return henghuaClothDao.findCloth(serialNo);
+	}
 
-  /**
-   * 获得下一页服装数据
-   * 
-   * @param id
-   * @return
-   * @author jail
-   */
-  public List<HenghuaCloth> getNextClothList(long id) {
-    List<HenghuaCloth> list = henghuaClothDao.findNextList(id);
-    return list;
-  }
+	/**
+	 * 从官方主机根据服装编号获得服装详情
+	 * 
+	 * @param serialNo
+	 *            服装编号
+	 * @return HenghuaCloth
+	 */
+	public HenghuaCloth getClothFromHost(String serialNo) {
+		return this.restHenghua.restCloth(serialNo);
+	}
 
-  /**
-   * 获得指定服装
-   * 
-   * @param serialNo
-   * @return
-   * @author jail
-   */
-  @Cacheable(value = "cloth", key = "#serialNo")
-  public HenghuaCloth getCloth(String serialNo) {
-    return henghuaClothDao.findCloth(serialNo);
-  }
+	/**
+	 * 单条 同步 服装信息
+	 * 
+	 * @param cloth
+	 *            服装对象
+	 * @return boolean
+	 */
+	public boolean syncCloth(HenghuaCloth cloth) {
+		Assert.notNull(cloth, "the argument [cloth] must not be null");
+		return this.henghuaClothDao.batchReplaceInto(Arrays.asList(cloth), false) == 1;
+	}
 
-  /**
-   * 从官方主机根据服装编号获得服装详情
-   * 
-   * @param serialNo 服装编号
-   * @return HenghuaCloth
-   */
-  public HenghuaCloth getClothFromHost(String serialNo) {
-    return this.restHenghua.restCloth(serialNo);
-  }
+	/**
+	 * 单条 同步 服装信息
+	 * 
+	 * @param serialNo
+	 *            服装编号
+	 * @return boolean
+	 */
+	public boolean syncCloth(String serialNo) {
+		HenghuaCloth cloth = this.getClothFromHost(serialNo);
+		return this.henghuaClothDao.batchReplaceInto(Arrays.asList(cloth), false) == 1;
+	}
 
-  /**
-   * 单条 同步 服装信息
-   * 
-   * @param cloth 服装对象
-   * @return boolean
-   */
-  public boolean syncCloth(HenghuaCloth cloth) {
-    Assert.notNull(cloth, "the argument [cloth] must not be null");
-    return this.henghuaClothDao.batchReplaceInto(Arrays.asList(cloth), false) == 1;
-  }
+	/**
+	 * 获得指定服装库存信息
+	 * 
+	 * @param sonSerialNo
+	 *            服装子序列号，对应 {@link HenghuaCloth#getSonCodeList()}
+	 * @return HenghuaClothQuantity
+	 * @summary 获得指定服装库存信息
+	 * @author Jail Hu
+	 * @version v1
+	 * @since 2016年7月10日 下午9:50:32
+	 */
+	@Cacheable(value = "cloth", key = "'HenghuaService.getClothQuantity.'+#sonSerialNo")
+	public HenghuaClothQuantity getClothQuantity(String sonSerialNo) {
+		return this.restHenghua.restClothQuantity(sonSerialNo);
+	}
 
-  /**
-   * 单条 同步 服装信息
-   * 
-   * @param serialNo 服装编号
-   * @return boolean
-   */
-  public boolean syncCloth(String serialNo) {
-    HenghuaCloth cloth = this.getClothFromHost(serialNo);
-    return this.henghuaClothDao.batchReplaceInto(Arrays.asList(cloth), false) == 1;
-  }
+	/**
+	 * 服装搜索
+	 * 
+	 * @param id
+	 *            其实ID
+	 * @param material
+	 *            原料，多选，用“,”号间隔
+	 * @param wearStyle
+	 *            穿着类别
+	 * @param mainColor
+	 *            颜色，多选，用“,”号间隔
+	 * @param style
+	 *            样式
+	 * @param onUnderStyle
+	 *            上下类别
+	 * @param name
+	 *            商品名称，多选，用“,”号间隔
+	 * @param keys
+	 *            关键词
+	 * @return List<HenghuaCloth>
+	 * @summary 服装搜索
+	 * @author Jail Hu
+	 * @version v1
+	 * @since 2016年7月11日 下午9:03:17
+	 */
+	public List<HenghuaCloth> searchCloth(long id, String material, String wearStyle, String mainColor, String style,
+			String onUnderStyle, String name, String keys) {
+		return this.henghuaClothDao.search(id, material, wearStyle, mainColor, style, onUnderStyle, name, keys);
+	}
 
-  /**
-   * 获得指定服装库存信息
-   * 
-   * @param sonSerialNo 服装子序列号，对应 {@link HenghuaCloth#getSonCodeList()}
-   * @return HenghuaClothQuantity
-   * @summary 获得指定服装库存信息
-   * @author Jail Hu
-   * @version v1
-   * @since 2016年7月10日 下午9:50:32
-   */
-  @Cacheable(value = "cloth", key = "'HenghuaService.getClothQuantity.'+#sonSerialNo")
-  public HenghuaClothQuantity getClothQuantity(String sonSerialNo) {
-    return this.restHenghua.restClothQuantity(sonSerialNo);
-  }
+	/**
+	 * 获得 样品分类
+	 * 
+	 * @param lang
+	 * @return
+	 * @author jail
+	 */
+	@Cacheable(value = "globalConfig", key = "'HenghuaService.getSampleType.'+#lang")
+	public List<SearchFilter> getSampleType(String lang) {
+		lang = LanguageStore.getLanguage(lang);
+		Map<String, List<String>> map = this.restHenghua.restSampleType(lang);
+		List<SearchFilter> filterList = new ArrayList<>();
+		map.forEach((k, v) -> {
+			filterList.add(new SearchFilter(k, v, SearchFilter.FilterType.SAMPLE));
+		});
+		return filterList;
+	}
 
+	/**
+	 * 获得洗标缓存MAP
+	 * 
+	 * @return
+	 * @author jail
+	 */
+	@Cacheable(value = "globalConfig", key = "'HenghuaService.getWashingAllMap'")
+	public Map<Integer, Washing> getWashingAllMap() {
+		return this.restHenghua.restWashingAllMap();
+	}
 
-  /**
-   * 服装搜索
-   * 
-   * @param id 其实ID
-   * @param material 原料，多选，用“,”号间隔
-   * @param wearStyle 穿着类别
-   * @param mainColor 颜色，多选，用“,”号间隔
-   * @param style 样式
-   * @param onUnderStyle 上下类别
-   * @param name 商品名称，多选，用“,”号间隔
-   * @param keys 关键词
-   * @return  List<HenghuaCloth>
-   * @summary 服装搜索
-   * @author Jail Hu
-   * @version v1
-   * @since 2016年7月11日 下午9:03:17
-   */
-  public List<HenghuaCloth> searchCloth(long id, String material, String wearStyle, String mainColor, String style, String onUnderStyle, String name,
-      String keys) {
-    return this.henghuaClothDao.search(id, material, wearStyle, mainColor, style, onUnderStyle, name, keys);
-  }
+	/**
+	 * 获得 服装分类
+	 * 
+	 * @return List<SampleFilter>
+	 * @author jail
+	 */
+	@Cacheable(value = "globalConfig", key = "'HenghuaService.getClothType'")
+	public List<SearchFilter> getClothType() {
+		Map<String, List<String>> map = this.restHenghua.restClothType();
+		List<SearchFilter> filterList = new ArrayList<>();
+		map.forEach((k, v) -> {
+			filterList.add(new SearchFilter(k, v, SearchFilter.FilterType.CLOTH));
+		});
+		return filterList;
+	}
 
-
-  /**
-   * 获得 样品分类
-   * 
-   * @param lang
-   * @return
-   * @author jail
-   */
-  @Cacheable(value = "globalConfig", key = "'HenghuaService.getSampleType.'+#lang")
-  public List<SearchFilter> getSampleType(String lang) {
-    lang = LanguageStore.getLanguage(lang);
-    Map<String, List<String>> map = this.restHenghua.restSampleType(lang);
-    List<SearchFilter> filterList = new ArrayList<>();
-    map.forEach((k, v) -> {
-      filterList.add(new SearchFilter(k, v, SearchFilter.FilterType.SAMPLE));
-    });
-    return filterList;
-  }
-
-  /**
-   * 获得洗标缓存MAP
-   * 
-   * @return
-   * @author jail
-   */
-  @Cacheable(value = "globalConfig", key = "'HenghuaService.getWashingAllMap'")
-  public Map<Integer, Washing> getWashingAllMap() {
-    return this.restHenghua.restWashingAllMap();
-  }
-
-  /**
-   * 获得 服装分类
-   * 
-   * @return List<SampleFilter>
-   * @author jail
-   */
-  @Cacheable(value = "globalConfig", key = "'HenghuaService.getClothType'")
-  public List<SearchFilter> getClothType() {
-    Map<String, List<String>> map = this.restHenghua.restClothType();
-    List<SearchFilter> filterList = new ArrayList<>();
-    map.forEach((k, v) -> {
-      filterList.add(new SearchFilter(k, v, SearchFilter.FilterType.CLOTH));
-    });
-    return filterList;
-  }
-
-  public void test() {
-    this.henghuaSampleDetailDao.test();
-  }
+	public void test() {
+		this.henghuaSampleDetailDao.test();
+	}
 }

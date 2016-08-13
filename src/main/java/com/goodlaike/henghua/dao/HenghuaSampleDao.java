@@ -74,21 +74,6 @@ public class HenghuaSampleDao extends LocalRWDao<HenghuaSample> {
   }
 
   /**
-   * 获得下一页样品数据
-   * 
-   * @param id
-   * @return
-   * @since 1.0.0
-   * @author jail
-   * @createTime 2015年9月4日下午6:14:01
-   * @updator jail
-   * @updateTime 2015年9月4日下午6:14:01
-   */
-  public List<HenghuaSample> findNextList(long id) {
-    return super.selectList("findNextList", id);
-  }
-
-  /**
    * 根据 样卡名获得样卡详情
    * 
    * @param cardId 样卡名
@@ -111,8 +96,8 @@ public class HenghuaSampleDao extends LocalRWDao<HenghuaSample> {
    * @return
    * @author jail
    */
-  public List<HenghuaSample> search(long id, String level, String style, String gramWeight, String season, String zuzhi, String fabrics,
-      String colorTypes, String clearTypes, String materialTypes,String keys) {
+	public List<HenghuaSample> search(long id, String level, String style, String gramWeight, String season, String zuzhi, String fabrics,
+      String colorTypes, String clearTypes, String materialTypes,String keys,boolean isNew) {
     Map<String, Object> searchMap = new HashMap<>();
     searchMap.put("id", id);
     searchMap.put("level", level);
@@ -125,6 +110,7 @@ public class HenghuaSampleDao extends LocalRWDao<HenghuaSample> {
     searchMap.put("clearTypes", StringUtils.hasText(clearTypes) ? clearTypes.split(",") : null);
     searchMap.put("materialTypes", StringUtils.hasText(materialTypes) ? materialTypes.split(",") : null);
     searchMap.put("keys", keys);
+    searchMap.put("isNew", isNew);
     return super.selectList("HenghuaSample.searchSample", searchMap);
   }
 }

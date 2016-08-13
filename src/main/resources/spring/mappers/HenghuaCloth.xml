@@ -81,16 +81,6 @@
 		delete from henghua_cloth where updateTime &lt; #{time}
 	</delete>
 
-	<!-- 下一分页 -->
-	<select id="findNextList" resultType="cloth" parameterType="long">
-		select *
-		from
-		henghua_cloth
-		where id > #{id}
-		order by id
-		limit 30;
-	</select>
-
 	<select id="findCloth" resultType="cloth" parameterType="string">
 		select *
 		from

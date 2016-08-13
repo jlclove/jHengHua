@@ -79,8 +79,9 @@
 
 	<!-- 根据多个detailId 获得样品 -->
 	<select id="findSampleDetails" resultType="henghuaSampleDetail" parameterType="map">
-		select d.`detailId`,d.`desc_jpg`,d.`desc_png`,d.`desc_video`,temp.cardId as `cardIds`,d.`nameCn`,d.`nameEn`,d.`level`,d.`material`,
-		d.`style`,d.`season`,d.`gramWeight`,d.`fabrics`,d.`zuzhi`,d.`colorTypes`,d.`materialTypes`,d.`clearTypes`
+		select d.`detailId`,d.`desc_jpg`,d.`desc_png`,d.`desc_video`,temp.cardId as cardId, d.cardIds as `cardIds`,
+			   d.`nameCn`,d.`nameEn`,d.`level`,d.`material`,
+			   d.`style`,d.`season`,d.`gramWeight`,d.`fabrics`,d.`zuzhi`,d.`colorTypes`,d.`materialTypes`,d.`clearTypes`
 		from henghua_sample_detail as d
 		inner join 
 		<foreach collection="_parameter.keys" item="k" separator=" union all "  open="(" close=")" >

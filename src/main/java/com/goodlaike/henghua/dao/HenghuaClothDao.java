@@ -46,20 +46,6 @@ public class HenghuaClothDao extends LocalRWDao<HenghuaCloth> {
     return effectCount;
   }
 
-  /**
-   * 获得下一页服装数据
-   * 
-   * @param id
-   * @return
-   * @since 1.0.0
-   * @author jail
-   * @createTime 2015年9月4日下午6:14:01
-   * @updator jail
-   * @updateTime 2015年9月4日下午6:14:01
-   */
-  public List<HenghuaCloth> findNextList(long id) {
-    return super.selectList("findNextList", id);
-  }
 
   /**
    * 获得服装详情
