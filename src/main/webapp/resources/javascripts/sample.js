@@ -24,3 +24,7 @@ $(document).ready(function(){
         }
     })
 });
+Vue.filter('dateCompare', function (value) {
+    console.log((Date.now()-value)/30/24/3600000 <= 30);
+    return (Date.now()-value)/30/24/3600000 <= 30;
+})

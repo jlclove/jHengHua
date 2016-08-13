@@ -29,8 +29,12 @@
 <jsp:include page="common/filter.jsp"/>
 <!-- /.filter -->
 <div class="product-wrap container">
+    <c:if test="${param.isNew}">
+    <h3 class="mt20"><fmt:message key="nav_shop_category_sample_new"/></h3>
+    </c:if>
     <div class="row" id="list">
         <p class="text-center mt30 f16" v-if="!list">加载中...</p>
+        <p class="f18 text-center mt30 f16" v-if="list && list.length == 0">no result found</p>
         <div class="col-sm-4 product-item" v-for="sample in list" v-if="list.length > 0">
             <a href="/product/sample/{{sample.cardId}}">
                 <div class="clearfix image-list">
@@ -39,7 +43,10 @@
                     </div>
                 </div>
                 <div class="product-desc mt10 pl5">
-                    <div><span class="head">{{sample.cardId}}</span>  -  <span class="f16">{{sample.nick}}</span>  -  <span class="f16">{{sample.material}}</span></div>
+                    <div>
+                        <span class="head">{{sample.cardId}}</span>  -  <span class="f16">{{sample.nick}}</span>  -  <span class="f16">{{sample.material}}</span>
+                        <span v-if="sample.cardCreateTime | dateCompare" class="tag-new">NEW</span>
+                    </div>
                     <%--<div class="pb10">${sample.}</div>--%>
                     <%--<div class="head">¥7,180 CNY</div>--%>
                 </div>

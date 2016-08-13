@@ -95,6 +95,7 @@
     text-align: center;
 }
 .product-item > a {
+    position: relative;
     padding: 10px;
     display: block;
     -webkit-box-shadow: 0 0 5px #ddd;
@@ -326,4 +327,13 @@ div[class*=col-].product-item>img {
 .detail-list a.current img {
     border-color: #666;
     opacity: 1;
+}
+.tag-new {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(239,122,122,.8);
+    color: #fff;
+    padding: 2px;
+    line-height: 1;
 }

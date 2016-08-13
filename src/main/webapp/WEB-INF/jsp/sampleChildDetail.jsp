@@ -85,13 +85,27 @@
                     <div class="form-group">
                         <label class="col-sm-4 control-label"><fmt:message key="product_sample_detail_quantity"/></label>
                         <div class="col-sm-8">
-                            <p class="form-control-static"><span id="stock">0</span> <span id="unit"></span></p>
+                            <p class="form-control-static">
+                                <c:if test="${empty session_user}">
+                                    <small>登录后可查看</small>
+                                </c:if>
+                                <c:if test="${not empty session_user}">
+                                    <span id="stock">0</span> <span id="unit"></span>
+                                </c:if>
+                            </p>
                         </div>
                     </div>
                		<div class="form-group">
                         <label class="col-sm-4 control-label"><fmt:message key="product_sample_detail_price"/></label>
                         <div class="col-sm-8">
-                            <p class="form-control-static"><span id="price">0</span></p>
+                            <p class="form-control-static">
+                                <c:if test="${empty session_user}">
+                                    <small>登录后可查看</small>
+                                </c:if>
+                                <c:if test="${not empty session_user}">
+                                    <span id="price">0</span>
+                                </c:if>
+                            </p>
                         </div>
                     </div> 
                      <%--    <div class="form-group">
