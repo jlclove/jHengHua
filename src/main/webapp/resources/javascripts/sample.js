@@ -26,5 +26,5 @@ $(document).ready(function(){
     })
 });
 Vue.filter('dateCompare', function (value) {
-    return (Date.now()-value)/30/24/3600000 <= 30;
+    return (value+30*24*3600000) - Date.now() > 0;
 })
