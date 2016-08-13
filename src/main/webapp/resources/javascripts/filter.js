@@ -232,6 +232,7 @@ $(document).on('scroll', function(){
                 fabrics:fabrics?fabrics:undefined,
                 isNew: isNew
             }, function (data) {
+                isLoading = false;
                 if (!data || data.length == 0) {
                     sinceId = 0;
                     return;
