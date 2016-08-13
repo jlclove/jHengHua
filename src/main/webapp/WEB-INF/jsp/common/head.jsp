@@ -47,9 +47,11 @@
                     HENGHUA FASHION GROUP
                     <%--<img alt="Brand" src="/static/images/logo.png">--%>
                 </a>
+                <c:if test="${empty session_user}">
                 <button type="button" class="navbar-toggle collapsed right">
                     <a class="btnAccount icon-suiticon icon-suiticon-user-2"></a>
                 </button>
+                </c:if>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->

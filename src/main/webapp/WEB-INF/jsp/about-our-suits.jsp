@@ -53,12 +53,12 @@
                     <div class="col-xs-6 text-right">
                         <div class="f20 mb10 color_blue">CLASSIC</div>
                         <ul class="fit-classic-type list-unstyled f16">
-                            <li><a href="#" data-preview="images/about-suits/fit-sketch-hartford.png" class="active">HARTFORD</a></li>
-                            <li><a href="#" data-preview="images/about-suits/fit-sketch-laspalla.png">LA SPALLA</a></li>
-                            <li><a href="#" data-preview="images/about-suits/fit-sketch-lazio.png">LAZIO</a></li>
-                            <li><a href="#" data-preview="images/about-suits/fit-sketch-london.png">YORK</a></li>
-                            <li><a href="#" data-preview="images/about-suits/fit-sketch-sienna.png">SIENNA</a></li>
-                            <li><a href="#" data-preview="images/about-suits/fit-sketch-napoli.png">NAPOLI</a></li>
+                            <li><a href="#" data-preview="/static/images/about-suits/fit-sketch-hartford.png" class="active">HARTFORD</a></li>
+                            <li><a href="#" data-preview="/static/images/about-suits/fit-sketch-laspalla.png">LA SPALLA</a></li>
+                            <li><a href="#" data-preview="/static/images/about-suits/fit-sketch-lazio.png">LAZIO</a></li>
+                            <li><a href="#" data-preview="/static/images/about-suits/fit-sketch-london.png">YORK</a></li>
+                            <li><a href="#" data-preview="/static/images/about-suits/fit-sketch-sienna.png">SIENNA</a></li>
+                            <li><a href="#" data-preview="/static/images/about-suits/fit-sketch-napoli.png">NAPOLI</a></li>
                         </ul>
                     </div>
                     <div class="col-xs-6">
@@ -72,13 +72,13 @@
                     <div class="col-xs-6">
                         <div class="f20 mb10 color_blue">CONTEMPORARY</div>
                         <ul class="fit-classic-type list-unstyled f16">
-                            <li><a href="#" data-preview="images/about-suits/fit-sketch-hudson.png" class="active">HUDSON</a></li>
-                            <li><a href="#" data-preview="images/about-suits/fit-sketch-madison.png">MADISON</a></li>
-                            <li><a href="#" data-preview="images/about-suits/fit-sketch-mercer.png">MERCER</a></li>
-                            <li><a href="#" data-preview="images/about-suits/fit-sketch-havana.png">HAVANA</a></li>
-                            <li><a href="#" data-preview="images/about-suits/fit-sketch-washington.png">WASHINGTON</a></li>
-                            <li><a href="#" data-preview="images/about-suits/fit-sketch-soho.png">SOHO</a></li>
-                            <li><a href="#" data-preview="images/about-suits/fit-sketch-copenhagen.png">COPENHAGEN</a></li>
+                            <li><a href="#" data-preview="/static/images/about-suits/fit-sketch-hudson.png" class="active">HUDSON</a></li>
+                            <li><a href="#" data-preview="/static/images/about-suits/fit-sketch-madison.png">MADISON</a></li>
+                            <li><a href="#" data-preview="/static/images/about-suits/fit-sketch-mercer.png">MERCER</a></li>
+                            <li><a href="#" data-preview="/static/images/about-suits/fit-sketch-havana.png">HAVANA</a></li>
+                            <li><a href="#" data-preview="/static/images/about-suits/fit-sketch-washington.png">WASHINGTON</a></li>
+                            <li><a href="#" data-preview="/static/images/about-suits/fit-sketch-soho.png">SOHO</a></li>
+                            <li><a href="#" data-preview="/static/images/about-suits/fit-sketch-copenhagen.png">COPENHAGEN</a></li>
                         </ul>
                     </div>
                 </div>

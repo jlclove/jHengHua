@@ -15,8 +15,13 @@ $(document).ready(function(){
             },
             methods: {
                 toggleMenuItem: function(event){
+                    var isOpened = $(event.target).is('.opened');
                     $('.filter-category-item a.opened').removeClass('opened');
-                    $(event.target).addClass('opened');
+                    if(isOpened) {
+                        $(event.target).removeClass('opened');
+                    } else {
+                        $(event.target).addClass('opened');
+                    }
                 },
                 toggleFilter: toggleFilter,
                 search: search,
