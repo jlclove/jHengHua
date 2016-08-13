@@ -184,6 +184,12 @@ $(document).ready(function(){
             }, 1000);
         }
     });
+
+    $('#keyword').on('keydown', function(e){
+        if(e.keyCode == 13) {
+            searchKeyWord();
+        }
+    });
 });
 
 //关键字搜索

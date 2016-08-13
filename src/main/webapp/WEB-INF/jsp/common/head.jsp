@@ -241,19 +241,19 @@
                                     <div class="category-title hidden-xs"><fmt:message key="nav_company_contact"/></div>
                                     <ul class="list-unstyled category-list">
                                         <li class="category-item">
-                                            <small><fmt:message key="nav_company_contact_text1"/></small>
+                                            <fmt:message key="nav_company_contact_text1"/>
                                         </li>
                                         <li class="category-item">
-                                            <small>40088 59421</small>
+                                            40088 59421
                                         </li>
                                         <li class="category-item">
-                                            <small><fmt:message key="nav_company_contact_text2"/></small>
+                                            <fmt:message key="nav_company_contact_text2"/>
                                         </li>
                                         <li class="category-item">
-                                            <small>10.00 - 18.00</small>
+                                            10.00 - 18.00
                                         </li>
                                         <li class="category-item">
-                                            <small><fmt:message key="nav_company_contact_text3"/></small>
+                                            <fmt:message key="nav_company_contact_text3"/>
                                         </li>
                                     </ul>
                                 </div>
@@ -306,12 +306,12 @@
                         </div>
                     </li>
                     <li>
-                        <a href="#" data-nav="true" class="icon-suiticon icon-suiticon-magnifier-1"></a>
+                        <a href="#" data-nav="true" class="icon-suiticon icon-suiticon-magnifier-1" style="font-size: 24px"></a>
 
                         <div class="nav-menu">
                             <div class="nav-menu-wrap container-fluid">
                                 <div class="input-group">
-                                    <input type="text" class="custom-text" id="keyword" placeholder="<fmt:message key="nav_search_text"/>"/>
+                                    <input type="text" class="custom-text" id="keyword" value="${param.keyword}" placeholder="<fmt:message key="nav_search_text"/>"/>
                                     <a class="unit-link ml10 text-center" href="javascript:searchKeyWord()"><fmt:message key="nav_search_btn"/></a>
                                 </div>
                             </div>

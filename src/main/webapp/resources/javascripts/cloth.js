@@ -17,6 +17,8 @@ $(document).ready(function(){
         keys: keyword ? keyword : undefined
     }, function(res){
         listView.list = res;
-        sinceId = res[res.length - 1].id;
+        if(res.length > 0) {
+            sinceId = res[res.length - 1].id;
+        }
     })
 });
