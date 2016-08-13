@@ -32,18 +32,18 @@
     <div class="row" id="list">
         <p class="text-center mt30 f16" v-if="!list">加载中...</p>
         <div class="col-sm-4 product-item" v-for="sample in list" v-if="list.length > 0">
-                <div class="clearfix" style="min-height: 164px">
+            <a href="/product/sample/{{sample.cardId}}">
+                <div class="clearfix image-list">
                     <div class="w1of3 pull-left pl5 pr5" v-for="detail in sample.detailList.slice(0,3)">
-                        <a href="/product/sample/detail/{{detail.detailId}}">
-                            <img src="http://www.jshenghua.com:82/Thumb/{{detail.desc_png}}" class="img-responsive" width="100%"/>
-                        </a>
+                        <img src="http://www.jshenghua.com:82/Thumb/{{detail.desc_png}}" class="img-responsive" width="100%"/>
                     </div>
                 </div>
                 <div class="product-desc mt10 pl5">
-                    <div> <a href="/product/sample/{{sample.cardId}}"><span class="head">{{sample.cardId}}</span>  -  <span class="f16">{{sample.nick}}</span>  -  <span class="f16">{{sample.material}}</span> </a></div>
+                    <div><span class="head">{{sample.cardId}}</span>  -  <span class="f16">{{sample.nick}}</span>  -  <span class="f16">{{sample.material}}</span></div>
                     <%--<div class="pb10">${sample.}</div>--%>
                     <%--<div class="head">¥7,180 CNY</div>--%>
                 </div>
+            </a>
         </div>
     </div>
 </div>

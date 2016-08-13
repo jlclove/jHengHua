@@ -33,7 +33,7 @@
     <div class="row" id="list">
         <p class="text-center mt30 f16" v-if="!list">加载中...</p>
 
-        <div class="col-sm-3 product-item" v-for="cloth in list" v-if="list.length > 0">
+        <div class="col-sm-3 product-item" v-for="cloth in list" v-if="list.length > 0" style="padding-left: 7px;padding-right: 7px;">
             <a href="/product/cloth/{{cloth.serialNo}}">
                 <img src="http://www.jshenghua.com:82/Thumb/{{cloth.desc_png}}" class="img-responsive" width="100%"/>
                 <div class="product-desc mt10 pl5">
