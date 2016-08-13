@@ -16,7 +16,8 @@ $(document).ready(function(){
     $.get(filterConfig.search_url, {
         keys: keyword ? keyword : undefined,
         materialTypes: materialTypes?materialTypes:undefined,
-        fabrics:fabrics?fabrics:undefined
+        fabrics:fabrics?fabrics:undefined,
+        isNew: isNew
     }, function(res){
         listView.list = res;
         if(res.length > 0) {
@@ -25,6 +26,5 @@ $(document).ready(function(){
     })
 });
 Vue.filter('dateCompare', function (value) {
-    console.log((Date.now()-value)/30/24/3600000 <= 30);
     return (Date.now()-value)/30/24/3600000 <= 30;
 })

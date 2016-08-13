@@ -99,7 +99,8 @@ function clearAll() {
         $.get(filterConfig.search_url, {
             keys: keyword?keyword:undefined,
             materialTypes: materialTypes?materialTypes:undefined,
-            fabrics:fabrics?fabrics:undefined
+            fabrics:fabrics?fabrics:undefined,
+            isNew: isNew
         }, function (data) {
             Loading.close();
             if (!data || data.length == 0) {
@@ -146,7 +147,7 @@ function toggleFilter(type) {
 function search(multiSelect){
     var url;
     sinceId = 0;
-    url = filterConfig.search_url + '?sinceId=' +  sinceId + '&' + mapToList(filters).join('&');
+    url = filterConfig.search_url + '?isNew=' +  isNew + '&sinceId=' +  sinceId + '&' + mapToList(filters).join('&');
 
     if(url) {
         Loading.open();
@@ -228,7 +229,8 @@ $(document).on('scroll', function(){
             $.get(filterConfig.search_url + '?sinceId=' + sinceId + '&' + mapToList(filters).join('&'),{
                 keys: keyword?keyword:undefined,
                 materialTypes: materialTypes?materialTypes:undefined,
-                fabrics:fabrics?fabrics:undefined
+                fabrics:fabrics?fabrics:undefined,
+                isNew: isNew
             }, function (data) {
                 if (!data || data.length == 0) {
                     sinceId = 0;

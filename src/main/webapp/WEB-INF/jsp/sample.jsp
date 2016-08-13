@@ -54,6 +54,10 @@
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    var isNew = '${param.isNew ? param.isNew : false}';
+    console.log(isNew);
+</script>
 <jsp:include page="common/foot.jsp">
     <jsp:param name="js" value="javascripts/filter,javascripts/sample"/>
 </jsp:include>
