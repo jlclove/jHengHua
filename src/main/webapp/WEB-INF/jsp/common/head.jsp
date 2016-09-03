@@ -43,9 +43,9 @@
                         id="collapse-left">
                     <i class="icon-suiticon icon-suiticon-menu-1"></i>
                 </button>
-                <a class="navbar-brand" href="/">
-                    HENGHUA FASHION GROUP
-                    <%--<img alt="Brand" src="/static/images/logo.png">--%>
+                <a class="navbar-brand" href="/" style="padding: 7px;">
+                    <%--HENGHUA FASHION GROUP--%>
+                    <img alt="Brand" src="/static/images/new_logo.png" style="width:180px; padding:0;">
                 </a>
                 <c:if test="${empty session_user}">
                 <button type="button" class="navbar-toggle collapsed right">
