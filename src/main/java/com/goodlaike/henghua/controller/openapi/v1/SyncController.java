@@ -23,7 +23,9 @@ public class SyncController extends BaseRestController {
 
 	/**
 	 * 样品同步（完整数据）
-	 * @param params {@link HenghuaSampleDetail}
+	 * 
+	 * @param params
+	 *            {@link HenghuaSampleDetail}
 	 * @return
 	 */
 	@RequestMapping(value = "sampleDetail", method = RequestMethod.POST)
@@ -73,47 +75,60 @@ public class SyncController extends BaseRestController {
 
 	/**
 	 * 样品同步（根据样品ID）
-	 * @param detailId 样品ID
+	 * 
+	 * @param detailId
+	 *            样品ID
 	 * @return
 	 */
-	@RequestMapping(value = "sampleDetail/{detailId}", method = RequestMethod.POST)
+	@RequestMapping(value = "sampleDetail/{detailId}", method = { RequestMethod.POST, RequestMethod.PUT })
 	protected ResponseEntity<?> syncSampleDetailByDetailId(@PathVariable("detailId") String detailId) {
 		Assert.hasText(detailId, "the argument [detailId] must not be null or empty");
 		try {
-			this.henghuaService.syncSampleDetail(detailId);
-			return ResponseEntity.ok().build();
+			if (this.henghuaService.syncSampleDetail(detailId)) {
+				return ResponseEntity.ok().build();
+			} else {
+				return ResponseEntity.notFound().build();
+			}
 		} catch (Exception e) {
 			return super.serverError(RestResultWeb.SERVERERROR.rebuild(e.getMessage()));
 		}
 	}
-	
+
 	/**
 	 * 样卡同步（根据样卡ID）
-	 * @param cardId 样卡ID
+	 * 
+	 * @param cardId
+	 *            样卡ID
 	 * @return
 	 */
-	@RequestMapping(value = "sample/{cardId}", method = RequestMethod.POST)
+	@RequestMapping(value = "sample/{cardId}", method = { RequestMethod.POST, RequestMethod.PUT })
 	protected ResponseEntity<?> syncSampleByCardId(@PathVariable("cardId") String cardId) {
 		Assert.hasText(cardId, "the argument [cardId] must not be null or empty");
 		try {
-			this.henghuaService.syncSample(cardId);
-			return ResponseEntity.ok().build();
+			if (this.henghuaService.syncSample(cardId)) {
+				return ResponseEntity.ok().build();
+			} else {
+				return ResponseEntity.notFound().build();
+			}
 		} catch (Exception e) {
 			return super.serverError(RestResultWeb.SERVERERROR.rebuild(e.getMessage()));
 		}
 	}
-	
+
 	/**
 	 * 
 	 * @param serialNo
 	 * @return
 	 */
-	@RequestMapping(value = "cloth/{serialNo}", method = RequestMethod.POST)
+	@RequestMapping(value = "cloth/{serialNo}", method = { RequestMethod.POST, RequestMethod.PUT })
 	protected ResponseEntity<?> syncClothBySerialNo(@PathVariable("serialNo") String serialNo) {
 		Assert.hasText(serialNo, "the argument [serialNo] must not be null or empty");
 		try {
-			this.henghuaService.syncCloth(serialNo);
-			return ResponseEntity.ok().build();
+			if (this.henghuaService.syncCloth(serialNo)) {
+				return ResponseEntity.ok().build();
+			} else {
+				return ResponseEntity.notFound().build();
+			}
 		} catch (Exception e) {
 			return super.serverError(RestResultWeb.SERVERERROR.rebuild(e.getMessage()));
 		}

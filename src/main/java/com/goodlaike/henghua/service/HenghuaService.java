@@ -291,6 +291,9 @@ public class HenghuaService {
 	 */
 	public boolean syncCloth(String serialNo) {
 		HenghuaCloth cloth = this.getClothFromHost(serialNo);
+		if (cloth == null) {
+			return false;
+		}
 		return this.henghuaClothDao.batchReplaceInto(Arrays.asList(cloth), false) == 1;
 	}
 
