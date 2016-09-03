@@ -1,0 +1,72 @@
+html {
+    -webkit-font-smoothing: antialiased;
+}
+.account hr {
+    margin: 15px 0;
+}
+
+
+.account .titlebar {
+    margin-bottom: 0;
+}
+.account .sidebar {
+    padding-left: 0;
+}
+
+.account h1,
+.account h2,
+.account h3,
+.account h4 {
+    line-height: 2.8rem;
+}
+.account h4  {
+    margin: 0;
+}
+.account .profile .form-group {
+    margin-bottom: 0;
+}
+.account .form-control-static {
+    min-height: 0;
+    padding-bottom: 0;
+}
+.account .btn {
+    font-size: 12px;
+    font-family: sans-serif;
+    border-radius: 2px;
+    padding-left: 20px;
+    padding-right: 20px;
+    min-width: 100px;
+    text-align: center;
+    text-transform: uppercase;
+}
+.account .btn-edit {
+    background-color: #787878;
+    border: 1px solid #787878;
+    color: #fff;
+}
+.account .btn-edit:hover {
+    background: #000;
+    border-color: #000;
+    color: #fff;
+}
+.account .modal-content {
+    border-radius: 4px;
+}
+.account .form-control {
+    border-radius: 0;
+    box-shadow: none;
+}
+.account .form-control:focus {
+    border-color: #ccc;
+    box-shadow: 0 0 8px rgba(120,120,120,.6);
+}
+.account input.form-control.error {
+    border-color: #e84848;
+}
+.account input.form-control.valid {
+    border-color: #449d44;
+}
+.account span.error {
+    margin-bottom: 0;
+    color: #e84848;
+}

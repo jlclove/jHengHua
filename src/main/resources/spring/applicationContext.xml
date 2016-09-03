@@ -146,6 +146,11 @@
 			<mvc:exclude-mapping path="/admin/login" />
 			<bean class="com.goodlaike.henghua.interceptor.LoginInterceptor" />
 		</mvc:interceptor>
+
+		<mvc:interceptor>
+			<mvc:mapping path="/account/**" />
+			<bean class="com.goodlaike.henghua.interceptor.AccountInterceptor" />
+		</mvc:interceptor>
 	</mvc:interceptors>
 
 

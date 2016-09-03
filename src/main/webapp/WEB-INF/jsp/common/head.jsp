@@ -315,7 +315,7 @@
                     </c:if>
                     <c:if test="${not empty session_user}">
                     <li class="hidden-xs">
-                        <span style="line-height: 60px;font-size: 16px;">Hello, ${session_user.nickname}</span>
+                        <span style="line-height: 60px;font-size: 16px;"><a href="/account/profile">Hello, ${session_user.nickname}</a></span>
                         <a id="btn-logout" href="javascript:;" style="display: inline;font-size: 14px;"><fmt:message key="nav_logout_btn"/></a>
                     </li>
                     </c:if>
