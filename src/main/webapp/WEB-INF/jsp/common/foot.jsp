@@ -89,6 +89,11 @@
 <script type="text/javascript" src="/static/javascripts/underscore-min.js"></script>
 <script type="text/javascript" src="/static/javascripts/main.js"></script>
 <script type="text/javascript">
+    if(hasExhibitions) {
+        $('.nav-menu').css('top', '92px');
+        $('.suits.banner').css('margin-top', '90px');
+        $('.filter-bar.affix').css('margin-top', '92px');
+    }
     $('a[data-nav]').click(function(e){
         var navMenu = $(this).parent().find('.nav-menu');
         var current = $(this).parent().find('.nav-menu-wrap');

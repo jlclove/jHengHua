@@ -13,3 +13,6 @@
   <c:set var="lang" value="cn" scope="request"/>
 </c:if>
 <fmt:setLocale value="${lang}" scope="request"/>
+<script>
+  var hasExhibitions = ${fn:length(exhibitions) > 0};
+</script>

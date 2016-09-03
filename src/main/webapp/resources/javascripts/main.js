@@ -196,3 +196,26 @@ $(document).ready(function(){
 function searchKeyWord(){
     window.location.href='/product/sample?keyword=' + encodeURIComponent($('#keyword').val())
 }
+
+var exhibitions = $('.exhibition-container ul li');
+var index = 1, length = exhibitions.length;
+if(length > 0) {
+    setInterval(function(){
+        if(index >= length) {
+            index = 0;
+        }
+
+        if(index == 0){
+            var $e = $(exhibitions[length - 1]);
+            if($e.is('.active')) {
+                $e.addClass('disactive');
+            }
+            $e.removeClass('active');
+        } else {
+            $(exhibitions[index - 1]).removeClass('active').addClass('disactive');
+        }
+        $(exhibitions[index]).removeClass('disactive').addClass('active');
+
+        index++;
+    }, 5000);
+}

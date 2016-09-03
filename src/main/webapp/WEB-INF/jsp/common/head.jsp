@@ -22,6 +22,7 @@
     <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+    <link rel="stylesheet" type="text/css" href="/static/stylesheets/exhibition.css">
     <%--<link rel="stylesheet" type="text/css" href="/static/fonts/fonts.css">--%>
     <%--<link rel="stylesheet" type="text/css" href="/static/bower_components/bootstrap/dist/css/bootstrap.min.css">--%>
     <%--<link rel="stylesheet" type="text/css" href="/static/bower_components/font-awesome/css/font-awesome.min.css">--%>
@@ -36,6 +37,7 @@
 <body>
 <header class="animated">
     <nav class="navbar navbar-default navbar-fixed-top">
+        <jsp:include page="exhibition.jsp"/>
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
@@ -327,6 +329,7 @@
         </div>
         <!-- /.container-fluid -->
     </nav>
+
     <%--<div class="nav-menu visible-xs">--%>
         <%--<ul class="list-unstyled">--%>
             <%--<li><a href="#">在线购买</a></li>--%>

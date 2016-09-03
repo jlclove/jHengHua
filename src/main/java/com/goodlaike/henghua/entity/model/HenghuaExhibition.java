@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 import com.alibaba.fastjson.annotation.JSONField;
+import com.alibaba.fastjson.annotation.JSONType;
 
 /**
  * 恒华展会实体类
@@ -11,6 +12,7 @@ import com.alibaba.fastjson.annotation.JSONField;
  * @author Jail Hu
  *
  */
+@JSONType(asm = false)
 public class HenghuaExhibition implements Serializable {
 
 	// "{ "1": "{ \"结束时间\": \"2016-09-09 18:00:00\", \"开始时间\": \"2016-09-06

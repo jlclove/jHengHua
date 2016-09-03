@@ -200,8 +200,7 @@ header a:hover {
     z-index: 11;
 }
 .navbar-default .navbar-nav>li>.icon-suiticon {
-    padding-top: 5px;
-    padding-top: 0.4167rem;
+    padding-top: 30px;
     font-size: 18px;
 }
 .navbar-default .navbar-nav>li>.icon-suiticon.icon-suiticon-cart-2 {

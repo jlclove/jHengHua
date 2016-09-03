@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ include file="include.jsp"%>
 <fmt:bundle basename="site">
-<div id="filter" class="suits filter-bar" data-spy="affix" data-offset-top="62">
+<div id="filter" class="suits filter-bar" data-spy="affix" data-offset-top="${fn:length(exhibitions) > 0 ? '92' : '62'}">
     <div class="filter-btn clearfix">
         <div class="pull-left">
             <a id="filterBtn" v-on:click="toggleFilter" class="filter-item animated" href="javascript:;">
