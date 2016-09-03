@@ -92,7 +92,8 @@
     if(hasExhibitions) {
         $('.nav-menu').css('top', '92px');
         $('.suits.banner').css('margin-top', '90px');
-        $('.filter-bar.affix').css('margin-top', '92px');
+        $('.filter-bar.affix').css('top', '92px');
+        $('.content').css('padding-top', '90px');
     }
     $('a[data-nav]').click(function(e){
         var navMenu = $(this).parent().find('.nav-menu');
