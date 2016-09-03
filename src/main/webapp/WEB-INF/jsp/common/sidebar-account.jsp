@@ -14,7 +14,7 @@
     </li>
     <hr>
     <li>
-        <a id="btn-logout" href="javascript:;"><fmt:message key="nav_logout_btn"/></a>
+        <a id="btn-logout" class="btn-logout" href="javascript:;"><fmt:message key="nav_logout_btn"/></a>
     </li>
 </ul>
 </fmt:bundle>

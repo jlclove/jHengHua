@@ -97,4 +97,5 @@ $('#passwordModal').on('hidden.bs.modal', function (e) {
     $('.form-control.error', $(this)).removeClass('error');
     $('.form-control.valid', $(this)).removeClass('valid');
     $('.error-msg', $(this)).hide();
+    passwordForm.reset();
 });

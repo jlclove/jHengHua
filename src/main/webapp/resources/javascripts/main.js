@@ -47,7 +47,7 @@ $.validator.addMethod('mobile', function(value, element){
 }, '请输入正确的手机号码');
 
 //退出
-$('#btn-logout').on('click', function(){
+$('.btn-logout').on('click', function(){
     $.ajax({
         url: '/business/user/logout',
         method: 'post',
