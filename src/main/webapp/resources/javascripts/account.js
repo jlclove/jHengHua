@@ -1,7 +1,7 @@
 /**
  * Created by charles on 16/9/3.
  */
-$('#accountForm').validate({
+var accountValidator = $('#accountForm').validate({
     errorElement: 'span',
     submitHandler: function(form, e){
         e.preventDefault()
@@ -32,7 +32,7 @@ $('#accountForm').validate({
     }
 });
 
-$('#passwordForm').validate({
+var passwordValidator = $('#passwordForm').validate({
     rules: {
         oldPassword: {
             required: true
@@ -84,4 +84,17 @@ $('#passwordForm').validate({
             }
         });
     }
+});
+
+$('#profileModal').on('hidden.bs.modal', function (e) {
+    accountValidator.resetForm();
+    $('.form-control.error', $(this)).removeClass('error');
+    $('.form-control.valid', $(this)).removeClass('valid');
+    $('.error-msg', $(this)).hide();
+});
+$('#passwordModal').on('hidden.bs.modal', function (e) {
+    passwordValidator.resetForm();
+    $('.form-control.error', $(this)).removeClass('error');
+    $('.form-control.valid', $(this)).removeClass('valid');
+    $('.error-msg', $(this)).hide();
 });

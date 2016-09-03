@@ -48,7 +48,7 @@
                     </div>
                 </form>
                 <hr>
-                <a href="javascript:;" class="btn btn-edit pull-right" data-toggle="modal" data-target="#myProfileModal"><fmt:message key="btn_account_edit"/></a>
+                <a href="javascript:;" class="btn btn-edit pull-right" data-toggle="modal" data-target="#profileModal"><fmt:message key="btn_account_edit"/></a>
                 <div class="clearfix"></div>
 
                 <h4><fmt:message key="message_change_password"/></h4>
@@ -68,7 +68,7 @@
         </div>
 
         <%-- modal --%>
-        <div class="modal" id="myProfileModal">
+        <div class="modal" id="profileModal">
             <div class="modal-dialog modal-lg">
                 <form id="accountForm">
                 <div class="modal-content">
@@ -126,7 +126,7 @@
                         </div>
                         <div class="modal-body">
                             <div id="account-error-msg2" class="error-msg alert alert-danger alert-dismissible fade in" role="alert" style="display: none">
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                <%--<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>--%>
                             </div>
                             <div class="form-horizontal" role="form">
                                 <div class="row">
