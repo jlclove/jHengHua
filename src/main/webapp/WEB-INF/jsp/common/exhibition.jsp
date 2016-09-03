@@ -12,7 +12,7 @@
 <div class="exhibition-container">
     <ul>
         <c:forEach items="${exhibitions}" var="exhibition" varStatus="status">
-            <li class="${status.first ? 'active': ''}">［${exhibition.type}］${exhibition.name}, 地址: ${exhibition.address}, ${exhibition.startTime} - ${exhibition.endTime}</li>
+            <li class="${status.first ? 'active': ''}">【${exhibition.type}】${exhibition.name}； <b>地址：</b> ${exhibition.address}； <b>举办时间：</b> ${exhibition.startTime} 至 ${exhibition.endTime}</li>
         </c:forEach>
     </ul>
 </div>

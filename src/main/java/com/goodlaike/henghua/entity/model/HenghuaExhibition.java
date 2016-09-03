@@ -1,10 +1,8 @@
 package com.goodlaike.henghua.entity.model;
 
 import java.io.Serializable;
-import java.util.Date;
 
 import com.alibaba.fastjson.annotation.JSONField;
-import com.alibaba.fastjson.annotation.JSONType;
 
 /**
  * 恒华展会实体类
@@ -12,7 +10,6 @@ import com.alibaba.fastjson.annotation.JSONType;
  * @author Jail Hu
  *
  */
-@JSONType(asm = false)
 public class HenghuaExhibition implements Serializable {
 
 	// "{ "1": "{ \"结束时间\": \"2016-09-09 18:00:00\", \"开始时间\": \"2016-09-06
@@ -23,11 +20,11 @@ public class HenghuaExhibition implements Serializable {
 
 	private int id;
 
-	@JSONField(name = "开始时间", format = "yyyy-MM-dd HH:mm:ss")
-	private Date startTime;
+	@JSONField(name = "开始时间")
+	private String startTime;
 
-	@JSONField(name = "结束时间", format = "yyyy-MM-dd HH:mm:ss")
-	private Date endTime;
+	@JSONField(name = "结束时间")
+	private String endTime;
 
 	@JSONField(name = "活动类型")
 	private String type;
@@ -60,7 +57,7 @@ public class HenghuaExhibition implements Serializable {
 	 * @return the
 	 */
 	@JSONField(name = "startTime")
-	public Date getStartTime() {
+	public String getStartTime() {
 		return startTime;
 	}
 
@@ -68,7 +65,7 @@ public class HenghuaExhibition implements Serializable {
 	 * @param startTime
 	 *            the startTime to set
 	 */
-	public void setStartTime(Date startTime) {
+	public void setStartTime(String startTime) {
 		this.startTime = startTime;
 	}
 
@@ -76,7 +73,7 @@ public class HenghuaExhibition implements Serializable {
 	 * @return the
 	 */
 	@JSONField(name = "endTime")
-	public Date getEndTime() {
+	public String getEndTime() {
 		return endTime;
 	}
 
@@ -84,7 +81,7 @@ public class HenghuaExhibition implements Serializable {
 	 * @param endTime
 	 *            the endTime to set
 	 */
-	public void setEndTime(Date endTime) {
+	public void setEndTime(String endTime) {
 		this.endTime = endTime;
 	}
 

@@ -199,7 +199,7 @@ function searchKeyWord(){
 
 var exhibitions = $('.exhibition-container ul li');
 var index = 1, length = exhibitions.length;
-if(length > 0) {
+if(length > 1) {
     setInterval(function(){
         if(index >= length) {
             index = 0;

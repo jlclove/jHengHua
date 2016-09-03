@@ -1,6 +1,7 @@
 .exhibition-container {
     padding: 6px 10px 3px;
     border-bottom: 1px solid #eee;
+    background-color: #010;
 }
 .exhibition-container ul {
     margin: 0;
@@ -13,6 +14,8 @@
     margin: 0;
     position: absolute;
     display: none;
+    font-size:14px;
+    color:#efe;
 }
 .exhibition-container ul li.active {
     display: block;

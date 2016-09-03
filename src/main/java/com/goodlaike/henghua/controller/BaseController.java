@@ -1,22 +1,21 @@
 package com.goodlaike.henghua.controller;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
-import com.goodlaike.business.core.helper.LoginHelper;
-import com.goodlaike.business.core.model.User;
-import com.goodlaike.henghua.config.StoreCountryStore;
-import com.goodlaike.henghua.entity.model.Country;
-import com.goodlaike.henghua.entity.model.HenghuaExhibition;
-import com.goodlaike.henghua.service.HenghuaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
 import com.goodlaike.business.core.helper.LanguageHelper;
+import com.goodlaike.business.core.helper.LoginHelper;
+import com.goodlaike.business.core.model.User;
 import com.goodlaike.business.core.support.LanguageStore;
+import com.goodlaike.henghua.config.StoreCountryStore;
+import com.goodlaike.henghua.entity.model.Country;
+import com.goodlaike.henghua.entity.model.HenghuaExhibition;
+import com.goodlaike.henghua.service.HenghuaService;
 
 /**
  * 
@@ -51,9 +50,10 @@ public abstract class BaseController {
 
     @ModelAttribute("exhibitions")
     protected List<HenghuaExhibition> getExhibitions(HttpServletRequest request) {
-//        return henghuaService.getExhibitionAll();
+        List<HenghuaExhibition> list = henghuaService.getExhibitionAll();
+        return list;
 
-        HenghuaExhibition e1 = new HenghuaExhibition();
+      /*  HenghuaExhibition e1 = new HenghuaExhibition();
         HenghuaExhibition e2 = new HenghuaExhibition();
         HenghuaExhibition e3 = new HenghuaExhibition();
 
@@ -70,6 +70,6 @@ public abstract class BaseController {
         result.add(e2);
         result.add(e3);
 
-        return result;
+        return result;*/
     }
 }
