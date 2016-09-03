@@ -242,4 +242,15 @@ public class RestHenghuaController extends BaseRestController {
 		return ResponseEntity.ok(
 				this.henghuaService.searchCloth(id, material, wearStyle, mainColor, style, onUnderStyle, name, keys));
 	}
+
+	/**
+	 * 获得最新活动列表(所有)
+	 * 
+	 * @return
+	 * @author jail
+	 */
+	@RequestMapping(value = "exhibitions", method = RequestMethod.GET)
+	protected ResponseEntity<?> getExhibitionAll() {
+		return ResponseEntity.ok(this.henghuaService.getExhibitionAll());
+	}
 }

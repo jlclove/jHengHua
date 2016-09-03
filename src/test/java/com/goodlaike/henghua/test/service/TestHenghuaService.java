@@ -148,4 +148,10 @@ public class TestHenghuaService extends TestBase {
 		System.out.println(henghuaService.getClothType());
 		System.out.println(henghuaService.getClothType());
 	}
+
+	// 获得最新活动列表(所有)
+	@Test
+	public void restHenghuaExhibition() {
+		System.out.println(this.henghuaService.getExhibitionAll());
+	}
 }

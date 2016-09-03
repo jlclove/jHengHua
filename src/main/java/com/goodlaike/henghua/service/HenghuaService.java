@@ -21,6 +21,7 @@ import com.goodlaike.henghua.dao.HenghuaSampleDao;
 import com.goodlaike.henghua.dao.HenghuaSampleDetailDao;
 import com.goodlaike.henghua.entity.model.HenghuaCloth;
 import com.goodlaike.henghua.entity.model.HenghuaClothQuantity;
+import com.goodlaike.henghua.entity.model.HenghuaExhibition;
 import com.goodlaike.henghua.entity.model.HenghuaSample;
 import com.goodlaike.henghua.entity.model.HenghuaSampleDetail;
 import com.goodlaike.henghua.entity.model.HenghuaSampleDetailQuantity;
@@ -386,5 +387,15 @@ public class HenghuaService {
 
 	public void test() {
 		this.henghuaSampleDetailDao.test();
+	}
+
+	/**
+	 * 获得最新活动列表(所有)
+	 * 
+	 * @return List<HenghuaExhibition>
+	 */
+	@Cacheable(value = "globalConfig", key = "'HenghuaService.getExhibitionAll'")
+	public List<HenghuaExhibition> getExhibitionAll() {
+		return this.restHenghua.restHenghuaExhibitionAll();
 	}
 }
