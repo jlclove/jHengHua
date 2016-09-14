@@ -99,12 +99,7 @@
                         <label class="col-sm-4 control-label"><fmt:message key="product_sample_detail_price"/></label>
                         <div class="col-sm-8">
                             <p class="form-control-static">
-                                <c:if test="${empty session_user}">
-                                    <small>登录后可查看</small>
-                                </c:if>
-                                <c:if test="${not empty session_user}">
-                                    <span id="price">0</span>
-                                </c:if>
+                                 <span id="price">0</span>
                             </p>
                         </div>
                     </div> 
