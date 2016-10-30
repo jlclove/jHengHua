@@ -88,7 +88,7 @@ public class TestHenghuaService extends TestBase {
 	// 同步单条样品数据
 	@Test
 	public void syncSampleDetail() {
-		this.henghuaService.syncSampleDetail("HC130217-02");
+		this.henghuaService.syncSampleDetail("HC130121-01");
 	}
 
 	// 搜索样卡

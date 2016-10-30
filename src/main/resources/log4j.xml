@@ -67,7 +67,7 @@
 	<root>
 		<priority value="INFO"/>
 	  	<appender-ref ref="CONSOLE"/>
-	  	<!--<appender-ref ref="ERRORFILE"/>
-	  	<appender-ref ref="INFOFILE"/>-->
+	  	<appender-ref ref="ERRORFILE"/>
+	  	<appender-ref ref="INFOFILE"/>
 	</root>
 </log4j:configuration>

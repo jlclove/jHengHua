@@ -6,6 +6,8 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,6 +27,7 @@ import com.goodlaike.henghua.entity.model.HenghuaSampleDetailQuantity;
 import com.goodlaike.henghua.entity.model.Washing;
 import com.goodlaike.henghua.utils.HenghuaDamnJsonUtil;
 import com.goodlaike.resttemplate.client.RestClient;
+import com.goodlaike.tools.utils.CoderUtil;
 import com.goodlaike.tools.utils.TextUtil;
 
 /**
@@ -79,6 +82,8 @@ public class RestHenghua {
   public static final String JSON_HEAD = "result";
 
   private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
+
+  private static final boolean useRegexConvert = true;
 
   /**
    * 获得所有样卡数据， 接口提供非正常 json,当 json 输出
@@ -405,9 +410,8 @@ public class RestHenghua {
    * @version v1
    * @since 2016年6月5日 下午12:01:31
    */
-  private <T> T getObject(String restStr, Class<T> clazz) {
+  public <T> T getObject(String restStr, Class<T> clazz) {
     try {
-
       restStr = HenghuaDamnJsonUtil.format(restStr);
       System.out.println(restStr);
       JSONObject obj = JSONObject.parseObject(restStr);
@@ -422,6 +426,14 @@ public class RestHenghua {
     }
   }
 
+  public <T> List<T> getList(String restStr, Class<T> clazz) {
+    if (useRegexConvert) {
+      return this.getListByRegex(restStr, clazz);
+    } else {
+      return this.getListByJson(restStr, clazz);
+    }
+  }
+
   /**
    * 获得目标对象列表
    * 
@@ -433,7 +445,7 @@ public class RestHenghua {
    * @version v1
    * @since 2016年6月5日 下午12:59:22
    */
-  private <T> List<T> getList(String restStr, Class<T> clazz) {
+  public <T> List<T> getListByJson(String restStr, Class<T> clazz) {
     try {
       restStr = HenghuaDamnJsonUtil.format(restStr);
       JSONObject obj = JSONObject.parseObject(restStr);
@@ -455,6 +467,32 @@ public class RestHenghua {
       }
     } catch (Exception e) {
       logger.error("===>>getList 接口返回异常，ex：【{}】", e.getMessage());
+      return new ArrayList<>();
+    }
+  }
+
+  public <T> List<T> getListByRegex(String restStr, Class<T> clazz) {
+    Pattern patt = Pattern.compile("\\{\"result\":\\[([\\s\\S]*)?\\]\\}");
+    Matcher matcher = patt.matcher(restStr);
+    if (matcher.matches()) {
+      List<T> tList = new ArrayList<>();
+      String listStr = matcher.group(1);
+      listStr = CoderUtil.decodeUnicode(listStr);
+      // System.out.println("===========" + listStr);
+      Pattern patt2 = Pattern.compile("\"[\\s\\S]*?:\"(\\{[\\s\\S]*?\\})\"");
+      Matcher matcher2 = patt2.matcher(listStr);
+      while (matcher2.find()) {
+        String str = matcher2.group(1);
+        str = HenghuaDamnJsonUtil.formatForRegex(str);
+        // System.out.println("++++" + str);
+        try {
+          tList.add(JSONObject.parseObject(str, clazz));
+        } catch (Exception e) {
+          logger.error("=== json 数据转换失败， ex：【{}】，data：【{}】", e.getMessage(), str);
+        }
+      }
+      return tList;
+    } else {
       return new ArrayList<>();
     }
   }
