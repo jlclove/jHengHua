@@ -22,60 +22,66 @@
             </div>
             <div class="col-md-6 f16">
                 <form class="form-horizontal">
-               	   <div class="form-group">
+               	    <div class="form-group">
                         <label class="col-sm-4 control-label"><fmt:message key="product_sample_detail_detailId"/></label>
                         <div class="col-sm-8">
                             <p class="form-control-static">${sampleDetail.detailId}</p>
                         </div>
-                    </div>
-                    <div class="form-group">
+                     </div>
+                     <div class="form-group">
                         <label class="col-sm-4 control-label"><fmt:message key="product_sample_detail_cardId"/></label>
                         <div class="col-sm-8">
                             <p class="form-control-static">${sampleDetail.cardIds}</p>
                         </div>
-                    </div>
-                    <div class="form-group">
+                     </div>
+                     <div class="form-group">
                         <label class="col-sm-4 control-label"><fmt:message key="product_sample_detail_name"/></label>
                         <div class="col-sm-8">
                             <p class="form-control-static">${sampleDetail.nameCn}</p>
                         </div>
-                    </div>
-                    <div class="form-group">
+                     </div>
+                     <div class="form-group">
                         <label class="col-sm-4 control-label"><fmt:message key="product_sample_detail_material"/></label>
                         <div class="col-sm-8">
                             <p class="form-control-static">${sampleDetail.material}</p>
                         </div>
-                    </div>
-                    <div class="form-group">
+                     </div>
+                     <div class="form-group">
                         <label class="col-sm-4 control-label"><fmt:message key="product_sample_detail_level"/></label>
                         <div class="col-sm-8">
                             <p class="form-control-static">${sampleDetail.level}</p>
                         </div>
-                    </div> 
-                    <div class="form-group">
+                     </div>
+                     <div class="form-group">
                         <label class="col-sm-4 control-label"><fmt:message key="product_sample_detail_style"/></label>
                         <div class="col-sm-8">
                             <p class="form-control-static">${sampleDetail.style}</p>
                         </div>
-                    </div> 
+                     </div>
                      <div class="form-group">
                         <label class="col-sm-4 control-label"><fmt:message key="product_sample_detail_fabrics"/></label>
                         <div class="col-sm-8">
                             <p class="form-control-static">${sampleDetail.fabrics}</p>
                         </div>
-                    </div> 
+                     </div>
                      <div class="form-group">
                         <label class="col-sm-4 control-label"><fmt:message key="product_sample_detail_gramWeight"/></label>
                         <div class="col-sm-8">
                             <p class="form-control-static">${sampleDetail.gramWeight}</p>
                         </div>
-                    </div> 
+                     </div>
+                     <div class="form-group">
+                        <label class="col-sm-4 control-label"><fmt:message key="product_sample_detail_breadth"/></label>
+                        <div class="col-sm-8">
+                            <p class="form-control-static">${sampleDetail.breadth}</p>
+                        </div>
+                     </div>
                      <div class="form-group">
                         <label class="col-sm-4 control-label"><fmt:message key="product_sample_detail_clearTypes"/></label>
                         <div class="col-sm-8">
                             <p class="form-control-static">${sampleDetail.clearTypes}</p>
                         </div>
-                    </div> 
+                     </div>
                      <div class="form-group">
                         <label class="col-sm-4 control-label"><fmt:message key="product_sample_detail_colorTypes"/></label>
                         <div class="col-sm-8">
@@ -87,7 +93,7 @@
                         <div class="col-sm-8">
                             <p class="form-control-static">
                                 <c:if test="${empty session_user}">
-                                    <small>登录后可查看</small>
+                                    <small><a href="javascript:$('#popModal').modal('show');">登录后可查看</a></small>
                                 </c:if>
                                 <c:if test="${not empty session_user}">
                                     <span id="stock">0</span> <span id="unit"></span>

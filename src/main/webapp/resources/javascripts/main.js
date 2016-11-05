@@ -118,6 +118,9 @@ $(document).ready(function(){
                 required: true,
                 minlength: 4
             },
+            verifyCode: {
+                required: true
+            },
             nickname: {
                 required: true,
                 minlength: 4
@@ -136,6 +139,9 @@ $(document).ready(function(){
             mobilePhone: {
                 required: '请输入用户名',
                 minlength: '用户名不能少于4位'
+            },
+            verifyCode: {
+                required: '请输入短信验证码'
             },
             nickname: {
                 required: '请输入昵称',
@@ -160,6 +166,7 @@ $(document).ready(function(){
                     method: 'post',
                     data: {
                         mobilePhone: form.mobilePhone.value,
+                        verifyCode: form.verifyCode.value,
                         nickname: form.nickname.value,
                         password: form.password.value
                     },
@@ -184,6 +191,30 @@ $(document).ready(function(){
             }, 1000);
         }
     });
+
+    //验证码
+    function bindVerifyEvent() {
+        $('.js_send_verify_code').off('click', bindVerifyEvent);
+        $('.js_send_verify_code').addClass("disable")
+        var last = 60;
+        updateText(last);
+        var interval = setInterval(function(){
+            if(last <= 0) {
+                clearInterval(interval);
+                $('.js_send_verify_code').removeClass("disable")
+                $('.js_send_verify_code').text("获取验证码");
+                $('.js_send_verify_code').on('click', bindVerifyEvent);
+            } else {
+                last--;
+                updateText(last);
+            }
+        }, 1000);
+        function updateText(time){
+            $('.js_send_verify_code').text(time + "s后重新获取");
+        }
+    }
+    $('.js_send_verify_code').on('click', bindVerifyEvent);
+
 
     $('#keyword').on('keydown', function(e){
         if(e.keyCode == 13) {

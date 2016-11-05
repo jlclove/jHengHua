@@ -384,6 +384,17 @@
                         <input type="text" class="form-control" name="mobilePhone" placeholder="<fmt:message key="regist_mobile_hint"/>">
                     </div>
                     <div class="form-group">
+                        <div class="row">
+                            <div class="col-xs-7">
+                                <input type="text" class="form-control" name="verifyCode" placeholder="<fmt:message key="regist_verify_code_hint"/>">
+                            </div>
+                            <div class="col-xs-5" style="padding-left: 0;">
+                                <a class="red pull-right js_send_verify_code" href="javascritp:;" style="line-height: 45px;">获取验证码</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
                         <input type="text" class="form-control" name="nickname" placeholder="<fmt:message key="regist_nickname_hint"/>">
                     </div>
                     <div class="form-group">

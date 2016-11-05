@@ -323,3 +323,6 @@ a:hover {
     padding-top: 62px;
     padding-bottom: 70px;
 }
+a.js_send_verify_code.disable {
+    color: #aaa;
+}

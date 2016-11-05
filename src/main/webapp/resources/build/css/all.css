@@ -842,7 +842,9 @@ a:hover {
     padding-top: 62px;
     padding-bottom: 70px;
 }
-
+a.js_send_verify_code.disable {
+    color: #aaa;
+}
 @font-face {
   font-family: 'PillGothic300mgLight';
   src: url("../fonts/pillgothic/pillgothic300mglight-webfont.eot");
