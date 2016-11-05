@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Lazy;
@@ -138,8 +139,30 @@ public class HenghuaService {
 		if (sample == null) {
 			return false;
 		}
-		return this.henghuaSampleDao.batchReplaceInto(Arrays.asList(sample), false) == 1;
+		return this.syncSample(sample);
+	}
 
+	/**
+	 * 同步单条样卡数据
+	 * 
+	 * @param sample
+	 * @return
+	 */
+	public boolean syncSample(HenghuaSample sample) {
+		Assert.notNull(sample, "样卡数据不能为空");
+		return this.henghuaSampleDao.batchReplaceInto(Arrays.asList(sample), false) == 1;
+	}
+
+	/**
+	 * 根据 cardId 删除样卡
+	 * 
+	 * @param cardId
+	 *            样卡 ID
+	 * @return 影响行数
+	 */
+	@CacheEvict(value = "sample", key = "'HenghuaService.getSample.'+#cardId")
+	public int deleteByCardId(String cardId) {
+		return this.henghuaSampleDao.deleteByCardId(cardId);
 	}
 
 	/**
@@ -167,6 +190,18 @@ public class HenghuaService {
 	@Cacheable(value = "sampleDetail", key = "'HenghuaService.getSampleDetail.'+#detailId")
 	public HenghuaSampleDetail getSampleDetail(String detailId) {
 		return this.henghuaSampleDetailDao.findSampleDetail(detailId);
+	}
+
+	/**
+	 * 根据样品ID删除样品
+	 * 
+	 * @param detailId
+	 *            样品ID
+	 * @return
+	 */
+	@CacheEvict(value = "sampleDetail", key = "'HenghuaService.getSampleDetail.'+#detailId")
+	public int deleteByDetailId(String detailId) {
+		return this.henghuaSampleDetailDao.deleteByDetailId(detailId);
 	}
 
 	/**
@@ -217,10 +252,7 @@ public class HenghuaService {
 	 */
 	public boolean syncSampleDetail(String detailId) {
 		HenghuaSampleDetail detail = this.restHenghua.restSampleDatail(detailId);
-		if (detail == null) {
-			return false;
-		}
-		return this.henghuaSampleDetailDao.batchReplaceInto(Arrays.asList(detail), false) == 1;
+		return this.syncSampleDetail(detail);
 	}
 
 	/**
@@ -233,9 +265,10 @@ public class HenghuaService {
 	 * @version v1
 	 * @since 2016年6月5日 下午6:09:12
 	 */
-	public void syncSampleDetail(HenghuaSampleDetail detail) {
+	public boolean syncSampleDetail(HenghuaSampleDetail detail) {
+		Assert.notNull(detail, "样品数据不能为空");
 		Assert.hasText(detail.getDetailId(), "the argument [detailId] must not be null or empty");
-		this.henghuaSampleDetailDao.batchReplaceInto(Arrays.asList(detail), false);
+		return this.henghuaSampleDetailDao.batchReplaceInto(Arrays.asList(detail), false) == 1;
 	}
 
 	/**
@@ -254,9 +287,20 @@ public class HenghuaService {
 	 * @return
 	 * @author jail
 	 */
-	@Cacheable(value = "cloth", key = "#serialNo")
+	@Cacheable(value = "cloth", key = "'HenghuaService.getCloth.'+#serialNo")
 	public HenghuaCloth getCloth(String serialNo) {
 		return henghuaClothDao.findCloth(serialNo);
+	}
+
+	/**
+	 * 根据 SerialNo 删除服装
+	 * 
+	 * @param serialNo
+	 * @return
+	 */
+	@CacheEvict(value = "cloth", key = "'HenghuaService.getCloth.'+#serialNo")
+	public int deleteBySerialNo(String serialNo) {
+		return this.henghuaClothDao.deleteBySerialNo(serialNo);
 	}
 
 	/**
@@ -291,10 +335,7 @@ public class HenghuaService {
 	 */
 	public boolean syncCloth(String serialNo) {
 		HenghuaCloth cloth = this.getClothFromHost(serialNo);
-		if (cloth == null) {
-			return false;
-		}
-		return this.henghuaClothDao.batchReplaceInto(Arrays.asList(cloth), false) == 1;
+		return this.syncCloth(cloth);
 	}
 
 	/**

@@ -5,9 +5,9 @@
 
 	<insert id="insertSource" parameterType="list">
 		insert INTO `henghua_sample_detail` (`detailId`,`desc_jpg`,`desc_png`,`desc_video`,`cardIds`,`nameCn`,`nameEn`,`level`,`material`,
-		`style`,`season`,`gramWeight`,`fabrics`,`zuzhi`,`colorTypes`,`materialTypes`,`clearTypes`)
+		`style`,`season`,`gramWeight`,`fabrics`,`zuzhi`,`colorTypes`,`materialTypes`,`clearTypes`,`breadth`)
 		select `detailId`,`desc_jpg`,`desc_png`,`desc_video`,`cardIds`,`nameCn`,`nameEn`,`level`,`material`,
-		`style`,`season`,`gramWeight`,`fabrics`,`zuzhi`,`colorTypes`,`materialTypes`,`clearTypes`
+		`style`,`season`,`gramWeight`,`fabrics`,`zuzhi`,`colorTypes`,`materialTypes`,`clearTypes`,`breadth`
 		from  
 		<foreach collection="list" item="detail" separator=" union all " open="(" close=")">
 		    select #{detail.detailId} as detailId,
@@ -26,7 +26,8 @@
 			#{detail.zuzhi} as zuzhi,
 			#{detail.colorTypes} as colorTypes,
 			#{detail.materialTypes} as materialTypes,
-			#{detail.clearTypes} as clearTypes
+			#{detail.clearTypes} as clearTypes,
+			#{detail.breadth} as breadth
 		</foreach>
 		as temp where not exists (select 1 from henghua_sample_detail as d where d.detailId = temp.detailId)
 	</insert>
@@ -51,7 +52,8 @@
 			#{detail.zuzhi} as zuzhi,
 			#{detail.colorTypes} as colorTypes,
 			#{detail.materialTypes} as materialTypes,
-			#{detail.clearTypes} as clearTypes
+			#{detail.clearTypes} as clearTypes,
+			#{detail.breadth} as breadth
 		</foreach>
 		as temp on a.detailId = temp.detailId
 		set a.`desc_jpg` = temp.desc_jpg,
@@ -70,18 +72,23 @@
 		a.`colorTypes` = temp.colorTypes,
 		a.`materialTypes` = temp.materialTypes,
 		a.`clearTypes` = temp.clearTypes,
+		a.`breadth` = temp.breadth,
 		a.`updateTime` = now()
 	</update>
 	
 	<delete id="deleteOutOfTime" parameterType="date">
 		delete from henghua_sample_detail where updateTime &lt; #{time}
 	</delete>
+	
+	<delete id="delete" parameterType="string">
+		delete from henghua_sample_detail where detailId = #{detailId}
+	</delete>
 
 	<!-- 根据多个detailId 获得样品 -->
 	<select id="findSampleDetails" resultType="henghuaSampleDetail" parameterType="map">
 		select d.`detailId`,d.`desc_jpg`,d.`desc_png`,d.`desc_video`,temp.cardId as cardId, d.cardIds as `cardIds`,
 			   d.`nameCn`,d.`nameEn`,d.`level`,d.`material`,
-			   d.`style`,d.`season`,d.`gramWeight`,d.`fabrics`,d.`zuzhi`,d.`colorTypes`,d.`materialTypes`,d.`clearTypes`
+			   d.`style`,d.`season`,d.`gramWeight`,d.`fabrics`,d.`zuzhi`,d.`colorTypes`,d.`materialTypes`,d.`clearTypes`,d.`breadth`
 		from henghua_sample_detail as d
 		inner join 
 		<foreach collection="_parameter.keys" item="k" separator=" union all "  open="(" close=")" >

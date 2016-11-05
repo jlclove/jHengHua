@@ -52,6 +52,10 @@
 	<delete id="deleteOutOfTime" parameterType="date">
 		delete from henghua_sample where updateTime &lt; #{time}
 	</delete>
+	
+	<delete id="delete" parameterType="string">
+		delete from henghua_sample where cardId = #{cardId}
+	</delete>
 
 	<select id="findSample" resultType="vSample" parameterType="string">
 		select *

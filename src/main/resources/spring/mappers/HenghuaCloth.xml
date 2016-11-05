@@ -80,6 +80,10 @@
 	<delete id="deleteOutOfTime" parameterType="date">
 		delete from henghua_cloth where updateTime &lt; #{time}
 	</delete>
+	
+	<delete id="delete" parameterType="string">
+		delete from henghua_cloth where serialNo = #{serialNo}
+	</delete>
 
 	<select id="findCloth" resultType="cloth" parameterType="string">
 		select *

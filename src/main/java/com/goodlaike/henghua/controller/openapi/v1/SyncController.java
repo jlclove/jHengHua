@@ -1,8 +1,12 @@
 package com.goodlaike.henghua.controller.openapi.v1;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.Assert;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -11,6 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.goodlaike.business.core.controller.BaseRestController;
 import com.goodlaike.henghua.RestResultWeb;
+import com.goodlaike.henghua.entity.model.HenghuaCloth;
+import com.goodlaike.henghua.entity.model.HenghuaSample;
 import com.goodlaike.henghua.entity.model.HenghuaSampleDetail;
 import com.goodlaike.henghua.service.HenghuaService;
 
@@ -45,7 +51,8 @@ public class SyncController extends BaseRestController {
 			@RequestParam(name = "tissue", required = false) String zuzhi,
 			@RequestParam(name = "colorTypes", required = false) String colorTypes,
 			@RequestParam(name = "materialTypes", required = false) String materialTypes,
-			@RequestParam(name = "clearTypes", required = false) String clearTypes) {
+			@RequestParam(name = "clearTypes", required = false) String clearTypes,
+			@RequestParam(name = "breadth", required = false) String breadth) {
 		Assert.hasText(detailId, "the argument [detailId] must not be null or empty");
 		HenghuaSampleDetail detail = new HenghuaSampleDetail();
 		detail.setDetailId(detailId);
@@ -65,6 +72,7 @@ public class SyncController extends BaseRestController {
 		detail.setColorTypes(colorTypes);
 		detail.setMaterialTypes(materialTypes);
 		detail.setClearTypes(clearTypes);
+		detail.setBreadth(breadth);
 		try {
 			this.henghuaService.syncSampleDetail(detail);
 			return ResponseEntity.ok().build();
@@ -95,6 +103,23 @@ public class SyncController extends BaseRestController {
 	}
 
 	/**
+	 * 样品同步（根据样品ID删除）
+	 * 
+	 * @param detailId
+	 *            样品ID
+	 * @return
+	 */
+	@RequestMapping(value = "sampleDetail/{detailId}", method = { RequestMethod.DELETE })
+	protected ResponseEntity<?> deleteSampleDetailByDetailId(@PathVariable("detailId") String detailId) {
+		try {
+			this.henghuaService.deleteByDetailId(detailId);
+			return ResponseEntity.ok().build();
+		} catch (Exception e) {
+			return super.serverError(RestResultWeb.SERVERERROR.rebuild(e.getMessage()));
+		}
+	}
+
+	/**
 	 * 样卡同步（根据样卡ID）
 	 * 
 	 * @param cardId
@@ -116,6 +141,65 @@ public class SyncController extends BaseRestController {
 	}
 
 	/**
+	 * 样卡同步（直接样卡数据）
+	 * 
+	 * @param {@link
+	 * 			HenghuaSample}
+	 * @return
+	 */
+	@RequestMapping(value = "sample", method = { RequestMethod.POST })
+	protected ResponseEntity<?> syncSample(@RequestParam(name = "cardId", required = false) String cardId,
+			@RequestParam(name = "alias", required = false) String alias,
+			@RequestParam(name = "nick", required = false) String nick,
+			@RequestParam(name = "sampleList", required = false) String sampleList,
+			@RequestParam(name = "material", required = false) String material,
+			@RequestParam(name = "descCn", required = false) String descCn,
+			@RequestParam(name = "descEn", required = false) String descEn,
+			@RequestParam(name = "cardCreateTime", required = false) String cardCreateTime) {
+		Assert.hasText(cardId, "the argument [cardId] must not be null or empty");
+		HenghuaSample sample = new HenghuaSample();
+		sample.setCardId(cardId);
+		sample.setAlias(alias);
+		sample.setNick(nick);
+		sample.setSampleList(sampleList);
+		sample.setMaterial(material);
+		sample.setDescCn(descCn);
+		sample.setDescEn(descEn);
+		if (!StringUtils.isEmpty(cardCreateTime)) {
+			SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			try {
+				sample.setCardCreateTime(df.parse(cardCreateTime));
+			} catch (ParseException e) {
+				return super.serverError(RestResultWeb.SERVERERROR.rebuild("建卡日期格式不合法，必须是【yyyy-MM-dd HH:mm:ss】 格式"));
+			}
+		}
+		try {
+			this.henghuaService.syncSample(sample);
+			return ResponseEntity.ok().build();
+		} catch (Exception e) {
+			return super.serverError(RestResultWeb.SERVERERROR.rebuild(e.getMessage()));
+		}
+	}
+
+	/**
+	 * 样卡同步（根据样卡ID 删除）
+	 * 
+	 * @param cardId
+	 *            样卡ID
+	 * @return
+	 */
+	@RequestMapping(value = "sample/{cardId}", method = { RequestMethod.DELETE })
+	protected ResponseEntity<?> deleteSampleByCardId(@PathVariable("cardId") String cardId) {
+		try {
+			this.henghuaService.deleteByCardId(cardId);
+			return ResponseEntity.ok().build();
+		} catch (Exception e) {
+			return super.serverError(RestResultWeb.SERVERERROR.rebuild(e.getMessage()));
+		}
+	}
+
+	/**
+	 * 服装同步（根据 serialNo）
 	 * 
 	 * @param serialNo
 	 * @return
@@ -129,6 +213,71 @@ public class SyncController extends BaseRestController {
 			} else {
 				return ResponseEntity.notFound().build();
 			}
+		} catch (Exception e) {
+			return super.serverError(RestResultWeb.SERVERERROR.rebuild(e.getMessage()));
+		}
+	}
+
+	/**
+	 * 服装同步 （直接服装数据）
+	 * 
+	 * @param serialNo
+	 * @return
+	 */
+	@RequestMapping(value = "cloth", method = { RequestMethod.POST })
+	protected ResponseEntity<?> syncCloth(@RequestParam(value = "serialNo", required = false) String serialNo,
+			@RequestParam(value = "name", required = false) String name,
+			@RequestParam(value = "desc_jpg", required = false) String desc_jpg,
+			@RequestParam(value = "desc_png", required = false) String desc_png,
+			@RequestParam(value = "desc_video", required = false) String desc_video,
+			@RequestParam(value = "sonCodeList", required = false) String sonCodeList,
+			@RequestParam(value = "sizeList", required = false) String sizeList,
+			@RequestParam(value = "onUnderStyle", required = false) String onUnderStyle,
+			@RequestParam(value = "wearStyle", required = false) String wearStyle,
+			@RequestParam(value = "style", required = false) String style,
+			@RequestParam(value = "material", required = false) String material,
+			@RequestParam(value = "mainColor", required = false) String mainColor,
+			@RequestParam(value = "detailId", required = false) String detailId,
+			@RequestParam(value = "price", required = false) String price,
+			@RequestParam(value = "unit", required = false) String unit,
+			@RequestParam(value = "washCodes", required = false) String washCodes) {
+		Assert.hasText(serialNo, "the argument [serialNo] must not be null or empty");
+		HenghuaCloth cloth = new HenghuaCloth();
+		cloth.setSerialNo(serialNo);
+		cloth.setName(name);
+		cloth.setDesc_jpg(desc_jpg);
+		cloth.setDesc_png(desc_png);
+		cloth.setDesc_video(desc_video);
+		cloth.setSonCodeList(sonCodeList);
+		cloth.setSizeList(sizeList);
+		cloth.setOnUnderStyle(onUnderStyle);
+		cloth.setWearStyle(wearStyle);
+		cloth.setStyle(style);
+		cloth.setMaterial(material);
+		cloth.setMainColor(mainColor);
+		cloth.setDetailId(detailId);
+		cloth.setPrice(price);
+		cloth.setUnit(unit);
+		cloth.setWashCodes(washCodes);
+		try {
+			this.henghuaService.syncCloth(cloth);
+			return ResponseEntity.ok().build();
+		} catch (Exception e) {
+			return super.serverError(RestResultWeb.SERVERERROR.rebuild(e.getMessage()));
+		}
+	}
+
+	/**
+	 * 服装同步（根据 serialNo删除）
+	 * 
+	 * @param serialNo
+	 * @return
+	 */
+	@RequestMapping(value = "cloth/{serialNo}", method = { RequestMethod.DELETE })
+	protected ResponseEntity<?> deleteClothBySerialNo(@PathVariable("serialNo") String serialNo) {
+		try {
+			this.henghuaService.deleteBySerialNo(serialNo);
+			return ResponseEntity.ok().build();
 		} catch (Exception e) {
 			return super.serverError(RestResultWeb.SERVERERROR.rebuild(e.getMessage()));
 		}

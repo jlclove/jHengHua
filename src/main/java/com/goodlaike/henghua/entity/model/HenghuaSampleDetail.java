@@ -111,6 +111,13 @@ public class HenghuaSampleDetail implements Serializable {
 	 */
 	@JSONField(name = "整理方式")
 	private String clearTypes;
+
+	/**
+	 * 幅宽
+	 */
+	@JSONField(name = "幅宽")
+	private String breadth;
+
 	/**
 	 * 创建人ID
 	 */
@@ -492,6 +499,21 @@ public class HenghuaSampleDetail implements Serializable {
 	}
 
 	/**
+	 * @return the 幅宽
+	 */
+	public String getBreadth() {
+		return breadth;
+	}
+
+	/**
+	 * @param breadth
+	 *            the breadth to set
+	 */
+	public void setBreadth(String breadth) {
+		this.breadth = breadth;
+	}
+
+	/**
 	 * 获得 creator
 	 * 
 	 * @return int
@@ -587,8 +609,7 @@ public class HenghuaSampleDetail implements Serializable {
 				+ ", nameCn=" + nameCn + ", nameEn=" + nameEn + ", level=" + level + ", material=" + material
 				+ ", style=" + style + ", season=" + season + ", gramWeight=" + gramWeight + ", fabrics=" + fabrics
 				+ ", zuzhi=" + zuzhi + ", colorTypes=" + colorTypes + ", materialTypes=" + materialTypes
-				+ ", clearTypes=" + clearTypes + ", creator=" + creator + ", createTime=" + createTime + ", updator="
-				+ updator + ", updateTime=" + updateTime + "]";
+				+ ", clearTypes=" + clearTypes + ", breadth=" + breadth + ", creator=" + creator + ", createTime="
+				+ createTime + ", updator=" + updator + ", updateTime=" + updateTime + "]";
 	}
-
 }
