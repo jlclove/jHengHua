@@ -369,8 +369,7 @@ header a:hover {
         display: block;
     }
     .navbar-nav {
-        margin-top: 0;
-        margin-bottom: 0;
+        margin: 0;
     }
     .nav-menu .custom-text {
         width: 100%;
