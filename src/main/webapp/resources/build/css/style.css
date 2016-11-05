@@ -2,6 +2,7 @@ body,html {
     /*font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;*/
     font-size: 12px;
     /*font-size: 62.5%;*/
+    height: 100%;
 }
 body,a {
     font-family: "PillGothic300mgLight";

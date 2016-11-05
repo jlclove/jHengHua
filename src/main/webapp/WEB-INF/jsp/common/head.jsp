@@ -41,8 +41,8 @@
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
-                <button id="top-nav" type="button" class="navbar-toggle collapsed left" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
-                        id="collapse-left">
+                <button id="top-nav" type="button" class="navbar-toggle collapsed left" data-toggle="collapse" data-target="#bs-menu-navbar-collapse"
+                        >
                     <i class="icon-suiticon icon-suiticon-menu-1"></i>
                 </button>
                 <a class="navbar-brand" href="/" style="padding: 7px;">
@@ -57,7 +57,7 @@
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <div class="collapse navbar-collapse" id="bs-menu-navbar-collapse">
                 <ul class="nav navbar-nav">
                     <li>
                         <a href="#" data-nav="true"><fmt:message key="nav_shop"/></a>

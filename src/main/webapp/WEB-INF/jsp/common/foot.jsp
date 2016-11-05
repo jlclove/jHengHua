@@ -95,10 +95,16 @@
         $('.filter-bar.affix').css('top', '92px');
         $('.content').css('padding-top', '90px');
     }
+
+    $('a[data-nav]').each(function(i, e){
+        $(this).data('offsetTop', i * 60);
+    });
+
     $('a[data-nav]').click(function(e){
         var navMenu = $(this).parent().find('.nav-menu');
         var current = $(this).parent().find('.nav-menu-wrap');
         var visible = current.data('visible');
+        $("#bs-menu-navbar-collapse").animate({scrollTop: $(this).data('offsetTop')}, 600);
         closeMenu();
         if(!visible) {
             navMenu.css('visibility', 'visible');

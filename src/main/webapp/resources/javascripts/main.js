@@ -219,3 +219,19 @@ if(length > 1) {
         index++;
     }, 5000);
 }
+
+function handleBodyClick(e) {
+    if($('#bs-menu-navbar-collapse').find(e.target).length == 0) {
+        $('#bs-menu-navbar-collapse').collapse('hide');
+        e.stopPropagation();
+        e.preventDefault();
+    }
+}
+$('#bs-menu-navbar-collapse').on('hidden.bs.collapse', function (e) {
+    $('html, body').css('overflow', 'auto');
+    $(document).off('click', handleBodyClick);
+});
+$('#bs-menu-navbar-collapse').on('shown.bs.collapse', function (e) {
+    $('html, body').css('overflow', 'hidden');
+    $(document).on('click', handleBodyClick);
+})

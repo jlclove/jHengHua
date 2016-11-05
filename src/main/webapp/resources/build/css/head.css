@@ -101,11 +101,11 @@ header a:hover {
 }
 .nav-menu-wrap {
     padding: 20px 40px;
-    transition: all .3s ease;
-    -webkit-transition: all .3s ease-in-out;
-    -moz-transition: all .3s ease-in-out;
-    -o-transition: all .3s ease-in-out;
-    -ms-transition: all .3s ease-in-out;
+    transition: all .2s ease;
+    -webkit-transition: all .2s ease-in-out;
+    -moz-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+    -ms-transition: all .2s ease-in-out;
     margin-top: -500px;
     border-bottom: 1px solid #d9d9d9;
     opacity: 0;
