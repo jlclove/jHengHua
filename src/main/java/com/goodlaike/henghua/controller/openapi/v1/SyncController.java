@@ -3,9 +3,12 @@ package com.goodlaike.henghua.controller.openapi.v1;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.Assert;
+import org.springframework.util.StopWatch;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -281,5 +284,40 @@ public class SyncController extends BaseRestController {
 		} catch (Exception e) {
 			return super.serverError(RestResultWeb.SERVERERROR.rebuild(e.getMessage()));
 		}
+	}
+
+	private final Logger logger = LoggerFactory.getLogger(this.getClass());
+
+	// 同步所有的样卡数据
+	@RequestMapping(value = "syncSample", method = { RequestMethod.GET })
+	public void syncAllSample() {
+		StopWatch sw = new StopWatch();
+		sw.start();
+		logger.info("===>> 开始同步样卡");
+		this.henghuaService.syncAllSample();
+		sw.stop();
+		logger.info("===>> 样卡同步完毕,共耗时：" + sw.getTotalTimeMillis() + "ms");
+	}
+
+	// 同步所有样品数据
+	@RequestMapping(value = "syncSampleDetail", method = { RequestMethod.GET })
+	public void syncAllSampleDetail() {
+		StopWatch sw = new StopWatch();
+		sw.start();
+		logger.info("===>> 开始同步样品");
+		this.henghuaService.syncAllSampleDetail();
+		sw.stop();
+		logger.info("===>> 样品同步完毕,共耗时：" + sw.getTotalTimeMillis() + "ms");
+	}
+
+	// 同步所有服装款式
+	@RequestMapping(value = "syncCloth", method = { RequestMethod.GET })
+	public void syncAllCloth() {
+		StopWatch sw = new StopWatch();
+		sw.start();
+		logger.info("===>> 开始同步服装");
+		this.henghuaService.syncAllCloth();
+		sw.stop();
+		logger.info("===>> 服装同步完毕,共耗时：" + sw.getTotalTimeMillis() + "ms");
 	}
 }
