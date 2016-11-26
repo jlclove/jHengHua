@@ -131,7 +131,7 @@
 		class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
 		<property name="converters">
 			<list>
-				<bean class="com.goodlaike.converters.DateConverter" />
+				<bean class="com.goodlaike.framework.converters.DateConverter" />
 			</list>
 		</property>
 	</bean>
