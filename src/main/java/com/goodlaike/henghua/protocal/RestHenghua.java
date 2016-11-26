@@ -18,6 +18,9 @@ import org.springframework.stereotype.Component;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.goodlaike.framework.resttemplate.client.RestClient;
+import com.goodlaike.framework.tools.utils.CoderUtil;
+import com.goodlaike.framework.tools.utils.TextUtil;
 import com.goodlaike.henghua.entity.model.HenghuaCloth;
 import com.goodlaike.henghua.entity.model.HenghuaClothQuantity;
 import com.goodlaike.henghua.entity.model.HenghuaExhibition;
@@ -26,9 +29,6 @@ import com.goodlaike.henghua.entity.model.HenghuaSampleDetail;
 import com.goodlaike.henghua.entity.model.HenghuaSampleDetailQuantity;
 import com.goodlaike.henghua.entity.model.Washing;
 import com.goodlaike.henghua.utils.HenghuaDamnJsonUtil;
-import com.goodlaike.resttemplate.client.RestClient;
-import com.goodlaike.tools.utils.CoderUtil;
-import com.goodlaike.tools.utils.TextUtil;
 
 /**
  * 恒华样卡同步类， 采用 @Component、@PropertySource 与 @Value 来实现，需要定义 @Bean <br>

@@ -2,7 +2,7 @@ package com.goodlaike.henghua.utils;
 
 import org.apache.commons.lang3.StringUtils;
 
-import com.goodlaike.tools.utils.CoderUtil;
+import com.goodlaike.framework.tools.utils.CoderUtil;
 
 /**
  * 该死的恒华json工具类

@@ -4,7 +4,7 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.Assert;
 
-import com.goodlaike.business.core.service.UserService;
+import com.goodlaike.business.core.service.user.UserService;
 import com.goodlaike.henghua.test.TestBase;
 
 public class TestUserService extends TestBase {
