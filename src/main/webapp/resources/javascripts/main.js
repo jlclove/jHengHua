@@ -212,6 +212,10 @@ $(document).ready(function(){
         function updateText(time){
             $('.js_send_verify_code').text(time + "s后重新获取");
         }
+        // 发送短信接口 todo
+        $.post('/business/user/sendVeriCode', {mobilePhone: registForm.mobilePhone.value}, function(res){
+            console.log(res);
+        });
     }
     $('.js_send_verify_code').on('click', bindVerifyEvent);
 
