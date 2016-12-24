@@ -1,6 +1,8 @@
 package com.goodlaike.henghua.test.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,9 +23,9 @@ public class TestRestHenghua extends TestBase {
   @Test
   public void testObject() {
 
-    String aa = "{\r\n";
-
-    System.out.println(aa.replaceAll("\\r\\n", ""));
+    Map<String, Object> map = new HashMap<>();
+    map.put("name", "abc\r\n\"def");
+    System.out.println(JSONObject.toJSONString(map));
 
   }
 

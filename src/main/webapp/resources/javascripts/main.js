@@ -174,13 +174,14 @@ $(document).ready(function(){
                         console.log(res);
                         $('#popModal').modal('hide');
                         resetForm();
+                        window.location.reload();
                     },
                     error: function(res){
                         var error = {};
                         try {
                             error = JSON.parse(res.responseText);
                         } catch (e) {
-                            error.message = '未知错误';
+                            error.message = res.responseText;
                         }
                         $('#registBody .error-msg').text(error.message).show();
                     },
