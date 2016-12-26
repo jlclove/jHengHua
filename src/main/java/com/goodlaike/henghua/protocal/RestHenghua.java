@@ -6,8 +6,10 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Function;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,6 +20,7 @@ import org.springframework.stereotype.Component;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.parser.ParserConfig;
 import com.goodlaike.framework.resttemplate.client.RestClient;
 import com.goodlaike.framework.tools.utils.CoderUtil;
 import com.goodlaike.framework.tools.utils.TextUtil;
@@ -83,7 +86,11 @@ public class RestHenghua {
 
   private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
-  private static final boolean useRegexConvert = true;
+  private static final boolean useRegexConvert = false;
+
+  static {
+    ParserConfig.getGlobalInstance().setAsmEnable(false);
+  }
 
   /**
    * 获得所有样卡数据， 接口提供非正常 json,当 json 输出
@@ -158,6 +165,17 @@ public class RestHenghua {
    */
   public Map<String, List<String>> restSampleType(String langType) {
     String typeStr = this.restSampleTypeStr();
+    JSONObject obj = JSONObject.parseObject(typeStr);
+    Map<String, List<String>> sampleTypeMap = new HashMap<String, List<String>>();
+    obj.forEach((k, v) -> {
+      if (k.toLowerCase().startsWith(langType)) {
+        sampleTypeMap.put(k.toLowerCase().replace(langType, ""), Arrays.asList(String.valueOf(v).split(",")));
+      }
+    });
+    return sampleTypeMap;
+   /*
+    * 老的实现方式 
+    String typeStr = this.restSampleTypeStr();
     typeStr = HenghuaDamnJsonUtil.format(typeStr);
     JSONObject obj = JSONObject.parseObject(typeStr);
     // 获取 result key 下的伪数组
@@ -172,7 +190,9 @@ public class RestHenghua {
         sampleTypeMap.put(k.toLowerCase().replace(langType, ""), Arrays.asList(String.valueOf(v).split(",")));
       }
     });
-    return sampleTypeMap;
+     return sampleTypeMap;
+    */
+   
   }
 
   /**
@@ -264,6 +284,7 @@ public class RestHenghua {
    */
   public List<HenghuaCloth> restClothAll() {
     String clothStr = this.restClothAllStr();
+    System.out.println(clothStr);
     return this.getList(clothStr, HenghuaCloth.class);
   }
 
@@ -311,6 +332,11 @@ public class RestHenghua {
    */
   public Map<Integer, Washing> restWashingAllMap() {
     String washingStr = this.restWashingAllStr();
+    List<Washing> list = JSONObject.parseArray(washingStr, Washing.class);
+    return list.stream().collect(Collectors.toMap(Washing::getId, Function.identity()));
+    
+    /* 老的实现方式  
+   * String washingStr = this.restWashingAllStr();
     washingStr = HenghuaDamnJsonUtil.format(washingStr);
     JSONObject obj = JSONObject.parseObject(washingStr);
     // 获取 result key 下的伪数组
@@ -324,6 +350,7 @@ public class RestHenghua {
       washingMap.put(Integer.valueOf(k), JSONObject.parseObject(v.toString(), Washing.class));
     });
     return washingMap;
+    */
   }
 
   /**
@@ -379,6 +406,14 @@ public class RestHenghua {
    */
   public Map<String, List<String>> restClothType() {
     String typeStr = this.restClothTypeStr();
+    JSONObject obj = JSONObject.parseObject(typeStr);
+    Map<String, List<String>> clothTypeMap = new HashMap<String, List<String>>();
+    obj.forEach((k, v) -> {
+      clothTypeMap.put(k, Arrays.asList(String.valueOf(v).split(",")));
+    });
+    return clothTypeMap;
+   /* 老的实现方式
+    * String typeStr = this.restClothTypeStr();
     typeStr = HenghuaDamnJsonUtil.format(typeStr);
     JSONObject obj = JSONObject.parseObject(typeStr);
     // 获取 result key 下的伪数组
@@ -392,11 +427,16 @@ public class RestHenghua {
       clothTypeMap.put(k, Arrays.asList(String.valueOf(v).split(",")));
     });
     return clothTypeMap;
+    */
   }
 
   private String rest(String url) {
     System.out.println("==============>>" + url);
     return RestClient.exchange(url, HttpMethod.GET, String.class);
+  }
+
+  public <T> T getObject(String restStr, Class<T> clazz) {
+    return this.getObjectByOriginJson(restStr, clazz);
   }
 
   /**
@@ -410,7 +450,8 @@ public class RestHenghua {
    * @version v1
    * @since 2016年6月5日 下午12:01:31
    */
-  public <T> T getObject(String restStr, Class<T> clazz) {
+  @Deprecated
+  public <T> T getObjectByFixedJsonStr(String restStr, Class<T> clazz) {
     try {
       restStr = HenghuaDamnJsonUtil.format(restStr);
       System.out.println(restStr);
@@ -426,11 +467,15 @@ public class RestHenghua {
     }
   }
 
+  public <T> T getObjectByOriginJson(String restStr, Class<T> clazz) {
+    return JSONObject.parseObject(restStr, clazz);
+  }
+
   public <T> List<T> getList(String restStr, Class<T> clazz) {
     if (useRegexConvert) {
       return this.getListByRegex(restStr, clazz);
     } else {
-      return this.getListByJson(restStr, clazz);
+      return this.getListByOriginJson(restStr, clazz);
     }
   }
 
@@ -445,6 +490,11 @@ public class RestHenghua {
    * @version v1
    * @since 2016年6月5日 下午12:59:22
    */
+  public <T> List<T> getListByOriginJson(String restStr, Class<T> clazz) {
+    return JSONObject.parseArray(restStr, clazz);
+  }
+
+  @Deprecated
   public <T> List<T> getListByJson(String restStr, Class<T> clazz) {
     try {
       restStr = HenghuaDamnJsonUtil.format(restStr);
@@ -471,6 +521,7 @@ public class RestHenghua {
     }
   }
 
+  @Deprecated
   public <T> List<T> getListByRegex(String restStr, Class<T> clazz) {
     Pattern patt = Pattern.compile("\\{\"result\":\\[([\\s\\S]*)?\\]\\}");
     Matcher matcher = patt.matcher(restStr);

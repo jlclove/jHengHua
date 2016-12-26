@@ -17,14 +17,24 @@ public class TestRestHenghua extends TestBase {
 
   @Test
   public void restSampleType() {
-    System.out.println(restHenghua.restSampleType("cn"));
+    System.out.println(restHenghua.restSampleType("en"));
   }
 
   @Test
   public void restClothAll() {
     System.out.println(restHenghua.restClothAll());
   }
+  
+  @Test
+  public void restSampleAll() {
+    System.out.println(restHenghua.restSampleAll());
+  }
 
+  @Test
+  public void restSampleDatailAll() {
+    System.out.println(restHenghua.restSampleDatailAll());
+  }
+  
   @Test
   public void restWashingList() {
     System.out.println(this.restHenghua.restWashingAllMap());

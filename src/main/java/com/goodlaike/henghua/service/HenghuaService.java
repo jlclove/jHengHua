@@ -440,6 +440,7 @@ public class HenghuaService {
 	 */
 	@Cacheable(value = "globalConfig", key = "'HenghuaService.getExhibitionAll'")
 	public List<HenghuaExhibition> getExhibitionAll() {
-		return this.restHenghua.restHenghuaExhibitionAll();
+		List<HenghuaExhibition> list = this.restHenghua.restHenghuaExhibitionAll();
+		return list;
 	}
 }

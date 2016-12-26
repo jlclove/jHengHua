@@ -154,4 +154,6 @@ public class TestHenghuaService extends TestBase {
 	public void restHenghuaExhibition() {
 		System.out.println(this.henghuaService.getExhibitionAll());
 	}
+	
+	
 }
